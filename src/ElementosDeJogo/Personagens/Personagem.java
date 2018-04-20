@@ -1,4 +1,4 @@
-package ElementosDeJogo;
+package ElementosDeJogo.Personagens;
 
 public class Personagem {
     
@@ -19,11 +19,11 @@ public class Personagem {
     
     protected short maxHp;
     protected short maxMp;
+    protected short hpAtual;
+    protected short mpAtual;
     protected short movimento;
     protected short bonusDeDanoCorporal;
     protected short build;
-    protected short hpAtual;
-    protected short mpAtual;
     protected short idade;
     protected String nome;
     
@@ -37,7 +37,7 @@ public class Personagem {
 
     public Personagem(short forca, short constituicao, short tamanho, short destreza, 
             short aparencia, short inteligencia, short educacao, short poder, 
-            short idade, String nome, short d4, short d6) {
+            short idade, String nome, short movimento, short bonusDeDanoCorporal, short build) {
         super();
         
         this.forca = forca;
@@ -54,9 +54,11 @@ public class Personagem {
         
         setMaxHp();
         setMaxMp();
-        setMovimento();
-        setBonusDeDanoCorporal(d4, d6);
-        setBuild();
+        this.hpAtual = maxHp;
+        this.mpAtual = maxMp;
+        this.movimento = movimento;
+        this.bonusDeDanoCorporal = bonusDeDanoCorporal;
+        this.build = build;
     }
 
     
@@ -141,70 +143,6 @@ public class Personagem {
 
     public final void setMaxHp() {
         this.maxHp = (short)((getConstituicao()+getTamanho())/10);
-        setHpAtual(maxHp);
-    }
-
-    public short getMaxMp() {
-        return maxMp;
-    }
-
-    public final void setMaxMp() {
-        this.maxMp = (short)((getPoder()/5));
-        setMpAtual(maxMp);
-    }
-    
-    public short getMovimento() {
-        return movimento;
-    }
-
-    public final void setMovimento() {
-        short _destreza = getDestreza();
-        short _forca = getForca();
-        short _tamanho = getTamanho();
-        if (_destreza < _tamanho && _forca < _tamanho)
-            this.movimento = 7;
-        else if (_destreza >= _tamanho && _forca >= _tamanho)
-            this.movimento = 9;
-        else 
-            this.movimento = 8;
-    }
-
-    public short getBonusDeDanoCorporal() {
-        return bonusDeDanoCorporal;
-    }
-
-    public final void setBonusDeDanoCorporal(short rolamentoD4, short rolamentoD6) {
-        short somaDeForETam = (short)(getForca()+getTamanho());
-        if (somaDeForETam >= 2 && somaDeForETam <= 64){
-            this.bonusDeDanoCorporal = -2;
-        }else if (somaDeForETam > 64 && somaDeForETam <= 84){
-            this.bonusDeDanoCorporal = -1;
-        }else if (somaDeForETam > 85 && somaDeForETam <= 124){
-            this.bonusDeDanoCorporal = 0;
-        }else if (somaDeForETam > 125 && somaDeForETam <= 164){
-            this.bonusDeDanoCorporal = rolamentoD4;
-        }else{
-            this.bonusDeDanoCorporal = rolamentoD6;
-        }
-    }
-    
-    public short getBuild() {
-        return build;
-    }
-
-    public final void setBuild() {
-        short somaDeForETam = (short)(getForca()+getTamanho());
-        if (somaDeForETam >= 2 && somaDeForETam <= 64){
-            this.build = -2;
-        }else if (somaDeForETam > 64 && somaDeForETam <= 84){
-            this.build = -1;
-        }else if (somaDeForETam > 85 && somaDeForETam <= 124){
-            this.build = 0;
-        }else if (somaDeForETam > 125 && somaDeForETam <= 164){
-            this.build = 1;
-        }else{
-            this.build = 2;
-        }
     }
     
     public short getHpAtual() {
@@ -221,6 +159,38 @@ public class Personagem {
 
     public void setMpAtual(short mpAtual) {
         this.mpAtual = mpAtual;
+    }
+
+    public short getMaxMp() {
+        return maxMp;
+    }
+
+    public final void setMaxMp() {
+        this.maxMp = (short)((getPoder()/5));
+    }
+    
+    public short getMovimento() {
+        return movimento;
+    }
+
+    public final void setMovimento(short movimento) {
+        this.movimento = movimento;
+    }
+
+    public short getBonusDeDanoCorporal() {
+        return bonusDeDanoCorporal;
+    }
+
+    public final void setBonusDeDanoCorporal(short bonusDeDanoCorporal) {
+        this.bonusDeDanoCorporal = bonusDeDanoCorporal;
+    }
+    
+    public short getBuild() {
+        return build;
+    }
+
+    public final void setBuild(short build) {
+        this.build = build;
     }
 
     public short getIdade() {

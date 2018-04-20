@@ -1,0 +1,137 @@
+Accounting (5) //habilidade de checar o lado finaceiro de uma pessoa e entendimento sobre prodecimentos de  contabilidade//
+
+Animal Handling (5) //habilidade de comandar e treinar animais domesticados//
+
+Anthropology (1) //habilidade de identificar e entender o jeito de vida de um individuo por observacao//
+
+Appraise (1) //habilidade de avaliar/estimar o valor de um determinado item//
+
+Archaeology (1) //habilidade de identificar/datar artefatos antigos e detectar versoes falsificadas//
+
+Art and Craft (5) //dons artisticos//
+	- tem como exemplos: 
+        Acting (atuar), 
+        Carpenter (carpintaria), 
+        Cook (culinaria), 
+        Photographer (fotografia),    
+        Writer (escritor), entre outros//
+
+Artillery (1) //conhecimento militar, incluindo treinamento e experiencia relacionada a fins militares//
+
+Charm (15) //habilidade de atrair/seduzir (exemplos: atracao fisica ou por personalidade)//
+
+Climb (20) //habilidade de subir e escalar sem o uso de equipamentos//
+
+Computer Use (5) //habilidade de computacao (programacao, analise de dados, invasao de sistemas, entre outros)//
+
+Cthulhu Mythos (0) //conhecimento sobre o Mito de Cthulhu//
+
+Demolition (1) //pericia com explosivos, incluindo plantar e desativar explosivos//
+
+Disguise (5) //habilidade de disfarce//
+
+Diving (1) //habilidade de usar equipamentos subaquaticos, incluindo os de navegacao//
+
+Dodge (DEX/2) //habilidade de esquiva//
+
+Drive Auto (20) //habilidade de pilotar veiculos terrestres (motos nao inclusas)//
+
+Electrical Repair (10) //habilidade de reparar/reconfigurar equipamentos eletricos//
+
+Electronics (1) //habilidade com equipamentos eletronicos (inclui criacao)//
+
+Fast Talk (5) //habilidade de trapaca por meio de palavras//
+
+Fighting //habilidade de luta//
+	- Axe (15) //machados
+	- Brawl (25) //combate desarmado, com armas como canivetes e bastoes ou com armas improvisadas como   garrafas (briga de rua, em resumo)//
+	- Chainsaw (10) //serra eletrica//
+	- Flail (10) //nunchaku, estrela-da-manha e similares//
+	- Garrote (15) //armas de estrangulamento//
+	- Spear (20) //lancas e similares//
+	- Sword (20) //laminas com comprimento maior que 60 cm//
+	- Whip (5) //chicotes e similares//
+
+Firearms //pericia com armas de fogo//
+	- Bow (15) //arcos, bestas e similares//
+	- Handgun (20) //pistolas, revolveres e similares//
+	- Heavy Weapon (10) //lanca-missil, lanca granada, etc//
+	- Flamethrower (10) //lanca-chamas//
+	- Machine Gun (10) //armas montadas//
+	- Rifle/Shotgun (25) //qualquer tipo de rifle ou shotgun//
+	- Submachine Gun //armas automaticas ou semi automaticas//
+
+First Aid (30) //habilidades de primeiros socorros ou emergencias medicas//
+
+History (5) //habilidade de identificar a significancia de um local ou uma pessoa//
+
+Hypnosis (1) //habilidade de indizir transe em uma pessoa//
+
+Intimidate (15) //habilidade de induzir medo e/ou pressao, por meio de forca, manipulacao psicologica ou ameacas//
+
+Jump (20) //habilidade de pular ou pousar em uma queda//
+
+Foreign Language (1) //conhecimento sobre uma lingua estrangeira, pode sr dividido//
+
+Own Language (EDU) //conhecimento sobre o proprio idioma//
+
+Law (5) //conhecimento sobre leis, direito e procedimentos relacionados a legislacao//
+
+Library Use (20) //habilidade de procurar informacoes escritas que sejam corretas e coerentes//
+
+Listen (20) //habilidade de intepretar e entender sons (ex.: conversas vizinhas)//
+
+Locksmith (1) //habilidade de destrancar coisas//
+
+Mechanical Repair (10) //habilidade de consertar e criar maquinas e artefatos mecanicos//
+
+Medicine (1) //conhecimento e habilidades de medicina//
+
+Natural World (10) //habilidades de observacao da natureza e de atividades relacionadas a natureza (pescaria, por  exemplo)//
+
+Navigation (10) //habilidade de orientacao fisica e pericia com mapas, bussolas e outros objetos para orientacao//
+
+Occult (5) //conhecimento sobre ocultismo e atividades relacionadas//
+
+Operate Heavy Machinery (1) //habilidade de operar tanques, escavadeiras, rolos compressores e similares//
+
+Persuade (10) //habilidade de persuacao por meio do dialogo//
+
+Pilot (1) //habilidade de pilotar veiculos aereos e aquaticos//
+
+Psychoanalysis (1) //habilidades de psiquiatria e psicanalise//
+
+Psychology (10) //conhecimentos de habilidades sobre psicologia//
+
+Read Lips (1) //habilidade de leitura labial//
+
+Ride (5) //habilidade com animais de montaria//
+
+Science Specialize (1)	//habilidades academicas//
+	- Astronomy (1) //estdo do espaco//
+	- Biology (1) //estudo da vida//
+	- Botany (1) //estudo das plantas//
+	- Chemistry (1) //estudo quimico//
+	- Cryptography (1) //estudo da criptografia//
+	- Engineering (1) //estudo da engenharia//
+	- Forensics (1) //estudo e analise de evidencias//
+	- Geology (1) //estudo mineral//
+	- Mathematics (10) //estudo de numeros e logica//
+	- Meteorology (1) //estudo da atmosfera//
+	- Pharmacy (1) //criar, manipular e conhecer medicamentos//
+	- Physics (1) //estudo de fenomenos fisicos//
+	- Zoology (1) //estudo dos animais//
+
+Sleight of Hand (10) //habilidade de "magica" com objetos//
+
+Spot Hidden (25) //habilidade de identificar espacos secretos e armadilhas, identificar pessoas ou objetos escondidos, reconhecer veiculos repintados, entre outros//
+
+Stealth (20) //habilidade de mover-se silenciosamente e esconder-se sem ser detectado//
+
+Survival (10) //habilidade de sobreviver em ambientes extremos//
+
+Swim (20) //habilidade de flutuar e locomover-se na agua//
+
+Throw (20) //habilidade de arremesso//
+
+Track (10) //habilidade de perseguir um alvo//

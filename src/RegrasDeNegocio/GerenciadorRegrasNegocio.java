@@ -1,80 +1,112 @@
 package RegrasDeNegocio;
 
-import java.util.Random;
+import Geral.Dados;
 
-public class GerenciadorRegrasNegocio {
+public class GerenciadorRegrasNegocio implements RegrasDeNegocio {
     
-    private final Random rng = new Random(); //rng = Random Number Generator (Gerador de Números aleatório)
-    
-    //FUNÇÕES DE DADOS
-    
-    public int D4 (){
-        return rng.nextInt(4)+1;
+    private final Dados DADOS;
+
+    public GerenciadorRegrasNegocio(Dados dados) {
+        this.DADOS = dados;
     }
-    
-    public int D6 (){
-        return rng.nextInt(6)+1;
-    }
-    
-    public int D8 (){
-        return rng.nextInt(8)+1;
-    }
-    
-    public int D10 (){
-        return rng.nextInt(10)+1;
-    }
-    
-    public int D12 (){
-        return rng.nextInt(12)+1;
-    }
-    
-    public int D20 (){
-        return rng.nextInt(20)+1;
-    }
-    
-    public int TesteDePorcentagem (){
-        return rng.nextInt(100)+1;
-    }
-    
-    //FIM FUNÇÕES DE DADOS
-    
+            
     //FUNÇÕES DE CRIAÇÃO DE PERSONAGEM
     
+    //FUNÇÕES DE ATRIBUTOS PRINCIPAIS
+    
+    @Override
     public int GeradorDeForca(){
-        return (D6()+D6()+D6())*5;
+        return (DADOS.D6()+DADOS.D6()+DADOS.D6())*5;
     }
     
+    @Override
     public int GeradorDeConstituicao(){
-        return (D6()+D6()+D6())*5;
+        return (DADOS.D6()+DADOS.D6()+DADOS.D6())*5;
     }
     
+    @Override
     public int GeradorDeTamanho(){
-        return (D6()+D6()+6)*5;
+        return (DADOS.D6()+DADOS.D6()+6)*5;
     }
     
+    @Override
     public int GeradorDeDestreza(){
-        return (D6()+D6()+D6())*5;
+        return (DADOS.D6()+DADOS.D6()+DADOS.D6())*5;
     }
     
+    @Override
     public int GeradorDeAparencia(){
-        return (D6()+D6()+D6())*5;
+        return (DADOS.D6()+DADOS.D6()+DADOS.D6())*5;
     }
     
+    @Override
     public int GeradorDeInteligencia(){
-        return (D6()+D6()+6)*5;
+        return (DADOS.D6()+DADOS.D6()+6)*5;
     }
     
+    @Override
     public int GeradorDeEducacao(){
-        return (D6()+D6()+6)*5;
+        return (DADOS.D6()+DADOS.D6()+6)*5;
     }
     
+    @Override
     public int GeradorDePoder(){
-        return (D6()+D6()+D6())*5;
+        return (DADOS.D6()+DADOS.D6()+DADOS.D6())*5;
     }
     
+    @Override
     public int GeradorDeSorte(){
-        return (D6()+D6()+6)*5;
+        return (DADOS.D6()+DADOS.D6()+6)*5;
     }
+    
+    //FIM FUNÇÕES DE ATRIBUTOS PRINCIPAIS
+    
+    //FUNÇÕES DE ATRIBUTOS SECUNDARIOS
+    
+    @Override
+    public int GeradorDeMovimento(int forca, int destreza, int tamanho){
+        if (destreza < tamanho && forca < tamanho)
+            return 7;
+        else if (destreza >= tamanho && forca >= tamanho)
+            return 9;
+        else 
+            return 8;
+    }
+    
+    @Override
+    public int GeradorDeBonusDeDanoCorporal(int forca, int tamanho){        
+        short somaDeForETam = (short)(forca+tamanho);
+        if (somaDeForETam >= 2 && somaDeForETam <= 64){
+            return -2;
+        }else if (somaDeForETam > 64 && somaDeForETam <= 84){
+            return -1;
+        }else if (somaDeForETam > 85 && somaDeForETam <= 124){
+            return 0;
+        }else if (somaDeForETam > 125 && somaDeForETam <= 164){
+            return DADOS.D4();
+        }else{
+            return DADOS.D6();
+        }
+        
+    }
+    
+    @Override
+    public int GeradorDeBuild(int forca, int tamanho){
+        short somaDeForETam = (short)(forca+tamanho);
+        if (somaDeForETam >= 2 && somaDeForETam <= 64){
+            return -2;
+        }else if (somaDeForETam > 64 && somaDeForETam <= 84){
+            return -1;
+        }else if (somaDeForETam > 85 && somaDeForETam <= 124){
+            return 0;
+        }else if (somaDeForETam > 125 && somaDeForETam <= 164){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+    
+    //FIM FUNÇÕES DE ATRIBUTOS SECUNDARIOS
     
     //FIM FUNÇÕES CRIAÇÃO DE PERSONAGEM
     
