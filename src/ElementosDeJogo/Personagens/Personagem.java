@@ -1,5 +1,7 @@
 package ElementosDeJogo.Personagens;
 
+import ElementosDeJogo.Sistema.Local;
+
 public class Personagem {
     
     //ATRIBUTOS PRIMÁRIOS
@@ -29,6 +31,12 @@ public class Personagem {
     
     //FIM DE ATRIBUTOS SECUNDARIOS
     
+    //ATRIBUTOS DE SISTEMA
+    
+    protected Local localidadeAtual;
+    
+    //FIM ATRIBUTOS DE SISTEMA
+    
     //CONSTRUTORES
     
     public Personagem (){
@@ -37,7 +45,9 @@ public class Personagem {
 
     public Personagem(short forca, short constituicao, short tamanho, short destreza, 
             short aparencia, short inteligencia, short educacao, short poder, 
-            short idade, String nome, short movimento, short bonusDeDanoCorporal, short build) {
+            short idade, String nome, short maxHp, short maxMp,  
+            short movimento, short bonusDeDanoCorporal, short build,
+            Local localidadeAtual) {
         super();
         
         this.forca = forca;
@@ -52,13 +62,15 @@ public class Personagem {
         this.idade = idade;
         this.nome = nome;
         
-        setMaxHp();
-        setMaxMp();
+        this.maxHp = maxHp;
+        this.maxMp = maxMp;
         this.hpAtual = maxHp;
         this.mpAtual = maxMp;
         this.movimento = movimento;
         this.bonusDeDanoCorporal = bonusDeDanoCorporal;
         this.build = build;
+        
+        this.localidadeAtual = localidadeAtual;
     }
 
     
@@ -141,8 +153,16 @@ public class Personagem {
         return maxHp;
     }
 
-    public final void setMaxHp() {
+    public void setMaxHp() {
         this.maxHp = (short)((getConstituicao()+getTamanho())/10);
+    }
+
+    public short getMaxMp() {
+        return maxMp;
+    }
+
+    public void setMaxMp() {
+        this.maxMp = (short)((getPoder()/5));
     }
     
     public short getHpAtual() {
@@ -159,14 +179,6 @@ public class Personagem {
 
     public void setMpAtual(short mpAtual) {
         this.mpAtual = mpAtual;
-    }
-
-    public short getMaxMp() {
-        return maxMp;
-    }
-
-    public final void setMaxMp() {
-        this.maxMp = (short)((getPoder()/5));
     }
     
     public short getMovimento() {
@@ -215,6 +227,18 @@ public class Personagem {
     }
     
     //FIM GETTERS AND SETTERS DE ATRIBUTOS SECUNDARIOS
+    
+    //GETTERS AND SETTERS DE ATRIBUTOS DE SISTEMA
+    
+    public Local getLocalidadeAtual() {
+        return localidadeAtual;
+    }
+
+    public void setLocalidadeAtual(Local localidadeAtual) {
+        this.localidadeAtual = localidadeAtual;
+    }
+    
+    //FIM GETTERS AND SETTERS DE ATRIBUTOS DE SISTEMA
     
     //FIM DE GETTERS AND SETTERS
     

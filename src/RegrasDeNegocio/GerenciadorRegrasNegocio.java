@@ -5,10 +5,14 @@ import Geral.Dados;
 public class GerenciadorRegrasNegocio implements RegrasDeNegocio {
     
     private final Dados DADOS;
+    
+    //CONSTRUTORES
 
     public GerenciadorRegrasNegocio(Dados dados) {
         this.DADOS = dados;
     }
+    
+    //FIM CONSTRUTORES
             
     //FUNÇÕES DE CRIAÇÃO DE PERSONAGEM
     
@@ -54,14 +58,19 @@ public class GerenciadorRegrasNegocio implements RegrasDeNegocio {
         return (DADOS.D6()+DADOS.D6()+DADOS.D6())*5;
     }
     
-    @Override
-    public int GeradorDeSorte(){
-        return (DADOS.D6()+DADOS.D6()+6)*5;
-    }
-    
     //FIM FUNÇÕES DE ATRIBUTOS PRINCIPAIS
     
     //FUNÇÕES DE ATRIBUTOS SECUNDARIOS
+    
+    @Override
+    public int GeradorDeMaxHP (int constituicao, int tamanho){
+        return (constituicao+tamanho)/10;
+    }
+    
+    @Override
+    public int GeradorDeMaxMP (int poder){
+        return (poder)/5;
+    }
     
     @Override
     public int GeradorDeMovimento(int forca, int destreza, int tamanho){
@@ -104,6 +113,11 @@ public class GerenciadorRegrasNegocio implements RegrasDeNegocio {
         }else{
             return 2;
         }
+    }
+    
+    @Override
+    public int GeradorDeSorte(){
+        return (DADOS.D6()+DADOS.D6()+6)*5;
     }
     
     //FIM FUNÇÕES DE ATRIBUTOS SECUNDARIOS

@@ -18,12 +18,16 @@ public interface RegrasDeNegocio {
     
     public int GeradorDePoder();
     
-    public int GeradorDeSorte();
+    public int GeradorDeMaxHP(int constituicao, int tamanho);
+    
+    public int GeradorDeMaxMP(int poder);
     
     public int GeradorDeMovimento(int forca, int destreza, int tamanho);
     
     public int GeradorDeBonusDeDanoCorporal(int forca, int tamanho);
     
     public int GeradorDeBuild(int forca, int tamanho);
+    
+    public int GeradorDeSorte();
     
 }
