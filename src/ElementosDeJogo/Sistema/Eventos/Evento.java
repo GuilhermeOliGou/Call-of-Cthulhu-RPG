@@ -6,6 +6,7 @@ import ElementosDeJogo.Sistema.Resposta;
 public class Evento {
     
     protected String nome;
+    protected String descricao;
     protected Local localDeRetorno;
     protected Resposta respostaDoEvento;
     protected boolean eventoUnico;
@@ -16,8 +17,9 @@ public class Evento {
         super();
     }
         
-    public Evento(String nome, Local localDeRetorno, Resposta respostaDoEvento,
+    public Evento(String nome, String descricao, Local localDeRetorno, Resposta respostaDoEvento,
                 boolean eventoUnico) {
+        this.descricao = descricao;
         this.nome = nome;
         this.localDeRetorno = localDeRetorno;
         this.respostaDoEvento = respostaDoEvento;
@@ -26,7 +28,7 @@ public class Evento {
     
     //FIM CONSTRUTORES
     
-    //GETTERS E SETTERS
+    //GETTERS AND SETTERS
 
     public String getNome() {
         return nome;
@@ -34,6 +36,14 @@ public class Evento {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Local getLocalDeRetorno() {
@@ -51,7 +61,15 @@ public class Evento {
     public void setRespostaDoEvento(Resposta respostaDoEvento) {
         this.respostaDoEvento = respostaDoEvento;
     }
+
+    public boolean isEventoUnico() {
+        return eventoUnico;
+    }
+
+    public void setEventoUnico(boolean eventoUnico) {
+        this.eventoUnico = eventoUnico;
+    }
     
-    //FIM GETTERS E SETTERS
+    //FIM GETTERS AND SETTERS
 
 }

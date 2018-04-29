@@ -15,7 +15,6 @@ public class Jogador extends Personagem {
 
     public Jogador() {
         super();
-        this.habilidades = new short[]{5, 5};
     }
 
     public Jogador(short forca, short constituicao, short tamanho, short destreza, 
@@ -33,24 +32,24 @@ public class Jogador extends Personagem {
         this.maxSanidade = poder;
         this.sanidadeAtual = maxSanidade;
     }
-    
-    public short getMaxSanidade() {
-        return maxSanidade;
-    }
 
     //FIM DE CONSTRUTORES
     
     //GETTERS AND SETTERS
     
+    public short getMaxSanidade() {
+        return maxSanidade;
+    }
+    
     public void setMaxSanidade(short maxSanidade) {    
         this.maxSanidade = maxSanidade;
     }
 
-    public short getSanidade() {
+    public short getSanidadeAtual() {
         return sanidadeAtual;
     }
 
-    public void setSanidade(short sanidade) {
+    public void setSanidadeAtual(short sanidade) {
         this.sanidadeAtual = sanidade;
     }
 
@@ -61,12 +60,20 @@ public class Jogador extends Personagem {
     public void setSorte(short sorte) {
         this.sorte = sorte;
     }
+
+    public short[] getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(short[] habilidades) {
+        this.habilidades = habilidades;
+    }
     
     public short getHabilidade(int indice) {
         return habilidades[indice];
     }
 
-    public void setHabilidades(int indice, short valor) {
+    public void setHabilidade(int indice, short valor) {
         habilidades[indice] = valor;
     }
     

@@ -2,6 +2,8 @@ package RegrasDeNegocio;
 
 public interface RegrasDeNegocio {
     
+    //CONSTRUÇÃO DE PERSONAGEM
+    
     public int GeradorDeForca();
     
     public int GeradorDeConstituicao();

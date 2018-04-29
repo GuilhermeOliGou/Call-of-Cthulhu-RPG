@@ -153,16 +153,16 @@ public class Personagem {
         return maxHp;
     }
 
-    public void setMaxHp() {
-        this.maxHp = (short)((getConstituicao()+getTamanho())/10);
+    public void setMaxHp(short maxHp) {
+        this.maxHp = maxHp;
     }
 
     public short getMaxMp() {
         return maxMp;
     }
 
-    public void setMaxMp() {
-        this.maxMp = (short)((getPoder()/5));
+    public void setMaxMp(short maxMp) {
+        this.maxMp = maxMp;
     }
     
     public short getHpAtual() {
@@ -240,6 +240,6 @@ public class Personagem {
     
     //FIM GETTERS AND SETTERS DE ATRIBUTOS DE SISTEMA
     
-    //FIM DE GETTERS AND SETTERS
+    //FIM DE GETTERS AND SETTERS0
     
 }
