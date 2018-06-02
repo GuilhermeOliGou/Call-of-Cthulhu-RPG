@@ -1,15 +1,10 @@
-import Geral.Dados;
-import RegrasDeNegocio.GerenciadorRegrasNegocio;
-import RegrasDeNegocio.RegrasDeNegocio;
-import Visualização.GerenciadorDeVisualizacao;
+import Visualizacao.GerenciadorDeVisualizacao;
 
 public class Main {
     
     public static void main(String[] args){
-        Dados dados = new Dados();
-        RegrasDeNegocio gerenciadorDeRegras = new GerenciadorRegrasNegocio(dados);
-        GerenciadorDeVisualizacao telas = new GerenciadorDeVisualizacao(gerenciadorDeRegras);
-        telas.CriaTelaCriacao();
+        GerenciadorDeVisualizacao telas = new GerenciadorDeVisualizacao();
+        telas.Inicializa();
     }
     
 }

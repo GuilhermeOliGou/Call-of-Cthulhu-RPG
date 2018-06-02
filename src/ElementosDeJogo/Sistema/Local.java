@@ -5,24 +5,37 @@ import java.util.LinkedList;
 
 public class Local {
     
-    private String nome;
-    private LinkedList<Evento> eventosDisponíveis;
+    //ATRIBUTOS
 
+    private int id;
+
+    private String nome;    
+    private LinkedList<Evento> eventosDisponíveis;
+    
     //CONSTRUTORES
 
     public Local() {
         super();
     }
     
-    public Local(String nome, LinkedList<Evento> eventosDisponíveis) {
+    public Local(String nome, LinkedList<Evento> eventosDisponíveis, int id) {
         super();
+        
+        this.id = id;
+        
         this.nome = nome;
         this.eventosDisponíveis = eventosDisponíveis;
     }
     
-    //FIM CONSTRUTORES
-    
     //GETTERS AND SETTERS
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -47,7 +60,4 @@ public class Local {
     public void setEventoDisponivel(int indice ,Evento evento) {
         this.eventosDisponíveis.add(indice, evento); 
     }
-    
-    //FIM GETTERS AND SETTERS
-    
 }

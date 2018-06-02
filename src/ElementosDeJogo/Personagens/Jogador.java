@@ -1,41 +1,71 @@
 package ElementosDeJogo.Personagens;
 
+import ElementosDeJogo.Itens.Item;
+import ElementosDeJogo.Personagens.Habilidades.FolhaDeHabilidades;
 import ElementosDeJogo.Sistema.Local;
+import RegrasDeNegocio.RegraNegocioException;
+import utilidades.Log;
 
 public class Jogador extends Personagem {
-    
-    //ATRIBUTOS DE JOGADOR
+
+    //ATRIBUTOS
     
     private short maxSanidade;
     private short sanidadeAtual;
     private short sorte;
-    private short[] habilidades;
+
+    private FolhaDeHabilidades habilidades;
     
     //CONSTRUTORES
-
+    
     public Jogador() {
         super();
     }
-
-    public Jogador(short forca, short constituicao, short tamanho, short destreza, 
-            short aparencia, short inteligencia, short educacao, short poder, 
-            short idade, String nome, short maxHp, short maxMp, 
-            short movimento, short bonusDeDanoCorporal, short build, short sorte,
-            Local localidadeAtual) {
-        super(forca, constituicao, tamanho, destreza, 
-                aparencia, inteligencia, educacao, poder, 
-                idade, nome, maxHp, maxMp,
-                movimento, bonusDeDanoCorporal, build,
-                localidadeAtual);
-        this.habilidades = new short[]{5, 5, 1, 1, 5, 1, 15, 20, 5, 0, 1, 5, 1, (short)(destreza/2), 20, 10, 1, 5, 15, 25, 10, 10, 15, 20, 20, 5, 15, 20, 10, 10, 10, 25, 15, 30, 5, 1, 15, 20, 1, educacao, 5, 20, 20, 1, 10, 1, 10, 10, 5, 1, 10, 1, 1, 10, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1, 10, 25, 20, 10, 20, 20, 10};
-        this.sorte = sorte;
-        this.maxSanidade = poder;
-        this.sanidadeAtual = maxSanidade;
-    }
-
-    //FIM DE CONSTRUTORES
     
-    //GETTERS AND SETTERS
+    public Jogador( int id, FolhaDeAtributos atributos, short idade, String nome, Local localidadeAtual,
+            short maxSanidade, short sanidadeAtual, short sorte,
+            Item[] inventario) throws RegraNegocioException{
+        super(id,atributos,
+                idade,nome, 
+                inventario,localidadeAtual);
+        
+        this.maxSanidade = maxSanidade;
+        this.sanidadeAtual = sanidadeAtual;
+        this.sorte = sorte;
+        
+        try{
+            this.habilidades = new FolhaDeHabilidades(atributos.getCaracteristicas().getDestreza());
+        }catch(NullPointerException e){
+            Log.gravaLog(e);
+            this.habilidades = new FolhaDeHabilidades();
+            throw new RegraNegocioException("FOLHA DE CARACTERÍTICAS NÃO INICIALIZADA!" +
+                    " FOLHA DE HABILIDADES INICIALIZADA COM VALORES PADRÃO!");
+        }
+    }
+    
+    //FUNÇÕES
+
+    public String DescricaoJogador() throws RegraNegocioException{
+        try{
+            return nome + "(" + idade + " anos):\n" +
+                    "Força: " + atributos.getCaracteristicas().getForca() + "\n" +
+                    "Constituição: " + atributos.getCaracteristicas().getConstituicao() + "\n" +
+                    "Tamanho: " + atributos.getCaracteristicas().getTamanho() + "\n" +
+                    "Destreza: " + atributos.getCaracteristicas().getDestreza() + "\n" +
+                    "Aparência: " + atributos.getCaracteristicas().getAparencia() + "\n" +
+                    "Inteligência: " + atributos.getCaracteristicas().getInteligencia() + "\n" +
+                    "Educação: " + atributos.getCaracteristicas().getEducacao() + "\n" +
+                    "Poder: " + atributos.getCaracteristicas().getPoder();
+        }catch(NullPointerException e){
+            Log.gravaLog(e);
+            throw new RegraNegocioException("FOLHA DE CARACTERÍTICAS NÃO INICIALIZADA!"
+                    + " INCAPAZ DE RETORNAR DESCRIÇÃO!");
+        }
+    }
+    
+    //GETTERS E SETTERS
+    
+    
     
     public short getMaxSanidade() {
         return maxSanidade;
@@ -60,23 +90,15 @@ public class Jogador extends Personagem {
     public void setSorte(short sorte) {
         this.sorte = sorte;
     }
-
-    public short[] getHabilidades() {
+    
+    
+    
+    public FolhaDeHabilidades getHabilidades() {
         return habilidades;
     }
 
-    public void setHabilidades(short[] habilidades) {
+    public void setHabilidades(FolhaDeHabilidades habilidades) {
         this.habilidades = habilidades;
     }
-    
-    public short getHabilidade(int indice) {
-        return habilidades[indice];
-    }
-
-    public void setHabilidade(int indice, short valor) {
-        habilidades[indice] = valor;
-    }
-    
-    //FIM DE GETTERS AND SETTERS
     
 }

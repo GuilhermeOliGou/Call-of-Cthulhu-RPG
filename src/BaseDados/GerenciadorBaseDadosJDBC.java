@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import Utilidades.Log;
+import utilidades.Log;
 import ElementosDeJogo.Personagens.Jogador;
 import ElementosDeJogo.Personagens.Personagem;
 import ElementosDeJogo.Sistema.Local;

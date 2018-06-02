@@ -4,12 +4,17 @@ import ElementosDeJogo.Sistema.Local;
 import ElementosDeJogo.Sistema.Resposta;
 
 public class Evento {
+
+    protected int id;
     
     protected String nome;
-    protected String descricao;
-    protected Local localDeRetorno;
+    protected String descricaoSucesso;
+    protected String descricaoFalha;
+    
+    protected int localDeRetorno;
     protected Resposta respostaDoEvento;
     protected boolean eventoUnico;
+    private int eventoRealizado;
     
     //CONSTRUTORES
 
@@ -17,18 +22,29 @@ public class Evento {
         super();
     }
         
-    public Evento(String nome, String descricao, Local localDeRetorno, Resposta respostaDoEvento,
-                boolean eventoUnico) {
-        this.descricao = descricao;
+    public Evento(int id, String nome, String descricaoSucesso, String descricaoFalha, int localDeRetorno, Resposta respostaDoEvento,
+                boolean eventoUnico, int eventoRealizado) {
+        this.id = id;
         this.nome = nome;
+        this.descricaoSucesso = descricaoSucesso;
+        this.descricaoFalha = descricaoFalha;
         this.localDeRetorno = localDeRetorno;
         this.respostaDoEvento = respostaDoEvento;
         this.eventoUnico = eventoUnico;
+        this.eventoRealizado = eventoRealizado;
     }
     
-    //FIM CONSTRUTORES
-    
     //GETTERS AND SETTERS
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public String getNome() {
         return nome;
@@ -38,19 +54,25 @@ public class Evento {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoSucesso() {
+        return descricaoSucesso;
+    }
+    public String getDescricaoFalha(){
+        return descricaoFalha;
+    }
+    public String setDescricaoFalha(){
+        return descricaoFalha;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoFalha(String descricaoFalha) {
+        this.descricaoFalha = descricaoFalha;
     }
 
-    public Local getLocalDeRetorno() {
+    public int getLocalDeRetorno() {
         return localDeRetorno;
     }
 
-    public void setLocalDeRetorno(Local localDeRetorno) {
+    public void setLocalDeRetorno(int localDeRetorno) {
         this.localDeRetorno = localDeRetorno;
     }
 
@@ -69,7 +91,13 @@ public class Evento {
     public void setEventoUnico(boolean eventoUnico) {
         this.eventoUnico = eventoUnico;
     }
-    
-    //FIM GETTERS AND SETTERS
+
+    public int getEventoRealizado() {
+        return eventoRealizado;
+    }
+
+    public void setEventoRealizado(int eventoRealizado) {
+        this.eventoRealizado = eventoRealizado;
+    }
 
 }

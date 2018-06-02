@@ -6,6 +6,7 @@ public class Resposta {
     
     //ATRIBUTOS GERAIS
     
+    private int codigo;
     private Evento eventoAlterado;
     private Local localAlterado;
     
@@ -14,6 +15,9 @@ public class Resposta {
     //ATRIBUTOS DE PERSONAGEM
     
     //itens
+    private int itemIdAlterado;
+    private int itemNovo;
+    private int itemDescartado;
     private Local localDoPersonagemAlterado;
     private short[] caracteristicasAlteradas;
     private short hpAtualAlterado;
@@ -29,10 +33,10 @@ public class Resposta {
         super();
     }
     
-    public Resposta(Evento eventoAlterado, Local localAlterado, Local localDePersonagemAlterado, short[] caracteristicasAlteradas, 
+    public Resposta(int codigo, Evento eventoAlterado, Local localAlterado, Local localDePersonagemAlterado, short[] caracteristicasAlteradas, 
             short hpAtualAlterado, short mpAtualAlterado, short[] habilidadesAlteradas, short sanidadeAtualAlterada) {
         super();
-        
+        this.codigo = codigo;
         this.eventoAlterado = eventoAlterado;
         this.localAlterado = localAlterado;
         
@@ -50,6 +54,15 @@ public class Resposta {
     
     //GETTERS AND SETTERS ATRIBUTOS GERAIS
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    
     public Evento getEventoAlterado() {
         return eventoAlterado;
     }
@@ -71,11 +84,11 @@ public class Resposta {
     //GETTERS AND SETTERS ATRIBUTOS DE PERSONAGEM
 
     public Local getLocalDePersonagemAlterado() {
-        return localDoPersonagemAlterado;
+        return getLocalDoPersonagemAlterado();
     }
 
     public void setLocalDePersonagemAlterado(Local localAlterado) {
-        this.localDoPersonagemAlterado = localAlterado;
+        this.setLocalDoPersonagemAlterado(localAlterado);
     }
 
     public short[] getCaracteristicasAlteradas() {
@@ -83,7 +96,7 @@ public class Resposta {
     }
 
     public void setCaracteristicasAlteradas(short[] caracteristicasAlteradas) {
-        this.caracteristicasAlteradas = caracteristicasAlteradas;
+        this.setCaracteristicasAlteradas(caracteristicasAlteradas);
     }
 
     public short getHpAtualAlterado() {
@@ -107,7 +120,7 @@ public class Resposta {
     }
 
     public void setHabilidadesAlteradas(short[] habilidadesAlteradas) {
-        this.habilidadesAlteradas = habilidadesAlteradas;
+        this.setHabilidadesAlteradas(habilidadesAlteradas);
     }
     
     public short getHabilidade(int indice) {
@@ -129,5 +142,15 @@ public class Resposta {
     //FIM GETTERS AND SETTERS ATRIBUTOS DE PERSONAGEM
     
     //FIM GETTERS AND SETTERS
+
+    public Local getLocalDoPersonagemAlterado() {
+        return localDoPersonagemAlterado;
+    }
+
+    public void setLocalDoPersonagemAlterado(Local localDoPersonagemAlterado) {
+        this.localDoPersonagemAlterado = localDoPersonagemAlterado;
+    }
+
+  
     
 }

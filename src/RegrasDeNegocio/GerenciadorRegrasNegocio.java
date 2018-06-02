@@ -1,7 +1,5 @@
 package RegrasDeNegocio;
 
-import Geral.Dados;
-
 public class GerenciadorRegrasNegocio implements RegrasDeNegocio {
     
     private final Dados DADOS;
