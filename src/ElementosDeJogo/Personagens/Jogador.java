@@ -35,11 +35,9 @@ public class Jogador extends Personagem {
         
         try{
             this.habilidades = new FolhaDeHabilidades(atributos.getCaracteristicas().getDestreza());
-        }catch(NullPointerException e){
+        }catch(RegraNegocioException e){
             Log.gravaLog(e);
-            this.habilidades = new FolhaDeHabilidades();
-            throw new RegraNegocioException("FOLHA DE CARACTERÍTICAS NÃO INICIALIZADA!" +
-                    " FOLHA DE HABILIDADES INICIALIZADA COM VALORES PADRÃO!");
+            throw new RegraNegocioException();
         }
     }
     

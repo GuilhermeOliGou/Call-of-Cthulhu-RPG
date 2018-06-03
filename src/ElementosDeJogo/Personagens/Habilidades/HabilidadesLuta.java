@@ -20,16 +20,16 @@ public class HabilidadesLuta {
     public HabilidadesLuta() {
         super();
         
-        this.esquiva = 25;
+        this.esquiva = 0;
         
-        this.lutaMachado = 15;
-        this.lutaLivre = 25;
-        this.lutaSerraEletrica = 10;
-        this.lutaMangual = 10;
-        this.lutaGarrote = 15;
-        this.lutaLanca = 20;
-        this.lutaEspada = 20;
-        this.lutaChicote = 5;
+        this.lutaMachado = 0;
+        this.lutaLivre = 0;
+        this.lutaSerraEletrica = 0;
+        this.lutaMangual = 0;
+        this.lutaGarrote = 0;
+        this.lutaLanca = 0;
+        this.lutaEspada = 0;
+        this.lutaChicote = 0;
     }
 
     public HabilidadesLuta(short destreza) {

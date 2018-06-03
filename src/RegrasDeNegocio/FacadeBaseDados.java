@@ -1,5 +1,6 @@
 package RegrasDeNegocio;
 
+import BaseDados.BaseDadosException;
 import ElementosDeJogo.Itens.Arma;
 import ElementosDeJogo.Itens.FolhaDano;
 import ElementosDeJogo.Itens.Item;
@@ -19,152 +20,152 @@ interface FacadeBaseDados {
     
     //ITENS
   
-    public Item LeItem(int codigo);
+    public Item LeItem(int codigo) throws BaseDadosException;
 
-    public void EscreveItem(Item item);
+    public void EscreveItem(Item item) throws BaseDadosException;
     
-    public void AlteraItem(Item item);
+    public void AlteraItem(Item item) throws BaseDadosException;
 
-    public List<Item> ListaItens();
+    public List<Item> ListaItens() throws BaseDadosException;
 
-    public List<Item> ListaItensPersonagem(Personagem personagem);
-    
-    
-
-    public ItemConsumivel LeItemConsumivel(int codigo);
-
-    public void EscreveItemConsumivel(ItemConsumivel itemConsumivel);
-
-    public void AlteraItemConsumivel(ItemConsumivel itemConsumivel);
-
-    public List<ItemConsumivel> ListaItensConsumiveis();
-
-    public List<ItemConsumivel> ListaItensConsumiveisPersonagem(Personagem personagem);
+    public List<Item> ListaItensPersonagem(Personagem personagem) throws BaseDadosException;
     
     
 
-    public Arma LeArma(int codigo);
+    public ItemConsumivel LeItemConsumivel(int codigo) throws BaseDadosException;
 
-    public void EscreveArma(Arma arma);
+    public void EscreveItemConsumivel(ItemConsumivel itemConsumivel) throws BaseDadosException;
 
-    public void AlteraArma(Arma arma);
+    public void AlteraItemConsumivel(ItemConsumivel itemConsumivel) throws BaseDadosException;
 
-    public List<Arma> ListaArmas();
+    public List<ItemConsumivel> ListaItensConsumiveis() throws BaseDadosException;
 
-    public List<Arma> ListaArmasPersonagem(Personagem personagem);
+    public List<ItemConsumivel> ListaItensConsumiveisPersonagem(Personagem personagem) throws BaseDadosException;
+    
+    
+
+    public Arma LeArma(int codigo) throws BaseDadosException;
+
+    public void EscreveArma(Arma arma) throws BaseDadosException;
+
+    public void AlteraArma(Arma arma) throws BaseDadosException;
+
+    public List<Arma> ListaArmas() throws BaseDadosException;
+
+    public List<Arma> ListaArmasPersonagem(Personagem personagem) throws BaseDadosException;
     
     
     
-    public Arma LeFolhaDano(int codigo);
+    public Arma LeFolhaDano(int codigo) throws BaseDadosException;
 
-    public void EscreveFolhaDano(FolhaDano folhaDano);
+    public void EscreveFolhaDano(FolhaDano folhaDano) throws BaseDadosException;
 
-    public void AlteraFolhaDano(FolhaDano folhaDano);
+    public void AlteraFolhaDano(FolhaDano folhaDano) throws BaseDadosException;
 
-    public List<FolhaDano> ListaFolhaDano();
+    public List<FolhaDano> ListaFolhaDano() throws BaseDadosException;
 
     //JOGADOR E PERSONAGENS
 
-    public Jogador LeJogador(int codigo);
+    public Jogador LeJogador(int codigo) throws BaseDadosException;
 
-    public void EscreveJogador(Jogador jogador);
+    public void EscreveJogador(Jogador jogador) throws BaseDadosException;
     
-    public void AlteraJogador(Jogador jogador);
+    public void AlteraJogador(Jogador jogador) throws BaseDadosException;
 
-    public List<Jogador> ListaJogadores();
+    public List<Jogador> ListaJogadores() throws BaseDadosException;
     
     
 
-    public Personagem LePersonagem(int codigo);
+    public Personagem LePersonagem(int codigo) throws BaseDadosException;
 
-    public void EscrevePersonagem(Personagem personagem);
+    public void EscrevePersonagem(Personagem personagem) throws BaseDadosException;
     
-    public void AlteraPersonagem(Personagem personagem);
+    public void AlteraPersonagem(Personagem personagem) throws BaseDadosException;
 
-    public List<Personagem> ListaPersonagens();
+    public List<Personagem> ListaPersonagens() throws BaseDadosException;
     
     //FOLHAS DE PERSONAGENS
     
-    public FolhaDeAtributos LeFolhaDeAtributos(int codigo);
+    public FolhaDeAtributos LeFolhaDeAtributos(int codigo) throws BaseDadosException;
 
-    public void EscreveFolhaDeAtributos(FolhaDeAtributos folhaDeAtributos);
+    public void EscreveFolhaDeAtributos(FolhaDeAtributos folhaDeAtributos) throws BaseDadosException;
     
-    public void AlteraFolhaDeAtributos(FolhaDeAtributos folhaDeAtributos);
+    public void AlteraFolhaDeAtributos(FolhaDeAtributos folhaDeAtributos) throws BaseDadosException;
 
-    public List<FolhaDeAtributos> ListaFolhaDeAtributos();
+    public List<FolhaDeAtributos> ListaFolhaDeAtributos() throws BaseDadosException;
 
-    public List<FolhaDeAtributos> FolhaDeAtributosPersonagem(Personagem personagem);
+    public List<FolhaDeAtributos> FolhaDeAtributosPersonagem(Personagem personagem) throws BaseDadosException;
     
     
     
-    public FolhaDeCaracteristicas LeFolhaDeCaracteristicas(int codigo);
+    public FolhaDeCaracteristicas LeFolhaDeCaracteristicas(int codigo) throws BaseDadosException;
 
-    public void EscreveFolhaDeCaracteristicas(FolhaDeCaracteristicas folhaDeCaracteristicas);
+    public void EscreveFolhaDeCaracteristicas(FolhaDeCaracteristicas folhaDeCaracteristicas) throws BaseDadosException;
     
-    public void AlteraFolhaDeCaracteristicas(FolhaDeCaracteristicas folhaDeCaracteristicas);
+    public void AlteraFolhaDeCaracteristicas(FolhaDeCaracteristicas folhaDeCaracteristicas) throws BaseDadosException;
 
-    public List<FolhaDeCaracteristicas> ListaFolhaDeCaracteristicas();
+    public List<FolhaDeCaracteristicas> ListaFolhaDeCaracteristicas() throws BaseDadosException;
 
-    public List<FolhaDeCaracteristicas> FolhaDeCaracteristicasPersonagem(Personagem personagem);
+    public List<FolhaDeCaracteristicas> FolhaDeCaracteristicasPersonagem(Personagem personagem) throws BaseDadosException;
     
     //HABILIDADES
     
-    public FolhaDeHabilidades LeFolhaDeHabilidades(int codigo);
+    public FolhaDeHabilidades LeFolhaDeHabilidades(int codigo) throws BaseDadosException;
 
-    public void EscreveFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades);
+    public void EscreveFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades) throws BaseDadosException;
     
-    public void AlteraFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades);
+    public void AlteraFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades) throws BaseDadosException;
 
-    public List<FolhaDeHabilidades> ListaFolhaDeHabilidades();
+    public List<FolhaDeHabilidades> ListaFolhaDeHabilidades() throws BaseDadosException;
 
-    public List<FolhaDeHabilidades> FolhaDeHabilidadesPersonagem(Personagem personagem);
+    public List<FolhaDeHabilidades> FolhaDeHabilidadesPersonagem(Personagem personagem) throws BaseDadosException;
     
     
     
-    public HabilidadesCiencia LeHabilidadesCiencia(int codigo);
+    public HabilidadesCiencia LeHabilidadesCiencia(int codigo) throws BaseDadosException;
 
-    public void EscreveHabilidadesCiencia(HabilidadesCiencia habilidadesCiencia);
+    public void EscreveHabilidadesCiencia(HabilidadesCiencia habilidadesCiencia) throws BaseDadosException;
     
-    public void AlteraHabilidadesCiencia(HabilidadesCiencia habilidadesCiencia);
+    public void AlteraHabilidadesCiencia(HabilidadesCiencia habilidadesCiencia) throws BaseDadosException;
 
-    public List<HabilidadesCiencia> ListaHabilidadesCiencia();
+    public List<HabilidadesCiencia> ListaHabilidadesCiencia() throws BaseDadosException;
 
-    public List<HabilidadesCiencia> HabilidadesCienciaPersonagem(Personagem personagem);
+    public List<HabilidadesCiencia> HabilidadesCienciaPersonagem(Personagem personagem) throws BaseDadosException;
     
     
     
-    public HabilidadesInterpessoais LeHabilidadesInterpessoais(int codigo);
+    public HabilidadesInterpessoais LeHabilidadesInterpessoais(int codigo) throws BaseDadosException;
 
-    public void EscreveHabilidadesInterpessoais(HabilidadesInterpessoais habilidadesInterpessoais);
+    public void EscreveHabilidadesInterpessoais(HabilidadesInterpessoais habilidadesInterpessoais) throws BaseDadosException;
     
-    public void AlteraHabilidadesInterpessoais(HabilidadesInterpessoais habilidadesInterpessoais);
+    public void AlteraHabilidadesInterpessoais(HabilidadesInterpessoais habilidadesInterpessoais) throws BaseDadosException;
 
-    public List<HabilidadesInterpessoais> ListaHabilidadesInterpessoais();
+    public List<HabilidadesInterpessoais> ListaHabilidadesInterpessoais() throws BaseDadosException;
 
-    public List<HabilidadesInterpessoais> HabilidadesInterpessoaisPersonagem(Personagem personagem);
+    public List<HabilidadesInterpessoais> HabilidadesInterpessoaisPersonagem(Personagem personagem) throws BaseDadosException;
     
     
     
-    public HabilidadesLuta LeHabilidadesLuta(int codigo);
+    public HabilidadesLuta LeHabilidadesLuta(int codigo) throws BaseDadosException;
 
-    public void EscreveHabilidadesLuta(HabilidadesLuta habilidadesLuta);
+    public void EscreveHabilidadesLuta(HabilidadesLuta habilidadesLuta) throws BaseDadosException;
     
-    public void AlteraHabilidadesLuta(HabilidadesLuta habilidadesLuta);
+    public void AlteraHabilidadesLuta(HabilidadesLuta habilidadesLuta) throws BaseDadosException;
 
-    public List<HabilidadesLuta> ListaHabilidadesLuta();
+    public List<HabilidadesLuta> ListaHabilidadesLuta() throws BaseDadosException;
 
-    public List<HabilidadesLuta> HabilidadesLutaPersonagem(Personagem personagem);
+    public List<HabilidadesLuta> HabilidadesLutaPersonagem(Personagem personagem) throws BaseDadosException;
     
     
     
-    public HabilidadesTiro LeHabilidadesTiro(int codigo);
+    public HabilidadesTiro LeHabilidadesTiro(int codigo) throws BaseDadosException;
 
-    public void EscreveHabilidadesTiro(HabilidadesTiro HabilidadesTiro);
+    public void EscreveHabilidadesTiro(HabilidadesTiro HabilidadesTiro) throws BaseDadosException;
     
-    public void AlteraHabilidadesTiro(HabilidadesTiro HabilidadesTiro);
+    public void AlteraHabilidadesTiro(HabilidadesTiro HabilidadesTiro) throws BaseDadosException;
 
-    public List<HabilidadesTiro> ListaHabilidadesTiro();
+    public List<HabilidadesTiro> ListaHabilidadesTiro() throws BaseDadosException;
 
-    public List<HabilidadesTiro> HabilidadesTiroPersonagem(Personagem personagem);
+    public List<HabilidadesTiro> HabilidadesTiroPersonagem(Personagem personagem) throws BaseDadosException;
 
 }

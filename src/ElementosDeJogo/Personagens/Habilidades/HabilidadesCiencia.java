@@ -19,7 +19,7 @@ public class HabilidadesCiencia {
     private short cienciaZoologia;
     
     //CONSTRUTORES
-
+    
     public HabilidadesCiencia() {
         super();
         
@@ -36,6 +36,26 @@ public class HabilidadesCiencia {
         this.cienciaMetereologia = 1;
         this.cienciaQuimica = 1;
         this.cienciaZoologia = 1;        
+    }
+
+    public HabilidadesCiencia(boolean anotacoes) {
+        this();
+        
+        if (anotacoes){
+            this.cienciaAstronomia = 0;
+            this.cienciaBiologia = 0;
+            this.cienciaBotanica = 0;
+            this.cienciaCriptografia = 0;
+            this.cienciaEngenharia = 0;
+            this.cienciaFarmacia = 0;
+            this.cienciaFisica = 0;
+            this.cienciaForense = 0;
+            this.cienciaGeologia = 0;
+            this.cienciaMatematica = 0;
+            this.cienciaMetereologia = 0;
+            this.cienciaQuimica = 0;
+            this.cienciaZoologia = 0; 
+        }
     }
     
     //GETTERS E SETTERS

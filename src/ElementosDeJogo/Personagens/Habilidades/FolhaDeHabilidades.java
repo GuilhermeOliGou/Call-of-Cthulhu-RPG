@@ -1,8 +1,13 @@
 package ElementosDeJogo.Personagens.Habilidades;
 
+import RegrasDeNegocio.RegraNegocioException;
+import utilidades.Log;
+
 public class FolhaDeHabilidades{
     
     //ATRIBUTOS
+    
+    private final short DESTREZAPADRAO = 40;
     
     private short mitosDeCthulhu;
     
@@ -13,18 +18,20 @@ public class FolhaDeHabilidades{
     
     private HabilidadesCiencia ciencia;
     private HabilidadesInterpessoais interpessoais;
-    private HabilidadesLuta luta;
     private HabilidadesTiro tiro;
+    private HabilidadesLuta luta;
         
     //CONSTRUTORES
     
-    public FolhaDeHabilidades() {        
+    public FolhaDeHabilidades() {    
+        super();
+        
         this.mitosDeCthulhu = 0;
         
-        this.usoDeComputadores = 5;
-        this.reparoEletrico = 10;
-        this.eletronica = 1;
-        this.deteccao = 25;   
+        this.usoDeComputadores = 0;
+        this.reparoEletrico = 0;
+        this.eletronica = 0;
+        this.deteccao = 0;   
         
         this.ciencia = new HabilidadesCiencia();
         this.interpessoais = new HabilidadesInterpessoais();
@@ -32,7 +39,9 @@ public class FolhaDeHabilidades{
         this.tiro = new HabilidadesTiro();
     }
 
-    public FolhaDeHabilidades(short destreza) {        
+    public FolhaDeHabilidades(short destreza) throws RegraNegocioException { 
+        super();
+        
         this.mitosDeCthulhu = 0;
         
         this.usoDeComputadores = 5;
@@ -42,8 +51,15 @@ public class FolhaDeHabilidades{
         
         this.ciencia = new HabilidadesCiencia();
         this.interpessoais = new HabilidadesInterpessoais();
-        this.luta = new HabilidadesLuta(destreza);
         this.tiro = new HabilidadesTiro();
+        
+        try{
+            this.luta = new HabilidadesLuta(destreza);
+        }catch(NullPointerException e){
+            Log.gravaLog(e);
+            this.luta = new HabilidadesLuta(DESTREZAPADRAO);
+            throw new RegraNegocioException("FOLHA DE CARACTERÍSTICAS NÃO INICIALIZADA!!");
+        }
     }
     
     //GETTERS E SETTERS
@@ -55,6 +71,8 @@ public class FolhaDeHabilidades{
     public void setMitosDeCthulhu(short mitosDeCthulhu) {
         this.mitosDeCthulhu = mitosDeCthulhu;
     }
+    
+    
 
     public short getUsoDeComputadores() {
         return usoDeComputadores;
@@ -87,6 +105,8 @@ public class FolhaDeHabilidades{
     public void setDeteccao(short deteccao) {
         this.deteccao = deteccao;
     }
+    
+    
 
     public HabilidadesCiencia getCiencia() {
         return ciencia;
@@ -104,20 +124,20 @@ public class FolhaDeHabilidades{
         this.interpessoais = interpessoais;
     }
 
-    public HabilidadesLuta getLuta() {
-        return luta;
-    }
-
-    public void setLuta(HabilidadesLuta luta) {
-        this.luta = luta;
-    }
-
     public HabilidadesTiro getTiro() {
         return tiro;
     }
 
     public void setTiro(HabilidadesTiro tiro) {
         this.tiro = tiro;
+    }
+
+    public HabilidadesLuta getLuta() {
+        return luta;
+    }
+
+    public void setLuta(HabilidadesLuta luta) {
+        this.luta = luta;
     }
         
 }

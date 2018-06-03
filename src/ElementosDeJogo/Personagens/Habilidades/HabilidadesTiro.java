@@ -30,6 +30,22 @@ public class HabilidadesTiro {
         this.arremesso = 20;
     }
     
+    public HabilidadesTiro(boolean anotacoes) {
+        this();
+        
+        if (anotacoes){
+            this.tiroArco = 0;
+            this.tiroPistola = 0;
+            this.tiroArmaPesada = 0;
+            this.tiroLancaChamas = 0;
+            this.tiroMetralhadora = 0;
+            this.tiroRifleEscopeta = 0;
+            this.tiroSubmetralhadora = 0;   
+
+            this.arremesso = 0;
+        }
+    }
+    
     //GETTERS E SETTER
 
     public short getTiroArco() {

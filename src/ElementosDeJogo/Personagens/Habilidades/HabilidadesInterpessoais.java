@@ -20,6 +20,17 @@ public class HabilidadesInterpessoais {
         this.persuasao = 10;
     }
     
+    public HabilidadesInterpessoais(boolean anotacoes){
+        this();
+        
+        if (anotacoes){
+            this.sedução = 0;
+            this.falaRapida = 0;
+            this.intimidacao = 0;
+            this.persuasao = 0;
+        }
+    }
+    
     //GETTERS E SETTERS
 
     public short getSedução() {
