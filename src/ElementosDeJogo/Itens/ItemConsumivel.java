@@ -11,7 +11,14 @@ public class ItemConsumivel extends Item{
     
     //CONSTRUTORES
 
-    public ItemConsumivel(){}
+    public ItemConsumivel(){
+        super();
+        
+        this.quantidade = 0;
+        
+        this.hpRecuperado = 0;
+        this.mpRecuperado = 0;
+    }
 
     public ItemConsumivel(int id, String nome, String descricao, 
             short quantidade, short hpRecuperado, short mpRecuperado) {

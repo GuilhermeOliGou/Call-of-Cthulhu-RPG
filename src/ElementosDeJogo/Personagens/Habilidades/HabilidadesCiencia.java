@@ -57,6 +57,28 @@ public class HabilidadesCiencia {
             this.cienciaZoologia = 0; 
         }
     }
+
+    public HabilidadesCiencia(short cienciaAstronomia, short cienciaBiologia, 
+            short cienciaBotanica, short cienciaCriptografia, short cienciaEngenharia, 
+            short cienciaFarmacia, short cienciaFisica, short cienciaForense, 
+            short cienciaGeologia, short cienciaMatematica, short cienciaMetereologia, 
+            short cienciaQuimica, short cienciaZoologia) {
+        super();
+        
+        this.cienciaAstronomia = cienciaAstronomia;
+        this.cienciaBiologia = cienciaBiologia;
+        this.cienciaBotanica = cienciaBotanica;
+        this.cienciaCriptografia = cienciaCriptografia;
+        this.cienciaEngenharia = cienciaEngenharia;
+        this.cienciaFarmacia = cienciaFarmacia;
+        this.cienciaFisica = cienciaFisica;
+        this.cienciaForense = cienciaForense;
+        this.cienciaGeologia = cienciaGeologia;
+        this.cienciaMatematica = cienciaMatematica;
+        this.cienciaMetereologia = cienciaMetereologia;
+        this.cienciaQuimica = cienciaQuimica;
+        this.cienciaZoologia = cienciaZoologia;
+    }
     
     //GETTERS E SETTERS
 

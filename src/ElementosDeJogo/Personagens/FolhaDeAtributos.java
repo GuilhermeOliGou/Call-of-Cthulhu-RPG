@@ -18,6 +18,16 @@ public class FolhaDeAtributos{
 
     public FolhaDeAtributos() {
         super();
+        
+        this.caracteristicas = new FolhaDeCaracteristicas();
+        
+        this.maxHp = 0;
+        this.maxMp = 0;
+        this.hpAtual = 0;
+        this.mpAtual = 0;
+        this.movimento = 0;
+        this.bonusDeDanoCorporal = 0;
+        this.build = 0;
     }
     
     public FolhaDeAtributos(FolhaDeCaracteristicas caracteristicas, 

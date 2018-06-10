@@ -20,6 +20,12 @@ public class Jogador extends Personagem {
     
     public Jogador() {
         super();
+        
+        this.maxSanidade = 0;
+        this.sanidadeAtual = 0;
+        this.sorte = 0;
+        
+        this.habilidades = new FolhaDeHabilidades();
     }
     
     public Jogador( int id, FolhaDeAtributos atributos, short idade, String nome, Local localidadeAtual,

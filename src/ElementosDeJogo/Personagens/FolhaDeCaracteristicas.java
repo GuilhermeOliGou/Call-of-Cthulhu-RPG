@@ -17,6 +17,15 @@ public class FolhaDeCaracteristicas {
 
     public FolhaDeCaracteristicas() {
         super();
+        
+        this.forca = 0;
+        this.constituicao = 0;
+        this.tamanho = 0;
+        this.destreza = 0;
+        this.aparencia = 0;
+        this.inteligencia = 0;
+        this.educacao = 0;
+        this.poder = 0;
     }
     
     public FolhaDeCaracteristicas(short forca, short constituicao, 

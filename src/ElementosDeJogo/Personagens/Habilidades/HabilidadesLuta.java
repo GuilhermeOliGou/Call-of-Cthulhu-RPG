@@ -46,6 +46,24 @@ public class HabilidadesLuta {
         this.lutaEspada = 20;
         this.lutaChicote = 5;
     }
+
+    public HabilidadesLuta(short esquiva, 
+            short lutaMachado, short lutaLivre, short lutaSerraEletrica, 
+            short lutaMangual, short lutaGarrote, short lutaLanca, 
+            short lutaEspada, short lutaChicote) {
+        super();
+        
+        this.esquiva = esquiva;
+        
+        this.lutaMachado = lutaMachado;
+        this.lutaLivre = lutaLivre;
+        this.lutaSerraEletrica = lutaSerraEletrica;
+        this.lutaMangual = lutaMangual;
+        this.lutaGarrote = lutaGarrote;
+        this.lutaLanca = lutaLanca;
+        this.lutaEspada = lutaEspada;
+        this.lutaChicote = lutaChicote;
+    }
     
     //GETTERS E SETTERS
 

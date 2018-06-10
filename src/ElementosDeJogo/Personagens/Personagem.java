@@ -22,6 +22,15 @@ public class Personagem {
     
     public Personagem (){
         super();
+        
+        this.id = -1;
+        
+        this.atributos = new FolhaDeAtributos();
+        
+        this.idade = 0;
+        this.nome = "HP Lovecraft";
+        
+        this.localidadeAtual = new Local();
     }
 
     public Personagem(int id, FolhaDeAtributos atributos, 

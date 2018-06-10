@@ -11,11 +11,14 @@ public class Local {
 
     private String nome;    
     private LinkedList<Evento> eventosDisponíveis;
-    
-    //CONSTRUTORES
 
     public Local() {
         super();
+        
+        this.id = -1;
+        
+        this.nome = "Red Hook";
+        this.eventosDisponíveis = new LinkedList<>();
     }
     
     public Local(String nome, LinkedList<Evento> eventosDisponíveis, int id) {
@@ -36,6 +39,8 @@ public class Local {
     public void setId(int id) {
         this.id = id;
     }
+    
+    
 
     public String getNome() {
         return nome;
@@ -60,4 +65,5 @@ public class Local {
     public void setEventoDisponivel(int indice ,Evento evento) {
         this.eventosDisponíveis.add(indice, evento); 
     }
+    
 }

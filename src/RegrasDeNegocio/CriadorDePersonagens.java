@@ -1,16 +1,8 @@
 package RegrasDeNegocio;
 
-public class GerenciadorRegrasNegocio implements RegrasDeNegocio {
+public class CriadorDePersonagens implements RegrasDeNegocio {
     
-    private final Dados DADOS;
-    
-    //CONSTRUTORES
-
-    public GerenciadorRegrasNegocio(Dados dados) {
-        this.DADOS = dados;
-    }
-    
-    //FIM CONSTRUTORES
+    private final Dados DADOS = new Dados();
             
     //FUNÇÕES DE CRIAÇÃO DE PERSONAGEM
     

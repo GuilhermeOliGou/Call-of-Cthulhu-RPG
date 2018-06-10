@@ -1,58 +1,66 @@
 package ElementosDeJogo.Sistema;
 
+import ElementosDeJogo.Itens.Item;
+import ElementosDeJogo.Personagens.FolhaDeAtributos;
+import ElementosDeJogo.Personagens.Habilidades.FolhaDeHabilidades;
 import ElementosDeJogo.Sistema.Eventos.Evento;
 
 public class Resposta {
     
-    //ATRIBUTOS GERAIS
+    //ATRIBUTOS
     
     private int codigo;
+    
     private Evento eventoAlterado;
     private Local localAlterado;
     
-    //FIM ATRIBUTOS GERAIS
-    
-    //ATRIBUTOS DE PERSONAGEM
-    
-    //itens
-    private int itemIdAlterado;
-    private int itemNovo;
-    private int itemDescartado;
+    private FolhaDeAtributos atributosAlterados;
+    private Item[] itensAdicionados;
+    private Item[] itensRemovidos;
     private Local localDoPersonagemAlterado;
-    private short[] caracteristicasAlteradas;
-    private short hpAtualAlterado;
-    private short mpAtualAlterado;
-    private short[] habilidadesAlteradas;
-    private short sanidadeAtualAlterada;
     
-    //FIM ATRIBUTOS DE PERSONAGEM
+    private short sanidadeAtualAlterada;
+    private FolhaDeHabilidades habilidadesAlteradas;
     
     //CONSTRUTORES
 
     public Resposta() {
         super();
+        
+        this.codigo = -1;
+        
+        this.eventoAlterado = new Evento();
+        this.localAlterado = new Local();
+        
+        this.atributosAlterados = new FolhaDeAtributos();
+        this.localDoPersonagemAlterado = new Local();
+        
+        this.sanidadeAtualAlterada = 0;
+        this.habilidadesAlteradas = new FolhaDeHabilidades();
     }
-    
-    public Resposta(int codigo, Evento eventoAlterado, Local localAlterado, Local localDePersonagemAlterado, short[] caracteristicasAlteradas, 
-            short hpAtualAlterado, short mpAtualAlterado, short[] habilidadesAlteradas, short sanidadeAtualAlterada) {
+
+    public Resposta(int codigo, 
+            Evento eventoAlterado, Local localAlterado, 
+            FolhaDeAtributos atributosAlterados, Item[] itensAdicionados, 
+            Item[] itensRemovidos, Local localDoPersonagemAlterado, 
+            short sanidadeAtualAlterada, FolhaDeHabilidades habilidadesAlteradas) {
         super();
+        
         this.codigo = codigo;
+        
         this.eventoAlterado = eventoAlterado;
         this.localAlterado = localAlterado;
         
-        this.localDoPersonagemAlterado = localDePersonagemAlterado;
-        this.caracteristicasAlteradas = caracteristicasAlteradas;
-        this.hpAtualAlterado = hpAtualAlterado;
-        this.mpAtualAlterado = mpAtualAlterado;
-        this.habilidadesAlteradas = habilidadesAlteradas;
+        this.atributosAlterados = atributosAlterados;
+        this.itensAdicionados = itensAdicionados;
+        this.itensRemovidos = itensRemovidos;
+        this.localDoPersonagemAlterado = localDoPersonagemAlterado;
+        
         this.sanidadeAtualAlterada = sanidadeAtualAlterada;
+        this.habilidadesAlteradas = habilidadesAlteradas;
     }
     
-    //FIM CONSTRUTORES
-    
     //GETTERS AND SETTERS
-    
-    //GETTERS AND SETTERS ATRIBUTOS GERAIS
 
     public int getCodigo() {
         return codigo;
@@ -62,6 +70,7 @@ public class Resposta {
         this.codigo = codigo;
     }
 
+    
     
     public Evento getEventoAlterado() {
         return eventoAlterado;
@@ -79,69 +88,31 @@ public class Resposta {
         this.localAlterado = localAlterado;
     }
     
-    //FIM GETTERS AND SETTERS ATRIBUTOS GERAIS
     
-    //GETTERS AND SETTERS ATRIBUTOS DE PERSONAGEM
 
-    public Local getLocalDePersonagemAlterado() {
-        return getLocalDoPersonagemAlterado();
+    public FolhaDeAtributos getAtributosAlterados() {
+        return atributosAlterados;
     }
 
-    public void setLocalDePersonagemAlterado(Local localAlterado) {
-        this.setLocalDoPersonagemAlterado(localAlterado);
+    public void setAtributosAlterados(FolhaDeAtributos atributosAlterados) {
+        this.atributosAlterados = atributosAlterados;
     }
 
-    public short[] getCaracteristicasAlteradas() {
-        return caracteristicasAlteradas;
+    public Item[] getItensAdicionados(){
+        return itensAdicionados;
     }
 
-    public void setCaracteristicasAlteradas(short[] caracteristicasAlteradas) {
-        this.setCaracteristicasAlteradas(caracteristicasAlteradas);
+    public void setItensAdicionados(Item[] itensAdicionados) {
+        this.itensAdicionados = itensAdicionados;
     }
 
-    public short getHpAtualAlterado() {
-        return hpAtualAlterado;
+    public Item[] getItensRemovidos() {
+        return itensRemovidos;
     }
 
-    public void setHpAtualAlterado(short hpAlterado) {
-        this.hpAtualAlterado = hpAlterado;
+    public void setItensRemovidos(Item[] itensRemovidos) {
+        this.itensRemovidos = itensRemovidos;
     }
-
-    public short getMpAtualAlterado() {
-        return mpAtualAlterado;
-    }
-
-    public void setMpAtualAlterado(short mpAlterado) {
-        this.mpAtualAlterado = mpAlterado;
-    }  
-
-    public short[] getHabilidadesAlteradas() {
-        return habilidadesAlteradas;
-    }
-
-    public void setHabilidadesAlteradas(short[] habilidadesAlteradas) {
-        this.setHabilidadesAlteradas(habilidadesAlteradas);
-    }
-    
-    public short getHabilidade(int indice) {
-        return habilidadesAlteradas[indice];
-    }
-
-    public void setHabilidade(int indice, short valor) {
-        habilidadesAlteradas[indice] = valor;
-    }
-
-    public short getSanidadeAtualAlterada() {
-        return sanidadeAtualAlterada;
-    }
-
-    public void setSanidadeAtualAlterada(short sanidadeAlterada) {
-        this.sanidadeAtualAlterada = sanidadeAlterada;
-    }      
-    
-    //FIM GETTERS AND SETTERS ATRIBUTOS DE PERSONAGEM
-    
-    //FIM GETTERS AND SETTERS
 
     public Local getLocalDoPersonagemAlterado() {
         return localDoPersonagemAlterado;
@@ -150,7 +121,25 @@ public class Resposta {
     public void setLocalDoPersonagemAlterado(Local localDoPersonagemAlterado) {
         this.localDoPersonagemAlterado = localDoPersonagemAlterado;
     }
+    
+    
 
-  
+    public short getSanidadeAtualAlterada() {
+        return sanidadeAtualAlterada;
+    }
+
+    public void setSanidadeAtualAlterada(short sanidadeAtualAlterada) {
+        this.sanidadeAtualAlterada = sanidadeAtualAlterada;
+    }
+
+    public FolhaDeHabilidades getHabilidadesAlteradas() {
+        return habilidadesAlteradas;
+    }
+
+    public void setHabilidadesAlteradas(FolhaDeHabilidades habilidadesAlteradas) {
+        this.habilidadesAlteradas = habilidadesAlteradas;
+    }
+    
+    
     
 }

@@ -8,30 +8,78 @@ public class Evento {
     protected int id;
     
     protected String nome;
-    protected String descricaoSucesso;
-    protected String descricaoFalha;
+    protected String descricao;
     
-    protected int localDeRetorno;
+    protected Local localDeRetorno;
+    
     protected Resposta respostaDoEvento;
+    
     protected boolean eventoUnico;
-    private int eventoRealizado;
+    protected int qtdRealizacoes;
     
     //CONSTRUTORES
 
     public Evento() {
         super();
+        
+        this.id = -1;
+        
+        this.nome = "";
+        this.descricao = "Sucesso!";
+        
+        this.localDeRetorno = new Local();
+        
+        this.respostaDoEvento = new Resposta();
+        
+        this.eventoUnico = true;
+        this.qtdRealizacoes = 0;
     }
         
-    public Evento(int id, String nome, String descricaoSucesso, String descricaoFalha, int localDeRetorno, Resposta respostaDoEvento,
-                boolean eventoUnico, int eventoRealizado) {
+    public Evento(int id, 
+            String nome, String descricao, 
+            Local localDeRetorno, 
+            Resposta respostaDoEvento,
+            boolean eventoRealizado, int qtdRealizacoes) {
+        super();
+        
+        this.id = id;
+        
+        this.nome = nome;
+        this.descricao = descricao;
+        
+        this.localDeRetorno = localDeRetorno;
+        
+        this.respostaDoEvento = respostaDoEvento;
+        
+        this.eventoUnico = eventoRealizado;
+        this.qtdRealizacoes = qtdRealizacoes;
+    }
+
+    /*
+    IMPORTANTE:
+        Uso preferencial: eventos de deslocamento
+    */
+    public Evento(int id, String nome, Local localDeRetorno) {
+        super();
+        
         this.id = id;
         this.nome = nome;
-        this.descricaoSucesso = descricaoSucesso;
-        this.descricaoFalha = descricaoFalha;
         this.localDeRetorno = localDeRetorno;
+    }
+
+    /*
+    IMPORTANTE:
+        Uso preferencial: interação com o cenário
+    */
+    public Evento(int id, String nome, String descricao, Resposta respostaDoEvento) {
+        super();
+        
+        this.id = id;
+        
+        this.nome = nome;
+        this.descricao = descricao;
+        
         this.respostaDoEvento = respostaDoEvento;
-        this.eventoUnico = eventoUnico;
-        this.eventoRealizado = eventoRealizado;
     }
     
     //GETTERS AND SETTERS
@@ -54,27 +102,25 @@ public class Evento {
         this.nome = nome;
     }
 
-    public String getDescricaoSucesso() {
-        return descricaoSucesso;
+    public String getDescricao() {
+        return descricao;
     }
-    public String getDescricaoFalha(){
-        return descricaoFalha;
+    
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
     }
-    public String setDescricaoFalha(){
-        return descricaoFalha;
-    }
+    
+    
 
-    public void setDescricaoFalha(String descricaoFalha) {
-        this.descricaoFalha = descricaoFalha;
-    }
-
-    public int getLocalDeRetorno() {
+    public Local getLocalDeRetorno() {
         return localDeRetorno;
     }
 
-    public void setLocalDeRetorno(int localDeRetorno) {
+    public void setLocalDeRetorno(Local localDeRetorno) {
         this.localDeRetorno = localDeRetorno;
     }
+    
+    
 
     public Resposta getRespostaDoEvento() {
         return respostaDoEvento;
@@ -83,6 +129,8 @@ public class Evento {
     public void setRespostaDoEvento(Resposta respostaDoEvento) {
         this.respostaDoEvento = respostaDoEvento;
     }
+    
+    
 
     public boolean isEventoUnico() {
         return eventoUnico;
@@ -92,12 +140,12 @@ public class Evento {
         this.eventoUnico = eventoUnico;
     }
 
-    public int getEventoRealizado() {
-        return eventoRealizado;
+    public int getQtdRealizacoes() {
+        return qtdRealizacoes;
     }
 
-    public void setEventoRealizado(int eventoRealizado) {
-        this.eventoRealizado = eventoRealizado;
+    public void setQtdRealizacoes(int qtdRealizacoes) {
+        this.qtdRealizacoes = qtdRealizacoes;
     }
 
 }

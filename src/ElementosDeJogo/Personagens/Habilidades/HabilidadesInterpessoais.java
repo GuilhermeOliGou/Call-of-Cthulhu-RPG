@@ -30,6 +30,16 @@ public class HabilidadesInterpessoais {
             this.persuasao = 0;
         }
     }
+
+    public HabilidadesInterpessoais(short sedução, short falaRapida, 
+            short intimidacao, short persuasao) {
+        super();
+        
+        this.sedução = sedução;
+        this.falaRapida = falaRapida;
+        this.intimidacao = intimidacao;
+        this.persuasao = persuasao;
+    }
     
     //GETTERS E SETTERS
 

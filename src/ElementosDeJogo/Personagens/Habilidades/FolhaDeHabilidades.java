@@ -7,6 +7,7 @@ public class FolhaDeHabilidades{
     
     //ATRIBUTOS
     
+    private final boolean FOLHAPADRAOEMBRANCO = true;    
     private final short DESTREZAPADRAO = 40;
     
     private short mitosDeCthulhu;
@@ -33,10 +34,10 @@ public class FolhaDeHabilidades{
         this.eletronica = 0;
         this.deteccao = 0;   
         
-        this.ciencia = new HabilidadesCiencia();
-        this.interpessoais = new HabilidadesInterpessoais();
+        this.ciencia = new HabilidadesCiencia(FOLHAPADRAOEMBRANCO);
+        this.interpessoais = new HabilidadesInterpessoais(FOLHAPADRAOEMBRANCO);
         this.luta = new HabilidadesLuta();
-        this.tiro = new HabilidadesTiro();
+        this.tiro = new HabilidadesTiro(FOLHAPADRAOEMBRANCO);
     }
 
     public FolhaDeHabilidades(short destreza) throws RegraNegocioException { 
@@ -60,6 +61,25 @@ public class FolhaDeHabilidades{
             this.luta = new HabilidadesLuta(DESTREZAPADRAO);
             throw new RegraNegocioException("FOLHA DE CARACTERÍSTICAS NÃO INICIALIZADA!!");
         }
+    }
+
+    public FolhaDeHabilidades(short mitosDeCthulhu, 
+            short usoDeComputadores, short reparoEletrico, short eletronica, short deteccao, 
+            HabilidadesCiencia ciencia, HabilidadesInterpessoais interpessoais, 
+            HabilidadesTiro tiro, HabilidadesLuta luta) {
+        super();
+        
+        this.mitosDeCthulhu = mitosDeCthulhu;
+        
+        this.usoDeComputadores = usoDeComputadores;
+        this.reparoEletrico = reparoEletrico;
+        this.eletronica = eletronica;
+        this.deteccao = deteccao;
+        
+        this.ciencia = ciencia;
+        this.interpessoais = interpessoais;
+        this.tiro = tiro;
+        this.luta = luta;
     }
     
     //GETTERS E SETTERS

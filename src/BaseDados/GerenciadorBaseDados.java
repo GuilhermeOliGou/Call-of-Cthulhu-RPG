@@ -175,7 +175,7 @@ public class GerenciadorBaseDados extends ConectorBaseDados {
             for(Evento evento : local.getEventosDisponíveis()){
                 abreConexao();
                 geraComandoSQL("UPDATE Eventos SET qntTrigger = ? WHERE idJogador = ? AND idLocal = ?");
-                ps.setInt(1, evento.getEventoRealizado());
+                ps.setInt(1, evento.getQtdRealizacoes());
                 ps.setInt(2, idJogador);
                 ps.setInt(3, local.getId());
                 ps.execute();

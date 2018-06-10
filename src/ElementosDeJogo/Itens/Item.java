@@ -12,10 +12,15 @@ public class Item {
 
     public Item(){
         super();
+        
+        this.id = -1;
+        this.nome = "";
+        this.descricao = "";
     }
 
     public Item(int id, String nome, String descricao) {
         super();
+        
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;

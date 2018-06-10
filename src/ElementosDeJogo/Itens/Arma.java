@@ -20,6 +20,15 @@ public class Arma extends Item{
 
     public Arma() {
         super();
+        
+        this.dano = new FolhaDano();
+        
+        this.alcance = 0;
+        this.usosPorRound = 0;
+        this.tamanhoDoPente = 0;
+        this.municao = 0;
+        
+        this.malFuncionamento = 0;
     }
 
     public Arma(int id, String nome, String descricao, 

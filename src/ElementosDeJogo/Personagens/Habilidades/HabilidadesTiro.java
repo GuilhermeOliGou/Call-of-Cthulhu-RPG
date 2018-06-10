@@ -45,6 +45,22 @@ public class HabilidadesTiro {
             this.arremesso = 0;
         }
     }
+
+    public HabilidadesTiro(short tiroArco, short tiroPistola, short tiroArmaPesada, 
+            short tiroLancaChamas, short tiroMetralhadora, short tiroRifleEscopeta, short tiroSubmetralhadora, 
+            short arremesso) {
+        super();
+        
+        this.tiroArco = tiroArco;
+        this.tiroPistola = tiroPistola;
+        this.tiroArmaPesada = tiroArmaPesada;
+        this.tiroLancaChamas = tiroLancaChamas;
+        this.tiroMetralhadora = tiroMetralhadora;
+        this.tiroRifleEscopeta = tiroRifleEscopeta;
+        this.tiroSubmetralhadora = tiroSubmetralhadora;
+        
+        this.arremesso = arremesso;
+    }
     
     //GETTERS E SETTER
 
