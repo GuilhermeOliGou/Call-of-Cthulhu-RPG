@@ -1,3 +1,4 @@
+/*
 package BaseDados;
 
 import com.mysql.jdbc.Driver;
@@ -71,3 +72,4 @@ public abstract class ConectorBaseDados {
         }
     }
 
+*/

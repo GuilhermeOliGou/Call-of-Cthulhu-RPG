@@ -1,3 +1,4 @@
+/*
 package BaseDados;
 
 import BaseDados.*;
@@ -53,3 +54,4 @@ public class BaseDadosParser {
         gerenciadorBaseDados.salvaLocal(local);
     }
 }
+*/

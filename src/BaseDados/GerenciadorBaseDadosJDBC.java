@@ -1,3 +1,4 @@
+/*
 package BaseDados;
 
 import java.sql.SQLException;
@@ -345,3 +346,4 @@ public class GerenciadorBaseDadosJDBC extends ConectorJDBC implements
 
 
 }
+*/
