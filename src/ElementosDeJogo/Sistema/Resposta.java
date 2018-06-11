@@ -11,9 +11,6 @@ public class Resposta {
     
     private int codigo;
     
-    private Evento eventoAlterado;
-    private Local localAlterado;
-    
     private FolhaDeAtributos atributosAlterados;
     private Item[] itensAdicionados;
     private Item[] itensRemovidos;
@@ -29,9 +26,6 @@ public class Resposta {
         
         this.codigo = -1;
         
-        this.eventoAlterado = new Evento();
-        this.localAlterado = new Local();
-        
         this.atributosAlterados = new FolhaDeAtributos();
         this.localDoPersonagemAlterado = new Local();
         
@@ -39,17 +33,13 @@ public class Resposta {
         this.habilidadesAlteradas = new FolhaDeHabilidades();
     }
 
-    public Resposta(int codigo, 
-            Evento eventoAlterado, Local localAlterado, 
+    public Resposta(int codigo,  
             FolhaDeAtributos atributosAlterados, Item[] itensAdicionados, 
             Item[] itensRemovidos, Local localDoPersonagemAlterado, 
             short sanidadeAtualAlterada, FolhaDeHabilidades habilidadesAlteradas) {
         super();
         
         this.codigo = codigo;
-        
-        this.eventoAlterado = eventoAlterado;
-        this.localAlterado = localAlterado;
         
         this.atributosAlterados = atributosAlterados;
         this.itensAdicionados = itensAdicionados;
@@ -68,24 +58,6 @@ public class Resposta {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    
-    
-    public Evento getEventoAlterado() {
-        return eventoAlterado;
-    }
-
-    public void setEventoAlterado(Evento eventoAlterado) {
-        this.eventoAlterado = eventoAlterado;
-    }
-
-    public Local getLocalAlterado() {
-        return localAlterado;
-    }
-
-    public void setLocalAlterado(Local localAlterado) {
-        this.localAlterado = localAlterado;
     }
     
     

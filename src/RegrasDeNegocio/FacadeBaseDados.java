@@ -14,6 +14,10 @@ import ElementosDeJogo.Personagens.Habilidades.HabilidadesLuta;
 import ElementosDeJogo.Personagens.Habilidades.HabilidadesTiro;
 import ElementosDeJogo.Personagens.Jogador;
 import ElementosDeJogo.Personagens.Personagem;
+import ElementosDeJogo.Sistema.Eventos.Evento;
+import ElementosDeJogo.Sistema.Eventos.EventoAvancado;
+import ElementosDeJogo.Sistema.Local;
+import ElementosDeJogo.Sistema.Resposta;
 import java.util.List;
 
 interface FacadeBaseDados {
@@ -168,4 +172,44 @@ interface FacadeBaseDados {
 
     public List<HabilidadesTiro> HabilidadesTiroPersonagem(Personagem personagem) throws BaseDadosException;
 
+    //SISTEMA
+    
+    public Resposta LeResposta(int codigo) throws BaseDadosException;
+    
+    public void EscreveResposta(Resposta resposta) throws BaseDadosException;
+    
+    public void AlteraHabilidade(Resposta resposta) throws BaseDadosException;
+    
+    public List<Resposta> ListaResposta() throws BaseDadosException;
+    
+    
+    
+    public Evento LeEvento(int codigo) throws BaseDadosException;
+    
+    public void EscreveEvento(Evento evento) throws BaseDadosException;
+    
+    public void AlteraEvento(Evento evento) throws BaseDadosException;
+    
+    public List<Evento> ListaEvento() throws BaseDadosException;
+    
+    
+    
+    public EventoAvancado LeEventoAvancado(int codigo) throws BaseDadosException;
+    
+    public void EscreveEventoAvancado(EventoAvancado eventoAvancado) throws BaseDadosException;
+    
+    public void AlteraEventoAvancado(EventoAvancado eventoAvancado) throws BaseDadosException;
+    
+    public List<EventoAvancado> ListaEventoAvancado() throws BaseDadosException;
+    
+    
+    
+    public Local LeLocal(int codigo) throws BaseDadosException;
+    
+    public void EscreveLocal(Local local) throws BaseDadosException;
+    
+    public void AlteraLocal(Local local) throws BaseDadosException;
+    
+    public List<Local> ListaLocal() throws BaseDadosException;
+    
 }
