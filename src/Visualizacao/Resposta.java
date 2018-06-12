@@ -1,7 +1,7 @@
 package Visualizacao;
 
 import javax.swing.*;
-import RegrasDeNegocio.CriadorDePersonagens;
+import RegrasDeNegocio.CriadorDePersonagensPadrão;
 
 
 ////////////////////////////////////// FALTA REGRA DE NEGOCIO //////////////////////
