@@ -1,13 +1,17 @@
 package BaseDados;
-import ElementosDeJogo.Itens.Arma;
-import ElementosDeJogo.Itens.FolhaDano;
-import ElementosDeJogo.Itens.Item;
-import ElementosDeJogo.Itens.ItemConsumivel;
-import ElementosDeJogo.Personagens.FolhaDeAtributos;
-import ElementosDeJogo.Personagens.FolhaDeCaracteristicas;
-import ElementosDeJogo.Personagens.Habilidades.*;
-import ElementosDeJogo.Personagens.Jogador;
-import ElementosDeJogo.Personagens.Personagem;
+import Habilidades.FolhaDeHabilidadesCombateCienciaInterpessoal;
+import DTO.Personagens.SetsDeHabilidade.HabilidadesCiencia;
+import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
+import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
+import DTO.Personagens.SetsDeHabilidade.HabilidadesInterpessoais;
+import DTO.Itens.Arma;
+import DTO.Itens.FolhaDano;
+import DTO.Itens.Item;
+import DTO.Itens.ItemConsumivel;
+import DTO.Personagens.FolhaDeAtributos;
+import DTO.Personagens.FolhaDeCaracteristicas;
+import DTO.Personagens.Jogador;
+import DTO.Personagens.Personagem;
 import RegrasDeNegocio.FacadeBaseDados;
 
 import java.io.IOException;
@@ -204,27 +208,27 @@ public class FacadeImplementada implements FacadeBaseDados{
     }
 
     @Override
-    public FolhaDeHabilidades LeFolhaDeHabilidades(int codigo) throws BaseDadosException {
+    public FolhaDeHabilidadesCombateCienciaInterpessoal LeFolhaDeHabilidades(int codigo) throws BaseDadosException {
         return null;
     }
 
     @Override
-    public void EscreveFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades) throws BaseDadosException {
+    public void EscreveFolhaDeHabilidades(FolhaDeHabilidadesCombateCienciaInterpessoal folhaDeHabilidades) throws BaseDadosException {
 
     }
 
     @Override
-    public void AlteraFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades) throws BaseDadosException {
+    public void AlteraFolhaDeHabilidades(FolhaDeHabilidadesCombateCienciaInterpessoal folhaDeHabilidades) throws BaseDadosException {
 
     }
 
     @Override
-    public List<FolhaDeHabilidades> ListaFolhaDeHabilidades() throws BaseDadosException {
+    public List<FolhaDeHabilidadesCombateCienciaInterpessoal> ListaFolhaDeHabilidades() throws BaseDadosException {
         return null;
     }
 
     @Override
-    public List<FolhaDeHabilidades> FolhaDeHabilidadesPersonagem(Personagem personagem) throws BaseDadosException {
+    public List<FolhaDeHabilidadesCombateCienciaInterpessoal> FolhaDeHabilidadesPersonagem(Personagem personagem) throws BaseDadosException {
         return null;
     }
 

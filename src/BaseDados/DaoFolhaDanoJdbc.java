@@ -1,6 +1,6 @@
 package BaseDados;
 
-import ElementosDeJogo.Itens.FolhaDano;
+import DTO.Itens.FolhaDano;
 
 import java.util.List;
 

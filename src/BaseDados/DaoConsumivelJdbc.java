@@ -1,5 +1,5 @@
 package BaseDados;
-import ElementosDeJogo.Itens.ItemConsumivel;
+import DTO.Itens.ItemConsumivel;
 import Visualizacao.Personagem;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package BaseDados;
 
-import ElementosDeJogo.Itens.Arma;
+import DTO.Itens.Arma;
 
 import java.util.List;
 

@@ -1,5 +1,5 @@
 package BaseDados;
-import ElementosDeJogo.Itens.Item;
+import DTO.Itens.Item;
 
 import java.io.IOException;
 import java.sql.SQLException;

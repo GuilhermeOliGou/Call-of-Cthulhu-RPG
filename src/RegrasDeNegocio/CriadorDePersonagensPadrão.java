@@ -1,10 +1,10 @@
 package RegrasDeNegocio;
 
-import ElementosDeJogo.Personagens.FolhaDeAtributos;
-import ElementosDeJogo.Personagens.FolhaDeCaracteristicas;
+import DTO.Personagens.FolhaDeAtributos;
+import DTO.Personagens.FolhaDeCaracteristicas;
 import utilidades.Log;
 
-public class CriadorDePersonagensPadrão implements CriadorDePersonages {
+public class CriadorDePersonagensPadrão implements CriadorDePersonagens {
     
     //ATRIBUTOS
     

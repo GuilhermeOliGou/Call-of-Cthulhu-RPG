@@ -1,6 +1,6 @@
 package BaseDados;
 
-import ElementosDeJogo.Personagens.Jogador;
+import DTO.Personagens.Jogador;
 
 import java.util.List;
 

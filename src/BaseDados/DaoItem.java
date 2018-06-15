@@ -1,9 +1,9 @@
 package BaseDados;
 
-import ElementosDeJogo.Itens.Arma;
-import ElementosDeJogo.Itens.FolhaDano;
-import ElementosDeJogo.Itens.Item;
-import ElementosDeJogo.Itens.ItemConsumivel;
+import DTO.Itens.Arma;
+import DTO.Itens.FolhaDano;
+import DTO.Itens.Item;
+import DTO.Itens.ItemConsumivel;
 import Visualizacao.Personagem;
 
 import java.util.ArrayList;
