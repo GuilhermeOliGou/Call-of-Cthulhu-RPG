@@ -2,7 +2,14 @@ package BaseDados;
 
 public class popula {
 
-    public void populaTabelas() {
+    public String criaTabelas(){
+        String texto=""
+                +"";
+        
+        return texto;
+    }
+    
+    public String populaTabelas() {
       
         String texto = ""
                 + "insert into Jogadores(idJogador) values(1);"
@@ -25,6 +32,7 @@ public class popula {
                 + "insert into Eventos(idJogador,idLocal,nomeEvento,descricao,idLocalRetorno,eventoUnico,qntTrigger) values(1,3,'voltar para o corredor','voltar para o corredor',2,1,0);"
                 + "insert into Eventos(idJogador,idLocal,nomeEvento,descricao,idLocalRetorno,eventoUnico,qntTrigger) values(1,5,'voltar para o corredor','voltar para o corredor',1,1,0);"
                 + "insert into Eventos(idJogador,idLocal,nomeEvento,descricao,idLocalRetorno,eventoUnico,qntTrigger) values(1,5,'fazer o EP de COO','Terminar o EP de COO para entregar (Urgencia)',1,1,0);";
+        return texto;
     }
 
 }
