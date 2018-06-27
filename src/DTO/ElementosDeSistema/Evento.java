@@ -1,8 +1,5 @@
 package DTO.ElementosDeSistema;
 
-import DTO.ElementosDeSistema.Local;
-import DTO.ElementosDeSistema.Resposta;
-
 public class Evento {
 
     protected int id;

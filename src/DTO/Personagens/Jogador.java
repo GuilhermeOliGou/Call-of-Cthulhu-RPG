@@ -50,9 +50,6 @@ public class Jogador extends Personagem {
                     "Constituição: " + atributos.getCaracteristicas().getConstituicao() + "\n" +
                     "Tamanho: " + atributos.getCaracteristicas().getTamanho() + "\n" +
                     "Destreza: " + atributos.getCaracteristicas().getDestreza() + "\n" +
-                    "Aparência: " + atributos.getCaracteristicas().getAparencia() + "\n" +
-                    "Inteligência: " + atributos.getCaracteristicas().getInteligencia() + "\n" +
-                    "Educação: " + atributos.getCaracteristicas().getEducacao() + "\n" +
                     "Poder: " + atributos.getCaracteristicas().getPoder();
         }catch(NullPointerException e){
             Log.gravaLog(e);

@@ -8,10 +8,7 @@ public class FolhaDano {
     
     private short adicional;
     
-    private boolean distanciaMod;
-    
     private boolean atordoamento;
-    private boolean fogo;
     
     //CONSTRUTORES
 
@@ -20,15 +17,11 @@ public class FolhaDano {
         
         this.adicional = 0;
         
-        this.distanciaMod = false;
-        
         this.atordoamento = false;
-        this.fogo = false;
     }
 
     public FolhaDano(short[] rolagens, 
             short adicional, 
-            boolean distanciaMod, 
             boolean atordoamento, boolean fogo) {
         super();
         
@@ -36,10 +29,7 @@ public class FolhaDano {
         
         this.adicional = adicional;
         
-        this.distanciaMod = distanciaMod;
-        
         this.atordoamento = atordoamento;
-        this.fogo = fogo;
     }
     
     //GETTERS E SETTERS
@@ -62,17 +52,6 @@ public class FolhaDano {
         this.adicional = adicional;
     }
     
-    
-
-    public boolean isDistanciaMod() {
-        return distanciaMod;
-    }
-
-    public void setDistanciaMod(boolean distanciaMod) {
-        this.distanciaMod = distanciaMod;
-    }
-    
-    
 
     public boolean isAtordoamento() {
         return atordoamento;
@@ -80,14 +59,5 @@ public class FolhaDano {
 
     public void setAtordoamento(boolean atordoamento) {
         this.atordoamento = atordoamento;
-    }
-
-    public boolean isFogo() {
-        return fogo;
-    }
-
-    public void setFogo(boolean fogo) {
-        this.fogo = fogo;
-    }
-    
+    } 
 }

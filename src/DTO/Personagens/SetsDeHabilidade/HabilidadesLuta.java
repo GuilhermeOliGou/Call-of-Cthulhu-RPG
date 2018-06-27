@@ -8,9 +8,9 @@ public class HabilidadesLuta {
     
     private short lutaMachado;
     private short lutaLivre;
-    private short lutaSerraEletrica;
-    private short lutaMangual;
-    private short lutaGarrote;
+    //private short lutaSerraEletrica;
+    //private short lutaMangual;
+    //private short lutaGarrote;
     private short lutaLanca;
     private short lutaEspada;
     private short lutaChicote;
@@ -24,9 +24,6 @@ public class HabilidadesLuta {
         
         this.lutaMachado = 0;
         this.lutaLivre = 0;
-        this.lutaSerraEletrica = 0;
-        this.lutaMangual = 0;
-        this.lutaGarrote = 0;
         this.lutaLanca = 0;
         this.lutaEspada = 0;
         this.lutaChicote = 0;
@@ -39,27 +36,19 @@ public class HabilidadesLuta {
         
         this.lutaMachado = 15;
         this.lutaLivre = 25;
-        this.lutaSerraEletrica = 10;
-        this.lutaMangual = 10;
-        this.lutaGarrote = 15;
         this.lutaLanca = 20;
         this.lutaEspada = 20;
         this.lutaChicote = 5;
     }
 
     public HabilidadesLuta(short esquiva, 
-            short lutaMachado, short lutaLivre, short lutaSerraEletrica, 
-            short lutaMangual, short lutaGarrote, short lutaLanca, 
+            short lutaMachado, short lutaLivre, short lutaLanca, 
             short lutaEspada, short lutaChicote) {
         super();
         
         this.esquiva = esquiva;
-        
         this.lutaMachado = lutaMachado;
         this.lutaLivre = lutaLivre;
-        this.lutaSerraEletrica = lutaSerraEletrica;
-        this.lutaMangual = lutaMangual;
-        this.lutaGarrote = lutaGarrote;
         this.lutaLanca = lutaLanca;
         this.lutaEspada = lutaEspada;
         this.lutaChicote = lutaChicote;
@@ -90,31 +79,8 @@ public class HabilidadesLuta {
     public void setLutaLivre(short lutaLivre) {
         this.lutaLivre = lutaLivre;
     }
-
-    public short getLutaSerraEletrica() {
-        return lutaSerraEletrica;
-    }
-
-    public void setLutaSerraEletrica(short lutaSerraEletrica) {
-        this.lutaSerraEletrica = lutaSerraEletrica;
-    }
-
-    public short getLutaMangual() {
-        return lutaMangual;
-    }
-
-    public void setLutaMangual(short lutaMangual) {
-        this.lutaMangual = lutaMangual;
-    }
-
-    public short getLutaGarrote() {
-        return lutaGarrote;
-    }
-
-    public void setLutaGarrote(short lutaGarrote) {
-        this.lutaGarrote = lutaGarrote;
-    }
-
+    
+    
     public short getLutaLanca() {
         return lutaLanca;
     }

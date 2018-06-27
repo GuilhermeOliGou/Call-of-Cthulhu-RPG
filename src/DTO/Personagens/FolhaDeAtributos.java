@@ -10,9 +10,7 @@ public class FolhaDeAtributos{
     private short maxMp;
     private short hpAtual;
     private short mpAtual;
-    private short movimento;
     private short bonusDeDanoCorporal;
-    private short build;
     
     //CONSTRUTORES
 
@@ -25,14 +23,12 @@ public class FolhaDeAtributos{
         this.maxMp = 0;
         this.hpAtual = 0;
         this.mpAtual = 0;
-        this.movimento = 0;
         this.bonusDeDanoCorporal = 0;
-        this.build = 0;
     }
     
     public FolhaDeAtributos(FolhaDeCaracteristicas caracteristicas, 
-            short maxHp, short maxMp, short hpAtual, short mpAtual, 
-            short movimento, short bonusDeDanoCorporal, short build) {
+            short maxHp, short maxMp,
+            short hpAtual, short mpAtual, short bonusDeDanoCorporal) {
         super();
         
         this.caracteristicas = caracteristicas;
@@ -41,9 +37,7 @@ public class FolhaDeAtributos{
         this.maxMp = maxMp;
         this.hpAtual = hpAtual;
         this.mpAtual = mpAtual;
-        this.movimento = movimento;
         this.bonusDeDanoCorporal = bonusDeDanoCorporal;
-        this.build = build;
     }
 
     //GETTERS E SETTERS
@@ -89,14 +83,6 @@ public class FolhaDeAtributos{
     public void setMpAtual(short mpAtual) {
         this.mpAtual = mpAtual;
     }
-    
-    public short getMovimento() {
-        return movimento;
-    }
-
-    public final void setMovimento(short movimento) {
-        this.movimento = movimento;
-    }
 
     public short getBonusDeDanoCorporal() {
         return bonusDeDanoCorporal;
@@ -104,14 +90,6 @@ public class FolhaDeAtributos{
 
     public final void setBonusDeDanoCorporal(short bonusDeDanoCorporal) {
         this.bonusDeDanoCorporal = bonusDeDanoCorporal;
-    }
-    
-    public short getBuild() {
-        return build;
-    }
-
-    public final void setBuild(short build) {
-        this.build = build;
     }
     
 }

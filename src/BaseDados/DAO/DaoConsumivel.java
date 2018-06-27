@@ -2,7 +2,7 @@ package BaseDados.DAO;
 
 import BaseDados.BaseDadosException;
 import DTO.Itens.ItemConsumivel;
-import Visualizacao.Personagem;
+import ;
 
 import java.util.List;
 

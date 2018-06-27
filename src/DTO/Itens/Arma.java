@@ -9,7 +9,6 @@ public class Arma extends Item{
     
     private FolhaDano dano;
     
-    private short alcance;
     private short usosPorRound;
     private short tamanhoDoPente;
     private short municao;
@@ -23,18 +22,17 @@ public class Arma extends Item{
         
         this.dano = new FolhaDano();
         
-        this.alcance = 0;
         this.usosPorRound = 0;
         this.tamanhoDoPente = 0;
         this.municao = 0;
         
         this.malFuncionamento = 0;
     }
-
+    
     public Arma(int id, String nome, String descricao, 
             short[] habilidadesTiro, short[] habilidadesLuta,
             FolhaDano dano, 
-            short alcance, short usosPorRound, short tamanhoDoPente, short municao,
+            short usosPorRound, short tamanhoDoPente, short municao,
             short malFuncionamento) {
         super(id,nome, descricao);
         
@@ -43,13 +41,24 @@ public class Arma extends Item{
         
         this.dano = dano;
         
-        this.alcance = alcance;
         this.usosPorRound = usosPorRound;
         this.tamanhoDoPente = tamanhoDoPente;
         this.municao = municao;
         
         this.malFuncionamento = malFuncionamento;
     }
+    
+    //Esse construtor é ideal para armas brancas
+
+    public Arma(short[] habilidadesLuta, FolhaDano dano, short usosPorRound) {
+        super();
+        
+        this.habilidadesLuta = habilidadesLuta;
+        
+        this.dano = dano;
+        
+        this.usosPorRound = usosPorRound;
+    }   
     
     //GETTERS E SETTERS
 
@@ -78,16 +87,8 @@ public class Arma extends Item{
     public void setDano(FolhaDano dano) {
         this.dano = dano;
     }
+
     
-    
-    
-    public short getAlcance() {
-        return alcance;
-    }
-    
-    public void setAlcance(short alcance) {
-        this.alcance = alcance;
-    }
     
     public short getUsosPorRound() {
         return usosPorRound;

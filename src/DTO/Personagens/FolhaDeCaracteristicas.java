@@ -8,9 +8,6 @@ public class FolhaDeCaracteristicas {
     private short constituicao;
     private short tamanho;
     private short destreza;
-    private short aparencia;
-    private short inteligencia;
-    private short educacao;
     private short poder;
     
     //CONSTRUTORES
@@ -22,24 +19,17 @@ public class FolhaDeCaracteristicas {
         this.constituicao = 0;
         this.tamanho = 0;
         this.destreza = 0;
-        this.aparencia = 0;
-        this.inteligencia = 0;
-        this.educacao = 0;
         this.poder = 0;
     }
     
     public FolhaDeCaracteristicas(short forca, short constituicao, 
-            short tamanho, short destreza, short aparencia, 
-            short inteligencia, short educacao, short poder) {
+            short tamanho, short destreza, short poder) {
         super();
         
         this.forca = forca;
         this.constituicao = constituicao;
         this.tamanho = tamanho;
         this.destreza = destreza;
-        this.aparencia = aparencia;
-        this.inteligencia = inteligencia;
-        this.educacao = educacao;
         this.poder = poder;
     }   
     
@@ -75,30 +65,6 @@ public class FolhaDeCaracteristicas {
 
     public void setDestreza(short destreza) {
         this.destreza = destreza;
-    }
-
-    public short getAparencia() {
-        return aparencia;
-    }
-
-    public void setAparencia(short aparencia) {
-        this.aparencia = aparencia;
-    }
-
-    public short getInteligencia() {
-        return inteligencia;
-    }
-
-    public void setInteligencia(short inteligencia) {
-        this.inteligencia = inteligencia;
-    }
-
-    public short getEducacao() {
-        return educacao;
-    }
-
-    public void setEducacao(short educacao) {
-        this.educacao = educacao;
     }
 
     public short getPoder() {

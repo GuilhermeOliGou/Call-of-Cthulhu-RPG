@@ -1,10 +1,7 @@
 package DTO.ElementosDeSistema;
 
-import DTO.ElementosDeSistema.Evento;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import DTO.Personagens.FolhaDeHabilidades;
-import DTO.ElementosDeSistema.Local;
-import DTO.ElementosDeSistema.Resposta;
 
 public class EventoAvancado extends Evento {
     

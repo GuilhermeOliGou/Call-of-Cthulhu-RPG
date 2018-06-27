@@ -7,14 +7,14 @@ public class Personagem {
     
     //ATRIBUTOS
     
-    protected int id;
+    final protected int ID;
     
     protected FolhaDeAtributos atributos;
     
     protected short idade;
     protected String nome;
     
-    private Item[] inventario;
+    private Item[] inventario; //20 itens
     
     protected Local localidadeAtual;
     
@@ -23,7 +23,7 @@ public class Personagem {
     public Personagem (){
         super();
         
-        this.id = -1;
+        this.ID = -1;
         
         this.atributos = new FolhaDeAtributos();
         
@@ -38,7 +38,7 @@ public class Personagem {
             Item[] inventario, Local localidadeAtual) {
         super();
         
-        this.id = id;
+        this.ID = id;
         
         this.atributos = atributos;
         
@@ -53,12 +53,10 @@ public class Personagem {
     //GETTERS E SETTERS
 
     public int getId() {
-        return id;
+        return ID;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
+    
 
     public FolhaDeAtributos getAtributos() {
         return atributos;

@@ -4,11 +4,7 @@ public class HabilidadesTiro {
     
     //ATRIBUTOS
         
-    private short tiroArco;
     private short tiroPistola;
-    private short tiroArmaPesada;
-    private short tiroLancaChamas;
-    private short tiroMetralhadora;
     private short tiroRifleEscopeta;
     private short tiroSubmetralhadora;
     
@@ -19,11 +15,7 @@ public class HabilidadesTiro {
     public HabilidadesTiro() {
         super();
         
-        this.tiroArco = 15;
         this.tiroPistola = 20;
-        this.tiroArmaPesada = 10;
-        this.tiroLancaChamas = 10;
-        this.tiroMetralhadora = 10;
         this.tiroRifleEscopeta = 25;
         this.tiroSubmetralhadora = 10;   
         
@@ -34,11 +26,7 @@ public class HabilidadesTiro {
         this();
         
         if (anotacoes){
-            this.tiroArco = 0;
             this.tiroPistola = 0;
-            this.tiroArmaPesada = 0;
-            this.tiroLancaChamas = 0;
-            this.tiroMetralhadora = 0;
             this.tiroRifleEscopeta = 0;
             this.tiroSubmetralhadora = 0;   
 
@@ -46,31 +34,18 @@ public class HabilidadesTiro {
         }
     }
 
-    public HabilidadesTiro(short tiroArco, short tiroPistola, short tiroArmaPesada, 
-            short tiroLancaChamas, short tiroMetralhadora, short tiroRifleEscopeta, short tiroSubmetralhadora, 
+    public HabilidadesTiro(short tiroPistola, short tiroRifleEscopeta, short tiroSubmetralhadora, 
             short arremesso) {
         super();
         
-        this.tiroArco = tiroArco;
         this.tiroPistola = tiroPistola;
-        this.tiroArmaPesada = tiroArmaPesada;
-        this.tiroLancaChamas = tiroLancaChamas;
-        this.tiroMetralhadora = tiroMetralhadora;
         this.tiroRifleEscopeta = tiroRifleEscopeta;
         this.tiroSubmetralhadora = tiroSubmetralhadora;
         
         this.arremesso = arremesso;
     }
     
-    //GETTERS E SETTER
-
-    public short getTiroArco() {
-        return tiroArco;
-    }
-
-    public void setTiroArco(short tiroArco) {
-        this.tiroArco = tiroArco;
-    }
+    //GETTERS E SETTERS
 
     public short getTiroPistola() {
         return tiroPistola;
@@ -78,30 +53,6 @@ public class HabilidadesTiro {
 
     public void setTiroPistola(short tiroPistola) {
         this.tiroPistola = tiroPistola;
-    }
-
-    public short getTiroArmaPesada() {
-        return tiroArmaPesada;
-    }
-
-    public void setTiroArmaPesada(short tiroArmaPesada) {
-        this.tiroArmaPesada = tiroArmaPesada;
-    }
-
-    public short getTiroLancaChamas() {
-        return tiroLancaChamas;
-    }
-
-    public void setTiroLancaChamas(short tiroLancaChamas) {
-        this.tiroLancaChamas = tiroLancaChamas;
-    }
-
-    public short getTiroMetralhadora() {
-        return tiroMetralhadora;
-    }
-
-    public void setTiroMetralhadora(short tiroMetralhadora) {
-        this.tiroMetralhadora = tiroMetralhadora;
     }
 
     public short getTiroRifleEscopeta() {
