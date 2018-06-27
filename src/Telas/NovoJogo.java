@@ -5,7 +5,7 @@
  */
 package Telas;
 
-import elementos.Personagem;
+import DTO.Personagens.Personagem;
 import java.util.Random;
 /**
  *

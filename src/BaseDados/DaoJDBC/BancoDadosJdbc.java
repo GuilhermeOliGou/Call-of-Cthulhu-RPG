@@ -1,4 +1,5 @@
-package BaseDados;
+package BaseDados.DaoJDBC;
+import BaseDados.BaseDadosException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;

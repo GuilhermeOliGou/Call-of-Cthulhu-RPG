@@ -1,5 +1,7 @@
-package BaseDados;
+package BaseDados.DaoJDBC;
 
+import BaseDados.BaseDadosException;
+import BaseDados.DAO.DaoJogador;
 import DTO.Personagens.Jogador;
 
 import java.util.List;

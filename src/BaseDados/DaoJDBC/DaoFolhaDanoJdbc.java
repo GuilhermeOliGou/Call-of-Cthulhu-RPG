@@ -1,5 +1,7 @@
-package BaseDados;
+package BaseDados.DaoJDBC;
 
+import BaseDados.BaseDadosException;
+import BaseDados.DAO.DaoFolhaDano;
 import DTO.Itens.FolhaDano;
 
 import java.util.List;

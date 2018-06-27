@@ -1,5 +1,7 @@
-package BaseDados;
+package BaseDados.DaoJDBC;
 
+import BaseDados.BaseDadosException;
+import BaseDados.DAO.DaoArma;
 import DTO.Itens.Arma;
 
 import java.util.List;

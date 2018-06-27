@@ -1,4 +1,6 @@
-package BaseDados;
+package BaseDados.DaoJDBC;
+import BaseDados.BaseDadosException;
+import BaseDados.DAO.DaoItem;
 import DTO.Itens.Item;
 
 import java.io.IOException;

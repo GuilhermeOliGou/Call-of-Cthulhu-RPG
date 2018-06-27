@@ -1,4 +1,4 @@
-package BaseDados;
+package BaseDados.DAO;
 
 public class DaoLocal {
 }

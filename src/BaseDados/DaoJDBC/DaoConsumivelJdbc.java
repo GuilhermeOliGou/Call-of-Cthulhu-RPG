@@ -1,4 +1,6 @@
-package BaseDados;
+package BaseDados.DaoJDBC;
+import BaseDados.BaseDadosException;
+import BaseDados.DAO.DaoConsumivel;
 import DTO.Itens.ItemConsumivel;
 import Visualizacao.Personagem;
 

@@ -1,4 +1,6 @@
 package BaseDados;
+import BaseDados.DAO.DaoItem;
+import BaseDados.DaoJDBC.DaoItemJdbc;
 import Habilidades.FolhaDeHabilidadesCombateCienciaInterpessoal;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesCiencia;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
