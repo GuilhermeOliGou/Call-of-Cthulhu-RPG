@@ -167,33 +167,8 @@ public interface FacadeBaseDados {
     
         
     //PERSONAGENS : SETS DE HABILIDADE 
-    
-    
-    
-    public HabilidadesCiencia LeHabilidadesCiencia(int codigo) throws BaseDadosException;
 
-    public void EscreveHabilidadesCiencia(HabilidadesCiencia habilidadesCiencia) throws BaseDadosException;
-    
-    public void AlteraHabilidadesCiencia(HabilidadesCiencia habilidadesCiencia) throws BaseDadosException;
 
-    public List<HabilidadesCiencia> ListaHabilidadesCiencia() throws BaseDadosException;
-
-    public List<HabilidadesCiencia> HabilidadesCienciaPersonagem(Personagem personagem) throws BaseDadosException;
-    
-    
-    
-    public HabilidadesInterpessoais LeHabilidadesInterpessoais(int codigo) throws BaseDadosException;
-
-    public void EscreveHabilidadesInterpessoais(HabilidadesInterpessoais habilidadesInterpessoais) throws BaseDadosException;
-    
-    public void AlteraHabilidadesInterpessoais(HabilidadesInterpessoais habilidadesInterpessoais) throws BaseDadosException;
-
-    public List<HabilidadesInterpessoais> ListaHabilidadesInterpessoais() throws BaseDadosException;
-
-    public List<HabilidadesInterpessoais> HabilidadesInterpessoaisPersonagem(Personagem personagem) throws BaseDadosException;
-    
-    
-    
     public HabilidadesLuta LeHabilidadesLuta(int codigo) throws BaseDadosException;
 
     public void EscreveHabilidadesLuta(HabilidadesLuta habilidadesLuta) throws BaseDadosException;
