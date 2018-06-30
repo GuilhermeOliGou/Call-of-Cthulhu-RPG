@@ -1,20 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Telas;
 
-/**
- *
- * @author Leonardo
- */
+package telas;
+
+import elementos.*;
+import javax.swing.JOptionPane;
+
 public class JogoPrincipal extends javax.swing.JFrame {
-
+    static Personagem personagem = null;
     /**
      * Creates new form JogoPrincipal
+     * @param personagem
      */
-    public JogoPrincipal() {
+    public JogoPrincipal(Personagem personagem) {
+        initComponents();
+        JogoPrincipal.personagem = personagem;
+    }
+
+    private JogoPrincipal() {
         initComponents();
     }
 
@@ -29,11 +30,12 @@ public class JogoPrincipal extends javax.swing.JFrame {
 
         jPanelJogo = new javax.swing.JPanel();
         jLblExemploLocal = new javax.swing.JLabel();
-        jBtnEvento1 = new javax.swing.JButton();
-        jBtnEvento2 = new javax.swing.JButton();
-        jBtnEvento3 = new javax.swing.JButton();
+        jBtnLutaYog = new javax.swing.JButton();
+        jBtnLutaNya = new javax.swing.JButton();
+        jBtnLutaShog = new javax.swing.JButton();
         jBtnPersonagem = new javax.swing.JButton();
         jBtnMenu = new javax.swing.JButton();
+        jBtnLutaMiniYog = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -49,22 +51,38 @@ public class JogoPrincipal extends javax.swing.JFrame {
         jLblExemploLocal.setForeground(new java.awt.Color(231, 235, 88));
         jLblExemploLocal.setText("IMAGEM DO LOCAL");
 
-        jBtnEvento1.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
-        jBtnEvento1.setText("Evento 1");
-
-        jBtnEvento2.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
-        jBtnEvento2.setText("Evento 2");
-
-        jBtnEvento3.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
-        jBtnEvento3.setText("Evento 3");
-        jBtnEvento3.addActionListener(new java.awt.event.ActionListener() {
+        jBtnLutaYog.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
+        jBtnLutaYog.setText("LUTE COM YOG-SOTHOTH");
+        jBtnLutaYog.setAutoscrolls(true);
+        jBtnLutaYog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnEvento3ActionPerformed(evt);
+                jBtnLutaYogActionPerformed(evt);
+            }
+        });
+
+        jBtnLutaNya.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
+        jBtnLutaNya.setText("LUTE COM Nyarlathotep");
+        jBtnLutaNya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnLutaNyaActionPerformed(evt);
+            }
+        });
+
+        jBtnLutaShog.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
+        jBtnLutaShog.setText("Lute com Shoggoths");
+        jBtnLutaShog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnLutaShogActionPerformed(evt);
             }
         });
 
         jBtnPersonagem.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnPersonagem.setText("Personagem");
+        jBtnPersonagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnPersonagemActionPerformed(evt);
+            }
+        });
 
         jBtnMenu.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnMenu.setText("Menu");
@@ -74,42 +92,53 @@ public class JogoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jBtnLutaMiniYog.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
+        jBtnLutaMiniYog.setText("LUTE COM MINI YOG");
+        jBtnLutaMiniYog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnLutaMiniYogActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelJogoLayout = new javax.swing.GroupLayout(jPanelJogo);
         jPanelJogo.setLayout(jPanelJogoLayout);
         jPanelJogoLayout.setHorizontalGroup(
             jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelJogoLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelJogoLayout.createSequentialGroup()
+                        .addComponent(jBtnLutaYog)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelJogoLayout.createSequentialGroup()
+                        .addComponent(jBtnLutaNya)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(jLblExemploLocal)
+                        .addGap(87, 87, 87))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogoLayout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addComponent(jBtnPersonagem)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnLutaShog)
+                    .addComponent(jBtnPersonagem)
+                    .addComponent(jBtnLutaMiniYog, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(91, 91, 91)
                 .addComponent(jBtnMenu)
                 .addGap(132, 132, 132))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogoLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnEvento1)
-                    .addComponent(jBtnEvento3)
-                    .addComponent(jBtnEvento2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLblExemploLocal)
-                .addGap(87, 87, 87))
         );
         jPanelJogoLayout.setVerticalGroup(
             jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelJogoLayout.createSequentialGroup()
-                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelJogoLayout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblExemploLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnEvento2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogoLayout.createSequentialGroup()
-                        .addContainerGap(115, Short.MAX_VALUE)
-                        .addComponent(jBtnEvento1)
-                        .addGap(92, 92, 92)
-                        .addComponent(jBtnEvento3)
-                        .addGap(104, 104, 104)))
+                .addGap(153, 153, 153)
+                .addComponent(jBtnLutaYog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblExemploLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnLutaNya))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnLutaShog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnLutaMiniYog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnPersonagem)
                     .addComponent(jBtnMenu))
@@ -130,23 +159,61 @@ public class JogoPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtnEvento3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEvento3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnEvento3ActionPerformed
+    private void jBtnLutaShogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLutaShogActionPerformed
+        Luta telaLuta = new Luta(personagem,"Shog");
+        this.dispose();
+        telaLuta.setVisible(true);
+        telaLuta.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jBtnLutaShogActionPerformed
 
     private void jBtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMenuActionPerformed
         MenuJogoPrincipal telaMenu = new MenuJogoPrincipal();
+        this.setEnabled(false);
         telaMenu.setVisible(true);
         telaMenu.setLocationRelativeTo(null);
         telaMenu.recebeTela(this);
     }//GEN-LAST:event_jBtnMenuActionPerformed
 
- 
+    private void jBtnPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPersonagemActionPerformed
+        JOptionPane.showMessageDialog(rootPane,"Nome: " + personagem.getNome() + "\n" +
+                "Nivel: " + personagem.getNivel() + "\n" + 
+                "Dano: " + personagem.getDano() + "\n" +
+                "Estado: " + personagem.getMedo().toString() + "\n" +
+                "HP: " + personagem.getVidaAtual() + "\n" +
+                "HP Maximo: " + personagem.getVidaMaxima());
+    }//GEN-LAST:event_jBtnPersonagemActionPerformed
+
+    private void jBtnLutaNyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLutaNyaActionPerformed
+        Luta telaLuta = new Luta(personagem,"Nya");
+        this.dispose();
+        telaLuta.setVisible(true);
+        telaLuta.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jBtnLutaNyaActionPerformed
+
+    private void jBtnLutaYogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLutaYogActionPerformed
+        Luta telaLuta = new Luta(personagem,"Yog");
+        this.dispose();
+        telaLuta.setVisible(true);
+        telaLuta.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jBtnLutaYogActionPerformed
+
+    private void jBtnLutaMiniYogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLutaMiniYogActionPerformed
+        Luta telaLuta = new Luta(personagem,"MiniYog");
+        this.dispose();
+        telaLuta.setVisible(true);
+        telaLuta.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jBtnLutaMiniYogActionPerformed
+    
+    public Personagem getPersonagemAtual(){
+        return personagem;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnEvento1;
-    private javax.swing.JButton jBtnEvento2;
-    private javax.swing.JButton jBtnEvento3;
+    private javax.swing.JButton jBtnLutaMiniYog;
+    private javax.swing.JButton jBtnLutaNya;
+    private javax.swing.JButton jBtnLutaShog;
+    private javax.swing.JButton jBtnLutaYog;
     private javax.swing.JButton jBtnMenu;
     private javax.swing.JButton jBtnPersonagem;
     private javax.swing.JLabel jLblExemploLocal;

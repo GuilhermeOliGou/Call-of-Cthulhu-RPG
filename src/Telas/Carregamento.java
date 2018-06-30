@@ -1,15 +1,20 @@
 
-package Telas;
+package telas;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import javax.swing.DefaultComboBoxModel;
+import elementos.Personagem;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Leonardo
  */
 public class Carregamento extends javax.swing.JFrame {
-    
+    private Personagem personagens[] = new Personagem[4];
+    private Personagem personagemEscolhido = null;
+    private int numeroJogos = 0;
     /**
      * Creates new form Carregamento
      */
@@ -37,6 +42,11 @@ public class Carregamento extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(400, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPnlCarregamento.setBackground(new java.awt.Color(34, 34, 167));
         jPnlCarregamento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -135,11 +145,24 @@ public class Carregamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnVoltaMenuActionPerformed
 
     private void jBtnIniciaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIniciaJogoActionPerformed
-        JogoPrincipal telaJogo = new JogoPrincipal();
+        JogoPrincipal telaJogo = new JogoPrincipal(personagemEscolhido);
         this.dispose();
         telaJogo.setVisible(true);
         telaJogo.setLocationRelativeTo(null);
     }//GEN-LAST:event_jBtnIniciaJogoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if(numeroJogos == 0){
+            JOptionPane.showMessageDialog(this,"Nao existem jogos salvos.\n"
+                    + "Voltando ao menu inicial.");
+            TelaInicial tela = new TelaInicial();
+            this.dispose();
+            tela.setVisible(true);
+            tela.setLocationRelativeTo(null);
+        }
+        DefaultComboBoxModel mod = new DefaultComboBoxModel(personagens);
+        jCBoxJogos.setModel(mod);
+    }//GEN-LAST:event_formWindowOpened
     
     private void mostraJogos(){
         String textoDefault = "Texto: ";
@@ -155,12 +178,25 @@ public class Carregamento extends javax.swing.JFrame {
                     jTxtDescricaoJogo.setText(str);
                 }
             }
-
-            
         });
     }
     
-   
+    public Personagem[] getPersonagens(){
+        return personagens;
+    }
+    
+    public void setPersonagens(Personagem[] personagens){
+        this.personagens = personagens;
+    }
+    
+    public int getNumeroJogos(){
+        return numeroJogos;
+    }
+    
+    public void aumentaNumeroJogos(){
+        numeroJogos++;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnIniciaJogo;

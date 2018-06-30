@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Telas;
+package telas;
 
-import DTO.Personagens.Personagem;
+import elementos.Personagem;
 import java.util.Random;
 /**
  *
@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class NovoJogo extends javax.swing.JFrame {
     private final String nomes[] = {"Joana","Cleber","Josefino","Rosimara","Miranha",
-    "Leona","Amanda","Marco","Vanderlei","Joedson"};
+    "Leona","Amanda","Marco","Vanderlei","Joedson","Jamal","Tijolinho","fREIre"};
     private int i = 0;
     /**
      * Creates new form NovoJogo
@@ -150,7 +150,7 @@ public class NovoJogo extends javax.swing.JFrame {
        telaInicial.setLocationRelativeTo(null);
     }//GEN-LAST:event_jBtnVoltarActionPerformed
 
-
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnNomeRandom;

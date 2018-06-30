@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Telas;
+package telas;
 
 import elementos.Criatura;
 import elementos.CriaturaFactory;
@@ -179,7 +179,8 @@ public class Luta extends javax.swing.JFrame {
                 telaPrincipal.setLocationRelativeTo(null);
         }
     }
-  
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAtacar;
     private javax.swing.JButton jBtnFoge;

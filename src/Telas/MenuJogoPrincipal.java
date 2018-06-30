@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Telas;
+package telas;
 
-/**
- *
- * @author Leonardo
- */
+import elementos.Personagem;
+import javax.swing.JOptionPane;
+
 public class MenuJogoPrincipal extends javax.swing.JFrame {
     private JogoPrincipal telaJogoPrincipal;
+    private Personagem personagemAtual;
     /**
      * Creates new form MenuJogoPrincipal
      */
@@ -33,6 +33,7 @@ public class MenuJogoPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(400, 280));
         setResizable(false);
         setSize(new java.awt.Dimension(100, 500));
 
@@ -98,6 +99,20 @@ public class MenuJogoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnVoltarActionPerformed
 
     private void jBtnSalvarSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarSairActionPerformed
+        Carregamento carregamento = new Carregamento();
+        int qtdJogos = carregamento.getNumeroJogos();
+        if(qtdJogos == carregamento.getPersonagens().length){
+            JOptionPane.showMessageDialog(this, "Numero de jogos maximo atingido."
+                    + "\nSaindo sem salvar progresso.");
+        } else{
+            personagemAtual = telaJogoPrincipal.getPersonagemAtual();
+            personagemAtual.setID(qtdJogos);
+            int id = qtdJogos;
+            Personagem personagensModificados[] = carregamento.getPersonagens();
+            personagensModificados[id] = personagemAtual;
+            carregamento.setPersonagens(personagensModificados);
+            carregamento.aumentaNumeroJogos();
+        }
         this.dispose();
         telaJogoPrincipal.dispose();
         TelaInicial telaInicial = new TelaInicial();
@@ -109,7 +124,7 @@ public class MenuJogoPrincipal extends javax.swing.JFrame {
         this.telaJogoPrincipal = tela;
     }
 
-
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnSalvarSair;

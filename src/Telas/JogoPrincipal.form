@@ -59,46 +59,49 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jBtnLutaYog" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jBtnLutaNya" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="44" max="32767" attributes="0"/>
+                          <Component id="jLblExemploLocal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
-                  <Component id="jBtnPersonagem" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jBtnLutaShog" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnPersonagem" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnLutaMiniYog" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                   <Component id="jBtnMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jBtnEvento1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnEvento3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBtnEvento2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLblExemploLocal" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLblExemploLocal" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="jBtnEvento2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="115" max="32767" attributes="0"/>
-                          <Component id="jBtnEvento1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                          <Component id="jBtnEvento3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+                  <Component id="jBtnLutaYog" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLblExemploLocal" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="jBtnLutaNya" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jBtnLutaShog" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jBtnLutaMiniYog" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="72" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBtnPersonagem" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBtnMenu" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -120,31 +123,38 @@
             <Property name="text" type="java.lang.String" value="IMAGEM DO LOCAL"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBtnEvento1">
+        <Component class="javax.swing.JButton" name="jBtnLutaYog">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Charlemagne Std" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Evento 1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBtnEvento2">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Charlemagne Std" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Evento 2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBtnEvento3">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Charlemagne Std" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Evento 3"/>
+            <Property name="text" type="java.lang.String" value="LUTE COM YOG-SOTHOTH"/>
+            <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnEvento3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnLutaYogActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBtnLutaNya">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Charlemagne Std" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="LUTE COM Nyarlathotep"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnLutaNyaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBtnLutaShog">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Charlemagne Std" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Lute com Shoggoths"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnLutaShogActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBtnPersonagem">
@@ -154,6 +164,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Personagem"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnPersonagemActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBtnMenu">
           <Properties>
@@ -164,6 +177,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnMenuActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBtnLutaMiniYog">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Charlemagne Std" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="LUTE COM MINI YOG"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnLutaMiniYogActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

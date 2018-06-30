@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Telas;
+package telas;
 
 /**
  *
@@ -43,6 +43,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jBtnIniciaJogo.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnIniciaJogo.setText("Novo Jogo");
+        jBtnIniciaJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnIniciaJogoActionPerformed(evt);
+            }
+        });
 
         jBtnCarregaJogo.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnCarregaJogo.setText("Carregar Jogo");
@@ -119,6 +124,13 @@ public class TelaInicial extends javax.swing.JFrame {
         telaCarrega.setVisible(true);
         telaCarrega.setLocationRelativeTo(null);
     }//GEN-LAST:event_jBtnCarregaJogoActionPerformed
+
+    private void jBtnIniciaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIniciaJogoActionPerformed
+        NovoJogo telaNovo = new NovoJogo();
+        this.dispose();
+        telaNovo.setVisible(true);
+        telaNovo.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jBtnIniciaJogoActionPerformed
 
     /**
      * @param args the command line arguments
