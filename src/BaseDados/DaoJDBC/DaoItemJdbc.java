@@ -18,7 +18,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     public Item BuscaItem(int codigo) throws BaseDadosException {
         abreConexao();
         try {
-            preparaComandoSQL("SELECT * FROM ListaItem WHERE idItem = ?");
+            preparaComandoSQL("SELECT * FROM item WHERE id_item = ?");
             ps.setInt(1, codigo);
             ps.executeQuery();
         }
@@ -29,7 +29,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
 
         try{
             rs.next();
-            Item item = new Item(rs.getInt(0), rs.getString(1), rs.getString(2));
+            Item item = new Item(rs.getInt("id_item"), rs.getString("nome_item"), rs.getString("item_descricao"));
             fechaConexao();
             return item;
         }catch (SQLException e ){
@@ -42,7 +42,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     public void EscreveItem(Item item) throws BaseDadosException {
         abreConexao();
         try{
-            preparaComandoSQL("INSERT INTO ListaItem (nome, descricao) VALUES (?, ?)");
+            preparaComandoSQL("INSERT INTO item (nome, descricao) VALUES (?, ?)");
             ps.setString(1, item.getNome());
             ps.setString(2, item.getDescricao());
             ps.execute();
@@ -55,7 +55,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     public void AlteraItem(Item item) throws BaseDadosException {
         abreConexao();
         try{
-            preparaComandoSQL("UPDATE ListaItem SET nome = ?, descricao = ? WHERE idItem = ?");
+            preparaComandoSQL("UPDATE item SET nome = ?, descricao = ? WHERE idItem = ?");
             ps.setString(1, item.getNome());
             ps.setString(2, item.getDescricao());
             ps.setInt(3, item.getId());
@@ -69,7 +69,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     public List<Item> ListaItens() throws BaseDadosException {
         abreConexao();
         try {
-            preparaComandoSQL("SELECT * FROM ListaItem");
+            preparaComandoSQL("SELECT * FROM item");
             ps.executeQuery();
         }
         catch (SQLException e){
@@ -79,20 +79,41 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
         ArrayList<Item> itens = new ArrayList<>();
         try{
             while(rs.next()){
-                Item item = new Item(rs.getInt(0), rs.getString(1),rs.getString(2));
+                Item item = new Item(rs.getInt("id_item"), rs.getString("nome_item"),rs.getString("descricao_item"));
                 itens.add(item);
-                fechaConexao();
-                return itens;
             }
+            fechaConexao();
+            return itens;
         }catch (SQLException e){
             fechaConexao();
             throw new BaseDadosException("Erro no acesso");
         }
-        return null;
     }
 
     @Override
     public List<Item> ListaItensPersonagem(int codigo) throws BaseDadosException {
-        return null;
+        abreConexao();
+        try{
+            preparaComandoSQL("SELECT * FROM inventario LEFT JOIN item ON inventario.id_item = item.id_item WHERE id_jogador = ?");
+            ps.setInt(1, codigo);
+            ps.executeQuery();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            throw new BaseDadosException("Erro no acesso");
+        }
+        ArrayList<Item> inventario = new ArrayList<>();
+        try{
+            while(rs.next()){
+                Item item = new Item(rs.getInt("id_item"), rs.getString("nome_item"), rs.getString("descricao_item"));
+                inventario.add(item);
+            }
+            fechaConexao();
+            return inventario;
+        }
+        catch (SQLException e) {
+            fechaConexao();
+            return null;
+        }
     }
 }
