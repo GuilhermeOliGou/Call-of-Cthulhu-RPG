@@ -7,6 +7,7 @@ package telas;
 
 import elementos.Personagem;
 import java.util.Random;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Leonardo
@@ -15,9 +16,8 @@ public class NovoJogo extends javax.swing.JFrame {
     private final String nomes[] = {"Joana","Cleber","Josefino","Rosimara","Miranha",
     "Leona","Amanda","Marco","Vanderlei","Joedson","Jamal","Tijolinho","fREIre"};
     private int i = 0;
-    /**
-     * Creates new form NovoJogo
-     */
+    private int erros=0;
+    Random r = new Random();
     public NovoJogo() {
         initComponents();
     }
@@ -136,11 +136,19 @@ public class NovoJogo extends javax.swing.JFrame {
     private void jBtnProntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnProntoActionPerformed
         String nome;
         nome = jTxtFldNome.getText();
+        if(nome.equals("")){
+            if(erros==0) JOptionPane.showMessageDialog(this, "O personagem deve possuir um nome, por favor\n");
+            else if(erros == 1) JOptionPane.showMessageDialog(this, "Um nome, por favor...\n");
+            else if(erros == 2) JOptionPane.showMessageDialog(this, "Ok.\n");
+            else jTxtFldNome.setText(nomes[r.nextInt(nomes.length)]);
+            erros++;
+        }else{
         Personagem personagem = new Personagem(nome);
         JogoPrincipal novatela = new JogoPrincipal(personagem);
         novatela.setVisible(true);
         novatela.setLocationRelativeTo(null);
         this.dispose();
+        }
     }//GEN-LAST:event_jBtnProntoActionPerformed
 
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed

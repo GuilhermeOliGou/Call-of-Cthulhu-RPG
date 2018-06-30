@@ -141,7 +141,7 @@ public class Luta extends javax.swing.JFrame {
 
     private void jBtnAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAtacarActionPerformed
         if(personagem.getMedo()==Medo.APAVORADO){
-            JOptionPane.showMessageDialog(null, personagem.getNome() + " esta " +
+            JOptionPane.showMessageDialog(this, personagem.getNome() + " esta " +
                     Medo.APAVORADO.toString().toLowerCase() + ".\nNao pode atacar.");
         }
         else{
@@ -155,19 +155,20 @@ public class Luta extends javax.swing.JFrame {
                     " em " + criatura.getNome());
         }
         criatura.ataca(personagem);
-        if(personagem.getVidaAtual()<=0)
-        jHPQuantidade.setText("0"); 
-        verificaBatalha(personagem,criatura);
+        verificaBatalha(personagem,criatura);        
     }//GEN-LAST:event_jBtnAtacarActionPerformed
     
     private void verificaBatalha(Personagem personagem,Criatura criatura){
         if(personagem.getVidaAtual()<=0){
+            jHPQuantidade.setText("0");
             JOptionPane.showMessageDialog(this, "Voce perdeu a luta e foi levado"
                     + " pela criatura. Agora voce eh um deles. Bom proveito.");
             TelaInicial telaInicial = new TelaInicial();
             this.dispose();
             telaInicial.setVisible(true);
             telaInicial.setLocationRelativeTo(null);
+        }else{
+            jHPQuantidade.setText(personagem.getVidaToString());
         }
         if(criatura.getVidaAtual()<=0){
                 personagem.incrementaInimigosDerrotados();

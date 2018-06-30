@@ -36,6 +36,7 @@ public class JogoPrincipal extends javax.swing.JFrame {
         jBtnPersonagem = new javax.swing.JButton();
         jBtnMenu = new javax.swing.JButton();
         jBtnLutaMiniYog = new javax.swing.JButton();
+        jLblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -100,35 +101,49 @@ public class JogoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLblTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        jLblTitulo.setFont(new java.awt.Font("Charlemagne Std", 1, 14)); // NOI18N
+        jLblTitulo.setForeground(new java.awt.Color(231, 235, 88));
+        jLblTitulo.setText("Tela do jogo");
+
         javax.swing.GroupLayout jPanelJogoLayout = new javax.swing.GroupLayout(jPanelJogo);
         jPanelJogo.setLayout(jPanelJogoLayout);
         jPanelJogoLayout.setHorizontalGroup(
             jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogoLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnPersonagem)
+                    .addComponent(jBtnLutaMiniYog))
+                .addGap(91, 91, 91)
+                .addComponent(jBtnMenu)
+                .addGap(132, 132, 132))
+            .addGroup(jPanelJogoLayout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jLblTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelJogoLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelJogoLayout.createSequentialGroup()
-                        .addComponent(jBtnLutaYog)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(jBtnLutaShog)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelJogoLayout.createSequentialGroup()
                         .addComponent(jBtnLutaNya)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(jLblExemploLocal)
-                        .addGap(87, 87, 87))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnLutaShog)
-                    .addComponent(jBtnPersonagem)
-                    .addComponent(jBtnLutaMiniYog, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(91, 91, 91)
-                .addComponent(jBtnMenu)
-                .addGap(132, 132, 132))
+                        .addGap(87, 87, 87))
+                    .addGroup(jPanelJogoLayout.createSequentialGroup()
+                        .addComponent(jBtnLutaYog)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelJogoLayout.setVerticalGroup(
             jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelJogoLayout.createSequentialGroup()
-                .addGap(153, 153, 153)
+                .addGap(57, 57, 57)
+                .addComponent(jLblTitulo)
+                .addGap(80, 80, 80)
                 .addComponent(jBtnLutaYog)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -138,7 +153,7 @@ public class JogoPrincipal extends javax.swing.JFrame {
                 .addComponent(jBtnLutaShog)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnLutaMiniYog)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnPersonagem)
                     .addComponent(jBtnMenu))
@@ -169,6 +184,7 @@ public class JogoPrincipal extends javax.swing.JFrame {
     private void jBtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMenuActionPerformed
         MenuJogoPrincipal telaMenu = new MenuJogoPrincipal();
         this.setEnabled(false);
+        telaMenu.setAlwaysOnTop(true);
         telaMenu.setVisible(true);
         telaMenu.setLocationRelativeTo(null);
         telaMenu.recebeTela(this);
@@ -217,6 +233,7 @@ public class JogoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBtnMenu;
     private javax.swing.JButton jBtnPersonagem;
     private javax.swing.JLabel jLblExemploLocal;
+    private javax.swing.JLabel jLblTitulo;
     private javax.swing.JPanel jPanelJogo;
     // End of variables declaration//GEN-END:variables
 }

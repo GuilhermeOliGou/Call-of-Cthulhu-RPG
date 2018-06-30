@@ -11,9 +11,7 @@ import javax.swing.JOptionPane;
 public class MenuJogoPrincipal extends javax.swing.JFrame {
     private JogoPrincipal telaJogoPrincipal;
     private Personagem personagemAtual;
-    /**
-     * Creates new form MenuJogoPrincipal
-     */
+
     public MenuJogoPrincipal() {
         initComponents();
     }
@@ -96,6 +94,7 @@ public class MenuJogoPrincipal extends javax.swing.JFrame {
 
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed
        this.dispose();
+       telaJogoPrincipal.setEnabled(true);
     }//GEN-LAST:event_jBtnVoltarActionPerformed
 
     private void jBtnSalvarSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarSairActionPerformed
