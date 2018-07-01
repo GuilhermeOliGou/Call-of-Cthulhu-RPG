@@ -1,11 +1,11 @@
 
 package telas;
 
-import javax.swing.JOptionPane;
-
 
 public class TelaInicial extends javax.swing.JFrame {
-    String opcoes[] = {"Sim","Nao","Cancelar"};
+    /**
+     * Creates new form Telas
+     */
     public TelaInicial() {
         initComponents();
     }
@@ -24,7 +24,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jBtnCarregaJogo = new javax.swing.JButton();
         jBtnSairJogo = new javax.swing.JButton();
         jLblTituloJogo = new javax.swing.JLabel();
-        jBtnResetaJogo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 200, 0, 0));
@@ -64,16 +63,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jLblTituloJogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLblTituloJogo.setText("Call of Ctulhu: O Jogo");
 
-        jBtnResetaJogo.setBackground(new java.awt.Color(204, 204, 204));
-        jBtnResetaJogo.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
-        jBtnResetaJogo.setForeground(new java.awt.Color(255, 0, 51));
-        jBtnResetaJogo.setText("Resetar Jogo");
-        jBtnResetaJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnResetaJogoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelInicialLayout = new javax.swing.GroupLayout(jPanelInicial);
         jPanelInicial.setLayout(jPanelInicialLayout);
         jPanelInicialLayout.setHorizontalGroup(
@@ -84,17 +73,12 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelInicialLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanelInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelInicialLayout.createSequentialGroup()
-                        .addComponent(jBtnResetaJogo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelInicialLayout.createSequentialGroup()
-                        .addComponent(jBtnIniciaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(43, 43, 43)
-                        .addComponent(jBtnCarregaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jBtnSairJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(41, 41, 41))))
+                .addComponent(jBtnIniciaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(jBtnCarregaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(jBtnSairJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 41, 41))
         );
         jPanelInicialLayout.setVerticalGroup(
             jPanelInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,9 +90,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(jBtnIniciaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtnCarregaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtnSairJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(64, 64, 64)
-                .addComponent(jBtnResetaJogo)
-                .addGap(76, 76, 76))
+                .addGap(169, 169, 169))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,20 +125,9 @@ public class TelaInicial extends javax.swing.JFrame {
         telaNovo.setLocationRelativeTo(null);
     }//GEN-LAST:event_jBtnIniciaJogoActionPerformed
 
-    private void jBtnResetaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnResetaJogoActionPerformed
-        try{
-        String opcao = JOptionPane.showInputDialog(null,"Isso apaga todos os jogos"
-                + " criados e cria novos padronizados.\nDigite Sim ou Nao.");
-       if(opcao.equals("Sim")){
-           JOptionPane.showMessageDialog(this,"Jogos apagados com sucesso!","Confirmado",JOptionPane.INFORMATION_MESSAGE);
-       }
-       }catch(NullPointerException e){
-           JOptionPane.showMessageDialog(this, "Digite algo, ou clique em 'Cancelar'");
-                   
-       }
-        
-    }//GEN-LAST:event_jBtnResetaJogoActionPerformed
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -193,7 +164,6 @@ public class TelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCarregaJogo;
     private javax.swing.JButton jBtnIniciaJogo;
-    private javax.swing.JButton jBtnResetaJogo;
     private javax.swing.JButton jBtnSairJogo;
     private javax.swing.JLabel jLblTituloJogo;
     private javax.swing.JPanel jPanelInicial;

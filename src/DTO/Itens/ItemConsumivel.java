@@ -3,8 +3,6 @@ package DTO.Itens;
 public class ItemConsumivel extends Item{
     
     //ATRIBUTOS
-
-    private short quantidade;
     
     private short hpRecuperado;
     private short mpRecuperado;
@@ -14,33 +12,19 @@ public class ItemConsumivel extends Item{
     public ItemConsumivel(){
         super();
         
-        this.quantidade = 0;
-        
         this.hpRecuperado = 0;
         this.mpRecuperado = 0;
     }
 
     public ItemConsumivel(int id, String nome, String descricao, 
-            short quantidade, short hpRecuperado, short mpRecuperado) {
+            short hpRecuperado, short mpRecuperado) {
         super(id, nome, descricao);
-        
-        this.quantidade = quantidade;
         
         this.hpRecuperado = hpRecuperado;
         this.mpRecuperado = mpRecuperado;
     }
     
-    //GETTERS E SETTERS
-
-    public short getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(short quantidade) {
-        this.quantidade = quantidade;
-    }
-    
-    
+    //GETTERS E SETTERS   
 
     public short getHpRecuperado() {
         return hpRecuperado;

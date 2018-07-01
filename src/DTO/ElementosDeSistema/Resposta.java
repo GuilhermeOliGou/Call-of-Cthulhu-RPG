@@ -1,6 +1,5 @@
 package DTO.ElementosDeSistema;
 
-import DTO.Itens.Item;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeHabilidades;
 
@@ -8,12 +7,12 @@ public class Resposta {
     
     //ATRIBUTOS
     
-    private int codigo;
+    private final int ID;
     
     private FolhaDeAtributos atributosAlterados;
-    private Item[] itensAdicionados;
-    private Item[] itensRemovidos;
-    private Local localDoPersonagemAlterado;
+    private int[] itensAdicionados;
+    private int[] itensRemovidos;
+    private int localDoPersonagemAlterado;
     
     private short sanidadeAtualAlterada;
     private FolhaDeHabilidades habilidadesAlteradas;
@@ -23,22 +22,22 @@ public class Resposta {
     public Resposta() {
         super();
         
-        this.codigo = -1;
+        this.ID = -1;
         
         this.atributosAlterados = new FolhaDeAtributos();
-        this.localDoPersonagemAlterado = new Local();
+        this.localDoPersonagemAlterado = -1;
         
         this.sanidadeAtualAlterada = 0;
         this.habilidadesAlteradas = new FolhaDeHabilidades();
     }
 
     public Resposta(int codigo,  
-            FolhaDeAtributos atributosAlterados, Item[] itensAdicionados, 
-            Item[] itensRemovidos, Local localDoPersonagemAlterado, 
+            FolhaDeAtributos atributosAlterados, int[] itensAdicionados, 
+            int[] itensRemovidos, int localDoPersonagemAlterado, 
             short sanidadeAtualAlterada, FolhaDeHabilidades habilidadesAlteradas) {
         super();
         
-        this.codigo = codigo;
+        this.ID = codigo;
         
         this.atributosAlterados = atributosAlterados;
         this.itensAdicionados = itensAdicionados;
@@ -51,12 +50,8 @@ public class Resposta {
     
     //GETTERS AND SETTERS
 
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public int getID() {
+        return ID;
     }
     
     
@@ -69,27 +64,27 @@ public class Resposta {
         this.atributosAlterados = atributosAlterados;
     }
 
-    public Item[] getItensAdicionados(){
+    public int[] getItensAdicionados(){
         return itensAdicionados;
     }
 
-    public void setItensAdicionados(Item[] itensAdicionados) {
+    public void setItensAdicionados(int[] itensAdicionados) {
         this.itensAdicionados = itensAdicionados;
     }
 
-    public Item[] getItensRemovidos() {
+    public int[] getItensRemovidos() {
         return itensRemovidos;
     }
 
-    public void setItensRemovidos(Item[] itensRemovidos) {
+    public void setItensRemovidos(int[] itensRemovidos) {
         this.itensRemovidos = itensRemovidos;
     }
 
-    public Local getLocalDoPersonagemAlterado() {
+    public int getLocalDoPersonagemAlterado() {
         return localDoPersonagemAlterado;
     }
 
-    public void setLocalDoPersonagemAlterado(Local localDoPersonagemAlterado) {
+    public void setLocalDoPersonagemAlterado(int localDoPersonagemAlterado) {
         this.localDoPersonagemAlterado = localDoPersonagemAlterado;
     }
     

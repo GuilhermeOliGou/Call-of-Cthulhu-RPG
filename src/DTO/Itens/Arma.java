@@ -4,14 +4,13 @@ public class Arma extends Item{
     
     //ATRIBUTOS
 
-    private short[] habilidadesTiro;
-    private short[] habilidadesLuta;
+    private short[] habilidadesUsadasTiro;
+    private short[] habilidadesUsadasLuta;
     
     private FolhaDano dano;
     
     private short usosPorRound;
     private short tamanhoDoPente;
-    private short municao;
     
     private short malFuncionamento;
     
@@ -24,58 +23,78 @@ public class Arma extends Item{
         
         this.usosPorRound = 0;
         this.tamanhoDoPente = 0;
-        this.municao = 0;
         
         this.malFuncionamento = 0;
     }
     
     public Arma(int id, String nome, String descricao, 
-            short[] habilidadesTiro, short[] habilidadesLuta,
+            short[] habilidadesUsadasTiro, short[] habilidadesUsadasLuta,
             FolhaDano dano, 
-            short usosPorRound, short tamanhoDoPente, short municao,
+            short usosPorRound, short tamanhoDoPente,
             short malFuncionamento) {
         super(id,nome, descricao);
         
-        this.habilidadesTiro = habilidadesTiro;
-        this.habilidadesLuta = habilidadesLuta;
+        this.habilidadesUsadasTiro = habilidadesUsadasTiro;
+        this.habilidadesUsadasLuta = habilidadesUsadasLuta;
         
         this.dano = dano;
         
         this.usosPorRound = usosPorRound;
         this.tamanhoDoPente = tamanhoDoPente;
-        this.municao = municao;
         
         this.malFuncionamento = malFuncionamento;
     }
     
-    //Esse construtor é ideal para armas brancas
+    //ESSE CONSTRUTOR É IDEAL PARA ARMAS DE FOGO
 
-    public Arma(short[] habilidadesLuta, FolhaDano dano, short usosPorRound) {
-        super();
+    public Arma(int id, String nome, String descricao,
+            short[] habilidadesUsadasTiro, 
+            FolhaDano dano, short usosPorRound, short tamanhoDoPente, 
+            short malFuncionamento) {
         
-        this.habilidadesLuta = habilidadesLuta;
+        super(id, nome, descricao);
+        
+        this.habilidadesUsadasTiro = habilidadesUsadasTiro;
         
         this.dano = dano;
         
         this.usosPorRound = usosPorRound;
+        this.tamanhoDoPente = tamanhoDoPente;
+        
+        this.malFuncionamento = malFuncionamento;
+    }
+    
+    
+    
+    //ESSE CONSTRUTOR É IDEAL PARA ARMAS BRANCAS
+
+    public Arma(int id, String nome, String descricao,
+            short[] habilidadesLuta, FolhaDano dano) {
+        super(id,nome,descricao);
+        
+        this.habilidadesUsadasLuta = habilidadesLuta;
+        
+        this.dano = dano;
+        
+        this.usosPorRound = 1;
     }   
     
     //GETTERS E SETTERS
 
-    public short[] getHabilidadesTiro() {
-        return habilidadesTiro;
+    public short[] getHabilidadesUsadasTiro() {
+        return habilidadesUsadasTiro;
     }
     
-    public void setHabilidadesTiro(short[] skill) {
-        this.habilidadesTiro = skill;
+    public void setHabilidadesUsadasTiro(short[] skill) {
+        this.habilidadesUsadasTiro = skill;
     }
 
-    public short[] getHabilidadesLuta() {
-        return habilidadesLuta;
+    public short[] getHabilidadesUsadasLuta() {
+        return habilidadesUsadasLuta;
     }
 
-    public void setHabilidadesLuta(short[] habilidadesLuta) {
-        this.habilidadesLuta = habilidadesLuta;
+    public void setHabilidadesUsadasLuta(short[] habilidadesUsadasLuta) {
+        this.habilidadesUsadasLuta = habilidadesUsadasLuta;
     }
     
     
@@ -104,14 +123,6 @@ public class Arma extends Item{
 
     public void setTamanhoDoPente(short tamanhoDoPente) {
         this.tamanhoDoPente = tamanhoDoPente;
-    }
-
-    public short getMunicao() {
-        return municao;
-    }
-
-    public void setMunicao(short municao) {
-        this.municao = municao;
     }
     
     
