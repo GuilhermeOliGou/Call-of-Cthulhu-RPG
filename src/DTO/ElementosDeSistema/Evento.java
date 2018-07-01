@@ -36,7 +36,7 @@ public class Evento {
             String nome, String descricao, 
             int localDeRetorno, 
             Resposta respostaDoEvento,
-            boolean eventoRealizado) {
+            boolean eventoUnico) {
         super();
         
         this.ID = id;
@@ -48,7 +48,7 @@ public class Evento {
         
         this.respostaDoEvento = respostaDoEvento;
         
-        this.eventoUnico = eventoRealizado;
+        this.eventoUnico = eventoUnico;
     }
 
     /*

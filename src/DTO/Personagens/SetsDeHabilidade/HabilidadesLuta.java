@@ -8,9 +8,6 @@ public class HabilidadesLuta {
     
     private short lutaMachado;
     private short lutaLivre;
-    //private short lutaSerraEletrica;
-    //private short lutaMangual;
-    //private short lutaGarrote;
     private short lutaLanca;
     private short lutaEspada;
     private short lutaChicote;
