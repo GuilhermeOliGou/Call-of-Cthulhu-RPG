@@ -40,14 +40,12 @@ public class Local extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPnlLocal.setBackground(new java.awt.Color(34, 34, 167));
-        jPnlLocal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLblNome.setFont(new java.awt.Font("Charlemagne Std", 1, 18)); // NOI18N
         jLblNome.setForeground(new java.awt.Color(255, 255, 88));
         jLblNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLblNome.setText("Nome");
         jLblNome.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPnlLocal.add(jLblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 186, -1));
 
         jBtnSalvarSair.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnSalvarSair.setText("Salvar e Sair");
@@ -56,7 +54,6 @@ public class Local extends javax.swing.JFrame {
                 jBtnSalvarSairActionPerformed(evt);
             }
         });
-        jPnlLocal.add(jBtnSalvarSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
 
         jBtnPersonagem.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnPersonagem.setText("Personagem");
@@ -65,7 +62,6 @@ public class Local extends javax.swing.JFrame {
                 jBtnPersonagemActionPerformed(evt);
             }
         });
-        jPnlLocal.add(jBtnPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
 
         jList1.setFont(new java.awt.Font("Courier", 1, 12)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -75,8 +71,6 @@ public class Local extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList1);
 
-        jPnlLocal.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 220, 180));
-
         jBtnEvento.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
         jBtnEvento.setText("Evento");
         jBtnEvento.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +78,40 @@ public class Local extends javax.swing.JFrame {
                 jBtnEventoActionPerformed(evt);
             }
         });
-        jPnlLocal.add(jBtnEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 140, -1));
+
+        javax.swing.GroupLayout jPnlLocalLayout = new javax.swing.GroupLayout(jPnlLocal);
+        jPnlLocal.setLayout(jPnlLocalLayout);
+        jPnlLocalLayout.setHorizontalGroup(
+            jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlLocalLayout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jLblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPnlLocalLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnPersonagem)))
+            .addGroup(jPnlLocalLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(jBtnSalvarSair))
+        );
+        jPnlLocalLayout.setVerticalGroup(
+            jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlLocalLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLblNome)
+                .addGap(68, 68, 68)
+                .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPnlLocalLayout.createSequentialGroup()
+                        .addComponent(jBtnEvento)
+                        .addGap(131, 131, 131)
+                        .addComponent(jBtnPersonagem)))
+                .addGap(11, 11, 11)
+                .addComponent(jBtnSalvarSair))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -11,6 +11,10 @@ public interface FacadeTelas {
         
     public String carregaJogador(int index);
     
+    public String getDescricaoEvento();
+    
+    public void getBatalha();
+    
     public String getDescricaoJogador();
     
     public Local carregaLocal();
@@ -21,6 +25,6 @@ public interface FacadeTelas {
     
     public ArrayList<String> getEventos();
     
-    
+    public void executaEvento(int index);
     
 }
