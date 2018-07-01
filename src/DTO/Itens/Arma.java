@@ -1,11 +1,13 @@
 package DTO.Itens;
 
+import DTO.Personagens.SetsDeHabilidade.*;
+
 public class Arma extends Item{
     
     //ATRIBUTOS
 
-    private short[] habilidadesUsadasTiro;
-    private short[] habilidadesUsadasLuta;
+    private HabilidadesTiro habilidadesUsadasTiro;
+    private HabilidadesLuta habilidadesUsadasLuta;
     
     private FolhaDano dano;
     
@@ -28,7 +30,7 @@ public class Arma extends Item{
     }
     
     public Arma(int id, String nome, String descricao, 
-            short[] habilidadesUsadasTiro, short[] habilidadesUsadasLuta,
+            HabilidadesTiro habilidadesUsadasTiro, HabilidadesLuta habilidadesUsadasLuta,
             FolhaDano dano, 
             short usosPorRound, short tamanhoDoPente,
             short malFuncionamento) {
@@ -48,7 +50,7 @@ public class Arma extends Item{
     //ESSE CONSTRUTOR É IDEAL PARA ARMAS DE FOGO
 
     public Arma(int id, String nome, String descricao,
-            short[] habilidadesUsadasTiro, 
+            HabilidadesTiro habilidadesUsadasTiro, 
             FolhaDano dano, short usosPorRound, short tamanhoDoPente, 
             short malFuncionamento) {
         
@@ -69,7 +71,7 @@ public class Arma extends Item{
     //ESSE CONSTRUTOR É IDEAL PARA ARMAS BRANCAS
 
     public Arma(int id, String nome, String descricao,
-            short[] habilidadesLuta, FolhaDano dano) {
+            HabilidadesLuta habilidadesLuta, FolhaDano dano) {
         super(id,nome,descricao);
         
         this.habilidadesUsadasLuta = habilidadesLuta;
@@ -81,19 +83,19 @@ public class Arma extends Item{
     
     //GETTERS E SETTERS
 
-    public short[] getHabilidadesUsadasTiro() {
+    public HabilidadesTiro getHabilidadesUsadasTiro() {
         return habilidadesUsadasTiro;
     }
     
-    public void setHabilidadesUsadasTiro(short[] skill) {
-        this.habilidadesUsadasTiro = skill;
+    public void setHabilidadesUsadasTiro(HabilidadesTiro habilidadesUsadasTiro) {
+        this.habilidadesUsadasTiro = habilidadesUsadasTiro;
     }
 
-    public short[] getHabilidadesUsadasLuta() {
+    public HabilidadesLuta getHabilidadesUsadasLuta() {
         return habilidadesUsadasLuta;
     }
 
-    public void setHabilidadesUsadasLuta(short[] habilidadesUsadasLuta) {
+    public void setHabilidadesUsadasLuta(HabilidadesLuta habilidadesUsadasLuta) {
         this.habilidadesUsadasLuta = habilidadesUsadasLuta;
     }
     
