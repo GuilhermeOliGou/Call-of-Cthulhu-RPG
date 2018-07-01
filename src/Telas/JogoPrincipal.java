@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class JogoPrincipal extends javax.swing.JFrame {
     static Personagem personagem = null;
  
-    FacadeTelas facade;
+    FacadeRegraNegocio facade;
     
     public JogoPrincipal(Personagem personagem) {
         initComponents();
