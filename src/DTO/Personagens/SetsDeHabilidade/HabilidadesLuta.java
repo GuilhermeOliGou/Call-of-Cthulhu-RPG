@@ -38,12 +38,13 @@ public class HabilidadesLuta {
         this.lutaChicote = 5;
     }
 
-    public HabilidadesLuta(short esquiva, 
+    public HabilidadesLuta(int id, short esquiva, 
             short lutaMachado, short lutaLivre, short lutaLanca, 
             short lutaEspada, short lutaChicote) {
         super();
         
         this.esquiva = esquiva;
+        
         this.lutaMachado = lutaMachado;
         this.lutaLivre = lutaLivre;
         this.lutaLanca = lutaLanca;
@@ -52,6 +53,8 @@ public class HabilidadesLuta {
     }
     
     //GETTERS E SETTERS
+    
+    
 
     public short getEsquiva() {
         return esquiva;
@@ -60,6 +63,8 @@ public class HabilidadesLuta {
     public void setEsquiva(short esquiva) {
         this.esquiva = esquiva;
     }
+    
+    
 
     public short getLutaMachado() {
         return lutaMachado;

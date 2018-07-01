@@ -8,7 +8,7 @@ public class IntermediarioBaseDados {
     
     private FacadeBaseDados baseDados;
     
-    
+    private 
     
     //CONSTRUTORES
 
