@@ -5,6 +5,7 @@
  */
 package telas;
 
+import DTO.Personagens.Jogador;
 import elementos.Personagem;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -143,11 +144,10 @@ public class NovoJogo extends javax.swing.JFrame {
             else jTxtFldNome.setText(nomes[r.nextInt(nomes.length)]);
             erros++;
         }else{
-        Personagem personagem = new Personagem(nome);
-        //Local local = new Local();
-        JogoPrincipal jogo = new JogoPrincipal(personagem);
-        jogo.setVisible(true);
-        jogo.setLocationRelativeTo(null);
+        Jogador jogador = new Jogador();
+        Local local = new Local();
+        local.setVisible(true);
+        local.setLocationRelativeTo(null);
         this.dispose();
         }
     }//GEN-LAST:event_jBtnProntoActionPerformed

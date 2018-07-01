@@ -8,12 +8,26 @@ public interface FacadeTelas {
     public boolean existeJogos();
     
     public ArrayList<String> getDescricoesJogadores();
+    
+    public String getPersonagem();
+    
+    public String getHPPersonagem();
+    
+    public String getHPMaxPersonagem();
+    
+    public String getInimigo();
+    
+    public String getHPInimigo();
+    
+    public String getHPMaxInimigo();
+    
+    public ArrayList<String> getAcoesBatalha();
         
     public String carregaJogador(int index);
     
     public String getDescricaoEvento();
     
-    public void getBatalha();
+    public boolean getBatalha();
     
     public String getDescricaoJogador();
     
@@ -26,5 +40,7 @@ public interface FacadeTelas {
     public ArrayList<String> getEventos();
     
     public void executaEvento(int index);
+    
+    public void resetaEPopula();
     
 }
