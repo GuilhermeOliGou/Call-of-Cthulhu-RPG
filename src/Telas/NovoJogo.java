@@ -144,9 +144,10 @@ public class NovoJogo extends javax.swing.JFrame {
             erros++;
         }else{
         Personagem personagem = new Personagem(nome);
-        JogoPrincipal novatela = new JogoPrincipal(personagem);
-        novatela.setVisible(true);
-        novatela.setLocationRelativeTo(null);
+        //Local local = new Local();
+        JogoPrincipal jogo = new JogoPrincipal(personagem);
+        jogo.setVisible(true);
+        jogo.setLocationRelativeTo(null);
         this.dispose();
         }
     }//GEN-LAST:event_jBtnProntoActionPerformed

@@ -5,11 +5,22 @@ import java.util.ArrayList;
 
 public interface FacadeTelas {
     
-    boolean existeJogos();
+    public boolean existeJogos();
     
-    ArrayList<Jogador> getJogadores();
+    public ArrayList<String> getDescricoesJogadores();
+        
+    public String carregaJogador(int index);
     
-    void salvarJogador(Jogador jogador);
+    public String getDescricaoJogador();
     
-    void resetaJogo();
+    public Local carregaLocal();
+    
+    public void salvarJogador(Jogador jogador);
+    
+    public void resetaJogo();
+    
+    public ArrayList<String> getEventos();
+    
+    
+    
 }

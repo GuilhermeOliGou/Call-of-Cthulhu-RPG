@@ -7,10 +7,9 @@ import javax.swing.JOptionPane;
 
 public class JogoPrincipal extends javax.swing.JFrame {
     static Personagem personagem = null;
-    /**
-     * Creates new form JogoPrincipal
-     * @param personagem
-     */
+ 
+    FacadeTelas facade;
+    
     public JogoPrincipal(Personagem personagem) {
         initComponents();
         JogoPrincipal.personagem = personagem;
@@ -196,12 +195,7 @@ public class JogoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnMenuActionPerformed
 
     private void jBtnPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPersonagemActionPerformed
-        JOptionPane.showMessageDialog(rootPane,"Nome: " + personagem.getNome() + "\n" +
-                "Nivel: " + personagem.getNivel() + "\n" + 
-                "Dano: " + personagem.getDano() + "\n" +
-                "Estado: " + personagem.getMedo().toString() + "\n" +
-                "HP: " + personagem.getVidaAtual() + "\n" +
-                "HP Maximo: " + personagem.getVidaMaxima());
+        JOptionPane.showMessageDialog(rootPane,facade.getDescricaoJogador());
     }//GEN-LAST:event_jBtnPersonagemActionPerformed
 
     private void jBtnLutaNyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLutaNyaActionPerformed
