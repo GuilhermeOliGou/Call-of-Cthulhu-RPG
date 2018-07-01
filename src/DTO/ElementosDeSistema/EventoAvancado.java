@@ -7,8 +7,6 @@ public class EventoAvancado extends Evento {
     
     private String descricaoFalha;
     
-    private short buildNecessaria;
-    
     private int[] itensNecessários;
     private FolhaDeCaracteristicas característicasNecessarias;
     private FolhaDeHabilidades habilidadesNecessarias;
@@ -20,25 +18,21 @@ public class EventoAvancado extends Evento {
         
         this.descricaoFalha = "Falha!";
         
-        this.buildNecessaria = 0;
-        
         this.característicasNecessarias = new FolhaDeCaracteristicas();
         this.habilidadesNecessarias = new FolhaDeHabilidades();
     }
 
-    public EventoAvancado(String descricaoFalha, short buildNecessaria,
+    public EventoAvancado(String descricaoFalha,
             int[] itensNecessários, FolhaDeCaracteristicas característicasNecessarias, 
             FolhaDeHabilidades habilidadesNecessarias, 
             int id, String nome, String descricao, 
-            Local localDeRetorno, Resposta respostaDoEvento, 
-            boolean eventoRealizado, int qtdRealizacoes) {
+            int localDeRetorno, Resposta respostaDoEvento, 
+            boolean eventoRealizado) {
         super(id, nome, descricao, 
                 localDeRetorno, respostaDoEvento, 
-                eventoRealizado, qtdRealizacoes);
+                eventoRealizado);
         
         this.descricaoFalha = descricaoFalha;
-        
-        this.buildNecessaria = buildNecessaria;
         
         this.itensNecessários = itensNecessários;
         this.característicasNecessarias = característicasNecessarias;
@@ -53,16 +47,6 @@ public class EventoAvancado extends Evento {
 
     public void setDescricaoFalha(String descricaoFalha) {
         this.descricaoFalha = descricaoFalha;
-    }
-    
-    
-
-    public short getBuildNecessaria() {
-        return buildNecessaria;
-    }
-
-    public void setBuildNecessaria(short buildNecessaria) {
-        this.buildNecessaria = buildNecessaria;
     }    
     
     

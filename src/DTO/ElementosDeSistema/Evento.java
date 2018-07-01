@@ -2,44 +2,44 @@ package DTO.ElementosDeSistema;
 
 public class Evento {
 
-    protected int id;
+    protected final int ID;
     
     protected String nome;
     protected String descricao;
     
-    protected Local localDeRetorno;
+    protected int localDeRetorno;
     
     protected Resposta respostaDoEvento;
     
     protected boolean eventoUnico;
-    protected int qtdRealizacoes;
+    protected boolean eventoValido;
     
     //CONSTRUTORES
 
     public Evento() {
         super();
         
-        this.id = -1;
+        this.ID = -1;
         
         this.nome = "";
         this.descricao = "Sucesso!";
         
-        this.localDeRetorno = new Local();
+        this.localDeRetorno = -1;
         
         this.respostaDoEvento = new Resposta();
         
         this.eventoUnico = true;
-        this.qtdRealizacoes = 0;
+        this.eventoValido = true;
     }
         
     public Evento(int id, 
             String nome, String descricao, 
-            Local localDeRetorno, 
+            int localDeRetorno, 
             Resposta respostaDoEvento,
-            boolean eventoRealizado, int qtdRealizacoes) {
+            boolean eventoRealizado) {
         super();
         
-        this.id = id;
+        this.ID = id;
         
         this.nome = nome;
         this.descricao = descricao;
@@ -49,17 +49,16 @@ public class Evento {
         this.respostaDoEvento = respostaDoEvento;
         
         this.eventoUnico = eventoRealizado;
-        this.qtdRealizacoes = qtdRealizacoes;
     }
 
     /*
     IMPORTANTE:
         Uso preferencial: eventos de deslocamento
     */
-    public Evento(int id, String nome, Local localDeRetorno) {
+    public Evento(int id, String nome, int localDeRetorno) {
         super();
         
-        this.id = id;
+        this.ID = id;
         this.nome = nome;
         this.localDeRetorno = localDeRetorno;
     }
@@ -71,7 +70,7 @@ public class Evento {
     public Evento(int id, String nome, String descricao, Resposta respostaDoEvento) {
         super();
         
-        this.id = id;
+        this.ID = id;
         
         this.nome = nome;
         this.descricao = descricao;
@@ -81,12 +80,8 @@ public class Evento {
     
     //GETTERS AND SETTERS
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public int getID() {
+        return ID;
     }
     
     
@@ -109,11 +104,11 @@ public class Evento {
     
     
 
-    public Local getLocalDeRetorno() {
+    public int getLocalDeRetorno() {
         return localDeRetorno;
     }
 
-    public void setLocalDeRetorno(Local localDeRetorno) {
+    public void setLocalDeRetorno(int localDeRetorno) {
         this.localDeRetorno = localDeRetorno;
     }
     
@@ -137,12 +132,12 @@ public class Evento {
         this.eventoUnico = eventoUnico;
     }
 
-    public int getQtdRealizacoes() {
-        return qtdRealizacoes;
+    public boolean isEventoValido() {
+        return eventoValido;
     }
 
-    public void setQtdRealizacoes(int qtdRealizacoes) {
-        this.qtdRealizacoes = qtdRealizacoes;
+    public void setEventoValidoFalso() {
+        this.eventoValido = false;
     }
 
 }

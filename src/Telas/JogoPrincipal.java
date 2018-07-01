@@ -2,7 +2,6 @@
 package telas;
 
 import elementos.*;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class JogoPrincipal extends javax.swing.JFrame {
@@ -30,7 +29,7 @@ public class JogoPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelJogo = new javax.swing.JPanel();
-        jLblLocal = new javax.swing.JLabel();
+        jLblExemploLocal = new javax.swing.JLabel();
         jBtnLutaYog = new javax.swing.JButton();
         jBtnLutaNya = new javax.swing.JButton();
         jBtnLutaShog = new javax.swing.JButton();
@@ -45,18 +44,13 @@ public class JogoPrincipal extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(637, 500));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         jPanelJogo.setBackground(new java.awt.Color(34, 34, 167));
         jPanelJogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLblLocal.setFont(new java.awt.Font("Charlemagne Std", 1, 14)); // NOI18N
-        jLblLocal.setForeground(new java.awt.Color(231, 235, 88));
-        jLblLocal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/bola.jpg"))); // NOI18N
+        jLblExemploLocal.setFont(new java.awt.Font("Charlemagne Std", 1, 14)); // NOI18N
+        jLblExemploLocal.setForeground(new java.awt.Color(231, 235, 88));
+        jLblExemploLocal.setText("IMAGEM DO LOCAL");
 
         jBtnLutaYog.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnLutaYog.setText("LUTE COM YOG-SOTHOTH");
@@ -116,49 +110,50 @@ public class JogoPrincipal extends javax.swing.JFrame {
         jPanelJogo.setLayout(jPanelJogoLayout);
         jPanelJogoLayout.setHorizontalGroup(
             jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelJogoLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jBtnLutaYog)
-                    .addComponent(jBtnLutaNya)
-                    .addComponent(jBtnLutaShog)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogoLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnPersonagem)
                     .addComponent(jBtnLutaMiniYog))
-                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelJogoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnMenu)
-                        .addGap(132, 132, 132))
-                    .addGroup(jPanelJogoLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLblLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(91, 91, 91)
+                .addComponent(jBtnMenu)
+                .addGap(132, 132, 132))
             .addGroup(jPanelJogoLayout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jLblTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelJogoLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelJogoLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jBtnPersonagem))
+                        .addGap(6, 6, 6)
+                        .addComponent(jBtnLutaShog)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelJogoLayout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(jLblTitulo)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                        .addComponent(jBtnLutaNya)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(jLblExemploLocal)
+                        .addGap(87, 87, 87))
+                    .addGroup(jPanelJogoLayout.createSequentialGroup()
+                        .addComponent(jBtnLutaYog)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelJogoLayout.setVerticalGroup(
             jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelJogoLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(jLblTitulo)
-                .addGap(38, 38, 38)
-                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelJogoLayout.createSequentialGroup()
-                        .addComponent(jBtnLutaYog)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtnLutaNya)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnLutaShog)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnLutaMiniYog))
-                    .addComponent(jLblLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGap(80, 80, 80)
+                .addComponent(jBtnLutaYog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblExemploLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnLutaNya))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnLutaShog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnLutaMiniYog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(jPanelJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnPersonagem)
                     .addComponent(jBtnMenu))
@@ -224,10 +219,6 @@ public class JogoPrincipal extends javax.swing.JFrame {
         telaLuta.setVisible(true);
         telaLuta.setLocationRelativeTo(null);
     }//GEN-LAST:event_jBtnLutaMiniYogActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       jLblLocal.setIcon(new ImageIcon("bola.jpg"));
-    }//GEN-LAST:event_formWindowOpened
     
     public Personagem getPersonagemAtual(){
         return personagem;
@@ -241,7 +232,7 @@ public class JogoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBtnLutaYog;
     private javax.swing.JButton jBtnMenu;
     private javax.swing.JButton jBtnPersonagem;
-    private javax.swing.JLabel jLblLocal;
+    private javax.swing.JLabel jLblExemploLocal;
     private javax.swing.JLabel jLblTitulo;
     private javax.swing.JPanel jPanelJogo;
     // End of variables declaration//GEN-END:variables

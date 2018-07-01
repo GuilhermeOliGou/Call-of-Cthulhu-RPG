@@ -1,7 +1,6 @@
 package DTO.Personagens;
 
 import DTO.Itens.Item;
-import DTO.ElementosDeSistema.Local;
 import RegrasDeNegocio.RegraNegocioException;
 import utilidades.Log;
 
@@ -27,7 +26,7 @@ public class Jogador extends Personagem {
         this.habilidades = new FolhaDeHabilidades();
     }
     
-    public Jogador( int id, FolhaDeAtributos atributos, short idade, String nome, Local localidadeAtual,
+    public Jogador( int id, FolhaDeAtributos atributos, short idade, String nome, int localidadeAtual,
             short maxSanidade, short sanidadeAtual, short sorte,
             Item[] inventario){
         super(id,atributos,

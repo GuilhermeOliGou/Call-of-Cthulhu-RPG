@@ -1,22 +1,21 @@
 package DTO.Personagens;
 
 import DTO.Itens.Item;
-import DTO.ElementosDeSistema.Local;
 
 public class Personagem {
     
     //ATRIBUTOS
     
-    final protected int ID;
+    protected final int ID;
     
     protected FolhaDeAtributos atributos;
     
     protected short idade;
     protected String nome;
     
-    private Item[] inventario; //20 itens
+    protected Item[] inventario; //20 itens
     
-    protected Local localidadeAtual;
+    protected int localidadeAtual;
     
     //CONSTRUTORES
     
@@ -30,12 +29,12 @@ public class Personagem {
         this.idade = 0;
         this.nome = "HP Lovecraft";
         
-        this.localidadeAtual = new Local();
+        this.localidadeAtual = -1;
     }
 
     public Personagem(int id, FolhaDeAtributos atributos, 
             short idade, String nome, 
-            Item[] inventario, Local localidadeAtual) {
+            Item[] inventario, int localidadeAtual) {
         super();
         
         this.ID = id;
@@ -101,11 +100,11 @@ public class Personagem {
     
     
     
-    public Local getLocalidadeAtual() {
+    public int getLocalidadeAtual() {
         return localidadeAtual;
     }
 
-    public void setLocalidadeAtual(Local localidadeAtual) {
+    public void setLocalidadeAtual(int localidadeAtual) {
         this.localidadeAtual = localidadeAtual;
     }
     
