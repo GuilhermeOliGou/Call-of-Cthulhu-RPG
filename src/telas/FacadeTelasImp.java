@@ -5,7 +5,7 @@ import DTO.Personagens.Jogador;
 import java.util.ArrayList;
 
 
-public class FacadeTela implements FacadeTelas{
+public class FacadeTelasImp implements FacadeTelas{
 
     @Override
     public boolean existeJogos() {
