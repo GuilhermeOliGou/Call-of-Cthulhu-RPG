@@ -1,15 +1,13 @@
 package RegrasDeNegocio;
 
+import DTO.Itens.Item;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
-import DTO.Personagens.FolhaDeHabilidades;
-import utilidades.Log;
+import DTO.Personagens.Jogador;
 
-public class CriadorDePersonagensPadrão implements CriadorDePersonagens {
+public class CriadorDePersonagensPadrão {
     
     //ATRIBUTOS
-    
-    private final short DESTREZAPADRAO = 40;
     
     private final Dados DADOS = new Dados();
     
@@ -21,21 +19,17 @@ public class CriadorDePersonagensPadrão implements CriadorDePersonagens {
     
     //FUNÇÕES PRINCIPAIS
     
-    public Jogador GeradorDeJogador(){
+    public Jogador GeradorDeJogador(int id, String nome, int idade){
         FolhaDeCaracteristicas caracteristicas = GeradorDeFolhaDeCaracteristicas();
-        FolhaDeAtributos atributos;
-        try{
-            atributos = GeradorDeFolhaDeAtributos(caracteristicas);
-        }catch(RegraNegocioException e){
-            Log.gravaLog(e);
-            atributos = Ge
-        }
+        FolhaDeAtributos atributos = GeradorDeFolhaDeAtributos(caracteristicas);
+        return new Jogador(id,atributos,(short)idade,nome,1,
+                caracteristicas.getPoder(),caracteristicas.getPoder(),
+                GeradorDeSorte(),new Item[20]);
     } 
     
     //FUNÇÕES CARACTERÍSTICAS
     
-    @Override
-    public FolhaDeCaracteristicas GeradorDeFolhaDeCaracteristicas(){
+    private FolhaDeCaracteristicas GeradorDeFolhaDeCaracteristicas(){
         return new FolhaDeCaracteristicas(
                 GeradorDeForca(), GeradorDeConstituicao(),
                 GeradorDeTamanho(), GeradorDeDestreza(),
@@ -43,66 +37,51 @@ public class CriadorDePersonagensPadrão implements CriadorDePersonagens {
         );
     }
     
-    @Override
-    public short GeradorDeForca(){
+    private short GeradorDeForca(){
         return (short)((DADOS.D6()+DADOS.D6()+DADOS.D6())*5);
     }
     
-    @Override
-    public short GeradorDeConstituicao(){
+    private short GeradorDeConstituicao(){
         return (short)((DADOS.D6()+DADOS.D6()+DADOS.D6())*5);
     }
     
-    @Override
-    public short GeradorDeTamanho(){
+    private short GeradorDeTamanho(){
         return (short)((DADOS.D6()+DADOS.D6()+6)*5);
     }
     
-    @Override
-    public short GeradorDeDestreza(){
+    private short GeradorDeDestreza(){
         return (short)((DADOS.D6()+DADOS.D6()+DADOS.D6())*5);
     }
     
-    @Override
-    public short GeradorDePoder(){
+    private short GeradorDePoder(){
         return (short)((DADOS.D6()+DADOS.D6()+DADOS.D6())*5);
     }
     
     //FUNÇÕES ATRIBUTOS
     
-    @Override
-    public FolhaDeAtributos GeradorDeFolhaDeAtributos(FolhaDeCaracteristicas caracteristicas) 
-            throws RegraNegocioException{
-        try{
-            short maxHP = GeradorDeMaxHP(caracteristicas.getConstituicao(), 
-                    caracteristicas.getTamanho());
-            short maxMP = GeradorDeMaxMP(caracteristicas.getPoder());
-            return new FolhaDeAtributos(
-                    caracteristicas,
-                    maxHP,maxMP,
-                    maxHP,maxMP,
-                    GeradorDeBonusDeDanoCorporal(caracteristicas.getForca(), 
-                            caracteristicas.getTamanho())
-            );
-        }catch(NullPointerException e){
-            Log.gravaLog(e);
-            throw new RegraNegocioException("FOLHA DE CARACTERÍSTICAS NÃO INICIALIZADA!"
-                    + "INCAPAZ DE CRIAR UMA FOLHA DE ATRIBUTOS");
-        }
+    private FolhaDeAtributos GeradorDeFolhaDeAtributos(FolhaDeCaracteristicas caracteristicas){
+        short maxHP = GeradorDeMaxHP(caracteristicas.getConstituicao(), 
+                caracteristicas.getTamanho());
+        short maxMP = GeradorDeMaxMP(caracteristicas.getPoder());
+        return new FolhaDeAtributos(
+                caracteristicas,
+                maxHP,maxMP,
+                maxHP,maxMP,
+                GeradorDeBonusDeDanoCorporal(caracteristicas.getForca(), 
+                        caracteristicas.getTamanho())
+        );
+        
     }
     
-    @Override
-    public short GeradorDeMaxHP (short constituicao, short tamanho){
+    private short GeradorDeMaxHP (short constituicao, short tamanho){
         return (short)((constituicao+tamanho)/10);
     }
     
-    @Override
-    public short GeradorDeMaxMP (short poder){
+    private short GeradorDeMaxMP (short poder){
         return (short)((poder)/5);
     }
     
-    @Override
-    public short GeradorDeBonusDeDanoCorporal(short forca, short tamanho){        
+    private short GeradorDeBonusDeDanoCorporal(short forca, short tamanho){        
         short somaDeForETam = (short)(forca+tamanho);
         if (somaDeForETam >= 2 && somaDeForETam <= 64){
             return -2;
@@ -120,14 +99,8 @@ public class CriadorDePersonagensPadrão implements CriadorDePersonagens {
     
     //FUNÇÕES ATRIBUTOS DE JOGADOR
     
-    @Override
-    public short GeradorDeSorte(){
+    private short GeradorDeSorte(){
         return (short)((DADOS.D6()+DADOS.D6()+6)*5);
-    }
-    
-    @Override
-    public FolhaDeHabilidades GeradorDeFolhaDeHabilidades(short destreza){
-        return new FolhaDeHabilidades(destreza);
     }
     
 }

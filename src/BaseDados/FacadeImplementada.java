@@ -21,7 +21,7 @@ import java.util.List;
 
 public class FacadeImplementada implements FacadeBaseDados{
     DaoItem daoItem = new DaoItemJdbc();
-    public FacadeImplementada() throws IOException {
+    public FacadeImplementada(){
     }
 
     @Override
