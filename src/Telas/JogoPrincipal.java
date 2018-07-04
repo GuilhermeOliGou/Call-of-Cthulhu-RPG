@@ -1,7 +1,10 @@
 
 package telas;
 
+import RegrasDeNegocio.RegraNegocioException;
 import elementos.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class JogoPrincipal extends javax.swing.JFrame {
@@ -190,7 +193,11 @@ public class JogoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnMenuActionPerformed
 
     private void jBtnPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPersonagemActionPerformed
-        JOptionPane.showMessageDialog(rootPane,facade.getDescricaoJogador());
+        try {
+            JOptionPane.showMessageDialog(rootPane,facade.getDescricaoJogador());
+        } catch (RegraNegocioException ex) {
+            Logger.getLogger(JogoPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBtnPersonagemActionPerformed
 
     private void jBtnLutaNyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLutaNyaActionPerformed
