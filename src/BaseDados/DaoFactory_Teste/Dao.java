@@ -15,4 +15,6 @@ public interface Dao<T> {
     public void Remove(int codigo) throws BaseDadosException;
 
     public List<T> Lista() throws BaseDadosException;
+
+    public List<T> ListaDoPersonagem(int codigo) throws BaseDadosException;
 }

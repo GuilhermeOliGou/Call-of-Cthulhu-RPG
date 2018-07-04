@@ -1,6 +1,6 @@
 package BaseDados.DaoJDBC;
 import BaseDados.BaseDadosException;
-import BaseDados.DAO.DaoItem;
+import BaseDados.DaoFactory_Teste.DaoItem;
 import DTO.Itens.Item;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     }
 
     @Override
-    public Item BuscaItem(int codigo) throws BaseDadosException {
+    public Item Busca(int codigo) throws BaseDadosException {
         abreConexao();
         try {
             preparaComandoSQL("SELECT * FROM item WHERE id_item = ?");
@@ -39,7 +39,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     }
 
     @Override
-    public void EscreveItem(Item item) throws BaseDadosException {
+    public void Insere(Item item) throws BaseDadosException {
         abreConexao();
         try{
             preparaComandoSQL("INSERT INTO item (nome, descricao) VALUES (?, ?)");
@@ -52,7 +52,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     }
 
     @Override
-    public void AlteraItem(Item item) throws BaseDadosException {
+    public void Altera(Item item) throws BaseDadosException {
         abreConexao();
         try{
             preparaComandoSQL("UPDATE item SET nome = ?, descricao = ? WHERE idItem = ?");
@@ -65,11 +65,22 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
         }
     }
 
+    public void Remove(int codigo) throws BaseDadosException{
+        abreConexao();
+        try{
+            preparaComandoSQL("DELETE FROM item WHERE id.item = ?");
+            ps.setInt(1, codigo);
+            ps.execute();
+        }catch (SQLException e){
+            throw new BaseDadosException("Não foi possivel modificar o Item");
+        }
+    }
+
     @Override
-    public List<Item> ListaItens() throws BaseDadosException {
+    public List<Item> Lista() throws BaseDadosException {
         abreConexao();
         try {
-            preparaComandoSQL("SELECT * FROM item");
+            preparaComandoSQL("SELECT * FROM item WHERE tipo_item IS NULL");
             ps.executeQuery();
         }
         catch (SQLException e){
@@ -91,7 +102,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     }
 
     @Override
-    public List<Item> ListaItensPersonagem(int codigo) throws BaseDadosException {
+    public List<Item> ListaDoPersonagem(int codigo) throws BaseDadosException {
         abreConexao();
         try{
             preparaComandoSQL("SELECT * FROM inventario LEFT JOIN item ON inventario.id_item = item.id_item WHERE id_jogador = ?");
