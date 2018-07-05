@@ -40,6 +40,7 @@ public class NovoJogo extends javax.swing.JFrame {
         jBtnNomeRandom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPblCriacao.setBackground(new java.awt.Color(34, 34, 167));
         jPblCriacao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
