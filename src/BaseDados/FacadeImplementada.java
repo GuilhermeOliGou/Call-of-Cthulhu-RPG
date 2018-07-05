@@ -147,22 +147,22 @@ public class FacadeImplementada implements FacadeBaseDados{
 
     @Override
     public Arma LeArma(int codigo) throws BaseDadosException {
-        return null;
+        return daoArma.Busca(codigo);
     }
 
     @Override
     public void EscreveArma(Arma arma) throws BaseDadosException {
-
+        daoArma.Insere(arma);
     }
 
     @Override
     public void AlteraArma(Arma arma) throws BaseDadosException {
-
+        daoArma.Altera(arma);
     }
 
     @Override
     public List<Arma> ListaArmas() throws BaseDadosException {
-        return null;
+        return daoArma.Lista();
     }
 
     @Override

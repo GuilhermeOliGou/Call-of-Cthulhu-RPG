@@ -35,7 +35,7 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
 
     @Override
     public void Remove(int codigo) throws BaseDadosException {
-        
+
     }
 
     @Override

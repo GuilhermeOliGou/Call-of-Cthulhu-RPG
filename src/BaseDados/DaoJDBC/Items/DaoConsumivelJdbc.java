@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
 
-    protected DaoItem daoItem;
+    private DaoItem daoItem;
     public DaoConsumivelJdbc(DaoItem daoItem) throws IOException{
         super();
         this.daoItem = daoItem;

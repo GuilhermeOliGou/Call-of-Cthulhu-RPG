@@ -21,7 +21,6 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
 
     @Override
     public FolhaDeAtributos Busca(int codigo) throws BaseDadosException{
-        FolhaDeCaracteristicas caracteristicas = daoCaracteristicas.Busca(codigo);
         abreConexao();
         preparaComandoSQL("SELECT * FROM folha_atributos WHERE id_personagem = ?");
 
@@ -35,6 +34,9 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
 
         try {
             if(rs.next()){
+
+                FolhaDeCaracteristicas caracteristicas = daoCaracteristicas.Busca(codigo);
+
                 short maxHp = rs.getShort("max_hp");
                 short maxMp = rs.getShort("max_mp");
                 short hpAtual = rs.getShort("hp_atual");
@@ -52,7 +54,6 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
 
     @Override
     public void Insere(Personagem personagem) throws BaseDadosException{
-        daoCaracteristicas.Insere(personagem);
         FolhaDeAtributos atributos = personagem.getAtributos();
 
         abreConexao();
@@ -74,11 +75,12 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             throw new BaseDadosException("Nao foi possivel inserir Folha Atributos");
         }
 
+        daoCaracteristicas.Insere(personagem);
+
     }
 
     @Override
     public void Altera(Personagem personagem) throws BaseDadosException {
-        daoCaracteristicas.Altera(personagem);
         FolhaDeAtributos atributos = personagem.getAtributos();
 
         abreConexao();
@@ -99,14 +101,19 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
         catch (SQLException e){
             throw new BaseDadosException("Nao foi possivel modificar Folha Atributos");
         }
+
+        daoCaracteristicas.Altera(personagem);
+
     }
 
     @Override
     public void Remove(int codigo) throws BaseDadosException{
+
         daoCaracteristicas.Remove(codigo);
+
         abreConexao();
+        preparaComandoSQL("DELETE FROM folha_atributos WHERE id.personagem = ?");
         try{
-            preparaComandoSQL("DELETE FROM folha_atributos WHERE id.personagem = ?");
             ps.setInt(1, codigo);
             ps.execute();
         }catch(SQLException e){

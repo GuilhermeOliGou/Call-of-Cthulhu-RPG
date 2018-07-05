@@ -18,10 +18,10 @@ import java.util.List;
 
 public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
 
-    DaoItem daoItem;
-    DaoFolhaDano daoFolhaDano;
-    DaoHabilidadesTiroItem daoHabilidadesTiro;
-    DaoHabilidadesLutaItem daoHabilidadesLuta;
+    private DaoItem daoItem;
+    private DaoFolhaDano daoFolhaDano;
+    private DaoHabilidadesTiroItem daoHabilidadesTiro;
+    private DaoHabilidadesLutaItem daoHabilidadesLuta;
 
     public DaoArmaJdbc(DaoItem daoItem, DaoFolhaDano daoFolhaDano, DaoHabilidadesLutaItem daoHabilidadesLuta, DaoHabilidadesTiroItem daoHabilidadesTiro) throws Exception{
         super();
@@ -34,9 +34,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
     @Override
     public Arma Busca(int codigo) throws BaseDadosException {
         Item item = daoItem.Busca(codigo);
-        HabilidadesTiro habilidadesTiro = daoHabilidadesTiro.Busca(codigo);
-        HabilidadesLuta habilidadesLuta = daoHabilidadesLuta.Busca(codigo);
-        FolhaDano folhaDano = daoFolhaDano.Busca(codigo);
+
         abreConexao();
         try {
             preparaComandoSQL("SELECT * FROM arma WHERE id_item = ?");
@@ -49,24 +47,29 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         }
 
         try{
-            rs.next();
-            Arma arma = new Arma(item.getId(), item.getNome(), item.getDescricao(), habilidadesTiro, habilidadesLuta,
-                    folhaDano, rs.getShort("usos_round"), rs.getShort("tamanho_pente"),
-                    rs.getShort("mal_funcionamento"));
-            fechaConexao();
-            return arma;
+            if(rs.next()) {
+
+                HabilidadesTiro habilidadesTiro = daoHabilidadesTiro.Busca(codigo);
+                HabilidadesLuta habilidadesLuta = daoHabilidadesLuta.Busca(codigo);
+                FolhaDano folhaDano = daoFolhaDano.Busca(codigo);
+
+                Arma arma = new Arma(item.getId(), item.getNome(), item.getDescricao(), habilidadesTiro, habilidadesLuta,
+                        folhaDano, rs.getShort("usos_round"), rs.getShort("tamanho_pente"),
+                        rs.getShort("mal_funcionamento"));
+                fechaConexao();
+                return arma;
+            }
+
         }catch (SQLException e ){
             fechaConexao();
             throw new BaseDadosException("Arma nao encontrado");
         }
+        return null;
     }
 
     @Override
     public void Insere(Arma arma) throws BaseDadosException {
         daoItem.Insere(arma);
-        daoHabilidadesLuta.Insere(arma);
-        daoHabilidadesTiro.Insere(arma);
-        daoFolhaDano.Insere(arma);
 
         abreConexao();
         try{
@@ -79,14 +82,16 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         }catch (SQLException e){
             throw new BaseDadosException("Nao foi possivel adicionar Arma");
         }
+
+        daoHabilidadesLuta.Insere(arma);
+        daoHabilidadesTiro.Insere(arma);
+        daoFolhaDano.Insere(arma);
+
     }
 
     @Override
     public void Altera(Arma arma) throws BaseDadosException {
         daoItem.Altera(arma);
-        daoHabilidadesTiro.Altera(arma);
-        daoHabilidadesLuta.Altera(arma);
-        daoFolhaDano.Altera(arma);
 
         abreConexao();
         try{
@@ -100,10 +105,14 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
             throw new BaseDadosException("Nao foi possivel modificar Arma");
         }
 
-    }
+        daoHabilidadesTiro.Altera(arma);
+        daoHabilidadesLuta.Altera(arma);
+        daoFolhaDano.Altera(arma);
 
+    }
+    @Override
     public void Remove(int codigo) throws BaseDadosException{
-        daoItem.Remove(codigo);
+
         daoHabilidadesTiro.Remove(codigo);
         daoHabilidadesLuta.Remove(codigo);
         daoFolhaDano.Remove(codigo);
@@ -116,7 +125,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         }catch(SQLException e){
             throw new BaseDadosException("Não foi possível remover a Arma");
         }
-
+        daoItem.Remove(codigo);
     }
 
     @Override
