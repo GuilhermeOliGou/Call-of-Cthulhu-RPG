@@ -2,7 +2,6 @@ package DTO.Personagens;
 
 import DTO.Itens.Item;
 import RegrasDeNegocio.RegraNegocioException;
-import utilidades.Log;
 
 public class Jogador extends Personagem {
 
@@ -51,7 +50,7 @@ public class Jogador extends Personagem {
                     "Destreza: " + atributos.getCaracteristicas().getDestreza() + "\n" +
                     "Poder: " + atributos.getCaracteristicas().getPoder();
         }catch(NullPointerException e){
-            Log.gravaLog(e);
+            //Log.gravaLog(e);
             throw new RegraNegocioException("FOLHA DE CARACTERÍTICAS NÃO INICIALIZADA!"
                     + " INCAPAZ DE RETORNAR DESCRIÇÃO!");
         }

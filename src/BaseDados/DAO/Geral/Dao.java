@@ -1,4 +1,4 @@
-package BaseDados.DaoFactory_Teste;
+package BaseDados.Dao.Geral;
 
 import BaseDados.BaseDadosException;
 

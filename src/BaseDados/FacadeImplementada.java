@@ -1,8 +1,7 @@
 package BaseDados;
-import BaseDados.DaoFactory_Teste.DaoArma;
-import BaseDados.DaoFactory_Teste.DaoConsumivel;
-import BaseDados.DaoFactory_Teste.DaoItem;
-import BaseDados.DaoJDBC.DaoItemJdbc;
+import BaseDados.Dao.Items.DaoArma;
+import BaseDados.Dao.Items.DaoConsumivel;
+import BaseDados.Dao.Items.DaoItem;
 import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.EventoAvancado;
 import DTO.ElementosDeSistema.Local;
@@ -16,7 +15,6 @@ import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 import RegrasDeNegocio.FacadeBaseDados;
 
-import java.io.IOException;
 import java.util.List;
 
 public class FacadeImplementada implements FacadeBaseDados{

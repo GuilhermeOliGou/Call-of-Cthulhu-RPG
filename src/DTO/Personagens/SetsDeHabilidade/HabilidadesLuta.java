@@ -3,7 +3,7 @@ package DTO.Personagens.SetsDeHabilidade;
 public class HabilidadesLuta {
     
     //ATRIBUTOS
-    
+
     private short esquiva;
     
     private short lutaMachado;
@@ -38,13 +38,12 @@ public class HabilidadesLuta {
         this.lutaChicote = 5;
     }
 
-    public HabilidadesLuta(int id, short esquiva, 
+    public HabilidadesLuta(short esquiva,
             short lutaMachado, short lutaLivre, short lutaLanca, 
             short lutaEspada, short lutaChicote) {
         super();
-        
+
         this.esquiva = esquiva;
-        
         this.lutaMachado = lutaMachado;
         this.lutaLivre = lutaLivre;
         this.lutaLanca = lutaLanca;
@@ -53,8 +52,6 @@ public class HabilidadesLuta {
     }
     
     //GETTERS E SETTERS
-    
-    
 
     public short getEsquiva() {
         return esquiva;
@@ -63,8 +60,6 @@ public class HabilidadesLuta {
     public void setEsquiva(short esquiva) {
         this.esquiva = esquiva;
     }
-    
-    
 
     public short getLutaMachado() {
         return lutaMachado;

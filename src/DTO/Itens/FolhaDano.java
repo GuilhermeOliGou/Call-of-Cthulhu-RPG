@@ -1,7 +1,7 @@
 package DTO.Itens;
 
 public class FolhaDano {
-    
+
     //ATRIBUTOS
     
     private short[] rolagens;
@@ -14,15 +14,15 @@ public class FolhaDano {
 
     public FolhaDano() {
         super();
-        
+
         this.adicional = 0;
         
         this.atordoamento = false;
     }
 
-    public FolhaDano(short[] rolagens, 
+    public FolhaDano(short[] rolagens,
             short adicional, 
-            boolean atordoamento, boolean fogo) {
+            boolean atordoamento) {
         super();
         
         this.rolagens = rolagens;
