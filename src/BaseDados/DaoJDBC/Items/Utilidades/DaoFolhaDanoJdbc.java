@@ -2,7 +2,7 @@ package BaseDados.DaoJDBC.Items.Utilidades;
 
 import BaseDados.BaseDadosException;
 
-import BaseDados.Dao.Items.DaoFolhaDano;
+import BaseDados.Dao.Items.Utilidades.DaoFolhaDano;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Itens.Arma;
 import DTO.Itens.FolhaDano;

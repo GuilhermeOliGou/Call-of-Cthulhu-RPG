@@ -1,16 +1,17 @@
 package BaseDados.Dao.Geral;
 
 
+import BaseDados.BaseDadosException;
 import DTO.Personagens.Personagem;
 
 public interface DaoUtilidadePersonagem<T> {
 
-    public T Busca(int codigo);
+    public T Busca(int codigo) throws BaseDadosException;
 
-    public void Insere(Personagem personagem);
+    public void Insere(Personagem personagem) throws BaseDadosException;
 
-    public void Altera(Personagem personagem);
+    public void Altera(Personagem personagem) throws BaseDadosException;
 
-    public void Remove(int codigo);
+    public void Remove(int codigo) throws BaseDadosException;
 
 }

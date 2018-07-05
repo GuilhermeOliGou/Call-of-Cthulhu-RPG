@@ -2,6 +2,9 @@ package BaseDados.DaoJDBC.Items;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Items.*;
+import BaseDados.Dao.Items.Utilidades.DaoFolhaDano;
+import BaseDados.Dao.Items.Utilidades.DaoHabilidadesLutaItem;
+import BaseDados.Dao.Items.Utilidades.DaoHabilidadesTiroItem;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Itens.Arma;
 import DTO.Itens.FolhaDano;
