@@ -34,7 +34,17 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
     }
 
     @Override
+    public void Remove(int codigo) throws BaseDadosException {
+        
+    }
+
+    @Override
     public List<Jogador> Lista() throws BaseDadosException {
+        return null;
+    }
+
+    @Override
+    public List<Jogador> ListaDoPersonagem(int codigo) throws BaseDadosException {
         return null;
     }
 }

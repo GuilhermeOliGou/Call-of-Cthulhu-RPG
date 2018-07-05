@@ -12,7 +12,8 @@ import java.sql.SQLException;
 
 public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
 
-    DaoCaracteristicas daoCaracteristicas;
+    private DaoCaracteristicas daoCaracteristicas;
+
     public DaoAtributosJdbc(DaoCaracteristicas daoCaracteristicas)throws Exception{
         super();
         this.daoCaracteristicas = daoCaracteristicas;
