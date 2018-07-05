@@ -8,10 +8,12 @@ public interface FacadeRegraNegocio {
     
     //MENUS INICIAIS
     
-    
+    public void criaJogador(String nome) throws RegraNegocioException;
     
     public boolean existeJogos() throws RegraNegocioException;
     
+    public ArrayList<String> getNomesJogadores() throws RegraNegocioException;
+     
     public ArrayList<String> getDescricoesJogadores() throws RegraNegocioException;
         
     public String carregaJogador(int index) throws RegraNegocioException;
@@ -67,5 +69,9 @@ public interface FacadeRegraNegocio {
     public void resetaJogo() throws RegraNegocioException;
     
     public void resetaEPopula() throws RegraNegocioException;
+
+   
+
+
     
 }

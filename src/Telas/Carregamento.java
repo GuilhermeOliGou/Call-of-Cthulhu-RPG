@@ -1,10 +1,11 @@
 
 package telas;
 
+import RegrasDeNegocio.RegraNegocioException;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.DefaultComboBoxModel;
-import elementos.Personagem;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +18,11 @@ public class Carregamento extends javax.swing.JFrame {
         initComponents();
         mostraJogos();
     }
-
+    
+    private FacadeRegraNegocio facade = new FacadeTelasImp();
+    
+    private ArrayList<String> jogos;
+    private ArrayList<String> descriJogos;
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -151,48 +156,70 @@ public class Carregamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnVoltaMenuActionPerformed
 
     private void jBtnIniciaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIniciaJogoActionPerformed
-       /*
-        String jogador = carregaJogador(indice);//indice e selecionado pelo combobox 
-        Local tela = carregaLocal();
-        tela.setVisible(true);
-        tela.setLocationRelativeTo(null);
-        this.dispose();*/
+        int indice = jCBoxJogos.getSelectedIndex();
+        try {
+            
+            String jogador = facade.carregaJogador(indice);//indice e selecionado pelo combobox 
+            JOptionPane.showMessageDialog(null, "O jogador: "+jogador+" foi carregado");
+            Local tela = new Local();
+            tela.setVisible(true);
+            tela.setLocationRelativeTo(null);
+            this.dispose();
+            
+        } catch (RegraNegocioException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_jBtnIniciaJogoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       /*Ao abrir, verifica se existem jogos salvos
-        boolean existem = existeJogos();
-        if(!existem){
-            JOptionPane.showMessageDialog(this,"Nao existem jogos salvos.\n"
-                    + "Voltando ao menu inicial.");
-            TelaInicial tela = new TelaInicial();
-            this.dispose();
-            tela.setVisible(true);
-            tela.setLocationRelativeTo(null);
-        }else{
-        ArrayList<String> jogos = getDescricoesJogadores();
-        DefaultComboBoxModel mod = new DefaultComboBoxModel(jogos);
-        jCBoxJogos.setModel(mod);
+       //Ao abrir, verifica se existem jogos salvos
+        boolean existem = false;
+        try {
+            existem = facade.existeJogos();
+            if(!existem){
+                JOptionPane.showMessageDialog(this,"Nao existem jogos salvos.\n"
+                        + "Voltando ao menu inicial.");
+                TelaInicial tela = new TelaInicial();
+                this.dispose();
+                tela.setVisible(true);
+                tela.setLocationRelativeTo(null);
+             }else{
+                jogos = facade.getNomesJogadores();
+                descriJogos = facade.getDescricoesJogadores();
+                
+                DefaultComboBoxModel mod = new DefaultComboBoxModel();
+                for(String jogo : jogos){
+                    mod.addElement(jogo);
+                }               
+                jCBoxJogos.setModel(mod);
+            }
+        } catch (RegraNegocioException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-        */
+        
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jBtnResetaJogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnResetaJogosActionPerformed
-        //resetaEPopula();
+        try {
+            facade.resetaEPopula();
+        } catch (RegraNegocioException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_jBtnResetaJogosActionPerformed
     
     private void mostraJogos(){
-        String textoDefault = "Texto: ";
-        String textoM = jCBoxJogos.getSelectedItem().toString();
-        jTxtDescricaoJogo.setText(textoDefault + textoM);
+        String textoDefault = "DESCRIÇÃO \n";
+        int indexJogo = jCBoxJogos.getSelectedIndex();
+        String textoDescri = descriJogos.get(indexJogo);
+        jTxtDescricaoJogo.setText(textoDefault + textoDescri);
         jCBoxJogos.addItemListener(new ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent e){
                 if(e.getStateChange()==ItemEvent.SELECTED){
-                    String texto = jCBoxJogos.getSelectedItem().toString();
-                    String str = "Texto: ";
-                    str = str + texto;
-                    jTxtDescricaoJogo.setText(str);
+                    int id = jCBoxJogos.getSelectedIndex();
+                    String texto = descriJogos.get(indexJogo);
+                    jTxtDescricaoJogo.setText(textoDefault + texto);
                 }
             }
         });
@@ -209,7 +236,5 @@ public class Carregamento extends javax.swing.JFrame {
     private javax.swing.JTextArea jTxtDescricaoJogo;
     // End of variables declaration//GEN-END:variables
 
-    private Local carregaLocal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }

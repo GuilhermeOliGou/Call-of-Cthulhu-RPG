@@ -7,10 +7,15 @@ import java.util.ArrayList;
 
 
 public class FacadeTelasImp implements FacadeRegraNegocio{
-
+     
     @Override
-    public boolean existeJogos() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void criaJogador(String nome) throws RegraNegocioException {
+        
+    }
+    
+    @Override
+    public boolean existeJogos() throws RegraNegocioException {
+        return true;
     }
 
     @Override
@@ -28,6 +33,11 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     @Override
     public ArrayList<String> getEventos() {
         throw new UnsupportedOperationException("Not supported yet."); 
+    }
+    
+    @Override
+    public ArrayList<String> getNomesJogadores() throws RegraNegocioException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -117,5 +127,9 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     public String carregaNomeLocal() throws RegraNegocioException {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
+
+    
+
+    
     
 }
