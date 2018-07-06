@@ -229,9 +229,9 @@ public class FacadeImplementada implements FacadeBaseDados{
         return daoItem.Lista();
     }
 
-    @Override
+
     public List<Item> ListaItensPersonagem(Personagem personagem) throws BaseDadosException {
-        return daoItem.ListaDoPersonagem(personagem.getId());
+        return null;
     }
 
 
@@ -267,7 +267,7 @@ public class FacadeImplementada implements FacadeBaseDados{
 
     @Override
     public List<ItemConsumivel> ListaItensConsumiveisPersonagem(Personagem personagem) throws BaseDadosException {
-        return daoConsumivel.ListaDoPersonagem(personagem.getId());
+        return null;
     }
 
 

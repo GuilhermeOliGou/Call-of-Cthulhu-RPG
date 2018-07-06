@@ -21,7 +21,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
         try {
             preparaComandoSQL("SELECT * FROM item WHERE id_item = ?");
             ps.setInt(1, codigo);
-            ps.executeQuery();
+            rs = ps.executeQuery();
         }
         catch (SQLException e){
             fechaConexao();
@@ -29,21 +29,28 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
         }
 
         try{
-            rs.next();
-            Item item = new Item(rs.getInt("id_item"), rs.getString("nome_item"), rs.getString("item_descricao"));
-            fechaConexao();
-            return item;
-        }catch (SQLException e ){
+            if(rs.next()) {
+
+                String nome = rs.getString("nome_item");
+                String descricao = rs.getString("descricao_item");
+
+                fechaConexao();
+
+                return new Item(codigo, nome, descricao);
+
+            }
+        }catch (SQLException e){
             fechaConexao();
             throw new BaseDadosException("Item nao encontrado");
         }
+        return null;
     }
 
     @Override
     public void Insere(Item item) throws BaseDadosException {
         abreConexao();
         try{
-            preparaComandoSQL("INSERT INTO item (nome, descricao) VALUES (?, ?)");
+            preparaComandoSQL("INSERT INTO item (nome_item, descricao_item) VALUES (?, ?)");
             ps.setString(1, item.getNome());
             ps.setString(2, item.getDescricao());
             ps.execute();
@@ -68,7 +75,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     public void Altera(Item item) throws BaseDadosException {
         abreConexao();
         try{
-            preparaComandoSQL("UPDATE item SET nome = ?, descricao = ? WHERE idItem = ?");
+            preparaComandoSQL("UPDATE item SET nome_item = ?, descricao_item = ? WHERE id_item = ?");
             ps.setString(1, item.getNome());
             ps.setString(2, item.getDescricao());
             ps.setInt(3, item.getId());
@@ -81,11 +88,11 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     public void Remove(int codigo) throws BaseDadosException{
         abreConexao();
         try{
-            preparaComandoSQL("DELETE FROM item WHERE id.item = ?");
+            preparaComandoSQL("DELETE FROM item WHERE id_item = ?");
             ps.setInt(1, codigo);
             ps.execute();
         }catch (SQLException e){
-            throw new BaseDadosException("Não foi possivel modificar o Item");
+            throw new BaseDadosException("Não foi possivel remover o Item");
         }
     }
 
@@ -94,7 +101,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
         abreConexao();
         try {
             preparaComandoSQL("SELECT * FROM item WHERE tipo_item IS NULL");
-            ps.executeQuery();
+            rs = ps.executeQuery();
         }
         catch (SQLException e){
             fechaConexao();
@@ -209,7 +216,7 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
 
     }
 
-    @Override
+
     public List<Item> ListaDoPersonagem(int codigo) throws BaseDadosException {
         abreConexao();
         try{

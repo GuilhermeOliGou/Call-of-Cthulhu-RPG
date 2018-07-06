@@ -118,7 +118,7 @@ public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
         return consumiveis;
     }
 
-    @Override
+
     public List<ItemConsumivel> ListaDoPersonagem(int codigo) throws BaseDadosException {
         return null;
     }

@@ -68,7 +68,7 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
         return null;
     }
 
-    @Override
+
     public List<Personagem> ListaDoPersonagem(int codigo) throws BaseDadosException {
         return null;
     }

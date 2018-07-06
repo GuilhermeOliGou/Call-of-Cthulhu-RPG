@@ -14,7 +14,7 @@ public class BancoDadosJdbc{
     protected ResultSet rs;
 
     protected Properties prop = new Properties();
-    protected String properties = "config.properties";
+    protected String properties = "/config.properties";
     protected InputStream inputStream = getClass().getResourceAsStream(properties);
 
     private String PASSWORD;

@@ -43,7 +43,7 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
         return null;
     }
 
-    @Override
+
     public List<Jogador> ListaDoPersonagem(int codigo) throws BaseDadosException {
         return null;
     }

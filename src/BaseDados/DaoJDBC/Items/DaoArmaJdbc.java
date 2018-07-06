@@ -39,7 +39,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         try {
             preparaComandoSQL("SELECT * FROM arma WHERE id_item = ?");
             ps.setInt(1, codigo);
-            ps.executeQuery();
+            rs = ps.executeQuery();
         }
         catch (SQLException e){
             fechaConexao();
@@ -103,7 +103,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
 
         abreConexao();
         try{
-            preparaComandoSQL("UPDATE arma SET usos_round = ?, tamanho_pente = ?, mal_funcionamento = ? WHERE id_item = ?");
+            preparaComandoSQL("UPDATE item_arma SET usos_round = ?, tamanho_pente = ?, mal_funcionamento = ? WHERE id_item = ?");
             ps.setShort(1, arma.getUsosPorRound());
             ps.setShort(2, arma.getTamanhoDoPente());
             ps.setShort(3, arma.getMalFuncionamento());
@@ -148,7 +148,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         return armas;
     }
 
-    @Override
+
     public List<Arma> ListaDoPersonagem(int codigo) throws BaseDadosException {
         return null;
     }

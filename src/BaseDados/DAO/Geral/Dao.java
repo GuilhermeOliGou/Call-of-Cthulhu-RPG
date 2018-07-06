@@ -16,5 +16,4 @@ public interface Dao<T> {
 
     public List<T> Lista() throws BaseDadosException;
 
-    public List<T> ListaDoPersonagem(int codigo) throws BaseDadosException;
 }
