@@ -19,7 +19,7 @@ public class DaoHabilidadesJdbc extends BancoDadosJdbc implements DaoHabilidades
     private DaoHabilidadesTiroJogador daoTiro;
     private DaoHabilidadesLutaJogador daoLuta;
 
-    public DaoHabilidadesJdbc(DaoHabilidadesLutaJogador daoLuta, DaoHabilidadesTiroJogador daoTiro) throws IOException {
+    public DaoHabilidadesJdbc(DaoHabilidadesLutaJogador daoLuta, DaoHabilidadesTiroJogador daoTiro) throws BaseDadosException {
         super();
         this.daoLuta = daoLuta;
         this.daoTiro = daoTiro;

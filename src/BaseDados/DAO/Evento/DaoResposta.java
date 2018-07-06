@@ -1,4 +1,6 @@
 package BaseDados.Dao.Evento;
 
-public interface DaoResposta {
+import BaseDados.DAO.Geral.DaoUtilidadeEvento;
+
+public interface DaoResposta extends DaoUtilidadeEvento{
 }

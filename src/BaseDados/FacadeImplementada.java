@@ -2,6 +2,7 @@ package BaseDados;
 import BaseDados.Dao.Items.DaoArma;
 import BaseDados.Dao.Items.DaoConsumivel;
 import BaseDados.Dao.Items.DaoItem;
+import BaseDados.DaoJDBC.Items.DaoItemJdbc;
 import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.EventoAvancado;
 import DTO.ElementosDeSistema.Local;
@@ -14,6 +15,7 @@ import DTO.Itens.ItemConsumivel;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 import RegrasDeNegocio.FacadeBaseDados;
+import java.io.IOException;
 
 import java.util.List;
 
@@ -23,8 +25,8 @@ public class FacadeImplementada implements FacadeBaseDados{
     DaoArma daoArma;
     DaoConsumivel daoConsumivel;
 
-    public FacadeImplementada(DaoItem daoItem, DaoArma daoArma, DaoConsumivel daoConsumivel){
-        this.daoItem = daoItem;
+    public FacadeImplementada()throws BaseDadosException{
+        this.daoItem = new DaoItemJdbc();
         this.daoArma = daoArma;
         this.daoConsumivel = daoConsumivel;
     }

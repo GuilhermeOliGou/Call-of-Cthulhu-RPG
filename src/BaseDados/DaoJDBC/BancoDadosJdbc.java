@@ -22,13 +22,19 @@ public class BancoDadosJdbc{
     private String HOST;
     private String DB_NAME;
 
-    public BancoDadosJdbc() throws IOException{
-        if(inputStream != null){
-            prop.load(inputStream);
+    public BancoDadosJdbc() throws BaseDadosException{
+        try{
+            if(inputStream != null){
+                prop.load(inputStream);
+            }
+            else{
+                throw new FileNotFoundException();
+            }
         }
-        else{
-            throw new FileNotFoundException("Arquivo " + properties + " não foi encontrado.");
+        catch(Exception e){
+                throw new BaseDadosException("Arquivo " + properties + " nao foi encontrado");
         }
+        
         USER = prop.getProperty("user");
         PASSWORD = prop.getProperty("password");
         HOST = prop.getProperty("host");
