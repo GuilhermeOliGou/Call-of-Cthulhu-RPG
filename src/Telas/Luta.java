@@ -1,27 +1,14 @@
 package telas;
 
-import elementos.Criatura;
-import elementos.CriaturaFactory;
-import elementos.Medo;
-import elementos.Personagem;
+
+import DTO.Personagens.*;
+import java.util.Random;
+import RegrasDeNegocio.RegraNegocioException;
 import javax.swing.JOptionPane;
 
 public class Luta extends javax.swing.JFrame {
-
-    private Criatura criatura = null;
-    private Personagem personagem = null;
-    
-    public Luta(Personagem personagem,String nome){
-        initComponents();
-        this.personagem = personagem;
-        CriaturaFactory factory = new CriaturaFactory();
-        criatura = factory.criaCriatura(nome);
-        personagem.setMedo(criatura);
-        jLblInimigo.setText(criatura.getNome());
-        jLblPersonagem.setText(personagem.getNome());
-        jHPQuantidade.setText(personagem.getVidaToString());
-    }
-
+    private Random r = new Random();
+    private FacadeRegraNegocio facade = new FacadeTelasImp();
     public Luta() {
         initComponents();
     }
@@ -41,6 +28,11 @@ public class Luta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(136, 18, 82));
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPnlLuta.setBackground(new java.awt.Color(150, 15, 121));
         jPnlLuta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -63,6 +55,11 @@ public class Luta extends javax.swing.JFrame {
 
         jBtnFoge.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
         jBtnFoge.setText("Fugir");
+        jBtnFoge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnFogeActionPerformed(evt);
+            }
+        });
 
         jHPPersonagem.setFont(new java.awt.Font("Charlemagne Std", 1, 11)); // NOI18N
         jHPPersonagem.setForeground(new java.awt.Color(43, 173, 194));
@@ -128,25 +125,36 @@ public class Luta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAtacarActionPerformed
-        if(personagem.getMedo()==Medo.APAVORADO){
-            JOptionPane.showMessageDialog(this, personagem.getNome() + " esta " +
-                    Medo.APAVORADO.toString().toLowerCase() + ".\nNao pode atacar.");
+           
+    }//GEN-LAST:event_jBtnAtacarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try{
+            jLblInimigo.setText(facade.getNomeInimigo());
+            jLblPersonagem.setText(facade.getNomePersonagem());
+            jHPQuantidade.setText(facade.getHPPersonagem());
+        }catch(RegraNegocioException ex){
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jBtnFogeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFogeActionPerformed
+        int chanceFugir = r.nextInt(10);
+        if(chanceFugir>=8){
+            JOptionPane.showMessageDialog(this, "Voce conseguiu fugir!","SUCESSO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            Local telaLocal = new Local();
+            telaLocal.setLocationRelativeTo(null);
+            telaLocal.setVisible(true);
+            this.dispose();
         }
         else{
-            int danoCausado = personagem.ataque();
-            if(personagem.calculaSorte()>7){
-                danoCausado *= 2;
-                criatura.recebeDano(danoCausado);
-            }
-            criatura.recebeDano(danoCausado);
-            JOptionPane.showMessageDialog(this,personagem.getNome() + " causou " + danoCausado + 
-                    " em " + criatura.getNome());
+            JOptionPane.showMessageDialog(this, "Voce nao conseguiu fugir. "
+                    + "Enfrente seus medos.","HOJE NAO!",JOptionPane.WARNING_MESSAGE);
         }
-        criatura.ataca(personagem);
-        verificaBatalha(personagem,criatura);        
-    }//GEN-LAST:event_jBtnAtacarActionPerformed
+    }//GEN-LAST:event_jBtnFogeActionPerformed
     
-    private void verificaBatalha(Personagem personagem,Criatura criatura){
+    /*private void verificaBatalha(Personagem personagem,Criatura criatura){
         if(personagem.getVidaAtual()<=0){
             jHPQuantidade.setText("0");
             JOptionPane.showMessageDialog(this, "Voce perdeu a luta e foi levado"
@@ -167,7 +175,7 @@ public class Luta extends javax.swing.JFrame {
                 telaPrincipal.setVisible(true);
                 telaPrincipal.setLocationRelativeTo(null);
         }
-    }
+    }*/
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

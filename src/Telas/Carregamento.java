@@ -8,15 +8,10 @@ import javax.swing.DefaultComboBoxModel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Leonardo
- */
 public class Carregamento extends javax.swing.JFrame {
 
     public Carregamento() {
-        initComponents();
-        mostraJogos();
+        initComponents(); 
     }
     
     private FacadeRegraNegocio facade = new FacadeTelasImp();
@@ -158,7 +153,6 @@ public class Carregamento extends javax.swing.JFrame {
     private void jBtnIniciaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIniciaJogoActionPerformed
         int indice = jCBoxJogos.getSelectedIndex();
         try {
-            
             String jogador = facade.carregaJogador(indice);//indice e selecionado pelo combobox 
             JOptionPane.showMessageDialog(null, "O jogador: "+jogador+" foi carregado");
             Local tela = new Local();
@@ -175,25 +169,25 @@ public class Carregamento extends javax.swing.JFrame {
        //Ao abrir, verifica se existem jogos salvos
         boolean existem = false;
         try {
-            existem = facade.existeJogos();
-            if(!existem){
-                JOptionPane.showMessageDialog(this,"Nao existem jogos salvos.\n"
-                        + "Voltando ao menu inicial.");
-                TelaInicial tela = new TelaInicial();
-                this.dispose();
-                tela.setVisible(true);
-                tela.setLocationRelativeTo(null);
-             }else{
-                jogos = facade.getNomesJogadores();
-                descriJogos = facade.getDescricoesJogadores();
-                
-                DefaultComboBoxModel mod = new DefaultComboBoxModel();
-                for(String jogo : jogos){
-                    mod.addElement(jogo);
-                }               
-                jCBoxJogos.setModel(mod);
-            }
+                existem = facade.existeJogos();
+                if(!existem){
+                  JOptionPane.showMessageDialog(this,"Nao existem jogos salvos.\n"
+                        + "Voltando ao menu inicial.","Erro",JOptionPane.WARNING_MESSAGE);
+                    TelaInicial tela = new TelaInicial();
+                    this.dispose();
+                    tela.setVisible(true);
+                    tela.setLocationRelativeTo(null);
+                }else{
+                    jogos = facade.getNomesJogadores();
+                    descriJogos = facade.getDescricoesJogadores();
+                    DefaultComboBoxModel mod = new DefaultComboBoxModel();
+                    for(String jogo : jogos){
+                        mod.addElement(jogo);
+                    }               
+                    jCBoxJogos.setModel(mod);
+                }
         } catch (RegraNegocioException ex) {
+            
             JOptionPane.showMessageDialog(null, ex);
         }
         
@@ -208,7 +202,7 @@ public class Carregamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBtnResetaJogosActionPerformed
     
-    private void mostraJogos(){
+  /*  private void mostraJogos(){
         String textoDefault = "DESCRIÇÃO \n";
         int indexJogo = jCBoxJogos.getSelectedIndex();
         String textoDescri = descriJogos.get(indexJogo);
@@ -223,7 +217,7 @@ public class Carregamento extends javax.swing.JFrame {
                 }
             }
         });
-    }
+    }*/
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

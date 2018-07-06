@@ -9,8 +9,6 @@ import DTO.Personagens.Jogador;
 import RegrasDeNegocio.RegraNegocioException;
 import elementos.Personagem;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -18,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class NovoJogo extends javax.swing.JFrame {
     private final String nomes[] = {"Joana","Cleber","Josefino","Rosimara","Miranha",
-    "Leona","Amanda","Marco","Vanderlei","Joedson","Jamal","Tijolinho","fREIre"};
+    "Leona","Amanda","Marco","Vanderlei","Joedson","Jamal","Tijolinho","Freire"};
     private int i = 0;
     private int erros=0;
     Random r = new Random();
@@ -150,10 +148,13 @@ public class NovoJogo extends javax.swing.JFrame {
             } catch (RegraNegocioException ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
+             this.dispose();
+        JOptionPane.showMessageDialog(null, "Voce desperta em local estranho. Descubra o que"
+                + " aconteceu e de o seu jeito de sobreviver. Boa sorte.","",JOptionPane.INFORMATION_MESSAGE);
         Local local = new Local();
         local.setVisible(true);
         local.setLocationRelativeTo(null);
-        this.dispose();
+       
         }
     }//GEN-LAST:event_jBtnProntoActionPerformed
 
