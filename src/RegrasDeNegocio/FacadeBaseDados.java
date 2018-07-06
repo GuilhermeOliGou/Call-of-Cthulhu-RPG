@@ -15,26 +15,6 @@ public interface FacadeBaseDados {
     //ELEMENTOS DE SISTEMA
     
     
-    
-    public Evento LeEvento(int codigo) throws BaseDadosException;
-    
-    public void EscreveEvento(Evento evento) throws BaseDadosException;
-    
-    public void AlteraEvento(Evento evento) throws BaseDadosException;
-    
-    public List<Evento> ListaEvento() throws BaseDadosException;
-    
-    
-    
-    public EventoAvancado LeEventoAvancado(int codigo) throws BaseDadosException;
-    
-    public void EscreveEventoAvancado(EventoAvancado eventoAvancado) throws BaseDadosException;
-    
-    public void AlteraEventoAvancado(EventoAvancado eventoAvancado) throws BaseDadosException;
-    
-    public List<EventoAvancado> ListaEventoAvancado() throws BaseDadosException;
-    
-    
         
     public Local LeLocal(int codigo) throws BaseDadosException;
     
@@ -43,16 +23,6 @@ public interface FacadeBaseDados {
     public void AlteraLocal(Local local) throws BaseDadosException;
     
     public List<Local> ListaLocal() throws BaseDadosException;
-    
-    
-    
-    public Resposta LeResposta(int codigo) throws BaseDadosException;
-    
-    public void EscreveResposta(Resposta resposta) throws BaseDadosException;
-    
-    public void AlteraHabilidade(Resposta resposta) throws BaseDadosException;
-    
-    public List<Resposta> ListaResposta() throws BaseDadosException;
     
     
     
@@ -72,7 +42,7 @@ public interface FacadeBaseDados {
     
     
     
-    public Arma LeFolhaDano(int codigo) throws BaseDadosException;
+    public FolhaDano LeFolhaDano(int codigo) throws BaseDadosException;
 
     public void EscreveFolhaDano(FolhaDano folhaDano) throws BaseDadosException;
 
@@ -107,42 +77,6 @@ public interface FacadeBaseDados {
     
 
     //PERSONAGENS
-    
-    
-    
-    public FolhaDeAtributos LeFolhaDeAtributos(int codigo) throws BaseDadosException;
-
-    public void EscreveFolhaDeAtributos(FolhaDeAtributos folhaDeAtributos) throws BaseDadosException;
-    
-    public void AlteraFolhaDeAtributos(FolhaDeAtributos folhaDeAtributos) throws BaseDadosException;
-
-    public List<FolhaDeAtributos> ListaFolhaDeAtributos() throws BaseDadosException;
-
-    public List<FolhaDeAtributos> FolhaDeAtributosPersonagem(Personagem personagem) throws BaseDadosException;
-    
-    
-    
-    public FolhaDeCaracteristicas LeFolhaDeCaracteristicas(int codigo) throws BaseDadosException;
-
-    public void EscreveFolhaDeCaracteristicas(FolhaDeCaracteristicas folhaDeCaracteristicas) throws BaseDadosException;
-    
-    public void AlteraFolhaDeCaracteristicas(FolhaDeCaracteristicas folhaDeCaracteristicas) throws BaseDadosException;
-
-    public List<FolhaDeCaracteristicas> ListaFolhaDeCaracteristicas() throws BaseDadosException;
-
-    public List<FolhaDeCaracteristicas> FolhaDeCaracteristicasPersonagem(Personagem personagem) throws BaseDadosException;
-    
-    
-    
-    public FolhaDeHabilidades LeFolhaDeHabilidades(int codigo) throws BaseDadosException;
-
-    public void EscreveFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades) throws BaseDadosException;
-    
-    public void AlteraFolhaDeHabilidades(FolhaDeHabilidades folhaDeHabilidades) throws BaseDadosException;
-
-    public List<FolhaDeHabilidades> ListaFolhaDeHabilidades() throws BaseDadosException;
-
-    public List<FolhaDeHabilidades> FolhaDeHabilidadesPersonagem(Personagem personagem) throws BaseDadosException;
     
     
 

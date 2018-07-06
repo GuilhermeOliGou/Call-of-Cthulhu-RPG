@@ -6,7 +6,7 @@ public class Local {
     
     //ATRIBUTOS
 
-    private final int ID;
+    private int id;
 
     private String nome;    
     private LinkedList<Evento> eventosDisponíveis;
@@ -14,7 +14,7 @@ public class Local {
     public Local() {
         super();
         
-        this.ID = -1;
+        this.id = -1;
         
         this.nome = "Red Hook";
         this.eventosDisponíveis = new LinkedList<>();
@@ -23,7 +23,7 @@ public class Local {
     public Local(String nome, LinkedList<Evento> eventosDisponíveis, int id) {
         super();
         
-        this.ID = id;
+        this.id = id;
         
         this.nome = nome;
         this.eventosDisponíveis = eventosDisponíveis;
@@ -32,7 +32,11 @@ public class Local {
     //GETTERS AND SETTERS
     
     public int getID() {
-        return ID;
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

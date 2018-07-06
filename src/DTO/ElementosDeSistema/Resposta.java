@@ -7,7 +7,7 @@ public class Resposta {
     
     //ATRIBUTOS
     
-    private final int ID;
+    private int id;
     
     private FolhaDeAtributos atributosAlterados;
     private int[] itensAdicionados;
@@ -22,7 +22,7 @@ public class Resposta {
     public Resposta() {
         super();
         
-        this.ID = -1;
+        this.id = -1;
         
         this.atributosAlterados = new FolhaDeAtributos();
         this.localDoPersonagemAlterado = -1;
@@ -31,13 +31,13 @@ public class Resposta {
         this.habilidadesAlteradas = new FolhaDeHabilidades();
     }
 
-    public Resposta(int codigo,  
+    public Resposta(int id,  
             FolhaDeAtributos atributosAlterados, int[] itensAdicionados, 
             int[] itensRemovidos, int localDoPersonagemAlterado, 
             short sanidadeAtualAlterada, FolhaDeHabilidades habilidadesAlteradas) {
         super();
         
-        this.ID = codigo;
+        this.id = id;
         
         this.atributosAlterados = atributosAlterados;
         this.itensAdicionados = itensAdicionados;
@@ -51,7 +51,11 @@ public class Resposta {
     //GETTERS AND SETTERS
 
     public int getID() {
-        return ID;
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     
