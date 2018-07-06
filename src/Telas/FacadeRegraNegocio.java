@@ -24,7 +24,10 @@ public interface FacadeRegraNegocio {
     
     
     
-    public boolean getBatalha() throws RegraNegocioException;
+    public boolean hasBatalha() throws RegraNegocioException;
+    
+    
+    public void realizaAcaoBatalha(int indice) throws RegraNegocioException;
     
     public ArrayList<String> getAcoesBatalha() throws RegraNegocioException;
     
@@ -48,9 +51,9 @@ public interface FacadeRegraNegocio {
     
     //LOCAL E EVENTOS
     
-    
-    
-    public String getDescricaoEvento(int indice) throws RegraNegocioException;
+   public boolean hasResposta() throws RegraNegocioException;
+   
+   public String getResposta() throws RegraNegocioException;
     
     public ArrayList<String> getEventos() throws RegraNegocioException;
     

@@ -53,12 +53,7 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     }
 
     @Override
-    public String getDescricaoEvento(int indice) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    @Override
-    public boolean getBatalha() {
+    public boolean hasBatalha() {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
@@ -124,4 +119,19 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     public String carregaNomeLocal() throws RegraNegocioException {
         throw new UnsupportedOperationException("Not supported yet."); 
     } 
+
+    @Override
+    public void realizaAcaoBatalha(int indice) throws RegraNegocioException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean hasResposta() throws RegraNegocioException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getResposta() throws RegraNegocioException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

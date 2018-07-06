@@ -7,6 +7,7 @@ import java.awt.event.ItemListener;
 import javax.swing.DefaultComboBoxModel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import utilidades.Log;
 
 public class Carregamento extends javax.swing.JFrame {
 
@@ -155,12 +156,12 @@ public class Carregamento extends javax.swing.JFrame {
         try {
             String jogador = facade.carregaJogador(indice);//indice e selecionado pelo combobox 
             JOptionPane.showMessageDialog(null, "O jogador: "+jogador+" foi carregado");
-            Local tela = new Local();
+            TelaLocal tela = new TelaLocal();
             tela.setVisible(true);
             tela.setLocationRelativeTo(null);
-            this.dispose();
-            
+            this.dispose(); 
         } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBtnIniciaJogoActionPerformed
@@ -186,8 +187,8 @@ public class Carregamento extends javax.swing.JFrame {
                     }               
                     jCBoxJogos.setModel(mod);
                 }
-        } catch (RegraNegocioException ex) {
-            
+        } catch (RegraNegocioException ex) { 
+            Log.gravaLog(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
         
@@ -198,6 +199,7 @@ public class Carregamento extends javax.swing.JFrame {
         try {
             facade.resetaEPopula();
         } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBtnResetaJogosActionPerformed

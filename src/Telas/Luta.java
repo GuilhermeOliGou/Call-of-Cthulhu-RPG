@@ -2,13 +2,19 @@ package telas;
 
 
 import DTO.Personagens.*;
-import java.util.Random;
 import RegrasDeNegocio.RegraNegocioException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import utilidades.Log;
 
 public class Luta extends javax.swing.JFrame {
-    private Random r = new Random();
     private FacadeRegraNegocio facade = new FacadeTelasImp();
+    private ArrayList<String> acoes = new ArrayList<>();
+    
     public Luta() {
         initComponents();
     }
@@ -20,10 +26,13 @@ public class Luta extends javax.swing.JFrame {
         jPnlLuta = new javax.swing.JPanel();
         jLblInimigo = new javax.swing.JLabel();
         jLblPersonagem = new javax.swing.JLabel();
-        jBtnAtacar = new javax.swing.JButton();
-        jBtnFoge = new javax.swing.JButton();
-        jHPPersonagem = new javax.swing.JLabel();
+        jLblHP = new javax.swing.JLabel();
         jHPQuantidade = new javax.swing.JLabel();
+        jLblMPPersonagem = new javax.swing.JLabel();
+        jLblMP = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListListaAcoes = new javax.swing.JList<>();
+        jBtnRealiza = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(136, 18, 82));
@@ -45,69 +54,90 @@ public class Luta extends javax.swing.JFrame {
         jLblPersonagem.setForeground(new java.awt.Color(43, 173, 194));
         jLblPersonagem.setText("jLabel1");
 
-        jBtnAtacar.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
-        jBtnAtacar.setText("Atacar");
-        jBtnAtacar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnAtacarActionPerformed(evt);
-            }
-        });
-
-        jBtnFoge.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
-        jBtnFoge.setText("Fugir");
-        jBtnFoge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnFogeActionPerformed(evt);
-            }
-        });
-
-        jHPPersonagem.setFont(new java.awt.Font("Charlemagne Std", 1, 11)); // NOI18N
-        jHPPersonagem.setForeground(new java.awt.Color(43, 173, 194));
-        jHPPersonagem.setText("HP:");
+        jLblHP.setFont(new java.awt.Font("Charlemagne Std", 1, 11)); // NOI18N
+        jLblHP.setForeground(new java.awt.Color(43, 173, 194));
+        jLblHP.setText("HP:");
 
         jHPQuantidade.setFont(new java.awt.Font("Charlemagne Std", 0, 11)); // NOI18N
         jHPQuantidade.setForeground(new java.awt.Color(42, 167, 142));
         jHPQuantidade.setText("jLabel1");
+
+        jLblMPPersonagem.setBackground(new java.awt.Color(255, 255, 255));
+        jLblMPPersonagem.setFont(new java.awt.Font("Charlemagne Std", 0, 12)); // NOI18N
+        jLblMPPersonagem.setForeground(new java.awt.Color(42, 167, 142));
+        jLblMPPersonagem.setText("jLabel1");
+
+        jLblMP.setFont(new java.awt.Font("Charlemagne Std", 0, 12)); // NOI18N
+        jLblMP.setForeground(new java.awt.Color(43, 173, 194));
+        jLblMP.setText("MP:");
+
+        jListListaAcoes.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jListListaAcoes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListListaAcoesValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListListaAcoes);
+
+        jBtnRealiza.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
+        jBtnRealiza.setText("Realizar ACAO");
+        jBtnRealiza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRealizaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPnlLutaLayout = new javax.swing.GroupLayout(jPnlLuta);
         jPnlLuta.setLayout(jPnlLutaLayout);
         jPnlLutaLayout.setHorizontalGroup(
             jPnlLutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlLutaLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jLblPersonagem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jBtnAtacar)
-                .addGap(18, 18, 18)
-                .addComponent(jBtnFoge)
-                .addGap(57, 57, 57))
-            .addGroup(jPnlLutaLayout.createSequentialGroup()
                 .addGroup(jPnlLutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlLutaLayout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLblInimigo))
-                    .addGroup(jPnlLutaLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jHPPersonagem)
+                        .addComponent(jLblHP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jHPQuantidade)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jHPQuantidade)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLblMP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLblMPPersonagem))
+                    .addGroup(jPnlLutaLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(jPnlLutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPnlLutaLayout.createSequentialGroup()
+                                .addComponent(jLblInimigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPnlLutaLayout.createSequentialGroup()
+                                .addComponent(jLblPersonagem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtnRealiza)
+                                .addGap(20, 20, 20)))))
+                .addGap(26, 26, 26))
         );
         jPnlLutaLayout.setVerticalGroup(
             jPnlLutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlLutaLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLblInimigo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
+                .addGroup(jPnlLutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblInimigo)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPnlLutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblPersonagem)
-                    .addComponent(jBtnAtacar)
-                    .addComponent(jBtnFoge))
+                    .addComponent(jBtnRealiza))
                 .addGap(18, 18, 18)
                 .addGroup(jPnlLutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jHPPersonagem)
-                    .addComponent(jHPQuantidade))
-                .addGap(28, 28, 28))
+                    .addComponent(jLblHP)
+                    .addComponent(jHPQuantidade)
+                    .addComponent(jLblMPPersonagem)
+                    .addComponent(jLblMP))
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,35 +154,46 @@ public class Luta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtnAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAtacarActionPerformed
-           
-    }//GEN-LAST:event_jBtnAtacarActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
+            acoes = facade.getAcoesBatalha();
+            DefaultListModel modeloLista = new DefaultListModel();
+            for(String acao : acoes){
+                modeloLista.addElement(acao);
+            }
+            jListListaAcoes = new JList(modeloLista);
+            jListListaAcoes.setSelectedIndex(0);
+            jListListaAcoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            jListListaAcoes.setVisibleRowCount(7);
+            jScrollPane1 = new JScrollPane(jListListaAcoes);
             jLblInimigo.setText(facade.getNomeInimigo());
             jLblPersonagem.setText(facade.getNomePersonagem());
             jHPQuantidade.setText(facade.getHPPersonagem());
         }catch(RegraNegocioException ex){
+            Log.gravaLog(ex);
             JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void jBtnFogeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFogeActionPerformed
-        int chanceFugir = r.nextInt(10);
-        if(chanceFugir>=8){
-            JOptionPane.showMessageDialog(this, "Voce conseguiu fugir!","SUCESSO",
-                    JOptionPane.INFORMATION_MESSAGE);
-            Local telaLocal = new Local();
-            telaLocal.setLocationRelativeTo(null);
-            telaLocal.setVisible(true);
-            this.dispose();
+    private void jBtnRealizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRealizaActionPerformed
+        try{
+            int indice = jListListaAcoes.getSelectedIndex();
+            facade.realizaAcaoBatalha(indice);
+        }catch(RegraNegocioException ex){
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(this,ex);
         }
-        else{
-            JOptionPane.showMessageDialog(this, "Voce nao conseguiu fugir. "
-                    + "Enfrente seus medos.","HOJE NAO!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_jBtnFogeActionPerformed
+    }//GEN-LAST:event_jBtnRealizaActionPerformed
+
+    private void jListListaAcoesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListListaAcoesValueChanged
+        if(evt.getValueIsAdjusting()==false){
+           if(jListListaAcoes.getSelectedIndex()==-1){
+               jBtnRealiza.setEnabled(false);
+           }else{
+               jBtnRealiza.setEnabled(true);
+           }
+       }
+    }//GEN-LAST:event_jListListaAcoesValueChanged
     
     /*private void verificaBatalha(Personagem personagem,Criatura criatura){
         if(personagem.getVidaAtual()<=0){
@@ -179,12 +220,15 @@ public class Luta extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnAtacar;
-    private javax.swing.JButton jBtnFoge;
-    private javax.swing.JLabel jHPPersonagem;
+    private javax.swing.JButton jBtnRealiza;
     private javax.swing.JLabel jHPQuantidade;
+    private javax.swing.JLabel jLblHP;
     private javax.swing.JLabel jLblInimigo;
+    private javax.swing.JLabel jLblMP;
+    private javax.swing.JLabel jLblMPPersonagem;
     private javax.swing.JLabel jLblPersonagem;
+    private javax.swing.JList<String> jListListaAcoes;
     private javax.swing.JPanel jPnlLuta;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -151,7 +151,7 @@ public class NovoJogo extends javax.swing.JFrame {
              this.dispose();
         JOptionPane.showMessageDialog(null, "Voce desperta em local estranho. Descubra o que"
                 + " aconteceu e de o seu jeito de sobreviver. Boa sorte.","",JOptionPane.INFORMATION_MESSAGE);
-        Local local = new Local();
+        TelaLocal local = new TelaLocal();
         local.setVisible(true);
         local.setLocationRelativeTo(null);
        

@@ -9,10 +9,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 
-public class Local extends javax.swing.JFrame {
+public class TelaLocal extends javax.swing.JFrame {
     private FacadeRegraNegocio facade = new FacadeTelasImp();
     private ArrayList<String> eventos;
-    public Local() {
+    public TelaLocal() {
         initComponents();
     }
 
@@ -152,7 +152,16 @@ public class Local extends javax.swing.JFrame {
         try{
             int indice = jListLista.getSelectedIndex();
             facade.executaEvento(indice);
-            facade.getDescricaoEvento(indice);
+            if(facade.hasBatalha()){
+                Luta telaLuta = new Luta();
+                telaLuta.setVisible(true);
+                telaLuta.setLocationRelativeTo(this);
+            } if(facade.hasResposta()){
+                String info = facade.getResposta();
+                JOptionPane.showMessageDialog(this, info);
+            }
+            jLblNome.setText(facade.carregaNomeLocal());
+            eventos = facade.getEventos();
         }catch(RegraNegocioException ex){
             JOptionPane.showMessageDialog(this,ex);
         }
