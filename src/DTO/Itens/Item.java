@@ -5,6 +5,7 @@ public class Item {
     //ATRIBUTOS
     
     protected int id;
+    
     protected String nome;
     protected String descricao;
     
@@ -14,6 +15,7 @@ public class Item {
         super();
         
         this.id = -1;
+        
         this.nome = "";
         this.descricao = "";
     }
@@ -22,6 +24,7 @@ public class Item {
         super();
         
         this.id = id;
+        
         this.nome = nome;
         this.descricao = descricao;
     }
@@ -35,6 +38,8 @@ public class Item {
     public void setId(int id) {
         this.id = id;
     }
+    
+    
     
     public String getNome() {
         return nome;

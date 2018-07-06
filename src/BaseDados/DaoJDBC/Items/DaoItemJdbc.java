@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
 
-    public DaoItemJdbc() throws IOException {
+    public DaoItemJdbc() throws BaseDadosException {
         super();
     }
 

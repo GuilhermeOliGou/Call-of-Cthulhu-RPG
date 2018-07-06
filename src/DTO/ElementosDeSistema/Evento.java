@@ -2,7 +2,7 @@ package DTO.ElementosDeSistema;
 
 public class Evento {
 
-    protected final int ID;
+    protected int id;
     
     protected String nome;
     protected String descricao;
@@ -19,7 +19,7 @@ public class Evento {
     public Evento() {
         super();
         
-        this.ID = -1;
+        this.id = -1;
         
         this.nome = "";
         this.descricao = "Sucesso!";
@@ -39,7 +39,7 @@ public class Evento {
             boolean eventoUnico) {
         super();
         
-        this.ID = id;
+        this.id = id;
         
         this.nome = nome;
         this.descricao = descricao;
@@ -58,7 +58,7 @@ public class Evento {
     public Evento(int id, String nome, int localDeRetorno) {
         super();
         
-        this.ID = id;
+        this.id = id;
         this.nome = nome;
         this.localDeRetorno = localDeRetorno;
     }
@@ -70,7 +70,7 @@ public class Evento {
     public Evento(int id, String nome, String descricao, Resposta respostaDoEvento) {
         super();
         
-        this.ID = id;
+        this.id = id;
         
         this.nome = nome;
         this.descricao = descricao;
@@ -81,7 +81,11 @@ public class Evento {
     //GETTERS AND SETTERS
 
     public int getID() {
-        return ID;
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

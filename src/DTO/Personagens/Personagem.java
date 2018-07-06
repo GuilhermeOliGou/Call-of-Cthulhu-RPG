@@ -1,19 +1,15 @@
 package DTO.Personagens;
 
-import DTO.Itens.Item;
-
 public class Personagem {
     
     //ATRIBUTOS
     
-    protected final int ID;
+    protected int id;
     
     protected FolhaDeAtributos atributos;
     
     protected short idade;
     protected String nome;
-    
-    protected Item[] inventario; //20 itens
     
     protected int localidadeAtual;
     
@@ -22,7 +18,7 @@ public class Personagem {
     public Personagem (){
         super();
         
-        this.ID = -1;
+        this.id = -1;
         
         this.atributos = new FolhaDeAtributos();
         
@@ -34,17 +30,15 @@ public class Personagem {
 
     public Personagem(int id, FolhaDeAtributos atributos, 
             short idade, String nome, 
-            Item[] inventario, int localidadeAtual) {
+            int localidadeAtual) {
         super();
         
-        this.ID = id;
+        this.id = id;
         
         this.atributos = atributos;
         
         this.idade = idade;
         this.nome = nome;
-        
-        this.inventario = inventario;
         
         this.localidadeAtual = localidadeAtual;
     }
@@ -52,7 +46,11 @@ public class Personagem {
     //GETTERS E SETTERS
 
     public int getId() {
-        return ID;
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     
@@ -86,16 +84,6 @@ public class Personagem {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-    
-    
-
-    public Item[] getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(Item[] inventario) {
-        this.inventario = inventario;
     }
     
     

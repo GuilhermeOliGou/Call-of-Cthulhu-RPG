@@ -1,4 +1,7 @@
 package BaseDados.Dao.Evento;
 
-public interface DaoEventoAvancado {
+import BaseDados.Dao.Geral.Dao;
+import DTO.ElementosDeSistema.EventoAvancado;
+
+public interface DaoEventoAvancado extends Dao<EventoAvancado>{
 }

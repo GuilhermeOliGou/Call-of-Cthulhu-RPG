@@ -10,6 +10,8 @@ public class Jogador extends Personagem {
     private short maxSanidade;
     private short sanidadeAtual;
     private short sorte;
+    
+    protected Item[] inventario; //20 itens
 
     private FolhaDeHabilidades habilidades;
     
@@ -30,11 +32,13 @@ public class Jogador extends Personagem {
             Item[] inventario){
         super(id,atributos,
                 idade,nome, 
-                inventario,localidadeAtual);
+                localidadeAtual);
         
         this.maxSanidade = maxSanidade;
         this.sanidadeAtual = sanidadeAtual;
         this.sorte = sorte;
+        
+        this.inventario = inventario;
         
         this.habilidades = new FolhaDeHabilidades(atributos.getCaracteristicas().getDestreza());
     }
@@ -82,6 +86,16 @@ public class Jogador extends Personagem {
 
     public void setSorte(short sorte) {
         this.sorte = sorte;
+    }
+    
+    
+
+    public Item[] getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(Item[] inventario) {
+        this.inventario = inventario;
     }
     
     
