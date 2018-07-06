@@ -42,6 +42,9 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
                 String nome = rs.getString("nome_personagem");
             }
         }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel encontrar Personagem");
+        }
         return null;
     }
 

@@ -53,11 +53,15 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
                 HabilidadesLuta habilidadesLuta = daoHabilidadesLuta.Busca(codigo);
                 FolhaDano folhaDano = daoFolhaDano.Busca(codigo);
 
-                Arma arma = new Arma(item.getId(), item.getNome(), item.getDescricao(), habilidadesTiro, habilidadesLuta,
-                        folhaDano, rs.getShort("usos_round"), rs.getShort("tamanho_pente"),
-                        rs.getShort("mal_funcionamento"));
+                short usosRound = rs.getShort("usos_round");
+                short tamanhoPente = rs.getShort("tamanho_pente");
+                short malFuncionamento = rs.getShort("mal_funcionamento");
+
                 fechaConexao();
-                return arma;
+
+                return new Arma(item.getId(), item.getNome(), item.getDescricao(), habilidadesTiro, habilidadesLuta,
+                        folhaDano, usosRound, tamanhoPente,
+                        malFuncionamento);
             }
 
         }catch (SQLException e ){
@@ -69,16 +73,20 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
 
     @Override
     public void Insere(Arma arma) throws BaseDadosException {
+
         daoItem.Insere(arma);
 
         abreConexao();
         try{
-            preparaComandoSQL("INSERT INTO arma (usos_round, tamanho_pente, mal_funcionamento, nome) VALUES (?, ?, ?) SELECT nome FROM item WHERE item.item_nome = ?");
+            preparaComandoSQL("INSERT INTO arma (usos_round, tamanho_pente, mal_funcionamento, nome, id_item) VALUES (?, ?, ?, ?)");
             ps.setShort(1, arma.getUsosPorRound());
             ps.setShort(2, arma.getTamanhoDoPente());
             ps.setShort(3, arma.getMalFuncionamento());
             ps.setString(4, arma.getNome());
+            ps.setInt(5, arma.getId());
+
             ps.execute();
+
         }catch (SQLException e){
             throw new BaseDadosException("Nao foi possivel adicionar Arma");
         }
@@ -118,46 +126,26 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         daoFolhaDano.Remove(codigo);
 
         abreConexao();
+        preparaComandoSQL("DELETE FROM arma WHERE id.item = ?");
+
         try{
-            preparaComandoSQL("DELETE FROM arma WHERE id.item = ?");
             ps.setInt(1, codigo);
             ps.execute();
         }catch(SQLException e){
             throw new BaseDadosException("Não foi possível remover a Arma");
         }
+
         daoItem.Remove(codigo);
     }
 
     @Override
     public List<Arma> Lista() throws BaseDadosException {
-        abreConexao();
-        try {
-            preparaComandoSQL("SELECT * FROM arma LEFT JOIN item ON arma.id_item = item.id_item WHERE item.tipo_item = Arma");
-            rs = ps.executeQuery();
-        }
-        catch (SQLException e){
-            fechaConexao();
-            throw new BaseDadosException("Erro no acesso");
-        }
-        ArrayList<Arma> armas = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                HabilidadesTiro habilidadesTiro = daoHabilidadesTiro.Busca(rs.getInt("id_item"));
-                HabilidadesLuta habilidadesLuta = daoHabilidadesLuta.Busca(rs.getInt("id_item"));
-                FolhaDano folhaDano = daoFolhaDano.Busca(rs.getInt("id_item"));
+        List<Integer> items = daoItem.ListaArma();
+        List<Arma> armas = new ArrayList<>();
+        for(Integer item : items)
+            armas.add(Busca(item));
 
-                Arma arma = new Arma(rs.getInt("id_item"), rs.getString("nome_item"),
-                        rs.getString("descricao_item"), habilidadesTiro, habilidadesLuta, folhaDano,
-                        rs.getShort("usos_round"), rs.getShort("tamanho_pente"),
-                        rs.getShort("mal_funcionamento"));
-                armas.add(arma);
-            }
-            return armas;
-        }
-        catch(SQLException e){
-            fechaConexao();
-            throw new BaseDadosException("Erro no aceeso ao BD");
-        }
+        return armas;
     }
 
     @Override

@@ -103,15 +103,110 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
         ArrayList<Item> itens = new ArrayList<>();
         try{
             while(rs.next()){
-                Item item = new Item(rs.getInt("id_item"), rs.getString("nome_item"),rs.getString("descricao_item"));
+
+                int id = rs.getInt("id_item");
+                String nome = rs.getString("nome_item");
+                String descricao = rs.getString("descricao_item");
+
+                Item item = new Item(id, nome, descricao);
                 itens.add(item);
             }
+
             fechaConexao();
+
             return itens;
         }catch (SQLException e){
             fechaConexao();
             throw new BaseDadosException("Erro no acesso");
         }
+    }
+
+    @Override
+    public List<Integer> ListaArma() throws BaseDadosException{
+        abreConexao();
+        try {
+            preparaComandoSQL("SELECT id_item FROM item WHERE tipo_item = Arma");
+            ps.executeQuery();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            throw new BaseDadosException("Erro no acesso");
+        }
+        ArrayList<Integer> itens = new ArrayList<>();
+        try{
+            while(rs.next()){
+
+                itens.add(rs.getInt("id_item"));
+
+            }
+
+            fechaConexao();
+
+            return itens;
+        }catch (SQLException e){
+            fechaConexao();
+            throw new BaseDadosException("Erro no acesso");
+        }
+    }
+
+    @Override
+    public List<Integer> ListaConsumivel() throws BaseDadosException {
+        abreConexao();
+        try {
+            preparaComandoSQL("SELECT id_item FROM item WHERE tipo_item = Consumivel");
+            ps.executeQuery();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            throw new BaseDadosException("Erro no acesso");
+        }
+        ArrayList<Integer> items = new ArrayList<>();
+        try{
+            while(rs.next()){
+
+                int id = rs.getInt("id_item");
+
+                items.add(id);
+            }
+
+            fechaConexao();
+
+            return items;
+        }catch (SQLException e){
+            fechaConexao();
+            throw new BaseDadosException("Erro no acesso");
+        }
+
+    }
+
+    @Override
+    public List<Integer> ListaTodos() throws BaseDadosException {
+        abreConexao();
+        try {
+            preparaComandoSQL("SELECT id_item FROM item");
+            ps.executeQuery();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            throw new BaseDadosException("Erro no acesso");
+        }
+        ArrayList<Integer> items = new ArrayList<>();
+        try{
+            while(rs.next()){
+
+                int id = rs.getInt("id_item");
+
+                items.add(id);
+            }
+
+            fechaConexao();
+
+            return items;
+        }catch (SQLException e){
+            fechaConexao();
+            throw new BaseDadosException("Erro no acesso");
+        }
+
     }
 
     @Override

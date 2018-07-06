@@ -23,7 +23,7 @@ public class FacadeImplementada implements FacadeBaseDados{
     DaoArma daoArma;
     DaoConsumivel daoConsumivel;
 
-    public FacadeBaseDados(DaoItem daoItem, DaoArma daoArma, DaoConsumivel daoConsumivel){
+    public FacadeImplementada(DaoItem daoItem, DaoArma daoArma, DaoConsumivel daoConsumivel){
         this.daoItem = daoItem;
         this.daoArma = daoArma;
         this.daoConsumivel = daoConsumivel;
