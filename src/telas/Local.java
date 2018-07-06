@@ -65,11 +65,6 @@ public class Local extends javax.swing.JFrame {
         });
 
         jListLista.setFont(new java.awt.Font("Courier", 1, 12)); // NOI18N
-        jListLista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jListLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListLista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -79,7 +74,7 @@ public class Local extends javax.swing.JFrame {
         jScrollPane.setViewportView(jListLista);
 
         jBtnEvento.setFont(new java.awt.Font("Charlemagne Std", 0, 13)); // NOI18N
-        jBtnEvento.setText("Evento");
+        jBtnEvento.setText("Executar");
         jBtnEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnEventoActionPerformed(evt);
@@ -91,35 +86,42 @@ public class Local extends javax.swing.JFrame {
         jPnlLocalLayout.setHorizontalGroup(
             jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlLocalLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPnlLocalLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
                 .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnPersonagem)
-                    .addComponent(jBtnSalvarSair)))
+                    .addGroup(jPnlLocalLayout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jLblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPnlLocalLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPnlLocalLayout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBtnPersonagem)
+                                    .addComponent(jBtnSalvarSair)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlLocalLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBtnEvento)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPnlLocalLayout.setVerticalGroup(
             jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlLocalLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLblNome)
-                .addGap(68, 68, 68)
-                .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlLocalLayout.createSequentialGroup()
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11))
-                    .addGroup(jPnlLocalLayout.createSequentialGroup()
+                        .addGap(67, 67, 67)
                         .addComponent(jBtnEvento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(110, 110, 110)
                         .addComponent(jBtnPersonagem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnSalvarSair)
-                        .addGap(6, 6, 6)))
-                .addGap(21, 21, 21))
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlLocalLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,24 +152,22 @@ public class Local extends javax.swing.JFrame {
         try{
             int indice = jListLista.getSelectedIndex();
             facade.executaEvento(indice);
+            facade.getDescricaoEvento(indice);
         }catch(RegraNegocioException ex){
             JOptionPane.showMessageDialog(this,ex);
         }
     }//GEN-LAST:event_jBtnEventoActionPerformed
 
     private void jBtnSalvarSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarSairActionPerformed
-        //salvarJogador(jogador);
         int botaoDialogo = JOptionPane.YES_NO_OPTION;
         if(JOptionPane.showConfirmDialog(this, "Tem certeza?", "Confirme", botaoDialogo) == 
                 JOptionPane.YES_OPTION){
+                //facade.salvarJogador(jogador);
                 TelaInicial tela = new TelaInicial();
                 tela.setVisible(true);
                 tela.setLocationRelativeTo(null);
                 this.dispose();
-        }else{
-            
-        }
-       
+        }  
     }//GEN-LAST:event_jBtnSalvarSairActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

@@ -1,4 +1,3 @@
-
 package telas;
 
 import DTO.Personagens.Jogador;
@@ -15,7 +14,7 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     
     @Override
     public boolean existeJogos() throws RegraNegocioException {
-        return true;
+        return false;
     }
 
     @Override
@@ -27,9 +26,7 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     public void resetaJogo() {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
-
-
-
+    
     @Override
     public ArrayList<String> getEventos() {
         throw new UnsupportedOperationException("Not supported yet."); 
@@ -56,7 +53,7 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     }
 
     @Override
-    public String getDescricaoEvento() {
+    public String getDescricaoEvento(int indice) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
@@ -126,10 +123,5 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     @Override
     public String carregaNomeLocal() throws RegraNegocioException {
         throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    
-
-    
-    
+    } 
 }

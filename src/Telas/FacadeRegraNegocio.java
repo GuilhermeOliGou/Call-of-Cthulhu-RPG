@@ -50,7 +50,7 @@ public interface FacadeRegraNegocio {
     
     
     
-    public String getDescricaoEvento() throws RegraNegocioException;
+    public String getDescricaoEvento(int indice) throws RegraNegocioException;
     
     public ArrayList<String> getEventos() throws RegraNegocioException;
     
