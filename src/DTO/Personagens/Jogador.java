@@ -90,11 +90,11 @@ public class Jogador extends Personagem {
     
     
 
-    public Item[] getInventario() {
+    public Item[] getInventario() throws ArrayIndexOutOfBoundsException{
         return inventario;
     }
 
-    public void setInventario(Item[] inventario) {
+    public void setInventario(Item[] inventario) throws ArrayIndexOutOfBoundsException{
         this.inventario = inventario;
     }
     

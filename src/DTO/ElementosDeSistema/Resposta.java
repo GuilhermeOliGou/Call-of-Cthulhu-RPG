@@ -10,6 +10,7 @@ public class Resposta {
     private int id;
     
     private FolhaDeAtributos atributosAlterados;
+    
     private int[] itensAdicionados;
     private int[] itensRemovidos;
     
@@ -38,6 +39,7 @@ public class Resposta {
         this.id = id;
         
         this.atributosAlterados = atributosAlterados;
+        
         this.itensAdicionados = itensAdicionados;
         this.itensRemovidos = itensRemovidos;
         
@@ -64,20 +66,22 @@ public class Resposta {
     public void setAtributosAlterados(FolhaDeAtributos atributosAlterados) {
         this.atributosAlterados = atributosAlterados;
     }
+    
+    
 
-    public int[] getItensAdicionados(){
+    public int[] getItensAdicionados() throws ArrayIndexOutOfBoundsException{
         return itensAdicionados;
     }
 
-    public void setItensAdicionados(int[] itensAdicionados) {
+    public void setItensAdicionados(int[] itensAdicionados) throws ArrayIndexOutOfBoundsException{
         this.itensAdicionados = itensAdicionados;
     }
 
-    public int[] getItensRemovidos() {
+    public int[] getItensRemovidos() throws ArrayIndexOutOfBoundsException{
         return itensRemovidos;
     }
 
-    public void setItensRemovidos(int[] itensRemovidos) {
+    public void setItensRemovidos(int[] itensRemovidos) throws ArrayIndexOutOfBoundsException{
         this.itensRemovidos = itensRemovidos;
     }
     

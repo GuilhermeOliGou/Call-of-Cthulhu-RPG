@@ -20,10 +20,15 @@ public class IntermediarioBaseDados {
     
     //CONSTRUTORES
 
-    public IntermediarioBaseDados() {
+    public IntermediarioBaseDados() throws RegraNegocioException{
         super();
         
-        this.baseDados = new FacadeImplementada();
+        try{
+            this.baseDados = new FacadeImplementada();   
+        }catch (BaseDadosException e){
+            Log.gravaLog(e);
+            throw new RegraNegocioException("FALHA AO INSTANCIAR OS ARQUIVOS DE JOGO!");
+        }     
     }    
     
     //FUNÇÕES
