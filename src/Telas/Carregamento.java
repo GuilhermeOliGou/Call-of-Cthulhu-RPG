@@ -179,6 +179,8 @@ public class Carregamento extends javax.swing.JFrame {
                     tela.setVisible(true);
                     tela.setLocationRelativeTo(null);
                 }else{
+                    int indexJogo = jCBoxJogos.getSelectedIndex();
+                    String textoDefault = "";
                     jogos = facade.getNomesJogadores();
                     descriJogos = facade.getDescricoesJogadores();
                     DefaultComboBoxModel mod = new DefaultComboBoxModel();
@@ -186,6 +188,15 @@ public class Carregamento extends javax.swing.JFrame {
                         mod.addElement(jogo);
                     }               
                     jCBoxJogos.setModel(mod);
+                    jCBoxJogos.addItemListener(new ItemListener(){
+                        @Override
+                        public void itemStateChanged(ItemEvent e){
+                            if(e.getStateChange()==ItemEvent.SELECTED){
+                                String texto = descriJogos.get(indexJogo);
+                                jTxtDescricaoJogo.setText(textoDefault + texto);
+                            }
+                        }
+                    });
                 }
         } catch (RegraNegocioException ex) { 
             Log.gravaLog(ex);
