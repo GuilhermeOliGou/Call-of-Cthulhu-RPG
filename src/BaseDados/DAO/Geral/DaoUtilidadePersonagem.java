@@ -4,7 +4,7 @@ package BaseDados.Dao.Geral;
 import BaseDados.BaseDadosException;
 import DTO.Personagens.Personagem;
 
-public interface DaoUtilidadePersonagem<T> {
+public interface DaoUtilidadePersonagem<T> extends DaoUtilidade<T, Personagem>{
 
     public T Busca(int codigo) throws BaseDadosException;
 

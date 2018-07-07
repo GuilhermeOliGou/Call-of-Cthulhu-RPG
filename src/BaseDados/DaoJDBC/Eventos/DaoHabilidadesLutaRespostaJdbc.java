@@ -1,23 +1,24 @@
-package BaseDados.DaoJDBC.Items.Utilidades;
+package BaseDados.DaoJDBC.Eventos;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Items.Utilidades.DaoHabilidadesLutaItem;
+import BaseDados.Dao.Evento.DaoHabilidadesLutaResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.Itens.Arma;
-import DTO.Itens.Item;
+import DTO.ElementosDeSistema.Evento;
+import DTO.ElementosDeSistema.Resposta;
+import DTO.Personagens.FolhaDeHabilidades;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
+import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 
 import java.sql.SQLException;
 
-public class HabilidadesLutaItemJdbc extends BancoDadosJdbc implements DaoHabilidadesLutaItem{
-
-    public HabilidadesLutaItemJdbc() throws BaseDadosException{
-        super();
+public class DaoHabilidadesLutaRespostaJdbc extends BancoDadosJdbc implements DaoHabilidadesLutaResposta {
+    public DaoHabilidadesLutaRespostaJdbc() throws BaseDadosException {
     }
+
     @Override
     public HabilidadesLuta Busca(int codigo) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("SELECT * FROM habilidades_luta WHERE id_item = ?");
+        preparaComandoSQL("SELECT * FROM habilidades_luta WHERE id_evento = ?");
         try{
             ps.setInt(1, codigo);
             rs = ps.executeQuery();
@@ -42,18 +43,21 @@ public class HabilidadesLutaItemJdbc extends BancoDadosJdbc implements DaoHabili
             }
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel encontrar Habilidades Luta");
+            throw new BaseDadosException("Nao foi possivel encontrar Habilidades Luta Resposta");
         }
         return null;
     }
 
     @Override
-    public void Insere(Item item) throws BaseDadosException {
-        Arma arma = (Arma) item;
-        HabilidadesLuta habilidadesLuta = arma.getHabilidadesUsadasLuta();
-        if(habilidadesLuta == null) return;
+    public void Insere(Evento evento) throws BaseDadosException {
+        Resposta resposta = evento.getRespostaDoEvento();
+
+        FolhaDeHabilidades habilidades = resposta.getHabilidadesAlteradas();
+
+        HabilidadesLuta habilidadesLuta = habilidades.getLuta();
+
         abreConexao();
-        preparaComandoSQL("INSERT INTO habilidades_luta (esquiva, luta_machado, luta_livre, luta_lanca, luta_espada, luta_chicote, id_item)" +
+        preparaComandoSQL("INSERT INTO habilidades_luta (esquiva, luta_machado, luta_livre, luta_lanca, luta_espada, luta_chicote, id_evento)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         try{
@@ -64,23 +68,27 @@ public class HabilidadesLutaItemJdbc extends BancoDadosJdbc implements DaoHabili
             ps.setShort(5, habilidadesLuta.getLutaEspada());
             ps.setShort(6, habilidadesLuta.getLutaChicote());
 
-            ps.setInt(7, arma.getId());
+            ps.setInt(7, evento.getID());
 
             ps.execute();
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel inserir Habilidades Luta");
+            throw new BaseDadosException("Nao foi possivel inserir Habilidades Luta Resposta");
         }
     }
 
     @Override
-    public void Altera(Item item) throws BaseDadosException {
-        Arma arma = (Arma) item;
-        HabilidadesLuta habilidadesLuta = arma.getHabilidadesUsadasLuta();
+    public void Altera(Evento evento) throws BaseDadosException {
+        Resposta resposta = evento.getRespostaDoEvento();
 
+        FolhaDeHabilidades habilidades = resposta.getHabilidadesAlteradas();
+
+        HabilidadesLuta habilidadesLuta = habilidades.getLuta();
+
+        int id = evento.getID();
         abreConexao();
         preparaComandoSQL("UPDATE habilidades_luta SET esquiva = ?, luta_machado = ?, luta_livre = ?, " +
-                "luta_lanca = ?, luta_espada = ?, luta_chicote = ? WHERE id_item = ?");
+                "luta_lanca = ?, luta_espada = ?, luta_chicote = ? WHERE id_evento = ?");
 
         try{
             ps.setShort(1, habilidadesLuta.getEsquiva());
@@ -90,26 +98,27 @@ public class HabilidadesLutaItemJdbc extends BancoDadosJdbc implements DaoHabili
             ps.setShort(5, habilidadesLuta.getLutaEspada());
             ps.setShort(6, habilidadesLuta.getLutaChicote());
 
-            ps.setInt(7, arma.getId());
+            ps.setInt(7, id);
 
             ps.execute();
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel modificar Habilidades Luta");
+            throw new BaseDadosException("Nao foi possivel modificar Habilidades Luta Resposta");
         }
     }
 
     @Override
     public void Remove(int codigo) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("DELETE FROM habilidades_luta WHERE id_item = ?");
+        preparaComandoSQL("DELETE FROM habilidades_luta WHERE id_evento = ?");
 
         try{
             ps.setInt(1, codigo);
             ps.execute();
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel remover Habilidades Luta, verifique se o Item enviado eh valido");
+            throw new BaseDadosException("Nao foi possivel remover Habilidades Luta Resposta, verifique se o Evento enviado eh valido");
         }
     }
 }
+

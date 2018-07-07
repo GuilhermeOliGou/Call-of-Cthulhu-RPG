@@ -23,7 +23,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
     private DaoHabilidadesTiroItem daoHabilidadesTiro;
     private DaoHabilidadesLutaItem daoHabilidadesLuta;
 
-    public DaoArmaJdbc(DaoItem daoItem, DaoFolhaDano daoFolhaDano, DaoHabilidadesLutaItem daoHabilidadesLuta, DaoHabilidadesTiroItem daoHabilidadesTiro) throws Exception{
+    public DaoArmaJdbc(DaoItem daoItem, DaoFolhaDano daoFolhaDano, DaoHabilidadesLutaItem daoHabilidadesLuta, DaoHabilidadesTiroItem daoHabilidadesTiro) throws BaseDadosException{
         super();
         this.daoItem = daoItem;
         this.daoFolhaDano = daoFolhaDano;
@@ -37,7 +37,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
 
         abreConexao();
         try {
-            preparaComandoSQL("SELECT * FROM arma WHERE id_item = ?");
+            preparaComandoSQL("SELECT * FROM item_arma WHERE id_item = ?");
             ps.setInt(1, codigo);
             rs = ps.executeQuery();
         }
@@ -72,18 +72,19 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
     }
 
     @Override
-    public void Insere(Arma arma) throws BaseDadosException {
+    public void Insere(Item item) throws BaseDadosException {
+
+        Arma arma = (Arma) item;
 
         daoItem.Insere(arma);
 
         abreConexao();
         try{
-            preparaComandoSQL("INSERT INTO arma (usos_round, tamanho_pente, mal_funcionamento, nome, id_item) VALUES (?, ?, ?, ?)");
+            preparaComandoSQL("INSERT INTO item_arma (usos_round, tamanho_pente, mal_funcionamento, id_item) VALUES (?, ?, ?, ?)");
             ps.setShort(1, arma.getUsosPorRound());
             ps.setShort(2, arma.getTamanhoDoPente());
             ps.setShort(3, arma.getMalFuncionamento());
-            ps.setString(4, arma.getNome());
-            ps.setInt(5, arma.getId());
+            ps.setInt(4, arma.getId());
 
             ps.execute();
 
@@ -98,7 +99,10 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
     }
 
     @Override
-    public void Altera(Arma arma) throws BaseDadosException {
+    public void Altera(Item item) throws BaseDadosException {
+
+        Arma arma = (Arma) item;
+
         daoItem.Altera(arma);
 
         abreConexao();
@@ -126,7 +130,7 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         daoFolhaDano.Remove(codigo);
 
         abreConexao();
-        preparaComandoSQL("DELETE FROM arma WHERE id.item = ?");
+        preparaComandoSQL("DELETE FROM item_arma WHERE id_item = ?");
 
         try{
             ps.setInt(1, codigo);
@@ -139,9 +143,9 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
     }
 
     @Override
-    public List<Arma> Lista() throws BaseDadosException {
+    public List<Item> Lista() throws BaseDadosException {
         List<Integer> items = daoItem.ListaArma();
-        List<Arma> armas = new ArrayList<>();
+        List<Item> armas = new ArrayList<>();
         for(Integer item : items)
             armas.add(Busca(item));
 

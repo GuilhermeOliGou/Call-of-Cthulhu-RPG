@@ -1,6 +1,9 @@
 package BaseDados.Dao.Evento;
 
-import BaseDados.DAO.Geral.DaoUtilidadeEvento;
+import BaseDados.BaseDadosException;
+import BaseDados.Dao.Geral.DaoUtilidade;
+import DTO.ElementosDeSistema.Evento;
+import DTO.ElementosDeSistema.Resposta;
 
-public interface DaoResposta extends DaoUtilidadeEvento{
+public interface DaoResposta extends DaoUtilidade<Resposta, Evento> {
 }

@@ -50,10 +50,13 @@ public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
     public void Insere(Item item) throws BaseDadosException {
         abreConexao();
         try{
-            preparaComandoSQL("INSERT INTO item (nome_item, descricao_item) VALUES (?, ?)");
+            preparaComandoSQL("INSERT INTO item (nome_item, descricao_item, tipo_item) VALUES (?, ?, ?)");
             ps.setString(1, item.getNome());
             ps.setString(2, item.getDescricao());
+            ps.setString(3, item.getClass().getSimpleName());
+
             ps.execute();
+
         }catch (SQLException e){
             throw new BaseDadosException("Nao foi possivel adicionar Item");
         }

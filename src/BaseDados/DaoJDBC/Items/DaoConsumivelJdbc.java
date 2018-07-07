@@ -20,6 +20,7 @@ public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
         super();
         this.daoItem = daoItem;
     }
+
     @Override
     public ItemConsumivel Busca(int codigo) throws BaseDadosException {
 
@@ -55,17 +56,17 @@ public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
     }
 
     @Override
-    public void Insere(ItemConsumivel itemConsumivel) throws BaseDadosException {
+    public void Insere(Item item) throws BaseDadosException {
 
+        ItemConsumivel itemConsumivel = (ItemConsumivel) item;
         daoItem.Insere(itemConsumivel);
 
         abreConexao();
         try{
-            preparaComandoSQL("INSERT INTO item_consumivel (hp_recuperada, mp_recuperada, nome, id_item) VALUES (?, ?, ?, ?)");
+            preparaComandoSQL("INSERT INTO item_consumivel (hp_recuperada, mp_recuperada, id_item) VALUES (?, ?, ?)");
             ps.setShort(1, itemConsumivel.getHpRecuperado());
             ps.setShort(2, itemConsumivel.getMpRecuperado());
-            ps.setString(3, itemConsumivel.getNome());
-            ps.setInt(4, itemConsumivel.getId());
+            ps.setInt(3, itemConsumivel.getId());
 
             ps.execute();
 
@@ -75,7 +76,9 @@ public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
     }
 
     @Override
-    public void Altera(ItemConsumivel itemConsumivel) throws BaseDadosException {
+    public void Altera(Item item) throws BaseDadosException {
+
+        ItemConsumivel itemConsumivel = (ItemConsumivel) item;
 
         daoItem.Altera(itemConsumivel);
 
@@ -109,9 +112,9 @@ public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
     }
 
     @Override
-    public List<ItemConsumivel> Lista() throws BaseDadosException {
+    public List<Item> Lista() throws BaseDadosException {
         List<Integer> items = daoItem.ListaConsumivel();
-        List<ItemConsumivel> consumiveis = new ArrayList<>();
+        List<Item> consumiveis = new ArrayList<>();
         for(Integer item : items)
             consumiveis.add(Busca(item));
 

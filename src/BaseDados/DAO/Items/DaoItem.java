@@ -6,7 +6,7 @@ import DTO.Itens.Item;
 
 import java.util.List;
 
-public interface DaoItem extends Dao<Item> {
+public interface DaoItem extends DaoItemGeral {
 
     public List<Integer> ListaArma() throws BaseDadosException;
 

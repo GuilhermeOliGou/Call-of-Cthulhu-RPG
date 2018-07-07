@@ -1,25 +1,24 @@
-package BaseDados.DaoJDBC.Items.Utilidades;
+package BaseDados.DaoJDBC.Eventos;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Items.Utilidades.DaoHabilidadesTiroItem;
+import BaseDados.Dao.Evento.DaoHabilidadesTiroResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.Itens.Arma;
-import DTO.Itens.Item;
+import DTO.ElementosDeSistema.Evento;
+import DTO.ElementosDeSistema.Resposta;
+import DTO.Personagens.FolhaDeHabilidades;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 
 import java.sql.SQLException;
 
-public class HabilidadesTiroItemJdbc extends BancoDadosJdbc implements DaoHabilidadesTiroItem {
+public class DaoHabilidadesTiroRespostaJdbc extends BancoDadosJdbc implements DaoHabilidadesTiroResposta {
 
-    public HabilidadesTiroItemJdbc() throws BaseDadosException{
-        super();
-
+    public DaoHabilidadesTiroRespostaJdbc() throws BaseDadosException {
     }
 
     @Override
     public HabilidadesTiro Busca(int codigo) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("SELECT * FROM habilidades_tiro WHERE id_item = ?");
+        preparaComandoSQL("SELECT * FROM habilidades_tiro WHERE id_evento = ?");
 
         try{
             ps.setInt(1, codigo);
@@ -35,19 +34,25 @@ public class HabilidadesTiroItemJdbc extends BancoDadosJdbc implements DaoHabili
             }
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel encontrar Habilidades Tiro");
+            throw new BaseDadosException("Nao foi possivel encontrar Habilidades Tiro Resposta");
         }
 
         return null;
     }
 
     @Override
-    public void Insere(Item item) throws BaseDadosException {
-        Arma arma = (Arma) item;
-        HabilidadesTiro habilidadesTiro = arma.getHabilidadesUsadasTiro();
+    public void Insere(Evento evento) throws BaseDadosException {
+        int id = evento.getID();
+
+        Resposta resposta = evento.getRespostaDoEvento();
+
+        FolhaDeHabilidades habilidades = resposta.getHabilidadesAlteradas();
+
+        HabilidadesTiro habilidadesTiro = habilidades.getTiro();
+
         if(habilidadesTiro == null) return;
         abreConexao();
-        preparaComandoSQL("INSERT INTO habilidades_tiro (tiro_pistola, tiro_rifle, tiro_submetralhadora, arremesso, id_item)" +
+        preparaComandoSQL("INSERT INTO habilidades_tiro (tiro_pistola, tiro_rifle, tiro_submetralhadora, arremesso, id_evento)" +
                 "VALUES (?, ?, ?, ?, ?)");
 
         try{
@@ -56,7 +61,7 @@ public class HabilidadesTiroItemJdbc extends BancoDadosJdbc implements DaoHabili
             ps.setShort(3, habilidadesTiro.getTiroSubmetralhadora());
             ps.setShort(4, habilidadesTiro.getArremesso());
 
-            ps.setInt(5, arma.getId());
+            ps.setInt(5, id);
 
             ps.execute();
         }
@@ -66,13 +71,17 @@ public class HabilidadesTiroItemJdbc extends BancoDadosJdbc implements DaoHabili
     }
 
     @Override
-    public void Altera(Item item) throws BaseDadosException {
-        Arma arma = (Arma) item;
-        HabilidadesTiro habilidadesTiro = arma.getHabilidadesUsadasTiro();
+    public void Altera(Evento evento) throws BaseDadosException {
+        int id = evento.getID();
 
+        Resposta resposta = evento.getRespostaDoEvento();
+
+        FolhaDeHabilidades habilidades = resposta.getHabilidadesAlteradas();
+
+        HabilidadesTiro habilidadesTiro = habilidades.getTiro();
         abreConexao();
         preparaComandoSQL("UPDATE habilidades_tiro SET tiro_pistola = ?, tiro_rifle = ?, tiro_submetralhadora = ?, arremesso =?" +
-                "WHERE id_item = ?");
+                "WHERE id_evento = ?");
 
         try{
             ps.setShort(1, habilidadesTiro.getTiroPistola());
@@ -80,17 +89,17 @@ public class HabilidadesTiroItemJdbc extends BancoDadosJdbc implements DaoHabili
             ps.setShort(3, habilidadesTiro.getTiroSubmetralhadora());
             ps.setShort(4, habilidadesTiro.getArremesso());
 
-            ps.setInt(5, arma.getId());
+            ps.setInt(5, id);
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel modificar Habilidades Tiro");
+            throw new BaseDadosException("Nao foi possivel modificar Habilidades Tiro Resposta");
         }
     }
 
     @Override
     public void Remove(int codigo) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("DELETE FROM habilidades_tiro WHERE id_item = ?");
+        preparaComandoSQL("DELETE FROM habilidades_tiro WHERE id_evento = ?");
 
         try{
             ps.setInt(1, codigo);

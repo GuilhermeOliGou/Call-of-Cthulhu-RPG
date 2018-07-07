@@ -2,7 +2,19 @@ package BaseDados;
 import BaseDados.Dao.Items.DaoArma;
 import BaseDados.Dao.Items.DaoConsumivel;
 import BaseDados.Dao.Items.DaoItem;
+import BaseDados.Dao.Items.DaoItemGeral;
+import BaseDados.Dao.Items.Utilidades.DaoFolhaDano;
+import BaseDados.Dao.Items.Utilidades.DaoHabilidadesLutaItem;
+import BaseDados.Dao.Items.Utilidades.DaoHabilidadesTiroItem;
+import BaseDados.Dao.Personagem.Utilidades.DaoAtributos;
+import BaseDados.DaoJDBC.Items.DaoArmaJdbc;
+import BaseDados.DaoJDBC.Items.DaoConsumivelJdbc;
+import BaseDados.DaoJDBC.Items.DaoItemGeralJdbc;
 import BaseDados.DaoJDBC.Items.DaoItemJdbc;
+import BaseDados.DaoJDBC.Items.Utilidades.DaoFolhaDanoJdbc;
+import BaseDados.DaoJDBC.Items.Utilidades.HabilidadesLutaItemJdbc;
+import BaseDados.DaoJDBC.Items.Utilidades.HabilidadesTiroItemJdbc;
+import BaseDados.DaoJDBC.Personagem.Utilidades.DaoAtributosJdbc;
 import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.EventoAvancado;
 import DTO.ElementosDeSistema.Local;
@@ -21,14 +33,19 @@ import java.util.List;
 
 public class FacadeImplementada implements FacadeBaseDados{
 
-    DaoItem daoItem;
-    DaoArma daoArma;
-    DaoConsumivel daoConsumivel;
+    private DaoItemGeral daoItemGeral;
 
     public FacadeImplementada()throws BaseDadosException{
-        this.daoItem = new DaoItemJdbc();
-        this.daoArma = daoArma;
-        this.daoConsumivel = daoConsumivel;
+        DaoFolhaDano daoFolhaDano = new DaoFolhaDanoJdbc();
+        DaoHabilidadesLutaItem daoLutaItem = new HabilidadesLutaItemJdbc();
+        DaoHabilidadesTiroItem daoTiroItem = new HabilidadesTiroItemJdbc();
+
+        DaoItem daoItem = new DaoItemJdbc();
+
+        DaoArma daoArma = new DaoArmaJdbc(daoItem, daoFolhaDano, daoLutaItem, daoTiroItem);
+        DaoConsumivel daoConsumivel = new DaoConsumivelJdbc(daoItem);
+
+        this.daoItemGeral = new DaoItemGeralJdbc(daoItem, daoArma, daoConsumivel);
     }
 
 
@@ -149,22 +166,22 @@ public class FacadeImplementada implements FacadeBaseDados{
 
     @Override
     public Arma LeArma(int codigo) throws BaseDadosException {
-        return daoArma.Busca(codigo);
+        return null;
     }
 
     @Override
     public void EscreveArma(Arma arma) throws BaseDadosException {
-        daoArma.Insere(arma);
+
     }
 
     @Override
     public void AlteraArma(Arma arma) throws BaseDadosException {
-        daoArma.Altera(arma);
+
     }
 
     @Override
     public List<Arma> ListaArmas() throws BaseDadosException {
-        return daoArma.Lista();
+        return null;
     }
 
     @Override
@@ -213,22 +230,22 @@ public class FacadeImplementada implements FacadeBaseDados{
 
     @Override
     public Item LeItem(int codigo) throws BaseDadosException {
-        return daoItem.Busca(codigo);
+        return daoItemGeral.Busca(codigo);
     }
 
     @Override
     public void EscreveItem(Item item) throws BaseDadosException {
-        daoItem.Insere(item);
+        daoItemGeral.Insere(item);
     }
 
     @Override
     public void AlteraItem(Item item) throws BaseDadosException {
-        daoItem.Altera(item);
+        daoItemGeral.Altera(item);
     }
 
     @Override
     public List<Item> ListaItens() throws BaseDadosException {
-        return daoItem.Lista();
+        return null;
     }
 
 
@@ -249,22 +266,20 @@ public class FacadeImplementada implements FacadeBaseDados{
 
     @Override
     public ItemConsumivel LeItemConsumivel(int codigo) throws BaseDadosException {
-        return daoConsumivel.Busca(codigo);
+        return null;
     }
 
     @Override
     public void EscreveItemConsumivel(ItemConsumivel itemConsumivel) throws BaseDadosException {
-        daoConsumivel.Insere(itemConsumivel);
     }
 
     @Override
     public void AlteraItemConsumivel(ItemConsumivel itemConsumivel) throws BaseDadosException {
-        daoConsumivel.Altera(itemConsumivel);
     }
 
     @Override
     public List<ItemConsumivel> ListaItensConsumiveis() throws BaseDadosException {
-        return daoConsumivel.Lista();
+        return null;
     }
 
     @Override
@@ -402,6 +417,9 @@ public class FacadeImplementada implements FacadeBaseDados{
 
     }
 
+    public void RemoveJogador(int codigo) throws BaseDadosException{
+        daoItemGeral.Remove(codigo);
+    }
     @Override
     public List<Jogador> ListaJogadores() throws BaseDadosException {
         return null;

@@ -1,41 +1,42 @@
-package BaseDados.DaoJDBC.Personagem.Utilidades;
+package BaseDados.DaoJDBC.Eventos;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Personagem.Utilidades.DaoAtributos;
-import BaseDados.Dao.Personagem.Utilidades.DaoCaracteristicas;
+import BaseDados.Dao.Evento.DaoAtributosResposta;
+import BaseDados.Dao.Evento.DaoCaracteristicasResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
+import DTO.ElementosDeSistema.Evento;
+import DTO.ElementosDeSistema.Resposta;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
-import DTO.Personagens.Personagem;
 
 import java.sql.SQLException;
 
-public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
+public class DaoAtributosRespostaJdbc extends BancoDadosJdbc implements DaoAtributosResposta {
 
-    private DaoCaracteristicas daoCaracteristicas;
+    private DaoCaracteristicasResposta daoCaracteristicasResposta;
 
-    public DaoAtributosJdbc(DaoCaracteristicas daoCaracteristicas)throws BaseDadosException{
+    public DaoAtributosRespostaJdbc(DaoCaracteristicasResposta daoCaracteristicasResposta) throws BaseDadosException {
         super();
-        this.daoCaracteristicas = daoCaracteristicas;
+        this.daoCaracteristicasResposta = daoCaracteristicasResposta;
     }
 
     @Override
     public FolhaDeAtributos Busca(int codigo) throws BaseDadosException{
         abreConexao();
-        preparaComandoSQL("SELECT * FROM folha_atributos WHERE id_personagem = ?");
+        preparaComandoSQL("SELECT * FROM folha_atributos WHERE id_evento = ?");
 
         try{
             ps.setInt(1, codigo);
             rs = ps.executeQuery();
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel realizar a busca");
+            throw new BaseDadosException("Nao foi possivel realizar a busca Folha Atributos Resposta");
         }
 
         try {
             if(rs.next()){
 
-                FolhaDeCaracteristicas caracteristicas = daoCaracteristicas.Busca(codigo);
+                FolhaDeCaracteristicas caracteristicas = daoCaracteristicasResposta.Busca(codigo);
 
                 short maxHp = rs.getShort("max_hp");
                 short maxMp = rs.getShort("max_mp");
@@ -47,17 +48,21 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             }
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel encontrar Folha Atributos");
+            throw new BaseDadosException("Nao foi possivel encontrar Folha Atributos Resposta");
         }
         return null;
     }
 
     @Override
-    public void Insere(Personagem personagem) throws BaseDadosException{
-        FolhaDeAtributos atributos = personagem.getAtributos();
+    public void Insere(Evento evento) throws BaseDadosException{
+        int id = evento.getID();
+
+        Resposta resposta = evento.getRespostaDoEvento();
+
+        FolhaDeAtributos atributos = resposta.getAtributosAlterados();
 
         abreConexao();
-        preparaComandoSQL("INSERT INTO folha_atributos (max_hp, max_mp, hp_atual, mp_atual, bonus_dano, id_personagem)" +
+        preparaComandoSQL("INSERT INTO folha_atributos (max_hp, max_mp, hp_atual, mp_atual, bonus_dano, id_evento)" +
                 "VALUES (?, ?, ?, ?, ?, ?)");
 
         try {
@@ -67,7 +72,7 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             ps.setShort(4, atributos.getMpAtual());
             ps.setShort(5, atributos.getBonusDeDanoCorporal());
 
-            ps.setInt(6, personagem.getId());
+            ps.setInt(6, id);
 
             ps.execute();
         }
@@ -75,17 +80,21 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             throw new BaseDadosException("Nao foi possivel inserir Folha Atributos");
         }
 
-        daoCaracteristicas.Insere(personagem);
+        daoCaracteristicasResposta.Insere(evento);
 
     }
 
     @Override
-    public void Altera(Personagem personagem) throws BaseDadosException {
-        FolhaDeAtributos atributos = personagem.getAtributos();
+    public void Altera(Evento evento) throws BaseDadosException {
+        int id = evento.getID();
+
+        Resposta resposta = evento.getRespostaDoEvento();
+
+        FolhaDeAtributos atributos = resposta.getAtributosAlterados();
 
         abreConexao();
         preparaComandoSQL("UPDATE folha_atributos SET max_hp = ?, max_mp = ?," +
-                " hp_atual = ?, mp_atual = ?, bonus_dano = ? WHERE id_personagem = ?");
+                " hp_atual = ?, mp_atual = ?, bonus_dano = ? WHERE id_evento = ?");
 
         try {
             ps.setShort(1, atributos.getMaxHp());
@@ -94,30 +103,30 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             ps.setShort(4, atributos.getMpAtual());
             ps.setShort(5, atributos.getBonusDeDanoCorporal());
 
-            ps.setInt(6, personagem.getId());
+            ps.setInt(6, id);
 
             ps.execute();
         }
         catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel modificar Folha Atributos");
+            throw new BaseDadosException("Nao foi possivel modificar Folha Atributos Resposta");
         }
 
-        daoCaracteristicas.Altera(personagem);
+        daoCaracteristicasResposta.Altera(evento);
 
     }
 
     @Override
     public void Remove(int codigo) throws BaseDadosException{
 
-        daoCaracteristicas.Remove(codigo);
+        daoCaracteristicasResposta.Remove(codigo);
 
         abreConexao();
-        preparaComandoSQL("DELETE FROM folha_atributos WHERE id.personagem = ?");
+        preparaComandoSQL("DELETE FROM folha_atributos WHERE id_evento = ?");
         try{
             ps.setInt(1, codigo);
             ps.execute();
         }catch(SQLException e){
-            throw new BaseDadosException("Não foi possível remover Folha Atributos");
+            throw new BaseDadosException("Não foi possível remover Folha Atributos Resposta");
         }
     }
 }

@@ -4,5 +4,5 @@ import BaseDados.Dao.Geral.Dao;
 import DTO.Itens.ItemConsumivel;
 
 
-public interface DaoConsumivel extends Dao<ItemConsumivel> {
+public interface DaoConsumivel extends DaoItemGeral {
 }

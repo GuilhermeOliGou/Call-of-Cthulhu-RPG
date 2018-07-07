@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class DaoFolhaDanoJdbc extends BancoDadosJdbc implements DaoFolhaDano {
 
-    public DaoFolhaDanoJdbc() throws Exception{
+    public DaoFolhaDanoJdbc() throws BaseDadosException{
         super();
     }
 
@@ -54,11 +54,11 @@ public class DaoFolhaDanoJdbc extends BancoDadosJdbc implements DaoFolhaDano {
     public void Insere(Item item) throws BaseDadosException {
         Arma arma = (Arma) item;
         FolhaDano folhaDano = arma.getDano();
+        short rolagens[] = folhaDano.getRolagens();
         abreConexao();
         preparaComandoSQL("INSERT INTO folha_dano (rolagem_1, rolagem_2, rolagem_3, rolagem_4, rolagem_5, rolagem_6, " +
                 "adicional, atordoamento, id_item) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         try{
-            short rolagens[] = folhaDano.getRolagens();
             ps.setShort(1, rolagens[0]);
             ps.setShort(2, rolagens[1]);
             ps.setShort(3, rolagens[2]);
@@ -111,7 +111,7 @@ public class DaoFolhaDanoJdbc extends BancoDadosJdbc implements DaoFolhaDano {
     @Override
     public void Remove(int codigo) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("DELETE * FROM folha_dano WHERE id_item = ?");
+        preparaComandoSQL("DELETE FROM folha_dano WHERE id_item = ?");
 
         try{
             ps.setInt(1, codigo);

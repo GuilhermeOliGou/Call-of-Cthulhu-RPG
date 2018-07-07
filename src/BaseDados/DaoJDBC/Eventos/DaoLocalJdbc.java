@@ -4,17 +4,21 @@ import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.DaoEvento;
 import BaseDados.Dao.Evento.DaoLocal;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
+import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.Local;
 import java.sql.SQLException;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
 
-    DaoEvento daoEvento;
+    private DaoEvento daoEvento;
     
-    public DaoLocalJdbc() throws Exception{
+    public DaoLocalJdbc(DaoEvento daoEvento) throws Exception{
         super();
+        this.daoEvento = daoEvento;
         
     }
 
@@ -33,7 +37,7 @@ public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
         
         try{
             if(rs.next()){
-                List<Evento> eventos = dao
+                LinkedList<Evento> eventos = daoEvento.Lista(codigo);
             }
         }
         catch(SQLException e){
@@ -44,22 +48,108 @@ public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
 
     @Override
     public void Insere(Local local) throws BaseDadosException {
+        abreConexao();
+        preparaComandoSQL("INSERT INTO local (nome) VALUES (?)");
 
+        try{
+            ps.setString(1, local.getNome());
+            ps.execute();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel inserir Local");
+        }
+        int IdLocal;
+        try{
+            preparaComandoSQL("SELECT LAST_INSERT_ID()");
+            rs = ps.executeQuery();
+            if(rs.next()){
+                IdLocal = rs.getInt("id_local");
+                local.setId(IdLocal);
+            }
+            else{
+                throw new BaseDadosException();
+            }
+        }
+        catch (Exception e){
+            throw new BaseDadosException("Nao foi possivel receber o ID Local inserido");
+        }
+
+        List<Evento> eventos = local.getEventosDisponíveis();
+
+        for(Evento evento : eventos){
+            daoEvento.Insere(evento, IdLocal);
+        }
     }
 
     @Override
     public void Altera(Local local) throws BaseDadosException {
+        int IdLocal = local.getID();
+        abreConexao();
+        preparaComandoSQL("UPDATE local set nome = ? WHERE id_local = ?");
 
+        try{
+            ps.setString(1, local.getNome());
+            ps.setInt(2, IdLocal);
+
+            ps.execute();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel modificar Local");
+        }
+
+        List<Evento> eventos = local.getEventosDisponíveis();
+
+        for(Evento evento : eventos){
+            daoEvento.Altera(evento, IdLocal);
+        }
     }
 
     @Override
     public void Remove(int codigo) throws BaseDadosException {
+        daoEvento.Remove(codigo);
 
+        abreConexao();
+        preparaComandoSQL("DELETE FROM local WHERE id_local = ?");
+
+        try {
+            ps.setInt(1, codigo);
+            ps.execute();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel remover Local");
+        }
     }
 
     @Override
     public List<Local> Lista() throws BaseDadosException {
-        return null;
+        ArrayList<Local> locais = new ArrayList<>();
+
+        abreConexao();
+        preparaComandoSQL("SELECT * FROM local");
+
+        try {
+            rs = ps.executeQuery();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel realizar a requisicao Lista Local");
+        }
+
+        try {
+            while (rs.next()){
+                int id = rs.getInt("id_local");
+                String nome = rs.getString("nome_local");
+
+                LinkedList<Evento> eventos = daoEvento.Lista(id);
+
+                Local local = new Local(nome, eventos, id);
+                locais.add(local);
+            }
+            if(locais.size() == 0) return null;
+            return locais;
+        }
+        catch (Exception e){
+            throw new BaseDadosException("Nao foi possivel listar Local");
+        }
     }
 
 
