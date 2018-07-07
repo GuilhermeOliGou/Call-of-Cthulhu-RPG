@@ -9,8 +9,8 @@ public class Resposta {
     
     private FolhaDeAtributos atributosAlterados;
     
-    private int[] itensAdicionados;
-    private int[] itensRemovidos;
+    private Integer[] itensAdicionados;
+    private Integer[] itensRemovidos;
     
     private short sanidadeAtualAlterada;
     private FolhaDeHabilidades habilidadesAlteradas;
@@ -26,8 +26,8 @@ public class Resposta {
         this.habilidadesAlteradas = new FolhaDeHabilidades();
     }
 
-    public Resposta(FolhaDeAtributos atributosAlterados, int[] itensAdicionados, 
-            int[] itensRemovidos, 
+    public Resposta(FolhaDeAtributos atributosAlterados, 
+            Integer[] itensAdicionados, Integer[] itensRemovidos, 
             short sanidadeAtualAlterada, FolhaDeHabilidades habilidadesAlteradas) {
         super();
         
@@ -52,19 +52,19 @@ public class Resposta {
     
     
 
-    public int[] getItensAdicionados() throws ArrayIndexOutOfBoundsException{
+    public Integer[] getItensAdicionados() throws ArrayIndexOutOfBoundsException{
         return itensAdicionados;
     }
 
-    public void setItensAdicionados(int[] itensAdicionados) throws ArrayIndexOutOfBoundsException{
+    public void setItensAdicionados(Integer[] itensAdicionados) throws ArrayIndexOutOfBoundsException{
         this.itensAdicionados = itensAdicionados;
     }
 
-    public int[] getItensRemovidos() throws ArrayIndexOutOfBoundsException{
+    public Integer[] getItensRemovidos() throws ArrayIndexOutOfBoundsException{
         return itensRemovidos;
     }
 
-    public void setItensRemovidos(int[] itensRemovidos) throws ArrayIndexOutOfBoundsException{
+    public void setItensRemovidos(Integer[] itensRemovidos) throws ArrayIndexOutOfBoundsException{
         this.itensRemovidos = itensRemovidos;
     }
     

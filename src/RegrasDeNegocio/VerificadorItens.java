@@ -14,6 +14,8 @@ public class VerificadorItens {
     private final int INVENTARIOMAXIMO;
     private final int RETORNOMAXIMO;
     
+    private final IntermediarioBaseDados BASEDADOS;
+    
     private Jogador jogador;
     private String resposta;
     private int[] quantidadeItens;
@@ -27,10 +29,13 @@ public class VerificadorItens {
         
         this.INVENTARIOMAXIMO = -1;
         this.RETORNOMAXIMO = -1;
+        
+        this.BASEDADOS = null;
     }
 
     public VerificadorItens(int INVENTARIOMAXIMO, int RETORNOMAXIMO, 
-            Jogador jogador, String resposta, int[] quantidadeItens) {
+            Jogador jogador, String resposta, int[] quantidadeItens,
+            IntermediarioBaseDados BASEDADOS) {
         super();
         
         this.DADOS = new Dados();
@@ -41,9 +46,12 @@ public class VerificadorItens {
         this.jogador = jogador;
         this.resposta = resposta;
         this.quantidadeItens = quantidadeItens;
+        
+        this.BASEDADOS = BASEDADOS;
     }
 
-    public VerificadorItens(Jogador jogador, String resposta, int[] quantidadeItens) {
+    public VerificadorItens(Jogador jogador, String resposta, int[] quantidadeItens,
+            IntermediarioBaseDados BASEDADOS) {
         super();
         
         this.DADOS = new Dados();
@@ -54,6 +62,8 @@ public class VerificadorItens {
         this.jogador = jogador;
         this.resposta = resposta;
         this.quantidadeItens = quantidadeItens;
+        
+        this.BASEDADOS = BASEDADOS;
     }
     
     //FUNÇÕES AUXILIARES

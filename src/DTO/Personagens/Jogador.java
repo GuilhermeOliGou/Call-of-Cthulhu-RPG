@@ -11,7 +11,7 @@ public class Jogador extends Personagem {
     private short sanidadeAtual;
     private short sorte;
     
-    protected Item[] inventario; //20 itens
+    protected Item[] inventario;
 
     private FolhaDeHabilidades habilidades;
     
