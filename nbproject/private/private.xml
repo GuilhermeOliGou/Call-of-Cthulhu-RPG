@@ -3,36 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DAO/Evento/DaoEventoLuta.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/RegrasDeNegocio/IntermediarioBaseDados.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DAO/Evento/DaoEventoAvancado.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/DTO/Personagens/Personagem.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DAO/Evento/DaoLocal.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/DTO/Personagens/Jogador.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/DTO/Personagens/FolhaDeCaracteristicas.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DaoJDBC/BancoDadosJdbc.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/RegrasDeNegocio/FacadeControlador.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DAO/Evento/DaoEvento.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DAO/Items/DaoArma.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DAO/Geral/Dao.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/DTO/Personagens/FolhaDeAtributos.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DaoJDBC/Items/DaoItemJdbc.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DaoJDBC/Items/DaoArmaJdbc.java</file>
-            <file>file:/C:/Users/Administrador/Documents/GitHub/Call-of-Cthulhu-RPG/src/BaseDados/DAO/Geral/DaoUtilidadeItem.java</file>
-=======
-            <file>file:/C:/Users/Leonardo/Documents/GitHub/Call-of-Cthulhu-RPG/src/Telas/Local.java</file>
-            <file>file:/C:/Users/Leonardo/Documents/GitHub/Call-of-Cthulhu-RPG/src/Telas/Carregamento.java</file>
->>>>>>> c82a32ae2fcdd5001917e56bbc7716932f2ce5e6
-            <file>file:/C:/Users/Leonardo/Documents/GitHub/Call-of-Cthulhu-RPG/src/Telas/FacadeRegraNegocio.java</file>
-            <file>file:/C:/Users/Leonardo/Documents/GitHub/Call-of-Cthulhu-RPG/src/Telas/FacadeTelasImp.java</file>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Leonardo/Documents/GitHub/Call-of-Cthulhu-RPG/src/Telas/TelaLocal.java</file>
-=======
->>>>>>> c9a183c182b599b93162da718500a31b4632b345
->>>>>>> c82a32ae2fcdd5001917e56bbc7716932f2ce5e6
+            <file>file:/C:/Users/casa/Desktop/Call-of-Cthulhu-RPG/src/DTO/Personagens/SetsDeHabilidade/HabilidadesTiro.java</file>
+            <file>file:/C:/Users/casa/Desktop/Call-of-Cthulhu-RPG/src/RegrasDeNegocio/ModeratorEvento.java</file>
+            <file>file:/C:/Users/casa/Desktop/Call-of-Cthulhu-RPG/src/RegrasDeNegocio/IntermediarioBaseDados.java</file>
+            <file>file:/C:/Users/casa/Desktop/Call-of-Cthulhu-RPG/src/DTO/ElementosDeSistema/Resposta.java</file>
+            <file>file:/C:/Users/casa/Desktop/Call-of-Cthulhu-RPG/src/DTO/ElementosDeSistema/Evento.java</file>
         </group>
     </open-files>
 </project-private>

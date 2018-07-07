@@ -5,11 +5,18 @@ import telas.FacadeRegraNegocio;
 
 public class FacadeControlador implements FacadeRegraNegocio{
     
+    //ATRIBUTOS
+    
+    private IntermediarioBaseDados baseDados;
+    
+    //CONSTRUTOR
+    
+    
+    
     //FUNÇÕES
     
     @Override
     public boolean existeJogos() throws RegraNegocioException{
-    
     }
     
     @Override

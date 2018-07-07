@@ -12,7 +12,6 @@ public class Resposta {
     private FolhaDeAtributos atributosAlterados;
     private int[] itensAdicionados;
     private int[] itensRemovidos;
-    private int localDoPersonagemAlterado;
     
     private short sanidadeAtualAlterada;
     private FolhaDeHabilidades habilidadesAlteradas;
@@ -25,7 +24,6 @@ public class Resposta {
         this.id = -1;
         
         this.atributosAlterados = new FolhaDeAtributos();
-        this.localDoPersonagemAlterado = -1;
         
         this.sanidadeAtualAlterada = 0;
         this.habilidadesAlteradas = new FolhaDeHabilidades();
@@ -33,7 +31,7 @@ public class Resposta {
 
     public Resposta(int id,  
             FolhaDeAtributos atributosAlterados, int[] itensAdicionados, 
-            int[] itensRemovidos, int localDoPersonagemAlterado, 
+            int[] itensRemovidos, 
             short sanidadeAtualAlterada, FolhaDeHabilidades habilidadesAlteradas) {
         super();
         
@@ -42,7 +40,6 @@ public class Resposta {
         this.atributosAlterados = atributosAlterados;
         this.itensAdicionados = itensAdicionados;
         this.itensRemovidos = itensRemovidos;
-        this.localDoPersonagemAlterado = localDoPersonagemAlterado;
         
         this.sanidadeAtualAlterada = sanidadeAtualAlterada;
         this.habilidadesAlteradas = habilidadesAlteradas;
@@ -82,14 +79,6 @@ public class Resposta {
 
     public void setItensRemovidos(int[] itensRemovidos) {
         this.itensRemovidos = itensRemovidos;
-    }
-
-    public int getLocalDoPersonagemAlterado() {
-        return localDoPersonagemAlterado;
-    }
-
-    public void setLocalDoPersonagemAlterado(int localDoPersonagemAlterado) {
-        this.localDoPersonagemAlterado = localDoPersonagemAlterado;
     }
     
     
