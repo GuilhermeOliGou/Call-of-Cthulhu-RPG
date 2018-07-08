@@ -57,12 +57,4 @@ public class Local {
         this.eventosDisponíveis = eventosDisponíveis;
     }
     
-    public Evento getEventoDisponivel(int indice) {
-        return eventosDisponíveis.get(indice);
-    }
-
-    public void setEventoDisponivel(int indice ,Evento evento) {
-        this.eventosDisponíveis.add(indice, evento); 
-    }
-    
 }

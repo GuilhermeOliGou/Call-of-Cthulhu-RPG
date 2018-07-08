@@ -79,6 +79,26 @@ public class IntermediarioBaseDados {
         this.jogadoresCarregados = new ArrayList<>();
     }
     
+    public void CriaJogo(Jogador jogador) throws RegraNegocioException{
+        try{
+            this.BASEDADOS.EscreveJogador(jogador);
+        }catch(BaseDadosException e){
+            Log.gravaLog(e);
+            
+            throw new RegraNegocioException("ERRO AO SALVAR JOGADOR!");
+        }
+    }
+    
+    public void SalvaJogo (Jogador jogador) throws RegraNegocioException{
+        try{
+            this.BASEDADOS.AlteraJogador(locaisCarregados, jogador);
+        }catch(BaseDadosException e){
+            Log.gravaLog(e);
+            
+            throw new RegraNegocioException("ERRO AO SALVAR JOGO!");
+        }
+    }
+    
     public Item CarregaItem(int codigo) throws RegraNegocioException{
         for (Item i : itensCarregados){
             if (i.getId() == codigo)
@@ -97,16 +117,13 @@ public class IntermediarioBaseDados {
         }        
     }
     
-    public Local CarregaLocal(int codigo) throws RegraNegocioException{
+    public Local CarregaLocal(int idPersonagem, int codigo) throws RegraNegocioException{
         for (Local l : locaisCarregados){
             if (l.getID() == codigo)
                 return l;
         }
-        if (locaisCarregados.size() >= 10){
-            locaisCarregados.remove(0);
-        }
         try{
-            Local novo = this.BASEDADOS.LeLocal(codigo);
+            Local novo = this.BASEDADOS.LeLocal(idPersonagem,codigo);
             locaisCarregados.add(novo);
             return novo;
         }catch(BaseDadosException e){

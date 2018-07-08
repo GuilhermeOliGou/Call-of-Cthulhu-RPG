@@ -7,7 +7,6 @@ package Telas;
 
 import DTO.Personagens.Jogador;
 import RegrasDeNegocio.RegraNegocioException;
-import Elementos.Personagem;
 import java.util.Random;
 import javax.swing.JOptionPane;
 /**

@@ -9,6 +9,7 @@ public class CriadorDePersonagensPadrão{
     //ATRIBUTOS
     
     private final Dados DADOS = new Dados();
+    private final int LOCALPADRAO = 1; 
     
     //CONSTRUTORES
 
@@ -21,7 +22,7 @@ public class CriadorDePersonagensPadrão{
     public Jogador CriarJogador(int id, String nome, int idade)throws RegraNegocioException{
         FolhaDeCaracteristicas caracteristicas = GeradorDeFolhaDeCaracteristicas();
         FolhaDeAtributos atributos = GeradorDeFolhaDeAtributos(caracteristicas);
-        return new Jogador(id,atributos,(short)idade,nome,1,
+        return new Jogador(id,atributos,(short)idade,nome,this.LOCALPADRAO,
                 caracteristicas.getPoder(),caracteristicas.getPoder(),
                 GeradorDeSorte(),new Integer[20], new Integer[20]);
     } 

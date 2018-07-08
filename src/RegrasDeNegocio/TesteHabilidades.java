@@ -5,7 +5,7 @@ import DTO.Personagens.FolhaDeHabilidades;
 import DTO.Personagens.Jogador;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
-import utilidades.Log;
+import Utilidades.Log;
 
 public class TesteHabilidades {
     

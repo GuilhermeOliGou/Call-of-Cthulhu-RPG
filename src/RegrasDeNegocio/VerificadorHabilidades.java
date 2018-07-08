@@ -83,7 +83,12 @@ public class VerificadorHabilidades {
     
     public void ChecaHabilidadesAlterados(FolhaDeHabilidades habilidadesAlteradas){
         short mitos = habilidadesAlteradas.getMitosDeCthulhu();
+        this.jogador.getHabilidades().setMitosDeCthulhu(
+                (short)(this.jogador.getHabilidades().getMitosDeCthulhu()+mitos));
         EscreveAlteraçãoHabilidades(mitos);
+        
+        this.jogador.setMaxSanidade(
+                (short)(this.jogador.getMaxSanidade()-this.jogador.getHabilidades().getMitosDeCthulhu()));
         
         ChecaSetHabilidadeLuta(habilidadesAlteradas.getLuta());
         

@@ -1,12 +1,13 @@
 package Telas;
 
-import DTO.Personagens.Jogador;
 import RegrasDeNegocio.RegraNegocioException;
 import java.util.ArrayList;
 
 public interface FacadeRegraNegocio {
     
     //MENUS INICIAIS
+    
+    
     
     public void criaJogador(String nome) throws RegraNegocioException;
     
@@ -44,6 +45,8 @@ public interface FacadeRegraNegocio {
     
     //LOCAL E EVENTOS
     
+    
+    
    public boolean hasResposta() throws RegraNegocioException;
    
    public String getResposta() throws RegraNegocioException;
@@ -65,9 +68,6 @@ public interface FacadeRegraNegocio {
     public void resetaJogo() throws RegraNegocioException;
     
     public void resetaEPopula() throws RegraNegocioException;
-
-   
-
 
     
 }

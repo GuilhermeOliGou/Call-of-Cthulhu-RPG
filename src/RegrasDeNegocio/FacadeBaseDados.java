@@ -3,7 +3,6 @@ package RegrasDeNegocio;
 import DTO.ElementosDeSistema.*;
 import DTO.Itens.*;
 import DTO.Personagens.*;
-import DTO.Personagens.SetsDeHabilidade.*;
 
 import BaseDados.BaseDadosException;
 import java.util.List;
@@ -32,13 +31,9 @@ public interface FacadeBaseDados {
     
     public void AlteraJogador(List<Local> locais, Jogador jogador) throws BaseDadosException;
 
-    public void RemoveJogador(int idPersonagem) throws BaseDadosException;
+    public void RemoveJogador(int codigo) throws BaseDadosException;
 
     public List<Jogador> ListaJogadores() throws BaseDadosException;
-	
-	public void InicializaBancoDados() throws BaseDadosException;
-	
-	public void ResetaBancoDados() throws BaseDadosException;
     
 
     

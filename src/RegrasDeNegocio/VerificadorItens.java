@@ -2,7 +2,7 @@ package RegrasDeNegocio;
 
 import DTO.ElementosDeSistema.Resposta;
 import DTO.Personagens.Jogador;
-import utilidades.Log;
+import Utilidades.Log;
 
 public class VerificadorItens {
     
