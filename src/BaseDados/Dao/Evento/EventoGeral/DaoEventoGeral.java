@@ -10,9 +10,9 @@ import BaseDados.Dao.Evento.Utilidades.DaoUtilidadeEvento;
 import DTO.ElementosDeSistema.Evento;
 
 import java.util.LinkedList;
+import java.util.List;
 
 
 public interface DaoEventoGeral extends DaoUtilidadeEvento<Evento>{
-
     
 }

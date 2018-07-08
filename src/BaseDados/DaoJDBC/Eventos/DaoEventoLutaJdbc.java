@@ -15,8 +15,8 @@ import java.sql.SQLException;
 
 public class DaoEventoLutaJdbc extends BancoDadosJdbc implements DaoEventoLuta{
 
-    DaoEventoBase daoEventoBase;
-    DaoPersonagem daoPersonagem;
+    private DaoEventoBase daoEventoBase;
+    private DaoPersonagem daoPersonagem;
 
     public DaoEventoLutaJdbc(DaoEventoBase daoEventoBsae, DaoPersonagem daoPersonagem) throws BaseDadosException {
         super();
@@ -60,20 +60,5 @@ public class DaoEventoLutaJdbc extends BancoDadosJdbc implements DaoEventoLuta{
         catch (SQLException e){
             throw new BaseDadosException("Nao foi possivel encontrar Evento Luta");
         }
-    }
-
-    @Override
-    public void Insere(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Altera(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Remove(int codigo) throws BaseDadosException {
-
     }
 }

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class DaoCaracteristicasJdbc extends BancoDadosJdbc implements DaoCaracteristicas {
 
-    public DaoCaracteristicasJdbc() throws Exception{
+    public DaoCaracteristicasJdbc() throws BaseDadosException{
         super();
     }
 

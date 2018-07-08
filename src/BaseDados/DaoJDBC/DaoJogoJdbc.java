@@ -2,9 +2,8 @@ package BaseDados.DaoJDBC;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.DaoEventoJogador;
-import BaseDados.Dao.Evento.DaoLocal;
 import BaseDados.Dao.Personagem.DaoJogador;
-import BaseDados.DaoJogo;
+import BaseDados.Dao.Personagem.DaoJogo;
 import DTO.ElementosDeSistema.Local;
 import DTO.Personagens.Jogador;
 
@@ -15,9 +14,16 @@ public class DaoJogoJdbc extends BancoDadosJdbc implements DaoJogo{
     private DaoJogador daoJogador;
     private DaoEventoJogador daoEventoJogador;
 
-    public DaoJogoJdbc() throws BaseDadosException {
+    public DaoJogoJdbc(DaoJogador daoJogador, DaoEventoJogador daoEventoJogador) throws BaseDadosException {
+        super();
+        this.daoJogador = daoJogador;
+        this.daoEventoJogador = daoEventoJogador;
     }
 
+    @Override
+    public  List<Jogador> ListaJogos() throws BaseDadosException{
+        return daoJogador.Lista();
+    }
     @Override
     public Jogador CarregaJogo(int codigo) throws BaseDadosException {
         return daoJogador.Busca(codigo);
@@ -36,6 +42,6 @@ public class DaoJogoJdbc extends BancoDadosJdbc implements DaoJogo{
 
     @Override
     public void RemoveJogo(int codigo) throws BaseDadosException {
-
+        daoJogador.Remove(codigo);
     }
 }

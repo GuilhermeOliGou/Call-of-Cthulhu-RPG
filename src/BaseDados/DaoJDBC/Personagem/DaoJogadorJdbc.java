@@ -1,18 +1,15 @@
 package BaseDados.DaoJDBC.Personagem;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.DaoHabilidadeRequerida;
 import BaseDados.Dao.Personagem.DaoInventario;
 import BaseDados.Dao.Personagem.DaoJogador;
 import BaseDados.Dao.Personagem.DaoPersonagem;
-import BaseDados.Dao.Personagem.Utilidades.DaoHabilidades;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.Itens.Item;
 import DTO.Personagens.FolhaDeAtributos;
-import DTO.Personagens.FolhaDeHabilidades;
 import DTO.Personagens.Jogador;
 import DTO.Personagens.Personagem;
 
+import Utilidades.Log;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,7 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
     private DaoInventario daoInventario;
 
 
-    public DaoJogadorJdbc(DaoPersonagem daoPersonagem, DaoInventario daoInventario) throws Exception{
+    public DaoJogadorJdbc(DaoPersonagem daoPersonagem, DaoInventario daoInventario) throws BaseDadosException{
         super();
         this.daoPersonagem = daoPersonagem;
         this.daoInventario = daoInventario;
@@ -40,6 +37,7 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel Buscar Jogador");
         }
 
@@ -65,7 +63,12 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
             return jogador;
         }
         catch (SQLException e){
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontar Jogador");
+        }
+        catch (Exception e){
+            Log.gravaLog(e);
+            throw new BaseDadosException("Erro na criacao do Jogador");
         }
     }
 
@@ -88,12 +91,13 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
         try {
             ps.setShort(1, maxSanidade);
             ps.setShort(2, sanidadeAtual);
-            ps.setShort(3, sanidadeAtual);
+            ps.setShort(3, sorte);
             ps.setInt(4, id);
 
             ps.execute();
         }
         catch (SQLException e){
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel inserir Jogador");
         }
     }
@@ -117,12 +121,13 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
         try {
             ps.setShort(1, maxSanidade);
             ps.setShort(2, sanidadeAtual);
-            ps.setShort(3, sanidadeAtual);
+            ps.setShort(3, sorte);
             ps.setInt(4, id);
 
             ps.execute();
         }
         catch (SQLException e){
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel inserir Jogador");
         }
     }
@@ -140,6 +145,7 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
             ps.execute();
         }
         catch (SQLException e ){
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel remover Jogador");
 
         }
@@ -155,6 +161,7 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
             rs = ps.executeQuery();
 
         }catch (SQLException e){
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel realizar Lista Jogadores");
         }
 
@@ -183,6 +190,7 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
             if(jogadores.size() == 0) return null;
             return jogadores;
         }catch (SQLException e){
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encrontrar Lista Jogadores");
         }
 

@@ -1,13 +1,13 @@
 package RegrasDeNegocio;
 
 import BaseDados.BaseDadosException;
-import BaseDados.FacadeImplementada;
+import BaseDados.FacadeBaseDadosConcreta;
 import DTO.ElementosDeSistema.Local;
 import DTO.Itens.Item;
 import DTO.Personagens.Jogador;
 import java.util.ArrayList;
 import java.util.List;
-import utilidades.Log;
+import Utilidades.Log;
 
 public class IntermediarioBaseDados {
 
@@ -25,7 +25,7 @@ public class IntermediarioBaseDados {
         super();
         
         try{
-            this.BASEDADOS = new FacadeImplementada();   
+            this.BASEDADOS = new FacadeBaseDadosConcreta();
         }catch (BaseDadosException e){
             Log.gravaLog(e);
             throw new RegraNegocioException("FALHA AO INSTANCIAR OS ARQUIVOS DE JOGO!");

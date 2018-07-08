@@ -52,19 +52,4 @@ public class DaoEventoBaseJdbc extends BancoDadosJdbc implements DaoEventoBase {
         }
 
     }
-
-    @Override
-    public void Insere(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Altera(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Remove(int codigo) throws BaseDadosException {
-
-    }
 }

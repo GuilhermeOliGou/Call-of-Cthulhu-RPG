@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class DaoHabilidadesLutaJogadorJdbc extends BancoDadosJdbc implements DaoHabilidadesLutaJogador{
 
-    public DaoHabilidadesLutaJogadorJdbc() throws Exception{
+    public DaoHabilidadesLutaJogadorJdbc() throws BaseDadosException{
         super();
     }
 

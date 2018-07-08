@@ -15,7 +15,7 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
     private DaoAtributos daoAtributos;
 
 
-    public DaoPersonagemJdbc(DaoAtributos daoAtributos) throws Exception{
+    public DaoPersonagemJdbc(DaoAtributos daoAtributos) throws BaseDadosException{
         super();
         this.daoAtributos = daoAtributos;
     }
