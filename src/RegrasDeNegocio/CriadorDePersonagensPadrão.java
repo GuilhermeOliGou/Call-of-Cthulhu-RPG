@@ -4,7 +4,7 @@ import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import DTO.Personagens.Jogador;
 
-public class CriadorDePersonagensPadrão {
+public class CriadorDePersonagensPadrão{
     
     //ATRIBUTOS
     
@@ -18,7 +18,7 @@ public class CriadorDePersonagensPadrão {
     
     //FUNÇÕES PRINCIPAIS
     
-    public Jogador GeradorDeJogador(int id, String nome, int idade){
+    public Jogador CriarJogador(int id, String nome, int idade)throws RegraNegocioException{
         FolhaDeCaracteristicas caracteristicas = GeradorDeFolhaDeCaracteristicas();
         FolhaDeAtributos atributos = GeradorDeFolhaDeAtributos(caracteristicas);
         return new Jogador(id,atributos,(short)idade,nome,1,

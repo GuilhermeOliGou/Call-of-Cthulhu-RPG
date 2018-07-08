@@ -24,10 +24,7 @@ public interface FacadeRegraNegocio {
     
     
     
-    public boolean hasBatalha() throws RegraNegocioException;
-    
-    
-    public void realizaAcaoBatalha(int indice) throws RegraNegocioException;
+    public boolean hasBatalha() throws RegraNegocioException;    
     
     public ArrayList<String> getAcoesBatalha() throws RegraNegocioException;
     
@@ -35,17 +32,13 @@ public interface FacadeRegraNegocio {
     
     public String getHPPersonagem() throws RegraNegocioException;
     
-    public String getHPMaxPersonagem() throws RegraNegocioException;
-    
     public String getMPPersonagem() throws RegraNegocioException;
-    
-    public String getMPMaxPersonagem() throws RegraNegocioException;
     
     public String getNomeInimigo() throws RegraNegocioException;
     
     public String getHPInimigo() throws RegraNegocioException;
     
-    public String getHPMaxInimigo() throws RegraNegocioException;
+    public void realizaAcaoBatalha(int indice) throws RegraNegocioException;
     
     
     

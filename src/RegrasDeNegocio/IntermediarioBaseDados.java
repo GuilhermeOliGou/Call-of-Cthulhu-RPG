@@ -6,13 +6,14 @@ import DTO.ElementosDeSistema.Local;
 import DTO.Itens.Item;
 import DTO.Personagens.Jogador;
 import java.util.ArrayList;
+import java.util.List;
 import utilidades.Log;
 
 public class IntermediarioBaseDados {
 
     //ATRIBUTOS
     
-    private final FacadeBaseDados baseDados;
+    private final FacadeBaseDados BASEDADOS;
     
     private ArrayList<Jogador> jogadoresCarregados;
     private ArrayList<Item> itensCarregados;
@@ -24,7 +25,7 @@ public class IntermediarioBaseDados {
         super();
         
         try{
-            this.baseDados = new FacadeImplementada();   
+            this.BASEDADOS = new FacadeImplementada();   
         }catch (BaseDadosException e){
             Log.gravaLog(e);
             throw new RegraNegocioException("FALHA AO INSTANCIAR OS ARQUIVOS DE JOGO!");
@@ -42,13 +43,40 @@ public class IntermediarioBaseDados {
             jogadoresCarregados.remove(0);
         }
         try{
-            Jogador novo = baseDados.LeJogador(codigo);
+            Jogador novo = this.BASEDADOS.LeJogador(codigo);
             jogadoresCarregados.add(novo);
             return novo;
         }catch(BaseDadosException e){
             Log.gravaLog(e);
             throw new RegraNegocioException("CÓDIGO DE JOGADOR NÃO EXISTENTE");
         }        
+    }
+    
+    public void CarregaTodosJogadores(){
+        try{
+            List<Jogador> todosJogadores = this.BASEDADOS.ListaJogadores();
+            todosJogadores.forEach((j) -> {
+                jogadoresCarregados.add(j);
+            });
+        }catch(BaseDadosException e){
+            Log.gravaLog(e);
+        }        
+    }
+    
+    public ArrayList<Jogador> DevolveTodosJogadores(){
+        return this.jogadoresCarregados;
+    }
+    
+    public Jogador DevolveJogador(int indice){
+        return jogadoresCarregados.get(indice);
+    }
+    
+    public boolean ListaDeJogadoresVazia(){
+        return this.jogadoresCarregados == null;
+    }
+    
+    public void LimpaJogadores(){
+        this.jogadoresCarregados = new ArrayList<>();
     }
     
     public Item CarregaItem(int codigo) throws RegraNegocioException{
@@ -60,7 +88,7 @@ public class IntermediarioBaseDados {
             itensCarregados.remove(0);
         }
         try{
-            Item novo = baseDados.LeItem(codigo);
+            Item novo = this.BASEDADOS.LeItem(codigo);
             itensCarregados.add(novo);
             return novo;
         }catch(BaseDadosException e){
@@ -78,7 +106,7 @@ public class IntermediarioBaseDados {
             locaisCarregados.remove(0);
         }
         try{
-            Local novo = baseDados.LeLocal(codigo);
+            Local novo = this.BASEDADOS.LeLocal(codigo);
             locaisCarregados.add(novo);
             return novo;
         }catch(BaseDadosException e){
