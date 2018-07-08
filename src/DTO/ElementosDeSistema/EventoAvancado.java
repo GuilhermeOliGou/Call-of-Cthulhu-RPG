@@ -7,7 +7,7 @@ public class EventoAvancado extends Evento {
     
     private String descricaoFalha;
     
-    private int[] itensNecessários;
+    private Integer[] itensNecessários;
     private FolhaDeCaracteristicas característicasNecessarias;
     private FolhaDeHabilidades habilidadesNecessarias;
 
@@ -23,7 +23,7 @@ public class EventoAvancado extends Evento {
     }
 
     public EventoAvancado(String descricaoFalha,
-            int[] itensNecessários, FolhaDeCaracteristicas característicasNecessarias, 
+            Integer[] itensNecessários, FolhaDeCaracteristicas característicasNecessarias, 
             FolhaDeHabilidades habilidadesNecessarias, 
             int id, String nome, String descricao, 
             int localDeRetorno, Resposta respostaDoEvento, 
@@ -51,11 +51,11 @@ public class EventoAvancado extends Evento {
     
     
 
-    public int[] getItensNecessários() {
+    public Integer[] getItensNecessários() {
         return itensNecessários;
     }
 
-    public void setItensNecessários(int[] itensNecessários) {
+    public void setItensNecessários(Integer[] itensNecessários) {
         this.itensNecessários = itensNecessários;
     }
 

@@ -11,7 +11,7 @@ public class Jogador extends Personagem {
     private short sanidadeAtual;
     private short sorte;
     
-    protected Item[] inventario; //20 itens
+    protected Item[] inventario;
 
     private FolhaDeHabilidades habilidades;
     
@@ -90,11 +90,11 @@ public class Jogador extends Personagem {
     
     
 
-    public Item[] getInventario() {
+    public Item[] getInventario() throws ArrayIndexOutOfBoundsException{
         return inventario;
     }
 
-    public void setInventario(Item[] inventario) {
+    public void setInventario(Item[] inventario) throws ArrayIndexOutOfBoundsException{
         this.inventario = inventario;
     }
     

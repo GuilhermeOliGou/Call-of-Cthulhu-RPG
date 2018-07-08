@@ -7,11 +7,10 @@ public class Resposta {
     
     //ATRIBUTOS
     
-    private int id;
-    
     private FolhaDeAtributos atributosAlterados;
-    private int[] itensAdicionados;
-    private int[] itensRemovidos;
+    
+    private Integer[] itensAdicionados;
+    private Integer[] itensRemovidos;
     
     private short sanidadeAtualAlterada;
     private FolhaDeHabilidades habilidadesAlteradas;
@@ -21,23 +20,19 @@ public class Resposta {
     public Resposta() {
         super();
         
-        this.id = -1;
-        
         this.atributosAlterados = new FolhaDeAtributos();
         
         this.sanidadeAtualAlterada = 0;
         this.habilidadesAlteradas = new FolhaDeHabilidades();
     }
 
-    public Resposta(int id,  
-            FolhaDeAtributos atributosAlterados, int[] itensAdicionados, 
-            int[] itensRemovidos, 
+    public Resposta(FolhaDeAtributos atributosAlterados, 
+            Integer[] itensAdicionados, Integer[] itensRemovidos, 
             short sanidadeAtualAlterada, FolhaDeHabilidades habilidadesAlteradas) {
         super();
         
-        this.id = id;
-        
         this.atributosAlterados = atributosAlterados;
+        
         this.itensAdicionados = itensAdicionados;
         this.itensRemovidos = itensRemovidos;
         
@@ -45,17 +40,7 @@ public class Resposta {
         this.habilidadesAlteradas = habilidadesAlteradas;
     }
     
-    //GETTERS AND SETTERS
-
-    public int getID() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    
+    //GETTERS AND SETTERS   
 
     public FolhaDeAtributos getAtributosAlterados() {
         return atributosAlterados;
@@ -64,20 +49,22 @@ public class Resposta {
     public void setAtributosAlterados(FolhaDeAtributos atributosAlterados) {
         this.atributosAlterados = atributosAlterados;
     }
+    
+    
 
-    public int[] getItensAdicionados(){
+    public Integer[] getItensAdicionados() throws ArrayIndexOutOfBoundsException{
         return itensAdicionados;
     }
 
-    public void setItensAdicionados(int[] itensAdicionados) {
+    public void setItensAdicionados(Integer[] itensAdicionados) throws ArrayIndexOutOfBoundsException{
         this.itensAdicionados = itensAdicionados;
     }
 
-    public int[] getItensRemovidos() {
+    public Integer[] getItensRemovidos() throws ArrayIndexOutOfBoundsException{
         return itensRemovidos;
     }
 
-    public void setItensRemovidos(int[] itensRemovidos) {
+    public void setItensRemovidos(Integer[] itensRemovidos) throws ArrayIndexOutOfBoundsException{
         this.itensRemovidos = itensRemovidos;
     }
     
