@@ -4,6 +4,8 @@ import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.EventoGeral.*;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Evento;
+import Utilidades.Log;
+
 import java.sql.SQLException;
 import java.util.*;
 
@@ -15,9 +17,9 @@ public class DaoEventoGeralJdbc extends BancoDadosJdbc implements DaoEventoGeral
         super();
 
         listaDao = new HashMap<>();
-        listaDao.put("base", daoEventoBase);
-        listaDao.put("avancado", daoEventoAvancado);
-        listaDao.put("luta", daoEventoLuta);
+        listaDao.put("Evento", daoEventoBase);
+        listaDao.put("EventoAvancado", daoEventoAvancado);
+        listaDao.put("EventoLuta", daoEventoLuta);
     }
 
 
@@ -31,6 +33,8 @@ public class DaoEventoGeralJdbc extends BancoDadosJdbc implements DaoEventoGeral
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel realizar Busca Evento");
         }
 
@@ -41,25 +45,13 @@ public class DaoEventoGeralJdbc extends BancoDadosJdbc implements DaoEventoGeral
                 DaoEvento dao = listaDao.get(tipo);
                 evento = dao.Busca(codigo);
             }
+            fechaConexao();
             return evento;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Evento");
         }
-    }
-
-    @Override
-    public void Insere(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Altera(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Remove(int codigo) throws BaseDadosException {
-
     }
 }

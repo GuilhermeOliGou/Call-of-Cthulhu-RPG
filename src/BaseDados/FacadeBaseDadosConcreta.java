@@ -16,7 +16,7 @@ import BaseDados.Dao.Personagem.DaoJogador;
 import BaseDados.Dao.Personagem.DaoJogo;
 import BaseDados.Dao.Personagem.DaoPersonagem;
 import BaseDados.Dao.Personagem.Utilidades.*;
-import BaseDados.DaoJDBC.DaoJogoJdbc;
+import BaseDados.DaoJDBC.Eventos.Geral.DaoJogoJdbc;
 import BaseDados.DaoJDBC.Eventos.DaoEventoAvancadoJdbc;
 import BaseDados.DaoJDBC.Eventos.DaoEventoBaseJdbc;
 import BaseDados.DaoJDBC.Eventos.DaoEventoLutaJdbc;

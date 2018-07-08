@@ -3,6 +3,7 @@ package BaseDados.DaoJDBC.Eventos.Geral;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.DaoEventoJogador;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,10 +34,13 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
                 int id = rs.getInt("id_evento");
                 idEventos.add(id);
             }
+            fechaConexao();
             if(idEventos.size() == 0) return null;
             return idEventos;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Local Jogador");
         }
     }
@@ -49,8 +53,11 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
         try {
             ps.setInt(1, idPersonagem);
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel gerar Evento Jogador");
         }
 
@@ -66,8 +73,11 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
             ps.setInt(2, idPersonagem);
 
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel salvar Evento Jogador");
         }
     }
@@ -79,8 +89,11 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
         try {
             ps.setInt(1, idPersonagem);
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel remover Evento Jogador");
         }
     }

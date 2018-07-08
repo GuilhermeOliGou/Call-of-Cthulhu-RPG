@@ -51,34 +51,4 @@ public class DaoHabilidadeRequeridaJdbc extends BancoDadosJdbc implements DaoHab
             throw new BaseDadosException("Nao foi possivel encontrar Folha Habilidades Resposta");
         }
     }
-
-    @Override
-    public void Insere(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Altera(Evento evento) throws BaseDadosException {
-        daoLutaRequerida.Altera(evento);
-        daoTiroRequerida.Altera(evento);
-
-        FolhaDeHabilidades habilidades = evento.getRespostaDoEvento().getHabilidadesAlteradas();
-        abreConexao();
-        preparaComandoSQL("UPDATE folha_habilidades SET mitos_cthulhu = ? WHERE id_evento = ?");
-
-        try{
-            ps.setShort(1, habilidades.getMitosDeCthulhu());
-            ps.setInt(2, evento.getID());
-
-            ps.execute();
-        }
-        catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel modificar Folha Habilidades Resposta");
-        }
-    }
-
-    @Override
-    public void Remove(int codigo) throws BaseDadosException {
-
-    }
 }

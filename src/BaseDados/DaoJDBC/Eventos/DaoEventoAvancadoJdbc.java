@@ -12,6 +12,7 @@ import DTO.ElementosDeSistema.EventoAvancado;
 import DTO.ElementosDeSistema.Resposta;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import DTO.Personagens.FolhaDeHabilidades;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 
@@ -53,6 +54,8 @@ public class DaoEventoAvancadoJdbc extends BancoDadosJdbc implements DaoEventoAv
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel Buscar Evento Avancado");
         }
 
@@ -67,9 +70,12 @@ public class DaoEventoAvancadoJdbc extends BancoDadosJdbc implements DaoEventoAv
 
                 eventoAvancado = new EventoAvancado(falha, itemsRequeridos, caracteristicas, habilidades, codigo, nome, descricao, idLocalRetorno, resposta, eventoUnico);
             }
+            fechaConexao();
             return eventoAvancado;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Evento Avancado");
         }
     }

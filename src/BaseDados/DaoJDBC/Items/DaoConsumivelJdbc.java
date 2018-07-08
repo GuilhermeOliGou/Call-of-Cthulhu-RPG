@@ -5,6 +5,7 @@ import BaseDados.Dao.Items.DaoItem;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Itens.Item;
 import DTO.Itens.ItemConsumivel;
+import Utilidades.Log;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -34,95 +35,26 @@ public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
         }
         catch (SQLException e){
             fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Erro no acesso");
         }
 
         try{
+            ItemConsumivel consumivel = null;
             if(rs.next()) {
 
                 short hpRecuperada = rs.getShort("hp_recuperada");
                 short mpRecuperada = rs.getShort("mp_recuperada");
 
-                fechaConexao();
-
-                return new ItemConsumivel(item.getId(), item.getNome(), item.getDescricao(),
+                consumivel = new ItemConsumivel(item.getId(), item.getNome(), item.getDescricao(),
                         hpRecuperada, mpRecuperada);
             }
+            fechaConexao();
+            return consumivel;
         }catch (SQLException e ){
             fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Item nao encontrado");
         }
-        return null;
-    }
-
-    @Override
-    public void Insere(Item item) throws BaseDadosException {
-
-        ItemConsumivel itemConsumivel = (ItemConsumivel) item;
-        daoItem.Insere(itemConsumivel);
-
-        abreConexao();
-        try{
-            preparaComandoSQL("INSERT INTO item_consumivel (hp_recuperada, mp_recuperada, id_item) VALUES (?, ?, ?)");
-            ps.setShort(1, itemConsumivel.getHpRecuperado());
-            ps.setShort(2, itemConsumivel.getMpRecuperado());
-            ps.setInt(3, itemConsumivel.getId());
-
-            ps.execute();
-
-        }catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel adicionar Item");
-        }
-    }
-
-    @Override
-    public void Altera(Item item) throws BaseDadosException {
-
-        ItemConsumivel itemConsumivel = (ItemConsumivel) item;
-
-        daoItem.Altera(itemConsumivel);
-
-        abreConexao();
-        try{
-            preparaComandoSQL("UPDATE item_consumivel SET hp_recuperada = ?, mp_recuperada = ?");
-            ps.setShort(1, itemConsumivel.getHpRecuperado());
-            ps.setShort(2, itemConsumivel.getMpRecuperado());
-            ps.setInt(4, itemConsumivel.getId());
-            ps.execute();
-        }catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel modificar Arma");
-        }
-    }
-
-    public void Remove(int codigo) throws BaseDadosException{
-        abreConexao();
-        try {
-
-            preparaComandoSQL("DELETE FROM item_consumivel WHERE id_item = ?");
-            ps.setInt(1, codigo);
-            ps.execute();
-
-            fechaConexao();
-        }
-        catch(SQLException e){
-            fechaConexao();
-            throw new BaseDadosException("Não foi possível remover o Item");
-        }
-        daoItem.Remove(codigo);
-    }
-
-    @Override
-    public List<Item> Lista() throws BaseDadosException {
-        List<Integer> items = daoItem.ListaConsumivel();
-        List<Item> consumiveis = new ArrayList<>();
-        for(Integer item : items)
-            consumiveis.add(Busca(item));
-
-        return consumiveis;
-    }
-
-
-    public List<ItemConsumivel> ListaDoPersonagem(int codigo) throws BaseDadosException {
-        return null;
     }
 }

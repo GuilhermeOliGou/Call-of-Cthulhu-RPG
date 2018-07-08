@@ -15,6 +15,7 @@ import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.Resposta;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeHabilidades;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -47,6 +48,8 @@ public class DaoRespostaJdbc extends BancoDadosJdbc implements DaoResposta {
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel Buscar Resposta");
         }
         try {
@@ -63,27 +66,9 @@ public class DaoRespostaJdbc extends BancoDadosJdbc implements DaoResposta {
             return null;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Buscar Resposta");
         }
-    }
-
-    @Override
-    public void Insere(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Altera(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Remove(int codigo) throws BaseDadosException {
-
-    }
-
-
-    public List<Resposta> Lista() throws BaseDadosException {
-        return null;
     }
 }

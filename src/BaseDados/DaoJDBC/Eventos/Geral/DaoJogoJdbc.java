@@ -1,9 +1,10 @@
-package BaseDados.DaoJDBC;
+package BaseDados.DaoJDBC.Eventos.Geral;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.DaoEventoJogador;
 import BaseDados.Dao.Personagem.DaoJogador;
 import BaseDados.Dao.Personagem.DaoJogo;
+import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Local;
 import DTO.Personagens.Jogador;
 

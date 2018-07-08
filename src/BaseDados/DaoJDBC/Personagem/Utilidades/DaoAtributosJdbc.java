@@ -7,6 +7,7 @@ import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import DTO.Personagens.Personagem;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 
@@ -29,10 +30,13 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel realizar a busca");
         }
 
         try {
+            FolhaDeAtributos atributos = null;
             if(rs.next()){
 
                 FolhaDeCaracteristicas caracteristicas = daoCaracteristicas.Busca(codigo);
@@ -43,13 +47,16 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
                 short mpAtual = rs.getShort("mp_atual");
                 short bonusDano = rs.getShort("bonus_dano");
 
-                return new FolhaDeAtributos(caracteristicas, maxHp, maxMp, hpAtual, mpAtual, bonusDano);
+                atributos = new FolhaDeAtributos(caracteristicas, maxHp, maxMp, hpAtual, mpAtual, bonusDano);
             }
+            fechaConexao();
+            return atributos;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Folha Atributos");
         }
-        return null;
     }
 
     @Override
@@ -72,6 +79,8 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             ps.execute();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel inserir Folha Atributos");
         }
 
@@ -97,8 +106,11 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             ps.setInt(6, personagem.getId());
 
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel modificar Folha Atributos");
         }
 
@@ -117,6 +129,8 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
             ps.setInt(1, codigo);
             ps.execute();
         }catch(SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Não foi possível remover Folha Atributos");
         }
     }
