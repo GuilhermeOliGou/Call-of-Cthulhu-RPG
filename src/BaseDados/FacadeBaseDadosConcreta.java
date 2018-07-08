@@ -1,8 +1,12 @@
 package BaseDados;
+
 import BaseDados.Dao.*;
 import BaseDados.Dao.Evento.DaoEventoJogador;
 import BaseDados.Dao.Evento.DaoLocal;
-import BaseDados.Dao.Evento.EventoGeral.*;
+import BaseDados.Dao.Evento.EventoGeral.DaoEventoAvancado;
+import BaseDados.Dao.Evento.EventoGeral.DaoEventoBase;
+import BaseDados.Dao.Evento.EventoGeral.DaoEventoGeral;
+import BaseDados.Dao.Evento.EventoGeral.DaoEventoLuta;
 import BaseDados.Dao.Evento.Resposta.*;
 import BaseDados.Dao.Items.DaoArma;
 import BaseDados.Dao.Items.DaoConsumivel;
@@ -15,15 +19,12 @@ import BaseDados.Dao.Personagem.DaoInventario;
 import BaseDados.Dao.Personagem.DaoJogador;
 import BaseDados.Dao.Personagem.DaoJogo;
 import BaseDados.Dao.Personagem.DaoPersonagem;
-import BaseDados.Dao.Personagem.Utilidades.*;
-import BaseDados.DaoJDBC.Eventos.Geral.DaoJogoJdbc;
+import BaseDados.Dao.Personagem.Utilidades.DaoAtributos;
+import BaseDados.Dao.Personagem.Utilidades.DaoCaracteristicas;
 import BaseDados.DaoJDBC.Eventos.DaoEventoAvancadoJdbc;
 import BaseDados.DaoJDBC.Eventos.DaoEventoBaseJdbc;
 import BaseDados.DaoJDBC.Eventos.DaoEventoLutaJdbc;
-import BaseDados.DaoJDBC.Eventos.Geral.DaoEventoGeralJdbc;
-import BaseDados.DaoJDBC.Eventos.Geral.DaoEventoJogadorJdbc;
-import BaseDados.DaoJDBC.Eventos.Geral.DaoLocalJdbc;
-import BaseDados.DaoJDBC.Eventos.Geral.DaoRespostaJdbc;
+import BaseDados.DaoJDBC.Eventos.Geral.*;
 import BaseDados.DaoJDBC.Eventos.Utilidades.*;
 import BaseDados.DaoJDBC.Eventos.Utilidades.Resposta.*;
 import BaseDados.DaoJDBC.Items.*;
@@ -32,17 +33,18 @@ import BaseDados.DaoJDBC.Items.Utilidades.HabilidadesLutaItemJdbc;
 import BaseDados.DaoJDBC.Items.Utilidades.HabilidadesTiroItemJdbc;
 import BaseDados.DaoJDBC.Personagem.DaoJogadorJdbc;
 import BaseDados.DaoJDBC.Personagem.DaoPersonagemJdbc;
-import BaseDados.DaoJDBC.Personagem.Utilidades.*;
+import BaseDados.DaoJDBC.Personagem.Utilidades.DaoAtributosJdbc;
+import BaseDados.DaoJDBC.Personagem.Utilidades.DaoCaracteristicasJdbc;
 import DTO.ElementosDeSistema.Local;
-import DTO.Personagens.*;
 import DTO.Itens.Item;
+import DTO.Personagens.Jogador;
 import RegrasDeNegocio.FacadeBaseDados;
-
 
 import java.util.List;
 
 public class FacadeBaseDadosConcreta implements FacadeBaseDados {
 
+    private Popula popula;
     private DaoItemGeral daoItemGeral;
     private DaoLocal daoLocal;
 
@@ -100,6 +102,8 @@ public class FacadeBaseDadosConcreta implements FacadeBaseDados {
         this.daoLocal = new DaoLocalJdbc(daoEventoGeral, daoEventoJogador);
 
         this.daoJogo = new DaoJogoJdbc(daoJogador, daoEventoJogador);
+
+        this.popula = new Popula();
     }
 
 
@@ -147,4 +151,13 @@ public class FacadeBaseDadosConcreta implements FacadeBaseDados {
         return daoJogo.ListaJogos();
     }
 
+
+    public void InicializaBancoDados() throws BaseDadosException {
+        popula.criaTabelas();
+        popula.populaTabelas();
+    }
+    public void ResetaBancoDados() throws BaseDadosException {
+        popula.esvaziaTabelas();
+        InicializaBancoDados();
+    }
 }

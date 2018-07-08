@@ -3,9 +3,6 @@ package BaseDados.DaoJDBC.Eventos.Utilidades.Resposta;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.Resposta.DaoCaracteristicasResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
-import DTO.ElementosDeSistema.Resposta;
-import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import Utilidades.Log;
 

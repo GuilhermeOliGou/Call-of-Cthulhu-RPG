@@ -1,10 +1,8 @@
 package BaseDados.DaoJDBC.Items;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Items.DaoItemGeral;
 import BaseDados.Dao.Personagem.DaoInventario;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.Itens.Item;
 import DTO.Personagens.Jogador;
 import DTO.Personagens.Personagem;
 import Utilidades.Log;
@@ -26,7 +24,7 @@ public class DaoInventarioJdbc extends BancoDadosJdbc implements DaoInventario {
 
         try {
             ps.setInt(1, codigo);
-            ps.executeQuery();
+            rs = ps.executeQuery();
         }
         catch (SQLException e){
             throw new BaseDadosException("Nao foi possivel buscar Inventario Jogador");
@@ -64,6 +62,8 @@ public class DaoInventarioJdbc extends BancoDadosJdbc implements DaoInventario {
         int id = personagem.getId();
         Integer[] inventario = jogador.getInventario();
         Integer[] quantidade = jogador.getQuantidades();
+
+        if(inventario == null) return;
 
         abreConexao();
         preparaComandoSQL("INSERT INTO inventario (id_personagem, id_item, quantidade) VALUES (?, ?, ?)");

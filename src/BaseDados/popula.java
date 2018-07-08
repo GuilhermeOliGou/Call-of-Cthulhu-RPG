@@ -1,113 +1,38 @@
 package BaseDados;
 
-public class popula {
+import BaseDados.DaoJDBC.BancoDadosJdbc;
+import Utilidades.Log;
 
-    public String criaTabelas() {
-        String texto = ""
-                + "Create database coo_ep2_v1;"
-                
-                + "Create table personagem("
-                + "id_personagem int not null primary key auto increment,"
-                + "id_atributos int not null,"
-                + "idade int not null,"
-                + "id_inventario int not null,"
-                + ""
-                + "constraint fk_folha_atributos_personagem foreign key (id_personagem) references folhaAtributos(id_atributos),"
-                + "constraint fk_inventario_personagem foreign key (id_inventario) references inventario(id_inventario)"
-                + ");"
-                + ""
-                + "Create table folha_atributos("
-                + "id_atributos int not null auto increment primary key,"
-                + "maxHp int not null,"
-                + "maxMP  int not null,"
-                + "hpAtual  int not null,"
-                + "mpAtual  int not null,"
-                + "bonusDano  int not null"
-                + ");"
-                + ""
-                + "Create table caracteristicas("
-                + "id_caracteristicas int not null auto increment primary key,"
-                + "forca int not null,"
-                + "constituição int not null,"
-                + "tamanho int not null,"
-                + "destreza int not null,"
-                + "poder int not null"
-                + ");"
-                + ""
-                + "Create table habilidades_luta("
-                + "id_luta int not null auto increment primary key,"
-                + "esquiva int not null,"
-                + "luta_livre int not null,"
-                + "luta_lanca int not null, "
-                + "luta_espada int not null,"
-                + "luta_chicote int not null"
-                + ");"
-                + ""
-                + "Create table habilidades_tiro("
-                + "id_tiro int not null auto increment primary key,"
-                + "tiro_pistola int not null,"
-                + "tiro_rifle int not null,"
-                + "tiro_submetralhadora int not null,"
-                + "arremesso int not null"
-                + ");"
-                + ""
-                + "Create table item("
-                + "id_item int not null auto increment primary key,"
-                + "nome varchar(35) not null,"
-                + "descricao varchar(100) not null"
-                + ");"
-                + ""
-                + "Create table item_Consumivel("
-                + "id_item_consumivel int not null auto increment primary key,"
-                + "id_item int not null,"
-                + "hp_recuperada int not null,"
-                + "mp_recucuperada int not null,"
-                + "quantidade int not null,"
-                + ""
-                + "constraint fk_item_item_consumivel foreign key (id_item) references item(id_item)"
-                + ");"
-                + ""
-                + ""
-                + "Create table arma("
-                + "id_arma int not null auto increment primary key,"
-                + "id_item int not null,"
-                + ""
-                + "id_habilidadesLuta"
-                + "id_habilidadesTiro"
-                + ""
-                + "constraint fk_item_arma foreign key (id_item) references item(id_item)"
-                + "constraint fk_habilidadetiro_arma foreign key (id_arma) references ha"
-                + ""
-                + ");"
-                + ""
-                + ""
-                + "Create table folhaDano("
-                + "id_folha_dano int not null auto increment primary key,"
-                + "adicional int not null,"
-                + "artodoamento int not null,"
-                + ""
-                + ""//por as rolagens uma por uma, falta saber quantas são
-                + ""
-                + ");"
-                + ""
-                + "Create table jogador("
-                + "id_jogador int not null primary key,"
-                + "id_personagem int not null,"
-                + "id_habilidades int not null,"
-                + "max_sanidade int not null,"
-                + "sanidade_atual int not null,"
-                + "sorte int not null,"
-                + ""
-                + "constraint fk_personagem_jogador foreign key (id_personagem) references personagem(id_personagem),"
-                + "constraint fk_folha_habilidades_jogador foreign key (id_habilidades) references folha_habilidades(id_habilidades)"
-                + "" //Falta a table folha_habilidades...
-                + ");"
-                + "";
+import java.sql.SQLException;
 
-        return texto;
+public class Popula extends BancoDadosJdbc {
+
+    public Popula() throws BaseDadosException {
+        super();
     }
 
-    public String populaTabelas() {
+    public void criaTabelas() throws BaseDadosException {
+        abreConexao();
+        preparaComandoSQL("CREATE TABLE item_arma(\n" +
+                "\tid_arma INT NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
+                "\tid_item INT NOT NULL,\n" +
+                "\tusos_round SMALLINT NOT NULL,\n" +
+                "\ttamanho_pente SMALLINT NOT NULL,\n" +
+                "\tmal_funcionamento TINYINT(1) NOT NULL\n" +
+                ");");
+
+        try {
+            ps.execute();
+            fechaConexao();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
+            throw new BaseDadosException("Nao foi possivel Criar Tabelas");
+        }
+    }
+
+    public void populaTabelas() throws BaseDadosException {
 
         String texto = ""
                 + "insert into Jogadores(idJogador) values(1);"
@@ -130,7 +55,53 @@ public class popula {
                 + "insert into Eventos(idJogador,idLocal,nomeEvento,descricao,idLocalRetorno,eventoUnico,qntTrigger) values(1,3,'voltar para o corredor','voltar para o corredor',2,1,0);"
                 + "insert into Eventos(idJogador,idLocal,nomeEvento,descricao,idLocalRetorno,eventoUnico,qntTrigger) values(1,5,'voltar para o corredor','voltar para o corredor',1,1,0);"
                 + "insert into Eventos(idJogador,idLocal,nomeEvento,descricao,idLocalRetorno,eventoUnico,qntTrigger) values(1,5,'fazer o EP de COO','Terminar o EP de COO para entregar (Urgencia)',1,1,0);";
-        return texto;
+
+        abreConexao();
+        preparaComandoSQL(texto);
+        try {
+            ps.execute();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
+            throw new BaseDadosException("Nao foi possivel Popular Tabelas");
+        }
     }
 
+    public void esvaziaTabelas() throws BaseDadosException {
+        abreConexao();
+        preparaComandoSQL("DELETE FROM item;" +
+                "DELETE FROM item_arma;" +
+                "DELETE FROM item_consumivel;" +
+                "DELETE FROM local;" +
+                "DELETE FROM evento;" +
+                "DELETE FROM evento_avancado;" +
+                "DELETE FROM evento_luta;" +
+                "DELETE FROM resposta;" +
+                "DELETE FROM item_modificado;" +
+                "DELETE FROM item_requerido;" +
+                "DELETE FROM folha_habilidades;" +
+                "DELETE FROM habilidades_tiro;" +
+                "DELETE FROM habilidades_luta;" +
+                "DELETE FROM habilidades_resposta;" +
+                "DELETE FROM habilidades_tiro_resposta;" +
+                "DELETE FROM habiliadades_luta_resposta;" +
+                "DELETE FROM personagem;" +
+                "DELETE FROM folha_atributos;" +
+                "DELETE FROM folha_caracteristicas;" +
+                "DELETE FROM folha_caracteristicas_resposta;" +
+                "DELETE FROM inventario;" +
+                "DELETE FROM evento_jogador;" +
+                "DELETE FROM jogador;" +
+                "DELETE FROM folha_dano");
+        try {
+            ps.execute();
+            fechaConexao();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
+            throw new BaseDadosException("Nao foi possivel Esvaziar Tabelas");
+        }
+    }
 }

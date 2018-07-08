@@ -2,12 +2,7 @@ package BaseDados.DaoJDBC.Eventos.Utilidades;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.DaoHabilidadeTiroRequerida;
-import BaseDados.Dao.DaoHabilidadesLutaRequerida;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
-import DTO.ElementosDeSistema.EventoAvancado;
-import DTO.Personagens.FolhaDeHabilidades;
-import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 
 import java.sql.SQLException;

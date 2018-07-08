@@ -1,16 +1,12 @@
 package BaseDados.DaoJDBC.Items.Utilidades;
 
 import BaseDados.BaseDadosException;
-
 import BaseDados.Dao.Items.Utilidades.DaoFolhaDano;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.Itens.Arma;
 import DTO.Itens.FolhaDano;
-import DTO.Itens.Item;
 import Utilidades.Log;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class DaoFolhaDanoJdbc extends BancoDadosJdbc implements DaoFolhaDano {
 

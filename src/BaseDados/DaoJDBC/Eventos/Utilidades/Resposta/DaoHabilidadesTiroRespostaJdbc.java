@@ -3,9 +3,6 @@ package BaseDados.DaoJDBC.Eventos.Utilidades.Resposta;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.Resposta.DaoHabilidadesTiroResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
-import DTO.ElementosDeSistema.Resposta;
-import DTO.Personagens.FolhaDeHabilidades;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 
 import java.sql.SQLException;

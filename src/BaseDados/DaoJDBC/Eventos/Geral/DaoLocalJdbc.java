@@ -2,15 +2,14 @@ package BaseDados.DaoJDBC.Eventos.Geral;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.DaoEventoJogador;
-import BaseDados.Dao.Evento.EventoGeral.DaoEventoGeral;
 import BaseDados.Dao.Evento.DaoLocal;
+import BaseDados.Dao.Evento.EventoGeral.DaoEventoGeral;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.Local;
 import Utilidades.Log;
 
 import java.sql.SQLException;
-
 import java.util.LinkedList;
 import java.util.List;
 

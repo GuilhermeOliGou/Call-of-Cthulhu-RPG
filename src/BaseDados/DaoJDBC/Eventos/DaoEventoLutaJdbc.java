@@ -1,7 +1,6 @@
 package BaseDados.DaoJDBC.Eventos;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Evento.EventoGeral.DaoEvento;
 import BaseDados.Dao.Evento.EventoGeral.DaoEventoBase;
 import BaseDados.Dao.Evento.EventoGeral.DaoEventoLuta;
 import BaseDados.Dao.Personagem.DaoPersonagem;

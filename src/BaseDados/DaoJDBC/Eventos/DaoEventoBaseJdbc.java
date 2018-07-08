@@ -2,7 +2,6 @@ package BaseDados.DaoJDBC.Eventos;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.EventoGeral.DaoEventoBase;
-import BaseDados.Dao.Evento.EventoGeral.DaoEventoGeral;
 import BaseDados.Dao.Evento.Resposta.DaoResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Evento;
@@ -10,7 +9,6 @@ import DTO.ElementosDeSistema.Resposta;
 import Utilidades.Log;
 
 import java.sql.SQLException;
-import java.util.LinkedList;
 
 public class DaoEventoBaseJdbc extends BancoDadosJdbc implements DaoEventoBase {
 

@@ -3,7 +3,6 @@ package BaseDados.DaoJDBC.Personagem.Utilidades;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Personagem.Utilidades.DaoCaracteristicas;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import DTO.Personagens.Personagem;
 import Utilidades.Log;

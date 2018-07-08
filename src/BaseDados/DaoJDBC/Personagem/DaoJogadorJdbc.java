@@ -4,12 +4,13 @@ import BaseDados.BaseDadosException;
 import BaseDados.Dao.Personagem.DaoInventario;
 import BaseDados.Dao.Personagem.DaoJogador;
 import BaseDados.Dao.Personagem.DaoPersonagem;
+import BaseDados.Dao.Personagem.Utilidades.DaoAtributos;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.Jogador;
 import DTO.Personagens.Personagem;
-
 import Utilidades.Log;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,11 +54,12 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
                 String nome = personagem.getNome();
                 short idade = personagem.getIdade();
                 int ultimoLocal = personagem.getLocalidadeAtual();
-                FolhaDeAtributos atributos = jogador.getAtributos();
+                FolhaDeAtributos atributos = personagem.getAtributos();
 
                 List<Integer[]> inventario = daoInventario.Busca(codigo);
+                if(inventario == null) jogador = new Jogador(codigo, atributos, idade, nome, ultimoLocal, maxSanidade, sanidadeAtual, sorte, null, null);
 
-                jogador = new Jogador(codigo, atributos, idade, nome, ultimoLocal, maxSanidade, sanidadeAtual, sorte, inventario.get(0), inventario.get(1));
+                else jogador = new Jogador(codigo, atributos, idade, nome, ultimoLocal, maxSanidade, sanidadeAtual, sorte, inventario.get(0), inventario.get(1));
 
             }
             fechaConexao();
@@ -88,13 +90,14 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
 
 
         abreConexao();
-        preparaComandoSQL("INSERT INTO jogador (max_sanidade, sanidade_atual, sorte, id_personagem) VALUES (?, ?, ?, ?)");
+        preparaComandoSQL("INSERT INTO jogador (max_sanidade, sanidade_atual, sorte, id_personagem, ultimo_local) VALUES (?, ?, ?, ?, ?)");
 
         try {
             ps.setShort(1, maxSanidade);
             ps.setShort(2, sanidadeAtual);
             ps.setShort(3, sorte);
             ps.setInt(4, id);
+            ps.setInt(5, 1);
 
             ps.execute();
             fechaConexao();

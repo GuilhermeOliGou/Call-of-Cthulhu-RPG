@@ -1,8 +1,6 @@
 package BaseDados.Dao.Evento;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Geral.Dao;
-import BaseDados.Dao.Geral.DaoBasico;
 import DTO.ElementosDeSistema.Local;
 
 public interface DaoLocal {

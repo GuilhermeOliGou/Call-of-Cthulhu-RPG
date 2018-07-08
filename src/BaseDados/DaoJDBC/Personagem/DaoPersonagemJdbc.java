@@ -9,7 +9,6 @@ import DTO.Personagens.Personagem;
 import Utilidades.Log;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
 
@@ -43,7 +42,7 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
                 FolhaDeAtributos atributos = daoAtributos.Busca(codigo);
 
                 short idade = rs.getShort("idade");
-                String nome = rs.getString("nome_personagem");
+                String nome = rs.getString("nome");
                 int idLocal = rs.getInt("ultimo_local");
 
                 daoAtributos.Busca(codigo);
@@ -147,11 +146,5 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
             Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel remover Personagem");
         }
-    }
-
-
-    @Override
-    public List<Personagem> Lista() throws BaseDadosException {
-        return null;
     }
 }

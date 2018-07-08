@@ -3,8 +3,6 @@ package BaseDados.DaoJDBC.Items.Utilidades;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Items.Utilidades.DaoHabilidadesTiroItem;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.Itens.Arma;
-import DTO.Itens.Item;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 import Utilidades.Log;
 

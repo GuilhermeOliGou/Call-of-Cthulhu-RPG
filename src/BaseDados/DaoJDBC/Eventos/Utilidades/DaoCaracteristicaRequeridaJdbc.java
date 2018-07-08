@@ -3,8 +3,6 @@ package BaseDados.DaoJDBC.Eventos.Utilidades;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.DaoCaracteristicaRequerida;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
-import DTO.ElementosDeSistema.EventoAvancado;
 import DTO.Personagens.FolhaDeCaracteristicas;
 
 import java.sql.SQLException;

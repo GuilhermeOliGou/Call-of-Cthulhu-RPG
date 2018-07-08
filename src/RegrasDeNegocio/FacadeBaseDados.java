@@ -35,6 +35,10 @@ public interface FacadeBaseDados {
     public void RemoveJogador(int idPersonagem) throws BaseDadosException;
 
     public List<Jogador> ListaJogadores() throws BaseDadosException;
+	
+	public void InicializaBancoDados() throws BaseDadosException;
+	
+	public void ResetaBancoDados() throws BaseDadosException;
     
 
     

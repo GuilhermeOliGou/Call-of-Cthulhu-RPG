@@ -1,7 +1,8 @@
 package BaseDados.DaoJDBC.Items;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Items.*;
+import BaseDados.Dao.Items.DaoArma;
+import BaseDados.Dao.Items.DaoItem;
 import BaseDados.Dao.Items.Utilidades.DaoFolhaDano;
 import BaseDados.Dao.Items.Utilidades.DaoHabilidadesLutaItem;
 import BaseDados.Dao.Items.Utilidades.DaoHabilidadesTiroItem;
@@ -14,8 +15,6 @@ import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 import Utilidades.Log;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
 

@@ -3,8 +3,6 @@ package BaseDados.DaoJDBC.Eventos.Utilidades.Resposta;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.Resposta.DaoItemModificadoResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
-import DTO.ElementosDeSistema.Resposta;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

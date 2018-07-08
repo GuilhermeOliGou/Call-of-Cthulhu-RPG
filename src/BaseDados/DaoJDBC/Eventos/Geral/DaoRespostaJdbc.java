@@ -11,7 +11,6 @@ import BaseDados.Dao.Evento.Resposta.DaoHabilidadesResposta;
 import BaseDados.Dao.Evento.Resposta.DaoItemModificadoResposta;
 import BaseDados.Dao.Evento.Resposta.DaoResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.Resposta;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeHabilidades;

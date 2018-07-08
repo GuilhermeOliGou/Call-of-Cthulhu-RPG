@@ -1,8 +1,9 @@
 package BaseDados.DaoJDBC;
+
 import BaseDados.BaseDadosException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import Utilidades.Log;
+
+import java.io.*;
 import java.sql.*;
 import java.util.Properties;
 
@@ -39,6 +40,8 @@ public class BancoDadosJdbc{
         PASSWORD = prop.getProperty("password");
         HOST = prop.getProperty("host");
         DB_NAME = prop.getProperty("db_name");
+
+
     }
 
     protected void abreConexao() throws BaseDadosException {
@@ -46,6 +49,7 @@ public class BancoDadosJdbc{
             con = DriverManager.getConnection(MYSQL_URL + "://" + HOST + "/"
                     + DB_NAME, USER, PASSWORD);
         } catch (SQLException e) {
+            Log.gravaLog(e);
             throw new BaseDadosException(
                     "Problemas no acesso ao banco de dados.");
         }
@@ -69,6 +73,7 @@ public class BancoDadosJdbc{
             }
 
         } catch (SQLException e) {
+            Log.gravaLog(e);
             throw new BaseDadosException(
                     "Problemas no acesso ao banco de dados.");
         }
@@ -79,6 +84,7 @@ public class BancoDadosJdbc{
         try {
             ps = con.prepareStatement(sql);
         } catch (SQLException e) {
+            Log.gravaLog(e);
             throw new BaseDadosException(
                     "Problemas no acesso ao banco de dados.");
         }

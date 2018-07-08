@@ -5,7 +5,6 @@ import BaseDados.Dao.Evento.Resposta.DaoHabilidadesLutaResposta;
 import BaseDados.Dao.Evento.Resposta.DaoHabilidadesResposta;
 import BaseDados.Dao.Evento.Resposta.DaoHabilidadesTiroResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
 import DTO.Personagens.FolhaDeHabilidades;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;

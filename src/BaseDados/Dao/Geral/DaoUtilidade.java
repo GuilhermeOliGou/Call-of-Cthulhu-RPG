@@ -1,7 +1,6 @@
 package BaseDados.Dao.Geral;
 
 import BaseDados.BaseDadosException;
-import DTO.Itens.Item;
 
 public interface DaoUtilidade<T, U> {
     public T Busca(int codigo) throws BaseDadosException;

@@ -1,14 +1,12 @@
 package BaseDados.DaoJDBC.Items;
+
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Items.DaoItem;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Itens.Item;
 import Utilidades.Log;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DaoItemJdbc extends BancoDadosJdbc implements DaoItem {
 

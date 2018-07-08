@@ -7,7 +7,8 @@ import DTO.ElementosDeSistema.Evento;
 import Utilidades.Log;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DaoEventoGeralJdbc extends BancoDadosJdbc implements DaoEventoGeral {
 

@@ -1,4 +1,5 @@
 package BaseDados.DaoJDBC.Items;
+
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Items.DaoConsumivel;
 import BaseDados.Dao.Items.DaoItem;
@@ -7,10 +8,7 @@ import DTO.Itens.Item;
 import DTO.Itens.ItemConsumivel;
 import Utilidades.Log;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DaoConsumivelJdbc extends BancoDadosJdbc implements DaoConsumivel {
 

@@ -2,9 +2,7 @@ package BaseDados.DaoJDBC.Eventos.Utilidades;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.DaoItemRequerido;
-import BaseDados.Dao.Evento.Utilidades.DaoUtilidadeEvento;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

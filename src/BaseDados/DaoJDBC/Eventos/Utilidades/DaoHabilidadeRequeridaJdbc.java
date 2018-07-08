@@ -5,7 +5,6 @@ import BaseDados.Dao.DaoHabilidadeRequerida;
 import BaseDados.Dao.DaoHabilidadeTiroRequerida;
 import BaseDados.Dao.DaoHabilidadesLutaRequerida;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
-import DTO.ElementosDeSistema.Evento;
 import DTO.Personagens.FolhaDeHabilidades;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
