@@ -1,6 +1,5 @@
 package DTO.Personagens;
 
-import DTO.Itens.Item;
 import RegrasDeNegocio.RegraNegocioException;
 
 public class Jogador extends Personagem {
@@ -11,7 +10,8 @@ public class Jogador extends Personagem {
     private short sanidadeAtual;
     private short sorte;
     
-    protected Item[] inventario;
+    private Integer[] inventario;
+    private Integer[] quantidades;
 
     private FolhaDeHabilidades habilidades;
     
@@ -29,7 +29,7 @@ public class Jogador extends Personagem {
     
     public Jogador( int id, FolhaDeAtributos atributos, short idade, String nome, int localidadeAtual,
             short maxSanidade, short sanidadeAtual, short sorte,
-            Item[] inventario){
+            Integer[] inventario, Integer[] quantidades){
         super(id,atributos,
                 idade,nome, 
                 localidadeAtual);
@@ -39,6 +39,7 @@ public class Jogador extends Personagem {
         this.sorte = sorte;
         
         this.inventario = inventario;
+        this.quantidades = quantidades;
         
         this.habilidades = new FolhaDeHabilidades(atributos.getCaracteristicas().getDestreza());
     }
@@ -90,12 +91,20 @@ public class Jogador extends Personagem {
     
     
 
-    public Item[] getInventario() throws ArrayIndexOutOfBoundsException{
+    public Integer[] getInventario() throws ArrayIndexOutOfBoundsException{
         return inventario;
     }
 
-    public void setInventario(Item[] inventario) throws ArrayIndexOutOfBoundsException{
+    public void setInventario(Integer[] inventario) throws ArrayIndexOutOfBoundsException{
         this.inventario = inventario;
+    }
+    
+    public Integer[] getQuantidades() throws ArrayIndexOutOfBoundsException{
+        return quantidades;
+    }
+
+    public void setQuantidades(Integer[] quantidades) throws ArrayIndexOutOfBoundsException{
+        this.quantidades = quantidades;
     }
     
     

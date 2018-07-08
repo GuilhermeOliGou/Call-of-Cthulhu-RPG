@@ -1,6 +1,5 @@
 package RegrasDeNegocio;
 
-import DTO.Itens.Item;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import DTO.Personagens.Jogador;
@@ -24,7 +23,7 @@ public class CriadorDePersonagensPadrão {
         FolhaDeAtributos atributos = GeradorDeFolhaDeAtributos(caracteristicas);
         return new Jogador(id,atributos,(short)idade,nome,1,
                 caracteristicas.getPoder(),caracteristicas.getPoder(),
-                GeradorDeSorte(),new Item[20]);
+                GeradorDeSorte(),new Integer[20], new Integer[20]);
     } 
     
     //FUNÇÕES CARACTERÍSTICAS
