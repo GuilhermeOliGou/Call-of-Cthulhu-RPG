@@ -18,120 +18,128 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     }
 
     @Override
-    public void salvarJogador(Jogador jogador) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void salvarJogador(Jogador jogador) throws RegraNegocioException{
+
     }
 
     @Override
-    public void resetaJogo() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void resetaJogo() throws RegraNegocioException{
+        
     }
     
     @Override
-    public ArrayList<String> getEventos() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public ArrayList<String> getEventos() throws RegraNegocioException{
+        ArrayList<String> eventos = null;
+        return eventos;
     }
     
     @Override
     public ArrayList<String> getNomesJogadores() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> nomes = null;
+        return nomes;
     }
 
     @Override
-    public ArrayList<String> getDescricoesJogadores() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public ArrayList<String> getDescricoesJogadores() throws RegraNegocioException{
+        ArrayList<String> descricoes = null;
+        return descricoes;
     }
 
     @Override
-    public String carregaJogador(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String carregaJogador(int index) throws RegraNegocioException{
+        String nomeJogador = null;
+        
+        return nomeJogador;
     }
 
     @Override
-    public String getDescricaoJogador() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String getDescricaoJogador() throws RegraNegocioException{
+        String descriJogador = null;
+        
+        return descriJogador;
     }
 
     @Override
-    public boolean hasBatalha() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public boolean hasBatalha() throws RegraNegocioException{
+        boolean batalha = false;
+        
+        return batalha;
     }
 
     @Override
-    public void executaEvento(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void executaEvento(int index) throws RegraNegocioException{
+        
     }
 
     
 
     @Override
-    public String getHPPersonagem() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String getHPPersonagem() throws RegraNegocioException{
+        String HpPersonagem = null;
+        return HpPersonagem;
     }
-
+   
     @Override
-    public String getHPMaxPersonagem() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String getHPInimigo() throws RegraNegocioException{
+        String HpInimigo = null;
+        return HpInimigo;
     }
 
    
+
     @Override
-    public String getHPInimigo() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public ArrayList<String> getAcoesBatalha() throws RegraNegocioException{
+        ArrayList<String> acoesBatalha = null;
+        
+        return acoesBatalha;
     }
 
     @Override
-    public String getHPMaxInimigo() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    @Override
-    public ArrayList<String> getAcoesBatalha() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    @Override
-    public void resetaEPopula() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void resetaEPopula() throws RegraNegocioException{
+       
     }
 
     @Override
     public String getNomePersonagem() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        String nomePersonagem = null;
+        return nomePersonagem;
     }
 
     @Override
     public String getMPPersonagem() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        String MpPersonagem = null;
+        
+        return MpPersonagem;
     }
 
-    @Override
-    public String getMPMaxPersonagem() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+    
 
     @Override
     public String getNomeInimigo() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        String nomeInimigo = null;
+        return nomeInimigo;
     }
 
     @Override
     public String carregaNomeLocal() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        String nomeLocal = null;
+        return nomeLocal;
     } 
 
     @Override
     public void realizaAcaoBatalha(int indice) throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public boolean hasResposta() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean resposta = false;
+        return resposta;
     }
 
     @Override
     public String getResposta() throws RegraNegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String resposta = null;
+        return resposta;
     }
 }

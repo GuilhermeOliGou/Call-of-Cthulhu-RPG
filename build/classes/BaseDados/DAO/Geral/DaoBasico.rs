@@ -1,0 +1,1 @@
+BaseDados.Dao.Geral.DaoBasico

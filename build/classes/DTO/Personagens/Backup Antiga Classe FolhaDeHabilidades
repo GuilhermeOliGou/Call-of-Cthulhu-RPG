@@ -1,0 +1,97 @@
+ package Habilidades;
+
+import Personagens.FolhaDeHabilidades;
+import SetsDeHabilidade.HabilidadesCiencia;
+import SetsDeHabilidade.HabilidadesTiro;
+import SetsDeHabilidade.HabilidadesLuta;
+import SetsDeHabilidade.HabilidadesInterpessoais;
+import utilidades.Log;
+
+public class FolhaDeHabilidades{
+    
+    //ATRIBUTOS
+    
+    private final boolean FOLHAPADRAOEMBRANCO = true;    
+    private final short DESTREZAPADRAO = 40;
+    
+    private HabilidadesCiencia ciencia;
+    private HabilidadesInterpessoais interpessoais;
+    private HabilidadesTiro tiro;
+    private HabilidadesLuta luta;
+        
+    //CONSTRUTORES
+    
+    public FolhaDeHabilidades() {    
+        super();
+        
+        this.mitosDeCthulhu = 0; 
+        
+        this.ciencia = new HabilidadesCiencia(FOLHAPADRAOEMBRANCO);
+        this.interpessoais = new HabilidadesInterpessoais(FOLHAPADRAOEMBRANCO);
+        this.luta = new HabilidadesLuta();
+        this.tiro = new HabilidadesTiro(FOLHAPADRAOEMBRANCO);
+    }
+
+    public FolhaDeHabilidades(short destreza){ 
+        super((short)0); 
+        
+        this.ciencia = new HabilidadesCiencia();
+        this.interpessoais = new HabilidadesInterpessoais();
+        this.tiro = new HabilidadesTiro();
+        
+        try{
+            this.luta = new HabilidadesLuta(destreza);
+        }catch(NullPointerException e){
+            Log.gravaLog(e);
+            this.luta = new HabilidadesLuta(DESTREZAPADRAO);
+        }
+    }
+
+    public FolhaDeHabilidades(short mitosDeCthulhu, 
+            HabilidadesCiencia ciencia, HabilidadesInterpessoais interpessoais, 
+            HabilidadesTiro tiro, HabilidadesLuta luta) {
+        super();
+        
+        this.mitosDeCthulhu = mitosDeCthulhu;
+        
+        this.ciencia = ciencia;
+        this.interpessoais = interpessoais;
+        this.tiro = tiro;
+        this.luta = luta;
+    }
+    
+    //GETTERS E SETTERS    
+
+    public HabilidadesCiencia getCiencia() {
+        return ciencia;
+    }
+
+    public void setCiencia(HabilidadesCiencia ciencia) {
+        this.ciencia = ciencia;
+    }
+
+    public HabilidadesInterpessoais getInterpessoais() {
+        return interpessoais;
+    }
+
+    public void setInterpessoais(HabilidadesInterpessoais interpessoais) {
+        this.interpessoais = interpessoais;
+    }
+
+    public HabilidadesTiro getTiro() {
+        return tiro;
+    }
+
+    public void setTiro(HabilidadesTiro tiro) {
+        this.tiro = tiro;
+    }
+
+    public HabilidadesLuta getLuta() {
+        return luta;
+    }
+
+    public void setLuta(HabilidadesLuta luta) {
+        this.luta = luta;
+    }
+        
+}
