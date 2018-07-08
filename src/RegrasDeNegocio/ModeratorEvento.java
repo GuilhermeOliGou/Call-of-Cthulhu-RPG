@@ -30,12 +30,12 @@ public class ModeratorEvento {
     } 
 
     public ModeratorEvento(IntermediarioBaseDados baseDados, Jogador jogador, Evento evento, 
-            String resposta, int[] quantidadeItens) {
+            String resposta) {
         super();
         
         this.VERIFICADORATRIBUTOS = new VerificadorAtributos(jogador, resposta);
         this.VERIFICADORHABILIDADES = new VerificadorHabilidades(jogador, resposta);
-        this.VERIFICADORITENS = new VerificadorItens(jogador, resposta, quantidadeItens, baseDados);
+        this.VERIFICADORITENS = new VerificadorItens(jogador, resposta, baseDados);
         
         this.evento = evento;
         this.resposta = resposta;
@@ -50,7 +50,7 @@ public class ModeratorEvento {
         this.VERIFICADORATRIBUTOS = new VerificadorAtributos(jogador, resposta);
         this.VERIFICADORHABILIDADES = new VerificadorHabilidades(jogador, resposta);
         this.VERIFICADORITENS = new VerificadorItens(INVENTARIOMAXIMO, RETORNOMAXIMO, 
-                jogador, resposta, quantidadeItens, baseDados);
+                jogador, resposta, baseDados);
         
         
         this.evento = evento;
@@ -63,26 +63,25 @@ public class ModeratorEvento {
     public void ExecutaEvento(){
         if (this.evento instanceof EventoAvancado){
             
-        }else{
-            String descricaoEvento = this.evento.getDescricao();
-            if (descricaoEvento != null){
-                this.resposta += descricaoEvento;
-            }
-            Resposta respostasEvento = this.evento.getRespostaDoEvento();
-            if (respostasEvento != null){
-                
-                FolhaDeAtributos atributosAlterados = respostasEvento.getAtributosAlterados();
-                this.VERIFICADORATRIBUTOS.ChecaAtributosAlterados(atributosAlterados);
-                
-                this.VERIFICADORITENS.ChecaItens(respostasEvento);
-                
-                FolhaDeHabilidades habilidadesAlteradas = respostasEvento.getHabilidadesAlteradas();
-                this.VERIFICADORHABILIDADES.ChecaHabilidadesAlterados(habilidadesAlteradas);
-                
-                short sanidadeAlterada = respostasEvento.getSanidadeAtualAlterada();
-                this.jogador.setSanidadeAtual((short)(this.jogador.getSanidadeAtual() + sanidadeAlterada));
-                VERIFICADORATRIBUTOS.EscreveAlteraçãoDePontos(sanidadeAlterada, "Sanidade");
-            }
+        }
+        String descricaoEvento = this.evento.getDescricao();
+        if (descricaoEvento != null){
+            this.resposta += descricaoEvento;
+        }
+        Resposta respostasEvento = this.evento.getRespostaDoEvento();
+        if (respostasEvento != null){
+
+            FolhaDeAtributos atributosAlterados = respostasEvento.getAtributosAlterados();
+            this.VERIFICADORATRIBUTOS.ChecaAtributosAlterados(atributosAlterados);
+
+            this.VERIFICADORITENS.ChecaItens(respostasEvento);
+
+            FolhaDeHabilidades habilidadesAlteradas = respostasEvento.getHabilidadesAlteradas();
+            this.VERIFICADORHABILIDADES.ChecaHabilidadesAlterados(habilidadesAlteradas);
+
+            short sanidadeAlterada = respostasEvento.getSanidadeAtualAlterada();
+            this.jogador.setSanidadeAtual((short)(this.jogador.getSanidadeAtual() + sanidadeAlterada));
+            VERIFICADORATRIBUTOS.EscreveAlteraçãoDePontos(sanidadeAlterada, "Sanidade");            
         }
         if (this.evento.isEventoUnico())
             this.evento.setEventoValidoFalso();

@@ -51,11 +51,12 @@ public class EventoAvancado extends Evento {
     
     
 
-    public Integer[] getItensNecessários() {
+    public Integer[] getItensNecessários()  throws ArrayIndexOutOfBoundsException, NullPointerException{
         return itensNecessários;
     }
 
-    public void setItensNecessários(Integer[] itensNecessários) {
+    public void setItensNecessários(Integer[] itensNecessários)  throws ArrayIndexOutOfBoundsException, 
+            NullPointerException{
         this.itensNecessários = itensNecessários;
     }
 

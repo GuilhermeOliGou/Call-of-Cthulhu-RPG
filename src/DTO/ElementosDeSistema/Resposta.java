@@ -52,19 +52,21 @@ public class Resposta {
     
     
 
-    public Integer[] getItensAdicionados() throws ArrayIndexOutOfBoundsException{
+    public Integer[] getItensAdicionados() throws ArrayIndexOutOfBoundsException, NullPointerException{
         return itensAdicionados;
     }
 
-    public void setItensAdicionados(Integer[] itensAdicionados) throws ArrayIndexOutOfBoundsException{
+    public void setItensAdicionados(Integer[] itensAdicionados) throws ArrayIndexOutOfBoundsException, 
+            NullPointerException{
         this.itensAdicionados = itensAdicionados;
     }
 
-    public Integer[] getItensRemovidos() throws ArrayIndexOutOfBoundsException{
+    public Integer[] getItensRemovidos() throws ArrayIndexOutOfBoundsException, NullPointerException{
         return itensRemovidos;
     }
 
-    public void setItensRemovidos(Integer[] itensRemovidos) throws ArrayIndexOutOfBoundsException{
+    public void setItensRemovidos(Integer[] itensRemovidos) throws ArrayIndexOutOfBoundsException
+            , NullPointerException{
         this.itensRemovidos = itensRemovidos;
     }
     

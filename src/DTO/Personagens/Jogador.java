@@ -91,19 +91,21 @@ public class Jogador extends Personagem {
     
     
 
-    public Integer[] getInventario() throws ArrayIndexOutOfBoundsException{
+    public Integer[] getInventario() throws ArrayIndexOutOfBoundsException, NullPointerException{
         return inventario;
     }
 
-    public void setInventario(Integer[] inventario) throws ArrayIndexOutOfBoundsException{
+    public void setInventario(Integer[] inventario) throws ArrayIndexOutOfBoundsException, 
+            NullPointerException{
         this.inventario = inventario;
     }
     
-    public Integer[] getQuantidades() throws ArrayIndexOutOfBoundsException{
+    public Integer[] getQuantidades() throws ArrayIndexOutOfBoundsException, NullPointerException{
         return quantidades;
     }
 
-    public void setQuantidades(Integer[] quantidades) throws ArrayIndexOutOfBoundsException{
+    public void setQuantidades(Integer[] quantidades) throws ArrayIndexOutOfBoundsException, 
+            NullPointerException{
         this.quantidades = quantidades;
     }
     

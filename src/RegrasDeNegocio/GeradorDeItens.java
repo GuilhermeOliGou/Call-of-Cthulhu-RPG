@@ -3,7 +3,6 @@ package RegrasDeNegocio;
 import DTO.Itens.Arma;
 import DTO.Itens.Item;
 import DTO.Itens.ItemConsumivel;
-import utilidades.Log;
 
 public class GeradorDeItens {
     
@@ -41,32 +40,28 @@ public class GeradorDeItens {
     
     //FUNÇÕES
     
-    public int GerarItem(int id){
-        try{
-            Item novoItem = this.BASEDADOS.CarregaItem(id);
-            if (novoItem instanceof Arma){
-                int pente = ((Arma) novoItem).getTamanhoDoPente();
-                if(pente <= 0){
-                    return 1;
-                }else{
-                    if (DADOS.TesteDePorcentagem() <= SORTEJOGADOR){
-                        return TesouroMaximo(DADOS.D12()+DADOS.D20(), pente+(int)(pente/2));
-                    }else{
-                        return TesouroMaximo(DADOS.D10()+DADOS.D12(), pente);
-                    }
-                }
-            }else if (novoItem instanceof ItemConsumivel){
-                if (DADOS.TesteDePorcentagem() <= SORTEJOGADOR){
-                    return DADOS.D6();
-                }else{
-                    return DADOS.D4();
-                }
-            }else
+    public int GerarItem(int id) throws RegraNegocioException{
+        Item novoItem = this.BASEDADOS.CarregaItem(id);
+        if (novoItem instanceof Arma){
+            int pente = ((Arma) novoItem).getTamanhoDoPente();
+            if(pente <= 0){
                 return 1;
-        }catch(RegraNegocioException e){
-            Log.gravaLog(e);
-            return -1;
-        }
+            }else{
+                if (DADOS.TesteDePorcentagem() <= SORTEJOGADOR){
+                    return TesouroMaximo(DADOS.D12()+DADOS.D20(), pente+(int)(pente/2));
+                }else{
+                    return TesouroMaximo(DADOS.D10()+DADOS.D12(), pente);
+                }
+            }
+        }else if (novoItem instanceof ItemConsumivel){
+            if (DADOS.TesteDePorcentagem() <= SORTEJOGADOR){
+                return DADOS.D6();
+            }else{
+                return DADOS.D4();
+            }
+        }else
+            return 1;
+        
     }
     
 }
