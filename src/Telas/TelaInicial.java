@@ -1,6 +1,10 @@
 
 package Telas;
 
+import RegrasDeNegocio.RegraNegocioException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class TelaInicial extends javax.swing.JFrame {
     
@@ -107,13 +111,23 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jBtnCarregaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCarregaJogoActionPerformed
             this.dispose();
-        Carregamento telaCarrega = new Carregamento();
+        Carregamento telaCarrega = null;
+        try {
+            telaCarrega = new Carregamento();
+        } catch (RegraNegocioException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
         telaCarrega.setVisible(true);
         telaCarrega.setLocationRelativeTo(null);
     }//GEN-LAST:event_jBtnCarregaJogoActionPerformed
 
     private void jBtnIniciaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIniciaJogoActionPerformed
-        NovoJogo telaNovo = new NovoJogo();
+        NovoJogo telaNovo = null;
+        try {
+            telaNovo = new NovoJogo();
+        } catch (RegraNegocioException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         telaNovo.setVisible(true);
         telaNovo.setLocationRelativeTo(null);

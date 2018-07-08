@@ -11,11 +11,14 @@ import Utilidades.Log;
 
 public class Carregamento extends javax.swing.JFrame {
 
-    public Carregamento() {
+    
+    private FacadeRegraNegocio facade;
+    
+    public Carregamento() throws RegraNegocioException {
+        this.facade = new FacadeTelasImp();
         initComponents(); 
     }
     
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
     
     private ArrayList<String> jogos;
     private ArrayList<String> descriJogos;

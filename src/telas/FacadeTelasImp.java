@@ -1,132 +1,203 @@
 package Telas;
 
+import DTO.ElementosDeSistema.Evento;
+import DTO.ElementosDeSistema.Local;
+import DTO.Personagens.Jogador;
+import RegrasDeNegocio.CriadorDePersonagensPadrão;
+import RegrasDeNegocio.IntermediarioBaseDados;
+import RegrasDeNegocio.ModeratorEventos;
+import RegrasDeNegocio.ModeratorInsanidade;
+import RegrasDeNegocio.ModeratorValidaçãoEventos;
 import RegrasDeNegocio.RegraNegocioException;
+import RegrasDeNegocio.Validador;
 import java.util.ArrayList;
 
 
 public class FacadeTelasImp implements FacadeRegraNegocio{
-     
+       //ATRIBUTOS
+    
+    private final IntermediarioBaseDados BASEDADOS;
+    private final int IDADEPADRAO = 19;
+    private final ModeratorEventos MODERADOREVENTOS;
+    private final ModeratorInsanidade INSANIDADE;
+    
+    private Jogador jogador;
+    private String resposta;
+    private Local localidadeAtual;
+    private ArrayList<Evento> eventosValidos;
+    
+    private boolean hasBatalha;
+    private boolean hasResposta; 
+    
+    //CONSTRUTOR
+    
+    public FacadeTelasImp() throws RegraNegocioException{
+        super();
+        
+        this.BASEDADOS = new IntermediarioBaseDados();
+        this.MODERADOREVENTOS = new ModeratorEventos(BASEDADOS, jogador, resposta);
+        this.INSANIDADE = new ModeratorInsanidade();
+    }
+    
+    
+    
     @Override
     public void criaJogador(String nome) throws RegraNegocioException {
-        // vamos te enviar uma string com o nome e vc cria um novo jogador/jogo/personagem
+         this.BASEDADOS.CarregaTodosJogadores();
+        if(this.BASEDADOS.DevolveTodosJogadores().size() >= 10)
+            throw new RegraNegocioException("ERRO! NÃO HÁ MAIS SLOTS DE SALVAMENTO!");
+        Validador validador = new Validador();
+        String nomeValido = validador.ValidadorNome(nome);
+        CriadorDePersonagensPadrão criador = new CriadorDePersonagensPadrão();
+        this.jogador = criador.CriarJogador(0, nomeValido, this.IDADEPADRAO);
+        this.BASEDADOS.LimpaJogadores();
+        this.BASEDADOS.CriaJogo(jogador);
+        this.localidadeAtual = this.BASEDADOS.CarregaLocal(this.jogador.getId(), 
+                this.jogador.getLocalidadeAtual());
+        ModeratorValidaçãoEventos validadorEventos = new ModeratorValidaçãoEventos();
+        this.eventosValidos = validadorEventos.GetEventosValidos(localidadeAtual);
     }
     
     @Override
     public boolean existeJogos() throws RegraNegocioException {
-        //tem que checar se tem algum jogo/jogador/personagem no bd 
-        return false;
-    }
-
-    @Override
-    public void salvarJogador() throws RegraNegocioException{
-        //pegar o jogador instanciado e salvar ele (nesse caso, acho q salva tudo)
-    }
-
-    @Override
-    public void resetaJogo() throws RegraNegocioException{
-        //vai resetar o jogo, facil, pq vai deletar a database e criar outra e popular
+        this.BASEDADOS.CarregaTodosJogadores();
+        return this.BASEDADOS.ListaDeJogadoresVazia();
     }
     
-    @Override
-    public ArrayList<String> getEventos() throws RegraNegocioException{
-       //vai retornar uma lista com cada elemento sendo o nome dos eventos disponiveis
-        ArrayList<String> eventos = null;
-        
-        return eventos;
-    }
-    
-    @Override
+     @Override
     public ArrayList<String> getNomesJogadores() throws RegraNegocioException {
-        //retorna uma lista com cada elemento sendo o nome de jogador/jogo/personagem
-        //tem que estar na mesma ordem que o descricoesjogadores
-        ArrayList<String> nomes = null;
-        
-        return nomes;
+        ArrayList<String> nomesJogadores = new ArrayList<>();
+        ArrayList<Jogador> jogadores = this.BASEDADOS.DevolveTodosJogadores();
+        jogadores.stream().map((j) -> j.getNome()).forEachOrdered((nomeJogador) -> {
+            nomesJogadores.add(nomeJogador);
+        });
+        return nomesJogadores;
     }
-
+    
+    
     @Override
     public ArrayList<String> getDescricoesJogadores() throws RegraNegocioException{
-        //retorna uma lista com cada elemento sendo a descrição do jogador/jogo/personagem
-        //tem que estar na mesma ordem que o nomesjogadores
-        
-        
-        //tava pensando em algo nesse estilo
-        
-        /*
-        Nome: clodorvil
-        idade: 19
-        inventario: 15/20
-        HpAtual: 78/100
-        MpAtual: 30/100
-        
-        nao esquece os /n
-        */
-        ArrayList<String> descricoes = null;
-        
-        return descricoes;
+          ArrayList<String> descricaoJogadores = new ArrayList<>();
+        ArrayList<Jogador> jogadores = this.BASEDADOS.DevolveTodosJogadores();
+        for (Jogador j : jogadores){
+            descricaoJogadores.add(j.DescricaoJogador());
+        }
+        return descricaoJogadores;
     }
 
     @Override
     public String carregaJogador(int index) throws RegraNegocioException{
-        /*
-        CUIDADO
-        
-        quando a gente pedir a lista de nome de jogadores, vc tem que lembrar de
-        salvar, pq vamos mandar o index do jogo/jogador/personagem que a gente
-        escolher para vc deixar o personagem carregado na memoria pra n perder
-        a referencia dele durante o jogo
-        */
-        String nomeJogador = null;
-        
-        return nomeJogador;
+        this.jogador = this.BASEDADOS.DevolveJogador(index);
+        this.BASEDADOS.LimpaJogadores();
+        this.localidadeAtual = this.BASEDADOS.CarregaLocal(this.jogador.getId(), 
+                this.jogador.getLocalidadeAtual());
+        ModeratorValidaçãoEventos validadorEventos = new ModeratorValidaçãoEventos();
+        this.eventosValidos = validadorEventos.GetEventosValidos(localidadeAtual);
+        return this.jogador.getNome();
     }
-
-    @Override
-    public String getDescricaoJogador() throws RegraNegocioException{
-        //durante o jogo, precisamos saber de uma descrição mais completa do jogador
-        /*
-        vai ser quase a mesma coisa que o outro, mas tem q ter mais informações
-        como listar os itens, atributos e talz... precisamos conversar sobre isso
-        */
-        String descriJogador = null;
-        
-        return descriJogador;
-    }
-
+    
+    //FUNÇÕES DE BATALHA
+    
     @Override
     public boolean hasBatalha() throws RegraNegocioException{
-        //só para saber se o evento é uma batalha ou não (pelo que eu entendi
-        boolean batalha = false;
-        
-        return batalha;
+        return this.hasBatalha;
+    }  
+    
+    
+    
+    @Override
+    public String getNomePersonagem() throws RegraNegocioException{
+        this.INSANIDADE.setInsanidadeJogador(this.jogador.getSanidadeAtual());
+        return this.INSANIDADE.DeformaçãoInsanidade(this.jogador.getNome());
     }
-
+    
+    @Override
+    public String getHPPersonagem() throws RegraNegocioException{
+        String hpPersonagem = this.jogador.getAtributos().getHpAtual()+ " / " +
+                this.jogador.getAtributos().getMaxHp();
+        this.INSANIDADE.setInsanidadeJogador(this.jogador.getSanidadeAtual());
+        return this.INSANIDADE.DeformaçãoInsanidade(hpPersonagem);
+    }
+    
+    @Override
+    public String getMPPersonagem() throws RegraNegocioException{
+        String mpPersonagem = this.jogador.getAtributos().getMpAtual()+ " / " +
+                this.jogador.getAtributos().getMaxMp();
+        this.INSANIDADE.setInsanidadeJogador(this.jogador.getSanidadeAtual());
+        return this.INSANIDADE.DeformaçãoInsanidade(mpPersonagem);
+    }
+    
+  
+    
+  
+    
+    //FUNÇÕES DE LOCAL E EVENTOS
+    
+    @Override
+    public boolean hasResposta() throws RegraNegocioException{
+        return this.hasResposta;
+    }
+   
+    @Override
+    public String getResposta() throws RegraNegocioException{
+        this.hasResposta = false;
+        this.INSANIDADE.setInsanidadeJogador(this.jogador.getSanidadeAtual());
+        return this.INSANIDADE.DeformaçãoInsanidade(this.resposta);
+    }
+    
+    @Override
+    public ArrayList<String> getEventos() throws RegraNegocioException{
+        this.INSANIDADE.setInsanidadeJogador(this.jogador.getSanidadeAtual());
+        ArrayList<String> nomeEventos = new ArrayList<>();
+        this.eventosValidos.forEach((e) -> {
+            nomeEventos.add(this.INSANIDADE.DeformaçãoInsanidade(e.getNome()));
+        });
+        return nomeEventos;
+    }
+    
     @Override
     public void executaEvento(int index) throws RegraNegocioException{
-        /*
-        acho que aqui vamos executar o evento selecionado daquela lista de eventos
-        */
+        if (this.hasBatalha){
+            throw new RegraNegocioException("ERRO! BATALHA EM ANDAMENTO!");
+        }
+        this.MODERADOREVENTOS.ExecutaEvento(this.eventosValidos.get(index));
+        this.hasBatalha = this.MODERADOREVENTOS.HasBatalha();
+        this.MODERADOREVENTOS.setHasBatalha(false);
+        this.hasResposta = this.MODERADOREVENTOS.HasResposta();
+        this.MODERADOREVENTOS.setHasResposta(false);
+    }
+    
+    @Override
+    public String getDescricaoJogador() throws RegraNegocioException{
+        this.INSANIDADE.setInsanidadeJogador(this.jogador.getSanidadeAtual());
+        return this.INSANIDADE.DeformaçãoInsanidade(this.jogador.DescricaoJogador());
+    }
+    
+    @Override
+    public String carregaNomeLocal() throws RegraNegocioException{
+        this.INSANIDADE.setInsanidadeJogador(this.jogador.getSanidadeAtual());
+        return this.INSANIDADE.DeformaçãoInsanidade(this.localidadeAtual.getNome());
+    }
+    
+    //FUNÇÕES DE SALVAMENTO
+    
+    @Override
+    public void salvarJogador() throws RegraNegocioException{
+        this.BASEDADOS.SalvaJogo(this.jogador);
     }
 
     
-
+    
+    //---------------------------------------------------------
+    
+    
+    //FUNÇÕES QUE FALTAM IMPLEMENTAR
     @Override
-    public String getHPPersonagem() throws RegraNegocioException{
-        //retorna o HP atual do personagem...
-        String HpPersonagem = null;
-        
-        return HpPersonagem;
-    }
-   
-    @Override
-    public String getHPInimigo() throws RegraNegocioException{
-        //retorna o HP atual do inimigo
-        String HpInimigo = null;
-        return HpInimigo;
+    public void resetaJogo() throws RegraNegocioException{
+        //vai resetar o jogo, facil, pq vai deletar a database e criar outra e popular
     }
 
-   
-
+  
     @Override
     public ArrayList<String> getAcoesBatalha() throws RegraNegocioException{
        //retorna as acoes que o personagem pode fazer em uma batalha
@@ -139,59 +210,28 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
     public void resetaEPopula() throws RegraNegocioException{
        //exclui o BD e cria um novo e popula com as informações padrões
     }
-
-    @Override
-    public String getNomePersonagem() throws RegraNegocioException {
-        //Vc Sabe ne
-        String nomePersonagem = null;
-        
-        return nomePersonagem;
-    }
-
-    @Override
-    public String getMPPersonagem() throws RegraNegocioException {
-        //vc tbm sabe o q tem q fazer
-        String MpPersonagem = null;
-        
-        return MpPersonagem;
-    }
-
-    @Override
+    
+      @Override
     public String getNomeInimigo() throws RegraNegocioException {
         //esse tbm
         String nomeInimigo = null;
         
         return nomeInimigo;
     }
-
-    @Override
-    public String carregaNomeLocal() throws RegraNegocioException {
-        //retorna o nome atual do local onde o personagem esta
-        String nomeLocal = null;
-        
-        return nomeLocal;
-    } 
-
-    @Override
+    
+    
+         @Override
+    public String getHPInimigo() throws RegraNegocioException{
+        //retorna o HP atual do inimigo
+        String HpInimigo = null;
+        return HpInimigo;
+    }
+    
+       @Override
     public void realizaAcaoBatalha(int indice) throws RegraNegocioException {
         //isso é da batalha, vc ja deve saber o q faz
         //se n sabe, é a lista de acoes de batalha, ai vc faz seus paranaue ai
         //ah, n esquece de arrumar o medo e incrementar os inimigos derrotados(se tiver)
     }
 
-    @Override
-    public boolean hasResposta() throws RegraNegocioException {
-        //se tiver resposta, avisa
-        boolean resposta = false;
-        
-        return resposta;
-    }
-
-    @Override
-    public String getResposta() throws RegraNegocioException {
-        //retorna a resposta do evento pra gente mostrar para o usuario
-        String resposta = null;
-        
-        return resposta;
-    }
 }

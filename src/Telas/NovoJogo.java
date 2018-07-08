@@ -5,7 +5,6 @@
  */
 package Telas;
 
-import DTO.Personagens.Jogador;
 import RegrasDeNegocio.RegraNegocioException;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -14,16 +13,22 @@ import javax.swing.JOptionPane;
  * @author Leonardo
  */
 public class NovoJogo extends javax.swing.JFrame {
+    
+    private FacadeRegraNegocio facade;
+    
     private final String nomes[] = {"Joana","Cleber","Josefino","Rosimara","Miranha",
     "Leona","Amanda","Marco","Vanderlei","Joedson","Jamal","Tijolinho","Freire"};
     private int i = 0;
     private int erros=0;
     Random r = new Random();
-    public NovoJogo() {
+    
+    
+    public NovoJogo() throws RegraNegocioException {
+        this.facade = new FacadeTelasImp();
         initComponents();
     }
 
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

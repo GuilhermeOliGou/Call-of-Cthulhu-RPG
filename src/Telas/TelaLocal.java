@@ -2,8 +2,6 @@ package Telas;
 
 import RegrasDeNegocio.RegraNegocioException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -12,12 +10,13 @@ import javax.swing.ListSelectionModel;
 
 
 public class TelaLocal extends javax.swing.JFrame {
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
+    private  FacadeRegraNegocio facade;
     
     private String localfinal = "Local: ";
     private ArrayList<String> eventos;
     
-    public TelaLocal() {
+    public TelaLocal() throws RegraNegocioException {
+        this.facade = new FacadeTelasImp();
         initComponents();
     }
 

@@ -1,7 +1,5 @@
 package Telas;
 
-
-import DTO.Personagens.*;
 import RegrasDeNegocio.RegraNegocioException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -10,14 +8,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import Utilidades.Log;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Luta extends javax.swing.JFrame {
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
+    
+    
+    
     private ArrayList<String> acoes = new ArrayList<>();
     
-    public Luta() {
+    private FacadeRegraNegocio facade;
+    
+    public Luta() throws RegraNegocioException {
+        this.facade = new FacadeTelasImp();
         initComponents();
     }
     
@@ -200,7 +201,7 @@ public class Luta extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jListListaAcoesValueChanged
     
-    private void verificaBatalha(){
+    private void verificaBatalha() throws RegraNegocioException{
         String hpPersonagem="";
         try {
             hpPersonagem = facade.getHPPersonagem();
