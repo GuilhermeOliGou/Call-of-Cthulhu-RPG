@@ -1,0 +1,4 @@
+Coisas a serem testadas:
+-Validador
+-Moderator de Eventos (Funciona por 
+	cópia ou referência)

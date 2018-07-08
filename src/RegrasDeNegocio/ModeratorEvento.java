@@ -10,12 +10,14 @@ import DTO.Personagens.Jogador;
 public class ModeratorEvento {
     
     //ATRIBUTOS
-      
-    private Evento evento;    
     
     private final VerificadorAtributos VERIFICADORATRIBUTOS;
     private final VerificadorHabilidades VERIFICADORHABILIDADES;
     private final VerificadorItens VERIFICADORITENS;
+      
+    private Evento evento;    
+    private String resposta;
+    private Jogador jogador;
     
     //CONSTRUTORES
 
@@ -30,11 +32,14 @@ public class ModeratorEvento {
     public ModeratorEvento(IntermediarioBaseDados baseDados, Jogador jogador, Evento evento, 
             String resposta, int[] quantidadeItens) {
         super();
-        this.evento = evento;
         
         this.VERIFICADORATRIBUTOS = new VerificadorAtributos(jogador, resposta);
         this.VERIFICADORHABILIDADES = new VerificadorHabilidades(jogador, resposta);
         this.VERIFICADORITENS = new VerificadorItens(jogador, resposta, quantidadeItens, baseDados);
+        
+        this.evento = evento;
+        this.resposta = resposta;
+        this.jogador = jogador;
     }
 
     public ModeratorEvento(int INVENTARIOMAXIMO, int RETORNOMAXIMO,
@@ -42,13 +47,15 @@ public class ModeratorEvento {
             String resposta, int[] quantidadeItens) {
         super();
         
-        
-        this.evento = evento;
-        
         this.VERIFICADORATRIBUTOS = new VerificadorAtributos(jogador, resposta);
         this.VERIFICADORHABILIDADES = new VerificadorHabilidades(jogador, resposta);
         this.VERIFICADORITENS = new VerificadorItens(INVENTARIOMAXIMO, RETORNOMAXIMO, 
                 jogador, resposta, quantidadeItens, baseDados);
+        
+        
+        this.evento = evento;
+        this.resposta = resposta;
+        this.jogador = jogador;
     }    
     
     //FUNÇÕES
@@ -74,10 +81,11 @@ public class ModeratorEvento {
                 
                 short sanidadeAlterada = respostasEvento.getSanidadeAtualAlterada();
                 this.jogador.setSanidadeAtual((short)(this.jogador.getSanidadeAtual() + sanidadeAlterada));
-                EscreveAlteraçãoDePontos(sanidadeAlterada, "Sanidade");
+                VERIFICADORATRIBUTOS.EscreveAlteraçãoDePontos(sanidadeAlterada, "Sanidade");
             }
         }
-        
+        if (this.evento.isEventoUnico())
+            this.evento.setEventoValidoFalso();
         this.jogador.setLocalidadeAtual(this.evento.getLocalDeRetorno());
     }
     

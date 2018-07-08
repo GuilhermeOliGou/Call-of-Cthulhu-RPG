@@ -16,6 +16,8 @@ public class VerificadorItens {
     
     private final IntermediarioBaseDados BASEDADOS;
     
+    private final GeradorDeItens GERADOR;
+    
     private Jogador jogador;
     private String resposta;
     private int[] quantidadeItens;
@@ -31,6 +33,8 @@ public class VerificadorItens {
         this.RETORNOMAXIMO = -1;
         
         this.BASEDADOS = null;
+        
+        this.GERADOR = new GeradorDeItens();
     }
 
     public VerificadorItens(int INVENTARIOMAXIMO, int RETORNOMAXIMO, 
@@ -43,11 +47,13 @@ public class VerificadorItens {
         this.INVENTARIOMAXIMO = INVENTARIOMAXIMO;
         this.RETORNOMAXIMO = RETORNOMAXIMO;
         
+        this.BASEDADOS = BASEDADOS;
+        
+        this.GERADOR = new GeradorDeItens(BASEDADOS, jogador.getSorte());
+        
         this.jogador = jogador;
         this.resposta = resposta;
         this.quantidadeItens = quantidadeItens;
-        
-        this.BASEDADOS = BASEDADOS;
     }
 
     public VerificadorItens(Jogador jogador, String resposta, int[] quantidadeItens,
@@ -59,77 +65,105 @@ public class VerificadorItens {
         this.INVENTARIOMAXIMO = 20;
         this.RETORNOMAXIMO = 5;
         
+        this.BASEDADOS = BASEDADOS;
+        
+        this.GERADOR = new GeradorDeItens(BASEDADOS, jogador.getSorte());
+        
         this.jogador = jogador;
         this.resposta = resposta;
         this.quantidadeItens = quantidadeItens;
-        
-        this.BASEDADOS = BASEDADOS;
     }
     
     //FUNÇÕES AUXILIARES
     
+    private void RecriaVetores(){
+        Item[] novoInventario = new Item[20];
+        System.arraycopy(this.jogador.getInventario(), 0, novoInventario, 0, 
+                this.jogador.getInventario().length);
+        this.jogador.setInventario(novoInventario);
+
+        int[] novasQuantidades = new int[20];
+        System.arraycopy(this.quantidadeItens, 0, novasQuantidades, 0, this.quantidadeItens.length);
+        this.quantidadeItens = novasQuantidades;
+    }
+    
+    private void RemoveItem(int posicao){
+        this.quantidadeItens[posicao]--;
+        this.resposta += this.jogador.getInventario()[posicao].getNome() + " removido!";
+        if (this.quantidadeItens[posicao] <= 0){
+            while(posicao < this.INVENTARIOMAXIMO-1){
+                this.jogador.getInventario()[posicao] = this.jogador.getInventario()[posicao+1];
+                this.quantidadeItens[posicao] = this.quantidadeItens[posicao+1];
+                posicao++;
+            }
+        }
+    }    
+    
     private void AdicionaItem(int posicao,int id){
-        
+        try{
+            Item novoItem = BASEDADOS.CarregaItem(id);
+            this.jogador.getInventario()[posicao] = novoItem;
+            quantidadeItens[posicao] += GERADOR.GerarItem(id);
+        }catch(RegraNegocioException e){
+            Log.gravaLog(e);
+        }
     }
     
     private void ChecaItemRemovido(int id){
         if (id < 0)
             return;
+        int i = 0;
         try{
-            int i;
-            for (i = 0; i < this.INVENTARIOMAXIMO; i++){
+            while (i < this.INVENTARIOMAXIMO){
                 if(this.jogador.getInventario()[i].getId() == id){
-                    this.quantidadeItens[i]--;
-                    this.resposta += this.jogador.getInventario()[i].getNome() + " removido!";
-                    if (this.quantidadeItens[i] <= 0){
-                        while(i < this.INVENTARIOMAXIMO-1){
-                            this.jogador.getInventario()[i] = this.jogador.getInventario()[i+1];
-                            this.quantidadeItens[i] = this.quantidadeItens[i+1];
-                            i++;
-                        }
-                    }
+                    RemoveItem(i);
                     return;
                 }
+                i++;
             }
         }catch(ArrayIndexOutOfBoundsException e){
             Log.gravaLog(e);
             
-            Item[] novoInventario = new Item[20];
-            System.arraycopy(this.jogador.getInventario(), 0, novoInventario, 0, 
-                    this.jogador.getInventario().length);
-            this.jogador.setInventario(novoInventario);
+            RecriaVetores();
             
-            int[] novasQuantidades = new int[20];
-            System.arraycopy(this.quantidadeItens, 0, novasQuantidades, 0, this.quantidadeItens.length);
-            this.quantidadeItens = novasQuantidades;
-            
-            ChecaItemRemovido(id);
+            while(i < this.INVENTARIOMAXIMO){
+                if(this.jogador.getInventario()[i].getId() == id){
+                    RemoveItem(i);
+                    return;
+                }
+                i++;
+            }
         }
     }
     
     private void ChecaItensAdicionados (int id){
         if (id < 0)
             return;
+        int i = 0;
         try{
-            for (int i = 0; i < this.INVENTARIOMAXIMO; i++){
+            while (i < this.INVENTARIOMAXIMO){
                 if(this.jogador.getInventario()[i].getId() == id){
-                    
+                    AdicionaItem(i, id);
                     return;
-                }
+                }else if (this.jogador.getInventario()[i] == null)
+                    break;
+                i++;
             }
+            AdicionaItem(i, id);
         }catch(ArrayIndexOutOfBoundsException e){
             Log.gravaLog(e);
             
-            Item[] novoInventario = new Item[20];
-            System.arraycopy(this.jogador.getInventario(), 0, novoInventario, 0, 
-                    this.jogador.getInventario().length);
-            this.jogador.setInventario(novoInventario);
+            RecriaVetores();
             
-            int[] novasQuantidades = new int[20];
-            System.arraycopy(this.quantidadeItens, 0, novasQuantidades, 0, this.quantidadeItens.length);
-            this.quantidadeItens = novasQuantidades;
-            
-            ChecaItemRemovido(id);
+            while (i < this.INVENTARIOMAXIMO){
+                if(this.jogador.getInventario()[i].getId() == id){
+                    AdicionaItem(i, id);
+                    return;
+                }else if (this.jogador.getInventario()[i] == null)
+                    break;
+                i++;
+            }
+            AdicionaItem(i, id);
         }
     }
     
@@ -142,6 +176,9 @@ public class VerificadorItens {
                 ChecaItemRemovido(resposta.getItensRemovidos()[i]);
                 ChecaItensAdicionados(resposta.getItensAdicionados()[i]);
             }
+        }catch(ArrayIndexOutOfBoundsException e){
+            Log.gravaLog(e);
+            
         }
     }
     

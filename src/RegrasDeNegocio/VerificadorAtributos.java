@@ -24,11 +24,9 @@ public class VerificadorAtributos {
         this.resposta = resposta;
     }
     
+    //FUNÇÕES DE ESCRITA
     
-    
-    //FUNÇÕES AUXILIARES
-    
-    private void EscreveAlteraçãoDePontos(int pontosAlterados, String atributo){
+    public void EscreveAlteraçãoDePontos(int pontosAlterados, String atributo){
         if (pontosAlterados > 0){
             this.resposta += " Você ganhou " + pontosAlterados + " pontos de " + atributo + "!"; 
         }else if (pontosAlterados < 0){
@@ -36,30 +34,29 @@ public class VerificadorAtributos {
         }
     }
     
+    //FUNÇÕES AUXILIARES
+    
     private void ChecaCaracteristicasAlteradas(FolhaDeCaracteristicas caracteristicasAlteradas){
+        FolhaDeCaracteristicas caracteristicas = jogador.getAtributos().getCaracteristicas();
+        
         short forcaAlterada = caracteristicasAlteradas.getForca();
-        this.jogador.getAtributos().getCaracteristicas().setForca((short)(
-                this.jogador.getAtributos().getCaracteristicas().getForca()+forcaAlterada));
+        caracteristicas.setForca((short)(caracteristicas.getForca()+forcaAlterada));
         EscreveAlteraçãoDePontos(forcaAlterada, "Força");
         
         short constituicaoAlterada = caracteristicasAlteradas.getConstituicao();
-        this.jogador.getAtributos().getCaracteristicas().setConstituicao((short)(
-                this.jogador.getAtributos().getCaracteristicas().getConstituicao()+constituicaoAlterada));
+        caracteristicas.setConstituicao((short)(caracteristicas.getConstituicao()+constituicaoAlterada));
         EscreveAlteraçãoDePontos(constituicaoAlterada, "Constituição");
         
         short tamanhoAlterado = caracteristicasAlteradas.getTamanho();
-        this.jogador.getAtributos().getCaracteristicas().setTamanho((short)(
-                this.jogador.getAtributos().getCaracteristicas().getTamanho()+tamanhoAlterado));
+        caracteristicas.setTamanho((short)(caracteristicas.getTamanho()+tamanhoAlterado));
         EscreveAlteraçãoDePontos(tamanhoAlterado, "Tamanho");
         
         short destrezaAlterado = caracteristicasAlteradas.getDestreza();
-        this.jogador.getAtributos().getCaracteristicas().setDestreza((short)(
-                this.jogador.getAtributos().getCaracteristicas().getDestreza()+destrezaAlterado));
+        caracteristicas.setDestreza((short)(caracteristicas.getDestreza()+destrezaAlterado));
         EscreveAlteraçãoDePontos(destrezaAlterado, "Destreza");
         
         short poderAlterado = caracteristicasAlteradas.getPoder();
-        this.jogador.getAtributos().getCaracteristicas().setPoder((short)(
-                this.jogador.getAtributos().getCaracteristicas().getPoder()+poderAlterado));
+        caracteristicas.setPoder((short)(caracteristicas.getPoder()+poderAlterado));
         EscreveAlteraçãoDePontos(poderAlterado, "Poder");
     }
     
@@ -68,14 +65,14 @@ public class VerificadorAtributos {
     public void ChecaAtributosAlterados(FolhaDeAtributos atributosAlterados){
         ChecaCaracteristicasAlteradas(atributosAlterados.getCaracteristicas());
         
+        FolhaDeAtributos atributos = jogador.getAtributos();
+        
         short hpAlterado = atributosAlterados.getHpAtual();
-        this.jogador.getAtributos().setHpAtual((short)(this.jogador.getAtributos().getHpAtual()
-                + hpAlterado));
+        atributos.setHpAtual((short)(atributos.getHpAtual()+ hpAlterado));
         EscreveAlteraçãoDePontos(hpAlterado, "Saúde");
 
         short mpAlterado = atributosAlterados.getMpAtual();
-        this.jogador.getAtributos().setMpAtual((short)(this.jogador.getAtributos().getMpAtual()
-                + mpAlterado));
+        atributos.setMpAtual((short)(atributos.getMpAtual()+ mpAlterado));
         EscreveAlteraçãoDePontos(mpAlterado, "Magia");
     }
     

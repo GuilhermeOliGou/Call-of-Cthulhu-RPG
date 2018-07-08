@@ -32,66 +32,50 @@ public class VerificadorHabilidades {
     }
     
     private void ChecaSetHabilidadeLuta(HabilidadesLuta habilidadesAlteradas){
+        HabilidadesLuta luta = jogador.getHabilidades().getLuta();
+        
         short esquiva = habilidadesAlteradas.getEsquiva();
-        this.jogador.getHabilidades().getLuta().setEsquiva(
-                (short)(this.jogador.getHabilidades().getLuta().getEsquiva()+esquiva)
-        );
+        luta.setEsquiva((short)(luta.getEsquiva()+esquiva));
         EscreveAlteraçãoHabilidades(esquiva);
         
         short machado = habilidadesAlteradas.getLutaMachado();
-        this.jogador.getHabilidades().getLuta().setLutaMachado(
-                (short)(this.jogador.getHabilidades().getLuta().getLutaMachado()+machado)
-        );
+        luta.setLutaMachado((short)(luta.getLutaMachado()+machado));
         EscreveAlteraçãoHabilidades(machado);
         
         short livre = habilidadesAlteradas.getLutaLivre();
-        this.jogador.getHabilidades().getLuta().setLutaLivre(
-                (short)(this.jogador.getHabilidades().getLuta().getLutaLivre()+livre)
-        );
+        luta.setLutaLivre((short)(luta.getLutaLivre()+livre));
         EscreveAlteraçãoHabilidades(livre);
         
         short lanca = habilidadesAlteradas.getLutaLanca();
-        this.jogador.getHabilidades().getLuta().setLutaLanca(
-                (short)(this.jogador.getHabilidades().getLuta().getLutaLanca()+lanca)
-        );
+        luta.setLutaLanca((short)(luta.getLutaLanca()+lanca));
         EscreveAlteraçãoHabilidades(lanca);
         
         short espada = habilidadesAlteradas.getLutaEspada();
-        this.jogador.getHabilidades().getLuta().setLutaEspada(
-                (short)(this.jogador.getHabilidades().getLuta().getLutaEspada()+espada)
-        );
+        luta.setLutaEspada((short)(luta.getLutaEspada()+espada));
         EscreveAlteraçãoHabilidades(espada);
         
         short chicote = habilidadesAlteradas.getLutaChicote();
-        this.jogador.getHabilidades().getLuta().setLutaChicote(
-                (short)(this.jogador.getHabilidades().getLuta().getLutaChicote()+chicote)
-        );
+        luta.setLutaChicote((short)(luta.getLutaChicote()+chicote));
         EscreveAlteraçãoHabilidades(chicote);
     }
     
     private void ChecaSetHabilidadeTiro(HabilidadesTiro habilidadesAlteradas){
+        HabilidadesTiro tiro = jogador.getHabilidades().getTiro();
+        
         short pistola = habilidadesAlteradas.getTiroPistola();
-        this.jogador.getHabilidades().getTiro().setTiroPistola(
-                (short)(this.jogador.getHabilidades().getTiro().getTiroPistola()+pistola)
-        );
+        tiro.setTiroPistola((short)(tiro.getTiroPistola()+pistola));
         EscreveAlteraçãoHabilidades(pistola);
         
         short rifleEscopeta = habilidadesAlteradas.getTiroRifleEscopeta();
-        this.jogador.getHabilidades().getTiro().setTiroRifleEscopeta(
-                (short)(this.jogador.getHabilidades().getTiro().getTiroRifleEscopeta()+rifleEscopeta)
-        );
+        tiro.setTiroRifleEscopeta((short)(tiro.getTiroRifleEscopeta()+rifleEscopeta));
         EscreveAlteraçãoHabilidades(rifleEscopeta);
         
         short submetralhadora = habilidadesAlteradas.getTiroSubmetralhadora();
-        this.jogador.getHabilidades().getTiro().setTiroSubmetralhadora(
-                (short)(this.jogador.getHabilidades().getTiro().getTiroSubmetralhadora()+submetralhadora)
-        );
+        tiro.setTiroSubmetralhadora((short)(tiro.getTiroSubmetralhadora()+submetralhadora));
         EscreveAlteraçãoHabilidades(submetralhadora);
         
         short arremesso = habilidadesAlteradas.getArremesso();
-        this.jogador.getHabilidades().getTiro().setArremesso(
-                (short)(this.jogador.getHabilidades().getTiro().getArremesso()+arremesso)
-        );
+        tiro.setArremesso((short)(tiro.getArremesso()+arremesso));
         EscreveAlteraçãoHabilidades(arremesso);
     }
     
