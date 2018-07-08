@@ -65,12 +65,12 @@ public class VerificadorItens {
     //FUNÇÕES AUXILIARES
     
     private void RecriaVetores(){
-        Integer[] novoInventario = new Integer[20];
+        Integer[] novoInventario = new Integer[this.INVENTARIOMAXIMO];
         System.arraycopy(this.jogador.getInventario(), 0, novoInventario, 0, 
                 this.jogador.getInventario().length);
         this.jogador.setInventario(novoInventario);
 
-        Integer[] novasQuantidades = new Integer[20];
+        Integer[] novasQuantidades = new Integer[this.INVENTARIOMAXIMO];
         System.arraycopy(this.jogador.getQuantidades(), 0, novasQuantidades, 0, 
                 this.jogador.getQuantidades().length);
         this.jogador.setQuantidades(novasQuantidades);
@@ -180,7 +180,7 @@ public class VerificadorItens {
             }catch(ArrayIndexOutOfBoundsException e){
                 Log.gravaLog(e);
                 
-                Integer[] novoRemovidos = new Integer[5];
+                Integer[] novoRemovidos = new Integer[this.RETORNOMAXIMO];
                 System.arraycopy(respostaEvento.getItensRemovidos(), 0, novoRemovidos, 0, 
                         respostaEvento.getItensRemovidos().length);
                 respostaEvento.setItensRemovidos(novoRemovidos);
@@ -188,7 +188,6 @@ public class VerificadorItens {
                 Log.gravaLog(e);
                 
                 respostaEvento.getItensRemovidos()[i] = -1;
-                i--;
             }
         }
         for (int i = 0; i < this.RETORNOMAXIMO; i++){
@@ -197,7 +196,7 @@ public class VerificadorItens {
             }catch(ArrayIndexOutOfBoundsException e){
                 Log.gravaLog(e);
                 
-                Integer[] novoAdicionados = new Integer[5];
+                Integer[] novoAdicionados = new Integer[this.RETORNOMAXIMO];
                 System.arraycopy(respostaEvento.getItensAdicionados(), 0, novoAdicionados, 0, 
                         respostaEvento.getItensAdicionados().length);
                 respostaEvento.setItensAdicionados(novoAdicionados);
@@ -205,7 +204,6 @@ public class VerificadorItens {
                 Log.gravaLog(e);
                 
                 respostaEvento.getItensAdicionados()[i] = -1;
-                i--;
             }
         }
     }

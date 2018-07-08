@@ -6,6 +6,8 @@ public class FolhaDeHabilidades {
              
     //ATRIBUTOS
     
+    private final boolean TIROPADRÃO = true;
+    
     private short mitosDeCthulhu;
     
     private HabilidadesLuta luta;
@@ -17,8 +19,12 @@ public class FolhaDeHabilidades {
         super();
         
         this.mitosDeCthulhu = 0;
+        
+        this.luta = new HabilidadesLuta();
+        this.tiro = new HabilidadesTiro(TIROPADRÃO);
     }
     
+    //Esse construtor inicializa os sets de habilidade com os valores padrão do CoC    
     public FolhaDeHabilidades(short destreza) {
         super();
         
@@ -28,6 +34,7 @@ public class FolhaDeHabilidades {
         tiro = new HabilidadesTiro();
     }
 
+    //Esse construtor permite a criação manual por completo da folha de habilidades
     public FolhaDeHabilidades(short mitosDeCthulhu, HabilidadesLuta luta, HabilidadesTiro tiro) {
         super();
         

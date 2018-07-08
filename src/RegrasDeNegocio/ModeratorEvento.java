@@ -14,6 +14,8 @@ public class ModeratorEvento {
     private final VerificadorAtributos VERIFICADORATRIBUTOS;
     private final VerificadorHabilidades VERIFICADORHABILIDADES;
     private final VerificadorItens VERIFICADORITENS;
+    
+    private final TesteSucessoEvento TESTE;
       
     private Evento evento;    
     private String resposta;
@@ -27,6 +29,8 @@ public class ModeratorEvento {
         this.VERIFICADORATRIBUTOS = new VerificadorAtributos();
         this.VERIFICADORHABILIDADES = new VerificadorHabilidades();
         this.VERIFICADORITENS = new VerificadorItens();
+        
+        this.TESTE = new TesteSucessoEvento();
     } 
 
     public ModeratorEvento(IntermediarioBaseDados baseDados, Jogador jogador, Evento evento, 
@@ -36,6 +40,8 @@ public class ModeratorEvento {
         this.VERIFICADORATRIBUTOS = new VerificadorAtributos(jogador, resposta);
         this.VERIFICADORHABILIDADES = new VerificadorHabilidades(jogador, resposta);
         this.VERIFICADORITENS = new VerificadorItens(jogador, resposta, baseDados);
+        
+        this.TESTE = new TesteSucessoEvento(jogador);
         
         this.evento = evento;
         this.resposta = resposta;
@@ -52,6 +58,7 @@ public class ModeratorEvento {
         this.VERIFICADORITENS = new VerificadorItens(INVENTARIOMAXIMO, RETORNOMAXIMO, 
                 jogador, resposta, baseDados);
         
+        this.TESTE = new TesteSucessoEvento(jogador);
         
         this.evento = evento;
         this.resposta = resposta;
@@ -62,7 +69,10 @@ public class ModeratorEvento {
     
     public void ExecutaEvento(){
         if (this.evento instanceof EventoAvancado){
-            
+            if (!TESTE.TestaSucesso((EventoAvancado)evento)){
+                resposta += ((EventoAvancado)evento).getDescricaoFalha();
+                return;
+            }
         }
         String descricaoEvento = this.evento.getDescricao();
         if (descricaoEvento != null){
