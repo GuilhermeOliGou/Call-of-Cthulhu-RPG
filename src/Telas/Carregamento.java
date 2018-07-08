@@ -57,7 +57,7 @@ public class Carregamento extends javax.swing.JFrame {
         });
 
         jCBoxJogos.setFont(new java.awt.Font("Charlemagne Std", 1, 12)); // NOI18N
-        jCBoxJogos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jogo 1", "Jogo 2", "Jogo 3", "Jogo 4" }));
+        jCBoxJogos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
         jTxtDescricaoJogo.setEditable(false);
         jTxtDescricaoJogo.setBackground(new java.awt.Color(5, 5, 99));
@@ -152,9 +152,9 @@ public class Carregamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnVoltaMenuActionPerformed
 
     private void jBtnIniciaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIniciaJogoActionPerformed
-        int indice = jCBoxJogos.getSelectedIndex();
         try {
-            String jogador = facade.carregaJogador(indice);//indice e selecionado pelo combobox 
+            int indice = jCBoxJogos.getSelectedIndex();
+            String jogador = facade.carregaJogador(indice);//indice selecionado pelo combobox 
             JOptionPane.showMessageDialog(null, "O jogador: "+jogador+" foi carregado");
             TelaLocal tela = new TelaLocal();
             tela.setVisible(true);
@@ -173,11 +173,9 @@ public class Carregamento extends javax.swing.JFrame {
                 existem = facade.existeJogos();
                 if(!existem){
                   JOptionPane.showMessageDialog(this,"Nao existem jogos salvos.\n"
-                        + "Voltando ao menu inicial.","Erro",JOptionPane.WARNING_MESSAGE);
-                    TelaInicial tela = new TelaInicial();
-                    this.dispose();
-                    tela.setVisible(true);
-                    tela.setLocationRelativeTo(null);
+                          + "Volte para tela inicial ou aperte em Popula..."
+                    ,"Erro",JOptionPane.WARNING_MESSAGE);
+                    jBtnIniciaJogo.setEnabled(false);
                 }else{
                     int indexJogo = jCBoxJogos.getSelectedIndex();
                     String textoDefault = "";
@@ -209,13 +207,14 @@ public class Carregamento extends javax.swing.JFrame {
     private void jBtnResetaJogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnResetaJogosActionPerformed
         try {
             facade.resetaEPopula();
+            jBtnIniciaJogo.setEnabled(true);
         } catch (RegraNegocioException ex) {
             Log.gravaLog(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBtnResetaJogosActionPerformed
     
-  /*  private void mostraJogos(){
+    private void mostraJogos(){
         String textoDefault = "DESCRIÇÃO \n";
         int indexJogo = jCBoxJogos.getSelectedIndex();
         String textoDescri = descriJogos.get(indexJogo);
@@ -230,7 +229,7 @@ public class Carregamento extends javax.swing.JFrame {
                 }
             }
         });
-    }*/
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

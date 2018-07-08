@@ -1,0 +1,1 @@
+BaseDados.Dao.Evento.DaoEventoJogador
