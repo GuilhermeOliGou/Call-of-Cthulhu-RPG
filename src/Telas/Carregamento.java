@@ -1,5 +1,5 @@
 
-package telas;
+package Telas;
 
 import RegrasDeNegocio.RegraNegocioException;
 import java.awt.event.ItemEvent;
@@ -7,7 +7,7 @@ import java.awt.event.ItemListener;
 import javax.swing.DefaultComboBoxModel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import utilidades.Log;
+import Utilidades.Log;
 
 public class Carregamento extends javax.swing.JFrame {
 

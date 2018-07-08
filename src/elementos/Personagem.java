@@ -1,4 +1,4 @@
-package elementos;
+package Elementos;
 import java.util.Random;
 
 public class Personagem {

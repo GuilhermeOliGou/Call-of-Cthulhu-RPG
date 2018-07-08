@@ -2,7 +2,7 @@ package RegrasDeNegocio;
 
 import DTO.Personagens.Jogador;
 import java.util.ArrayList;
-import telas.FacadeRegraNegocio;
+import Telas.FacadeRegraNegocio;
 
 public class FacadeControlador implements FacadeRegraNegocio{
     

@@ -1,5 +1,5 @@
 
-package elementos;
+package Elementos;
 
 public class Shoggoths extends Criatura {
     public Shoggoths(){

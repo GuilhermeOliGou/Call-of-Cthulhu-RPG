@@ -1,4 +1,4 @@
-package telas;
+package Telas;
 
 
 import DTO.Personagens.*;
@@ -9,7 +9,9 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import utilidades.Log;
+import Utilidades.Log;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Luta extends javax.swing.JFrame {
     private FacadeRegraNegocio facade = new FacadeTelasImp();
@@ -72,7 +74,7 @@ public class Luta extends javax.swing.JFrame {
         jLblMP.setText("MP:");
 
         jListListaAcoes.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -166,9 +168,11 @@ public class Luta extends javax.swing.JFrame {
             jListListaAcoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             jListListaAcoes.setVisibleRowCount(7);
             jScrollPane1 = new JScrollPane(jListListaAcoes);
+            
             jLblInimigo.setText(facade.getNomeInimigo());
             jLblPersonagem.setText(facade.getNomePersonagem());
             jHPQuantidade.setText(facade.getHPPersonagem());
+            jLblMPPersonagem.setText(facade.getMPPersonagem());
         }catch(RegraNegocioException ex){
             Log.gravaLog(ex);
             JOptionPane.showMessageDialog(this, ex);
@@ -179,6 +183,7 @@ public class Luta extends javax.swing.JFrame {
         try{
             int indice = jListListaAcoes.getSelectedIndex();
             facade.realizaAcaoBatalha(indice);
+            verificaBatalha();
         }catch(RegraNegocioException ex){
             Log.gravaLog(ex);
             JOptionPane.showMessageDialog(this,ex);
@@ -195,8 +200,15 @@ public class Luta extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jListListaAcoesValueChanged
     
-    /*private void verificaBatalha(Personagem personagem,Criatura criatura){
-        if(personagem.getVidaAtual()<=0){
+    private void verificaBatalha(){
+        String hpPersonagem="";
+        try {
+            hpPersonagem = facade.getHPPersonagem();
+        } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(this,ex);
+        }
+        if(Integer.parseInt(hpPersonagem) <= 0){
             jHPQuantidade.setText("0");
             JOptionPane.showMessageDialog(this, "Voce perdeu a luta e foi levado"
                     + " pela criatura. Agora voce eh um deles. Bom proveito.");
@@ -205,18 +217,23 @@ public class Luta extends javax.swing.JFrame {
             telaInicial.setVisible(true);
             telaInicial.setLocationRelativeTo(null);
         }else{
-            jHPQuantidade.setText(personagem.getVidaToString());
+            jHPQuantidade.setText(hpPersonagem);
         }
-        if(criatura.getVidaAtual()<=0){
-                personagem.incrementaInimigosDerrotados();
+        String hpCriatura = "";
+        try {
+            hpCriatura = facade.getHPInimigo();
+        } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(this,ex);
+        }
+        if(Integer.parseInt(hpCriatura)<=0){
                 JOptionPane.showMessageDialog(this, "Voce sobreviveu a luta.\n");
-                personagem.setMedo(Medo.NORMAL);
-                JogoPrincipal telaPrincipal = new JogoPrincipal(personagem);
+                TelaLocal local = new TelaLocal();
                 this.dispose();
-                telaPrincipal.setVisible(true);
-                telaPrincipal.setLocationRelativeTo(null);
+                local.setVisible(true);
+                local.setLocationRelativeTo(null);
         }
-    }*/
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

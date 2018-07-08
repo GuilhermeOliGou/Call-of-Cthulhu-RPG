@@ -1,4 +1,4 @@
-package telas;
+package Telas;
 
 import DTO.Personagens.Jogador;
 import RegrasDeNegocio.RegraNegocioException;
@@ -60,7 +60,7 @@ public interface FacadeRegraNegocio {
     //FUNÇÕES DE SALVAMENTO
     
     
-    public void salvarJogador(Jogador jogador) throws RegraNegocioException;
+    public void salvarJogador() throws RegraNegocioException;
     
     public void resetaJogo() throws RegraNegocioException;
     

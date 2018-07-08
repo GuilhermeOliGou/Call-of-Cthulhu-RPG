@@ -1,7 +1,9 @@
-package telas;
+package Telas;
 
 import RegrasDeNegocio.RegraNegocioException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -11,7 +13,10 @@ import javax.swing.ListSelectionModel;
 
 public class TelaLocal extends javax.swing.JFrame {
     private FacadeRegraNegocio facade = new FacadeTelasImp();
+    
+    private String localfinal = "Local: ";
     private ArrayList<String> eventos;
+    
     public TelaLocal() {
         initComponents();
     }
@@ -28,6 +33,7 @@ public class TelaLocal extends javax.swing.JFrame {
         jScrollPane = new javax.swing.JScrollPane();
         jListLista = new javax.swing.JList<>();
         jBtnEvento = new javax.swing.JButton();
+        jLblEventosssss = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -81,6 +87,12 @@ public class TelaLocal extends javax.swing.JFrame {
             }
         });
 
+        jLblEventosssss.setFont(new java.awt.Font("Charlemagne Std", 1, 18)); // NOI18N
+        jLblEventosssss.setForeground(new java.awt.Color(255, 255, 88));
+        jLblEventosssss.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblEventosssss.setText("Eventos");
+        jLblEventosssss.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout jPnlLocalLayout = new javax.swing.GroupLayout(jPnlLocal);
         jPnlLocal.setLayout(jPnlLocalLayout);
         jPnlLocalLayout.setHorizontalGroup(
@@ -92,16 +104,15 @@ public class TelaLocal extends javax.swing.JFrame {
                         .addComponent(jLblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPnlLocalLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblEventosssss, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPnlLocalLayout.createSequentialGroup()
+                                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(65, 65, 65)
                                 .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBtnEvento)
                                     .addComponent(jBtnPersonagem)
-                                    .addComponent(jBtnSalvarSair)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlLocalLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnEvento)))))
+                                    .addComponent(jBtnSalvarSair))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPnlLocalLayout.setVerticalGroup(
@@ -109,19 +120,18 @@ public class TelaLocal extends javax.swing.JFrame {
             .addGroup(jPnlLocalLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLblNome)
-                .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLblEventosssss)
+                .addGap(12, 12, 12)
+                .addGroup(jPnlLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPnlLocalLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
                         .addComponent(jBtnEvento)
-                        .addGap(110, 110, 110)
+                        .addGap(105, 105, 105)
                         .addComponent(jBtnPersonagem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnSalvarSair)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlLocalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                        .addComponent(jBtnSalvarSair))
+                    .addComponent(jScrollPane))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,16 +162,22 @@ public class TelaLocal extends javax.swing.JFrame {
         try{
             int indice = jListLista.getSelectedIndex();
             facade.executaEvento(indice);
+            
             if(facade.hasBatalha()){
+                
                 Luta telaLuta = new Luta();
                 telaLuta.setVisible(true);
                 telaLuta.setLocationRelativeTo(this);
+                
             } if(facade.hasResposta()){
+                
                 String info = facade.getResposta();
                 JOptionPane.showMessageDialog(this, info);
             }
-            jLblNome.setText(facade.carregaNomeLocal());
+            
+            jLblNome.setText(localfinal + facade.carregaNomeLocal());
             eventos = facade.getEventos();
+            
         }catch(RegraNegocioException ex){
             JOptionPane.showMessageDialog(this,ex);
         }
@@ -171,17 +187,23 @@ public class TelaLocal extends javax.swing.JFrame {
         int botaoDialogo = JOptionPane.YES_NO_OPTION;
         if(JOptionPane.showConfirmDialog(this, "Tem certeza?", "Confirme", botaoDialogo) == 
                 JOptionPane.YES_OPTION){
-                //facade.salvarJogador(jogador);
+            try {
+                facade.salvarJogador();
                 TelaInicial tela = new TelaInicial();
                 tela.setVisible(true);
                 tela.setLocationRelativeTo(null);
                 this.dispose();
+            } catch (RegraNegocioException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+            }
+               
         }  
     }//GEN-LAST:event_jBtnSalvarSairActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
-            jLblNome.setText(facade.carregaNomeLocal()) ;
+           
+            jLblNome.setText(localfinal + facade.carregaNomeLocal()) ;
             eventos = facade.getEventos();
             DefaultListModel modeloLista = new DefaultListModel();
             for(String evento : eventos){
@@ -192,6 +214,8 @@ public class TelaLocal extends javax.swing.JFrame {
             jListLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             jListLista.setVisibleRowCount(6);
             jScrollPane = new JScrollPane(jListLista);
+            
+            jBtnEvento.setEnabled(false);
         }catch(RegraNegocioException ex){
             JOptionPane.showMessageDialog(this,ex);
         }
@@ -213,6 +237,7 @@ public class TelaLocal extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEvento;
     private javax.swing.JButton jBtnPersonagem;
     private javax.swing.JButton jBtnSalvarSair;
+    private javax.swing.JLabel jLblEventosssss;
     private javax.swing.JLabel jLblNome;
     private javax.swing.JList<String> jListLista;
     private javax.swing.JPanel jPnlLocal;

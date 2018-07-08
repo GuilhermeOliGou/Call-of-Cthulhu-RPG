@@ -1,4 +1,4 @@
-package elementos;
+package Elementos;
 
 
 public class MiniYogCriatura extends YogSothothCriatura {

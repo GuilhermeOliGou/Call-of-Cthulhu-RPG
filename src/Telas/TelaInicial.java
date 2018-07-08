@@ -1,5 +1,5 @@
 
-package telas;
+package Telas;
 
 
 public class TelaInicial extends javax.swing.JFrame {

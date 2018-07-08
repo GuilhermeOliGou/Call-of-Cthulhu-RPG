@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas;
+package Telas;
 
 import DTO.Personagens.Jogador;
 import RegrasDeNegocio.RegraNegocioException;
-import elementos.Personagem;
+import Elementos.Personagem;
 import java.util.Random;
 import javax.swing.JOptionPane;
 /**
@@ -145,16 +145,15 @@ public class NovoJogo extends javax.swing.JFrame {
         }else{
             try {
                 facade.criaJogador(nome);
+                this.dispose();
+                JOptionPane.showMessageDialog(null, "Voce desperta em local estranho. Descubra o que"
+                        + " aconteceu e de o seu jeito de sobreviver. Boa sorte.","",JOptionPane.INFORMATION_MESSAGE);
+                TelaLocal local = new TelaLocal();
+                local.setVisible(true);
+                local.setLocationRelativeTo(null);
             } catch (RegraNegocioException ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
-             this.dispose();
-        JOptionPane.showMessageDialog(null, "Voce desperta em local estranho. Descubra o que"
-                + " aconteceu e de o seu jeito de sobreviver. Boa sorte.","",JOptionPane.INFORMATION_MESSAGE);
-        TelaLocal local = new TelaLocal();
-        local.setVisible(true);
-        local.setLocationRelativeTo(null);
-       
         }
     }//GEN-LAST:event_jBtnProntoActionPerformed
 

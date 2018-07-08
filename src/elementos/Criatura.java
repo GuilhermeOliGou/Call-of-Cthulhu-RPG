@@ -1,4 +1,4 @@
-package elementos;
+package Elementos;
 
 import javax.swing.JOptionPane;
 import java.util.Random;
