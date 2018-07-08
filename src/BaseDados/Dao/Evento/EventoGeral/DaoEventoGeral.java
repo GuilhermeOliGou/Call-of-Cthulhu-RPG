@@ -7,12 +7,13 @@ package BaseDados.Dao.Evento.EventoGeral;
 
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Evento.Utilidades.DaoUtilidadeEvento;
+import BaseDados.Dao.Geral.DaoBusca;
 import DTO.ElementosDeSistema.Evento;
 
 import java.util.LinkedList;
 import java.util.List;
 
 
-public interface DaoEventoGeral extends DaoUtilidadeEvento<Evento>{
+public interface DaoEventoGeral extends DaoBusca<Evento> {
     
 }

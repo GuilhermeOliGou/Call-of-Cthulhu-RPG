@@ -42,19 +42,4 @@ public class DaoItemRequeridaJdbc extends BancoDadosJdbc implements DaoItemReque
             throw new BaseDadosException("Nao foi possivel encontrar Items Requeridos Evento Avancado");
         }
     }
-
-    @Override
-    public void Insere(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Altera(Evento evento) throws BaseDadosException {
-
-    }
-
-    @Override
-    public void Remove(int codigo) throws BaseDadosException {
-
-    }
 }

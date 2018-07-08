@@ -10,6 +10,7 @@ import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.EventoLuta;
 import DTO.ElementosDeSistema.Resposta;
 import DTO.Personagens.Personagem;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 
@@ -43,6 +44,8 @@ public class DaoEventoLutaJdbc extends BancoDadosJdbc implements DaoEventoLuta{
             ps.executeQuery();
         }
         catch (SQLException e) {
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel Buscar Evento Luta");
         }
 
@@ -55,9 +58,12 @@ public class DaoEventoLutaJdbc extends BancoDadosJdbc implements DaoEventoLuta{
 
                 eventoLuta = new EventoLuta(codigo, nome, descricao, idLocalRetorno, resposta, eventoUnico, personagem);
             }
+            fechaConexao();
             return eventoLuta;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Evento Luta");
         }
     }

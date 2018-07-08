@@ -11,6 +11,7 @@ import DTO.Itens.FolhaDano;
 import DTO.Itens.Item;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesLuta;
 import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,10 +44,12 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
         }
         catch (SQLException e){
             fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Erro no acesso");
         }
 
         try{
+            Arma arma = null;
             if(rs.next()) {
 
                 HabilidadesTiro habilidadesTiro = daoHabilidadesTiro.Busca(codigo);
@@ -59,101 +62,16 @@ public class DaoArmaJdbc extends BancoDadosJdbc implements DaoArma {
 
                 fechaConexao();
 
-                return new Arma(item.getId(), item.getNome(), item.getDescricao(), habilidadesTiro, habilidadesLuta,
+                arma = new Arma(item.getId(), item.getNome(), item.getDescricao(), habilidadesTiro, habilidadesLuta,
                         folhaDano, usosRound, tamanhoPente,
                         malFuncionamento);
             }
-
+            fechaConexao();
+            return arma;
         }catch (SQLException e ){
             fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Arma nao encontrado");
         }
-        return null;
-    }
-
-    @Override
-    public void Insere(Item item) throws BaseDadosException {
-
-        Arma arma = (Arma) item;
-
-        daoItem.Insere(arma);
-
-        abreConexao();
-        try{
-            preparaComandoSQL("INSERT INTO item_arma (usos_round, tamanho_pente, mal_funcionamento, id_item) VALUES (?, ?, ?, ?)");
-            ps.setShort(1, arma.getUsosPorRound());
-            ps.setShort(2, arma.getTamanhoDoPente());
-            ps.setShort(3, arma.getMalFuncionamento());
-            ps.setInt(4, arma.getId());
-
-            ps.execute();
-
-        }catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel adicionar Arma");
-        }
-
-        daoHabilidadesLuta.Insere(arma);
-        daoHabilidadesTiro.Insere(arma);
-        daoFolhaDano.Insere(arma);
-
-    }
-
-    @Override
-    public void Altera(Item item) throws BaseDadosException {
-
-        Arma arma = (Arma) item;
-
-        daoItem.Altera(arma);
-
-        abreConexao();
-        try{
-            preparaComandoSQL("UPDATE item_arma SET usos_round = ?, tamanho_pente = ?, mal_funcionamento = ? WHERE id_item = ?");
-            ps.setShort(1, arma.getUsosPorRound());
-            ps.setShort(2, arma.getTamanhoDoPente());
-            ps.setShort(3, arma.getMalFuncionamento());
-            ps.setInt(4, arma.getId());
-            ps.execute();
-        }catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel modificar Arma");
-        }
-
-        daoHabilidadesTiro.Altera(arma);
-        daoHabilidadesLuta.Altera(arma);
-        daoFolhaDano.Altera(arma);
-
-    }
-    @Override
-    public void Remove(int codigo) throws BaseDadosException{
-
-        daoHabilidadesTiro.Remove(codigo);
-        daoHabilidadesLuta.Remove(codigo);
-        daoFolhaDano.Remove(codigo);
-
-        abreConexao();
-        preparaComandoSQL("DELETE FROM item_arma WHERE id_item = ?");
-
-        try{
-            ps.setInt(1, codigo);
-            ps.execute();
-        }catch(SQLException e){
-            throw new BaseDadosException("Não foi possível remover a Arma");
-        }
-
-        daoItem.Remove(codigo);
-    }
-
-    @Override
-    public List<Item> Lista() throws BaseDadosException {
-        List<Integer> items = daoItem.ListaArma();
-        List<Item> armas = new ArrayList<>();
-        for(Integer item : items)
-            armas.add(Busca(item));
-
-        return armas;
-    }
-
-
-    public List<Arma> ListaDoPersonagem(int codigo) throws BaseDadosException {
-        return null;
     }
 }

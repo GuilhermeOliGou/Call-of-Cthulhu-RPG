@@ -8,6 +8,7 @@ import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.Resposta;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 
@@ -30,10 +31,13 @@ public class DaoAtributosRespostaJdbc extends BancoDadosJdbc implements DaoAtrib
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel realizar a busca Folha Atributos Resposta");
         }
 
         try {
+            FolhaDeAtributos atributos = null;
             if(rs.next()){
 
                 FolhaDeCaracteristicas caracteristicas = daoCaracteristicasResposta.Busca(codigo);
@@ -44,89 +48,16 @@ public class DaoAtributosRespostaJdbc extends BancoDadosJdbc implements DaoAtrib
                 short mpAtual = rs.getShort("mp_atual");
                 short bonusDano = rs.getShort("bonus_dano");
 
-                return new FolhaDeAtributos(caracteristicas, maxHp, maxMp, hpAtual, mpAtual, bonusDano);
+
+                atributos = new FolhaDeAtributos(caracteristicas, maxHp, maxMp, hpAtual, mpAtual, bonusDano);
             }
+            fechaConexao();
+            return atributos;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Folha Atributos Resposta");
-        }
-        return null;
-    }
-
-    @Override
-    public void Insere(Evento evento) throws BaseDadosException{
-        int id = evento.getID();
-
-        Resposta resposta = evento.getRespostaDoEvento();
-
-        FolhaDeAtributos atributos = resposta.getAtributosAlterados();
-
-        abreConexao();
-        preparaComandoSQL("INSERT INTO folha_atributos (max_hp, max_mp, hp_atual, mp_atual, bonus_dano, id_evento)" +
-                "VALUES (?, ?, ?, ?, ?, ?)");
-
-        try {
-            ps.setShort(1, atributos.getMaxHp());
-            ps.setShort(2, atributos.getMaxMp());
-            ps.setShort(3, atributos.getHpAtual());
-            ps.setShort(4, atributos.getMpAtual());
-            ps.setShort(5, atributos.getBonusDeDanoCorporal());
-
-            ps.setInt(6, id);
-
-            ps.execute();
-        }
-        catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel inserir Folha Atributos");
-        }
-
-        daoCaracteristicasResposta.Insere(evento);
-
-    }
-
-    @Override
-    public void Altera(Evento evento) throws BaseDadosException {
-        int id = evento.getID();
-
-        Resposta resposta = evento.getRespostaDoEvento();
-
-        FolhaDeAtributos atributos = resposta.getAtributosAlterados();
-
-        abreConexao();
-        preparaComandoSQL("UPDATE folha_atributos SET max_hp = ?, max_mp = ?," +
-                " hp_atual = ?, mp_atual = ?, bonus_dano = ? WHERE id_evento = ?");
-
-        try {
-            ps.setShort(1, atributos.getMaxHp());
-            ps.setShort(2, atributos.getMaxMp());
-            ps.setShort(3, atributos.getHpAtual());
-            ps.setShort(4, atributos.getMpAtual());
-            ps.setShort(5, atributos.getBonusDeDanoCorporal());
-
-            ps.setInt(6, id);
-
-            ps.execute();
-        }
-        catch (SQLException e){
-            throw new BaseDadosException("Nao foi possivel modificar Folha Atributos Resposta");
-        }
-
-        daoCaracteristicasResposta.Altera(evento);
-
-    }
-
-    @Override
-    public void Remove(int codigo) throws BaseDadosException{
-
-        daoCaracteristicasResposta.Remove(codigo);
-
-        abreConexao();
-        preparaComandoSQL("DELETE FROM folha_atributos WHERE id_evento = ?");
-        try{
-            ps.setInt(1, codigo);
-            ps.execute();
-        }catch(SQLException e){
-            throw new BaseDadosException("Não foi possível remover Folha Atributos Resposta");
         }
     }
 }

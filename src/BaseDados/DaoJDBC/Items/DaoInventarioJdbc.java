@@ -5,7 +5,9 @@ import BaseDados.Dao.Items.DaoItemGeral;
 import BaseDados.Dao.Personagem.DaoInventario;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Itens.Item;
+import DTO.Personagens.Jogador;
 import DTO.Personagens.Personagem;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,8 +15,8 @@ import java.util.List;
 
 public class DaoInventarioJdbc extends BancoDadosJdbc implements DaoInventario {
 
-    private DaoItemGeral daoItemGeral;
     public DaoInventarioJdbc() throws BaseDadosException {
+        super();
     }
 
     @Override
@@ -50,25 +52,62 @@ public class DaoInventarioJdbc extends BancoDadosJdbc implements DaoInventario {
             return inventario;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Inventario Jogador");
         }
     }
 
     @Override
     public void Insere(Personagem personagem) throws BaseDadosException {
+        Jogador jogador = (Jogador) personagem;
+        int id = personagem.getId();
+        Integer[] inventario = jogador.getInventario();
+        Integer[] quantidade = jogador.getQuantidades();
 
+        abreConexao();
+        preparaComandoSQL("INSERT INTO inventario (id_personagem, id_item, quantidade) VALUES (?, ?, ?)");
+
+        try {
+            for(int i = 0; i < inventario.length; i++){
+                ps.setInt(1, id);
+                ps.setInt(2, inventario[i]);
+                ps.setInt(3, quantidade[i]);
+
+                ps.execute();
+            }
+            fechaConexao();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
+            throw new BaseDadosException("Nao foi possivel atualizar Inventario Jogador");
+        }
     }
 
     @Override
     public void Altera(Personagem personagem) throws BaseDadosException {
-        abreConexao();
-        preparaComandoSQL("UPDATE inventario SET id_item = ?");
+        Jogador jogador = (Jogador) personagem;
 
+        Remove(personagem.getId());
+        Insere(jogador);
 
     }
 
     @Override
     public void Remove(int codigo) throws BaseDadosException {
+        abreConexao();
+        preparaComandoSQL("DELETE FROM inventario WHERE id_personagem = ?");
 
+        try{
+            ps.setInt(1, codigo);
+            ps.execute();
+            fechaConexao();
+        }
+        catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
+            throw new BaseDadosException("Não foi possivel remover Inventario Jogador");
+        }
     }
 }

@@ -60,9 +60,11 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
                 jogador = new Jogador(codigo, atributos, idade, nome, ultimoLocal, maxSanidade, sanidadeAtual, sorte, inventario.get(0), inventario.get(1));
 
             }
+            fechaConexao();
             return jogador;
         }
         catch (SQLException e){
+            fechaConexao();
             Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontar Jogador");
         }
@@ -95,8 +97,10 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
             ps.setInt(4, id);
 
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
             Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel inserir Jogador");
         }
@@ -125,8 +129,10 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
             ps.setInt(4, id);
 
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
             Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel inserir Jogador");
         }
@@ -143,8 +149,10 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
         try{
             ps.setInt(1, codigo);
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e ){
+            fechaConexao();
             Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel remover Jogador");
 
@@ -187,9 +195,11 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
 
                 jogadores.add(jogador);
             }
+            fechaConexao();
             if(jogadores.size() == 0) return null;
             return jogadores;
         }catch (SQLException e){
+            fechaConexao();
             Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encrontrar Lista Jogadores");
         }

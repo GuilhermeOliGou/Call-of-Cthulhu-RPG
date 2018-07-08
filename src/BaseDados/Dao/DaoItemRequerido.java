@@ -1,6 +1,6 @@
 package BaseDados.Dao;
 
-import BaseDados.Dao.Evento.Utilidades.DaoUtilidadeEvento;
+import BaseDados.Dao.Geral.DaoBusca;
 
-public interface DaoItemRequerido extends DaoUtilidadeEvento<Integer[]> {
+public interface DaoItemRequerido extends DaoBusca<Integer[]> {
 }

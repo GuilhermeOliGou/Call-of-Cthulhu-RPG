@@ -6,6 +6,7 @@ import BaseDados.Dao.Personagem.Utilidades.DaoAtributos;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.Personagem;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -31,6 +32,8 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel realizar a Busca Personagem");
         }
 
@@ -47,9 +50,12 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
 
                 personagem = new Personagem(codigo, atributos, idade, nome, idLocal);
             }
+            fechaConexao();
             return personagem;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Personagem");
         }
     }
@@ -72,6 +78,8 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
             ps.execute();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel inserir Personagem");
         }
 
@@ -84,7 +92,10 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
             else{
                 throw new BaseDadosException();
             }
+            fechaConexao();
         }catch (Exception e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Não foi possível receber o ID do Personagem");
         }
         daoAtributos.Insere(personagem);
@@ -108,8 +119,11 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
             ps.setInt(4, idPersonagem);
 
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel modificar Personagem");
         }
 
@@ -126,8 +140,11 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
         try {
             ps.setInt(1, codigo);
             ps.execute();
+            fechaConexao();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel remover Personagem");
         }
     }
@@ -135,11 +152,6 @@ public class DaoPersonagemJdbc extends BancoDadosJdbc implements DaoPersonagem {
 
     @Override
     public List<Personagem> Lista() throws BaseDadosException {
-        return null;
-    }
-
-
-    public List<Personagem> ListaDoPersonagem(int codigo) throws BaseDadosException {
         return null;
     }
 }

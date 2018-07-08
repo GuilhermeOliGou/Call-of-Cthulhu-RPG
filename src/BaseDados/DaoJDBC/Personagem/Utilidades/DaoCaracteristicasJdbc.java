@@ -3,8 +3,10 @@ package BaseDados.DaoJDBC.Personagem.Utilidades;
 import BaseDados.BaseDadosException;
 import BaseDados.Dao.Personagem.Utilidades.DaoCaracteristicas;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
+import DTO.Personagens.FolhaDeAtributos;
 import DTO.Personagens.FolhaDeCaracteristicas;
 import DTO.Personagens.Personagem;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 
@@ -24,19 +26,28 @@ public class DaoCaracteristicasJdbc extends BancoDadosJdbc implements DaoCaracte
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel realizar a busca Folha Caracteristicas");
         }
 
         try {
-            short forca = rs.getShort("forca");
-            short constituicao = rs.getShort("constituicao");
-            short tamanho = rs.getShort("tamanho");
-            short destreza = rs.getShort("destreza");
-            short poder = rs.getShort("poder");
+            FolhaDeCaracteristicas caracteristicas = null;
+            if(rs.next()) {
+                short forca = rs.getShort("forca");
+                short constituicao = rs.getShort("constituicao");
+                short tamanho = rs.getShort("tamanho");
+                short destreza = rs.getShort("destreza");
+                short poder = rs.getShort("poder");
 
-            return new FolhaDeCaracteristicas(forca, constituicao, tamanho, destreza, poder);
+                caracteristicas = new FolhaDeCaracteristicas(forca, constituicao, tamanho, destreza, poder);
+            }
+            fechaConexao();
+            return caracteristicas;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Folha Caracteristicas");
         }
     }
@@ -60,6 +71,8 @@ public class DaoCaracteristicasJdbc extends BancoDadosJdbc implements DaoCaracte
             ps.execute();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel inserir Folha Caracteristicas");
         }
     }
@@ -84,6 +97,8 @@ public class DaoCaracteristicasJdbc extends BancoDadosJdbc implements DaoCaracte
             ps.execute();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel modificar Folha Caracteristicas");
         }
     }
@@ -99,6 +114,8 @@ public class DaoCaracteristicasJdbc extends BancoDadosJdbc implements DaoCaracte
             ps.execute();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel remover Folha Caracteristicas");
         }
     }

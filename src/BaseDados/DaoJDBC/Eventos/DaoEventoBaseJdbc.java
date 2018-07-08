@@ -7,6 +7,7 @@ import BaseDados.Dao.Evento.Resposta.DaoResposta;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.Resposta;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -31,10 +32,13 @@ public class DaoEventoBaseJdbc extends BancoDadosJdbc implements DaoEventoBase {
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel Buscar Evento");
         }
 
         try {
+            Evento evento = null;
             if(rs.next()){
                 String nome = rs.getString("nome_evento");
                 String descricao = rs.getString("descricao_evento");
@@ -43,11 +47,14 @@ public class DaoEventoBaseJdbc extends BancoDadosJdbc implements DaoEventoBase {
 
                 Resposta resposta = daoResposta.Busca(codigo);
 
-                return new Evento(codigo, nome, descricao, idLocalRetorno, resposta, eventoUnico);
+                evento = new Evento(codigo, nome, descricao, idLocalRetorno, resposta, eventoUnico);
             }
-            return null;
+            fechaConexao();
+            return evento;
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Evento");
         }
 

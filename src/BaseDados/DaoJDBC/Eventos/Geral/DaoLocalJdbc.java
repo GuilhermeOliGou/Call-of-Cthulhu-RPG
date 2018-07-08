@@ -7,6 +7,8 @@ import BaseDados.Dao.Evento.DaoLocal;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Evento;
 import DTO.ElementosDeSistema.Local;
+import Utilidades.Log;
+
 import java.sql.SQLException;
 
 import java.util.LinkedList;
@@ -38,6 +40,8 @@ public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
             }
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel buscar Local");
         }
 
@@ -50,6 +54,7 @@ public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
             eventos.add(evento);
         }
         local = new Local(nome, eventos, idLocal);
+        fechaConexao();
         return local;
     }
 
