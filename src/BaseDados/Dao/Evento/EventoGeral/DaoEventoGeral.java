@@ -14,6 +14,5 @@ import java.util.LinkedList;
 
 public interface DaoEventoGeral extends DaoUtilidadeEvento<Evento>{
 
-    public LinkedList<Evento> Lista(int IdLocal) throws BaseDadosException;
     
 }

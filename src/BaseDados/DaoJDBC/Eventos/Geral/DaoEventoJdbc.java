@@ -22,11 +22,12 @@ public class DaoEventoJdbc extends BancoDadosJdbc implements DaoEventoGeral {
 
 
     @Override
-    public LinkedList<Evento> Lista(int IdLocal) throws BaseDadosException {
+    public LinkedList<Evento> Lista(int idLocal) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("SELECT * FROM evento");
+        preparaComandoSQL("SELECT * FROM evento WHERE id_local = ?");
 
         try {
+            ps.setInt(1, idLocal);
             rs = ps.executeQuery();
         }
         catch (SQLException e){
@@ -55,7 +56,29 @@ public class DaoEventoJdbc extends BancoDadosJdbc implements DaoEventoGeral {
 
     @Override
     public Evento Busca(int codigo) throws BaseDadosException {
-        return null;
+        abreConexao();
+        preparaComandoSQL("SELECT tipo_evento FROM evento WHERE id_evento = ?");
+
+        try {
+            ps.setInt(1, codigo);
+            rs = ps.executeQuery();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel realizar Busca Evento");
+        }
+
+        try {
+            Evento evento = null;
+            if(rs.next()) {
+                String tipo = rs.getString("tipo_evento");
+                DaoEvento dao = listaDao.get(tipo);
+                evento = dao.Busca(codigo);
+            }
+            return evento;
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel encontrar Evento");
+        }
     }
 
     @Override

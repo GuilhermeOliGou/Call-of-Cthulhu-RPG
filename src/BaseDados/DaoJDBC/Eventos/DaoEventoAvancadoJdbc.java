@@ -1,4 +1,144 @@
 package BaseDados.DaoJDBC.Eventos;
 
-public class DaoEventoAvancadoJdbc {
+import BaseDados.BaseDadosException;
+import BaseDados.Dao.DaoCaracteristicaRequerida;
+import BaseDados.Dao.DaoHabilidadeRequerida;
+import BaseDados.Dao.DaoItemRequerido;
+import BaseDados.Dao.Evento.EventoGeral.DaoEventoAvancado;
+import BaseDados.Dao.Evento.EventoGeral.DaoEventoBase;
+import BaseDados.DaoJDBC.BancoDadosJdbc;
+import DTO.ElementosDeSistema.Evento;
+import DTO.ElementosDeSistema.EventoAvancado;
+import DTO.ElementosDeSistema.Resposta;
+import DTO.Personagens.FolhaDeCaracteristicas;
+import DTO.Personagens.FolhaDeHabilidades;
+
+import java.sql.SQLException;
+
+public class DaoEventoAvancadoJdbc extends BancoDadosJdbc implements DaoEventoAvancado {
+
+
+    private DaoEventoBase daoEventoBase;
+    private DaoCaracteristicaRequerida daoCaracteristicaRequerida;
+    private DaoItemRequerido daoItemRequerido;
+    private DaoHabilidadeRequerida daoHabilidadeRequerida;
+
+    public DaoEventoAvancadoJdbc(DaoEventoBase daoEventoBase, DaoCaracteristicaRequerida daoCaracteristicaRequerida, DaoItemRequerido daoItemRequerido, DaoHabilidadeRequerida daoHabilidadeRequerida) throws BaseDadosException {
+        super();
+
+        this.daoEventoBase = daoEventoBase;
+        this.daoCaracteristicaRequerida = daoCaracteristicaRequerida;
+        this.daoItemRequerido = daoItemRequerido;
+        this.daoHabilidadeRequerida = daoHabilidadeRequerida;
+    }
+
+
+    @Override
+    public Evento Busca(int codigo) throws BaseDadosException {
+
+        Evento evento = daoEventoBase.Busca(codigo);
+
+        String nome = evento.getNome();
+        String descricao = evento.getDescricao();
+        int idLocalRetorno = evento.getLocalDeRetorno();
+        Resposta resposta = evento.getRespostaDoEvento();
+        boolean eventoUnico = evento.isEventoUnico();
+
+
+        abreConexao();
+        preparaComandoSQL("SELECT * FROM evento_avancado WHERE id_evento = ?");
+
+        try {
+            ps.setInt(1, codigo);
+            rs = ps.executeQuery();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel Buscar Evento Avancado");
+        }
+
+        try{
+            EventoAvancado eventoAvancado = null;
+            if(rs.next()){
+                String falha = rs.getString("descricao_falha");
+
+                Integer[] itemsRequeridos = daoItemRequerido.Busca(codigo);
+                FolhaDeCaracteristicas caracteristicas = daoCaracteristicaRequerida.Busca(codigo);
+                FolhaDeHabilidades habilidades = daoHabilidadeRequerida.Busca(codigo);
+
+                eventoAvancado = new EventoAvancado(falha, itemsRequeridos, caracteristicas, habilidades, codigo, nome, descricao, idLocalRetorno, resposta, eventoUnico);
+            }
+            return eventoAvancado;
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel encontrar Evento Avancado");
+        }
+    }
+
+    @Override
+    public void Insere(Evento evento) throws BaseDadosException {
+        daoEventoBase.Insere(evento);
+        EventoAvancado eventoAvancado = (EventoAvancado) evento;
+        int id = evento.getID();
+        String descricao = eventoAvancado.getDescricaoFalha();
+        abreConexao();
+        preparaComandoSQL("INSERT INTO evento_avancado (id_evento, descricao_falha) VALUES (?, ?)");
+
+        try {
+            ps.setInt(1, id);
+            ps.setString(2, descricao);
+
+            ps.execute();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel inserir Evento Avancado");
+        }
+
+        daoItemRequerido.Insere(evento);
+        daoCaracteristicaRequerida.Insere(evento);
+    }
+
+    @Override
+    public void Altera(Evento evento) throws BaseDadosException {
+        daoEventoBase.Insere(evento);
+        EventoAvancado eventoAvancado = (EventoAvancado) evento;
+
+        int id = evento.getID();
+        String descricao = eventoAvancado.getDescricaoFalha();
+
+        abreConexao();
+        preparaComandoSQL("UPDATE evento_avancado SET descricao_falha = ? WHERE id_evento = ?");
+
+        try {
+            ps.setString(1, descricao);
+
+            ps.setInt(2, id);
+
+            ps.execute();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel modificar Evento Avancado");
+        }
+
+        daoItemRequerido.Altera(evento);
+        daoCaracteristicaRequerida.Altera(evento);
+    }
+
+    @Override
+    public void Remove(int codigo) throws BaseDadosException {
+        daoCaracteristicaRequerida.Remove(codigo);
+        daoItemRequerido.Remove(codigo);
+
+        abreConexao();
+        preparaComandoSQL("DELETE FROM evento_avancado WHERE id_evento = ?");
+
+        try {
+            ps.setInt(1, codigo);
+
+            ps.execute();
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel Remover Evento Avancado");
+        }
+        daoEventoBase.Remove(codigo);
+    }
 }

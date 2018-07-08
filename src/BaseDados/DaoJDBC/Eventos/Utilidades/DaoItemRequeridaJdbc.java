@@ -7,9 +7,14 @@ import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Evento;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DaoItemRequeridaJdbc extends BancoDadosJdbc implements DaoItemRequerido {
 
+
+    public DaoItemRequeridaJdbc() throws BaseDadosException {
+    }
 
     @Override
     public Integer[] Busca(int codigo) throws BaseDadosException {
@@ -25,10 +30,16 @@ public class DaoItemRequeridaJdbc extends BancoDadosJdbc implements DaoItemReque
         }
 
         try {
-            List<>
+            List<Integer> itemsRequeridos = new ArrayList<>();
             while(rs.next()){
-
+                int idItem = rs.getInt("id_item");
+                itemsRequeridos.add(idItem);
             }
+            if(itemsRequeridos.size() == 0) return null;
+            return itemsRequeridos.toArray(new Integer[0]);
+        }
+        catch (SQLException e){
+            throw new BaseDadosException("Nao foi possivel encontrar Items Requeridos Evento Avancado");
         }
     }
 

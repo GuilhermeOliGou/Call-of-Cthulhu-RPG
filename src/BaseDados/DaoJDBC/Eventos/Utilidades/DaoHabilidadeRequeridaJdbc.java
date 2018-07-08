@@ -1,9 +1,9 @@
-package BaseDados.DaoJDBC.Eventos;
+package BaseDados.DaoJDBC.Eventos.Utilidades;
 
 import BaseDados.BaseDadosException;
-import BaseDados.Dao.Evento.DaoHabilidadesLutaResposta;
-import BaseDados.Dao.Evento.DaoHabilidadesResposta;
-import BaseDados.Dao.Evento.DaoHabilidadesTiroResposta;
+import BaseDados.Dao.DaoHabilidadeRequerida;
+import BaseDados.Dao.DaoHabilidadeTiroRequerida;
+import BaseDados.Dao.DaoHabilidadesLutaRequerida;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.ElementosDeSistema.Evento;
 import DTO.Personagens.FolhaDeHabilidades;
@@ -12,21 +12,22 @@ import DTO.Personagens.SetsDeHabilidade.HabilidadesTiro;
 
 import java.sql.SQLException;
 
-public class DaoHabilidadesRespostaJdbc extends BancoDadosJdbc implements DaoHabilidadesResposta{
+public class DaoHabilidadeRequeridaJdbc extends BancoDadosJdbc implements DaoHabilidadeRequerida {
 
-    private DaoHabilidadesLutaResposta daoLutaResposta;
-    private DaoHabilidadesTiroResposta daoTiroResposta;
+    private DaoHabilidadeTiroRequerida daoTiroRequerida;
+    private DaoHabilidadesLutaRequerida daoLutaRequerida;
 
-    public DaoHabilidadesRespostaJdbc(DaoHabilidadesLutaResposta daoLutaResposta, DaoHabilidadesTiroResposta daoTiroResposta) throws BaseDadosException {
+    public DaoHabilidadeRequeridaJdbc(DaoHabilidadesLutaRequerida daoLutaRequerida, DaoHabilidadeTiroRequerida daoTiroRequerida) throws BaseDadosException {
         super();
-        this.daoLutaResposta = daoLutaResposta;
-        this.daoTiroResposta = daoTiroResposta;
+
+        this.daoLutaRequerida = daoLutaRequerida;
+        this.daoTiroRequerida = daoTiroRequerida;
     }
 
     @Override
     public FolhaDeHabilidades Busca(int codigo) throws BaseDadosException {
-        HabilidadesTiro tiro = daoTiroResposta.Busca(codigo);
-        HabilidadesLuta luta = daoLutaResposta.Busca(codigo);
+        HabilidadesTiro tiro = daoTiroRequerida.Busca(codigo);
+        HabilidadesLuta luta = daoLutaRequerida.Busca(codigo);
 
         abreConexao();
         preparaComandoSQL("SELECT * FROM folha_habilidades WHERE id_evento = ?");
@@ -58,8 +59,8 @@ public class DaoHabilidadesRespostaJdbc extends BancoDadosJdbc implements DaoHab
 
     @Override
     public void Altera(Evento evento) throws BaseDadosException {
-        daoLutaResposta.Altera(evento);
-        daoTiroResposta.Altera(evento);
+        daoLutaRequerida.Altera(evento);
+        daoTiroRequerida.Altera(evento);
 
         FolhaDeHabilidades habilidades = evento.getRespostaDoEvento().getHabilidadesAlteradas();
         abreConexao();
