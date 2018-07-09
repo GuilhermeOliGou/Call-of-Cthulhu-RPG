@@ -47,7 +47,6 @@ public class FacadeBaseDadosConcreta implements FacadeBaseDados {
     private Popula popula;
     private DaoItemGeral daoItemGeral;
     private DaoLocal daoLocal;
-
     private DaoJogo daoJogo;
 
     public FacadeBaseDadosConcreta() throws BaseDadosException {
@@ -101,7 +100,7 @@ public class FacadeBaseDadosConcreta implements FacadeBaseDados {
         DaoEventoGeral daoEventoGeral = new DaoEventoGeralJdbc(daoEventoBase, daoEventoAvancado, daoEventoLuta);
         this.daoLocal = new DaoLocalJdbc(daoEventoGeral, daoEventoJogador);
 
-        this.daoJogo = new DaoJogoJdbc(daoJogador, daoEventoJogador);
+        this.daoJogo = new DaoJogoJdbc(daoJogador, daoEventoJogador, daoLocal);
 
         this.popula = new Popula();
     }

@@ -47,7 +47,7 @@ public class BancoDadosJdbc{
     protected void abreConexao() throws BaseDadosException {
         try {
             con = DriverManager.getConnection(MYSQL_URL + "://" + HOST + "/"
-                    + DB_NAME, USER, PASSWORD);
+                    + DB_NAME +"?allowMultiQueries=true", USER, PASSWORD);
         } catch (SQLException e) {
             Log.gravaLog(e);
             throw new BaseDadosException(

@@ -16,7 +16,7 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
     @Override
     public List<Integer> Busca(int idPersonagem, int idLocal) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("SELECT id_evento FROM evento_jogador WHERE id_personagem = ?, id_local = ?");
+        preparaComandoSQL("SELECT id_evento FROM evento_jogador WHERE id_personagem = ? AND id_local = ?");
 
         try {
             ps.setInt(1, idPersonagem);
@@ -25,6 +25,8 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
             rs = ps.executeQuery();
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel realizar a Busca Local Jogador");
         }
         try {
@@ -48,7 +50,7 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
     @Override
     public void Insere(int idPersonagem) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("INSERT INTO evento_jogador (id_personagem, id_evento) SELECT ?, id_evento FROM evento");
+        preparaComandoSQL("INSERT INTO evento_jogador (id_personagem, id_evento, id_local) SELECT ?, id_evento, id_local FROM evento");
 
         try {
             ps.setInt(1, idPersonagem);
@@ -66,7 +68,7 @@ public class DaoEventoJogadorJdbc extends BancoDadosJdbc implements DaoEventoJog
     @Override
     public void Remove(int idPersonagem, int idEvento) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("DELETE FROM evento_jogador WHERE id_evento = ?, id_personagem = ?");
+        preparaComandoSQL("DELETE FROM evento_jogador WHERE id_evento = ? AND id_personagem = ?");
 
         try {
             ps.setInt(1, idEvento);

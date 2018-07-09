@@ -90,14 +90,13 @@ public class DaoJogadorJdbc extends BancoDadosJdbc implements DaoJogador {
 
 
         abreConexao();
-        preparaComandoSQL("INSERT INTO jogador (max_sanidade, sanidade_atual, sorte, id_personagem, ultimo_local) VALUES (?, ?, ?, ?, ?)");
+        preparaComandoSQL("INSERT INTO jogador (max_sanidade, sanidade_atual, sorte, id_personagem) VALUES (?, ?, ?, ?)");
 
         try {
             ps.setShort(1, maxSanidade);
             ps.setShort(2, sanidadeAtual);
             ps.setShort(3, sorte);
             ps.setInt(4, id);
-            ps.setInt(5, 1);
 
             ps.execute();
             fechaConexao();

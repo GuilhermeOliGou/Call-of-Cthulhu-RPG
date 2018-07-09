@@ -28,7 +28,7 @@ public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
     @Override
     public Local Busca(int idPersonagem, int idLocal) throws BaseDadosException {
         abreConexao();
-        preparaComandoSQL("SELECT * local WHERE id_local = ?");
+        preparaComandoSQL("SELECT * FROM local WHERE id_local = ?");
         String nome = "";
         try {
             ps.setInt(1, idLocal);
@@ -46,8 +46,8 @@ public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
 
 
         List<Integer> idEventos = daoEventoJogador.Busca(idPersonagem, idLocal);
-        LinkedList<Evento> eventos = null;
-        Local local = null;
+        LinkedList<Evento> eventos = new LinkedList<>();
+        Local local;
         for(Integer idEvento : idEventos) {
             Evento evento = daoEventoGeral.Busca(idEvento);
             eventos.add(evento);
@@ -59,11 +59,14 @@ public class DaoLocalJdbc extends BancoDadosJdbc implements DaoLocal {
 
     @Override
     public void Altera(Local local, int idPersonagem) throws BaseDadosException {
-        int IdLocal = local.getID();
+        int idEvento;
         List<Evento> eventos = local.getEventosDisponíveis();
 
         for (Evento evento : eventos) {
-            if(!evento.isEventoValido()) daoEventoJogador.Remove(idPersonagem, evento.getID());
+            if(!evento.isEventoValido()){
+                idEvento = evento.getID();
+                daoEventoJogador.Remove(idPersonagem, idEvento);
+            }
         }
     }
 

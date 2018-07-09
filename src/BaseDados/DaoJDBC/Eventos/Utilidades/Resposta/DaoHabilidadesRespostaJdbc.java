@@ -29,7 +29,7 @@ public class DaoHabilidadesRespostaJdbc extends BancoDadosJdbc implements DaoHab
         HabilidadesLuta luta = daoLutaResposta.Busca(codigo);
 
         abreConexao();
-        preparaComandoSQL("SELECT * FROM folha_habilidades_resposta WHERE id_evento = ?");
+        preparaComandoSQL("SELECT * FROM habilidades_resposta WHERE id_evento = ?");
 
         try {
             ps.setInt(1, codigo);

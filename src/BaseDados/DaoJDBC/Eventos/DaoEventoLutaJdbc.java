@@ -40,7 +40,7 @@ public class DaoEventoLutaJdbc extends BancoDadosJdbc implements DaoEventoLuta{
         preparaComandoSQL("SELECT * FROM evento_luta WHERE id_evento = ?");
         try{
             ps.setInt(1, codigo);
-            ps.executeQuery();
+            rs = ps.executeQuery();
         }
         catch (SQLException e) {
             fechaConexao();

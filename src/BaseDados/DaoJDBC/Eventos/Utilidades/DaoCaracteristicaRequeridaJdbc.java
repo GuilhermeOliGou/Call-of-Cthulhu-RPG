@@ -4,6 +4,7 @@ import BaseDados.BaseDadosException;
 import BaseDados.Dao.DaoCaracteristicaRequerida;
 import BaseDados.DaoJDBC.BancoDadosJdbc;
 import DTO.Personagens.FolhaDeCaracteristicas;
+import Utilidades.Log;
 
 import java.sql.SQLException;
 
@@ -27,15 +28,22 @@ public class DaoCaracteristicaRequeridaJdbc extends BancoDadosJdbc implements Da
         }
 
         try {
-            short forca = rs.getShort("forca");
-            short constituicao = rs.getShort("constituicao");
-            short tamanho = rs.getShort("tamanho");
-            short destreza = rs.getShort("destreza");
-            short poder = rs.getShort("poder");
+            FolhaDeCaracteristicas caracteristicas = null;
+            if(rs.next()) {
+                short forca = rs.getShort("forca");
+                short constituicao = rs.getShort("constituicao");
+                short tamanho = rs.getShort("tamanho");
+                short destreza = rs.getShort("destreza");
+                short poder = rs.getShort("poder");
 
-            return new FolhaDeCaracteristicas(forca, constituicao, tamanho, destreza, poder);
+                caracteristicas = new FolhaDeCaracteristicas(forca, constituicao, tamanho, destreza, poder);
+            }
+            return caracteristicas;
+
         }
         catch (SQLException e){
+            fechaConexao();
+            Log.gravaLog(e);
             throw new BaseDadosException("Nao foi possivel encontrar Folha Caracteristicas Evento Avancado");
         }
     }
