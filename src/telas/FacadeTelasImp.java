@@ -1,14 +1,61 @@
 package Telas;
 
+import DTO.ElementosDeSistema.Evento;
+import DTO.ElementosDeSistema.Local;
+import DTO.Personagens.Jogador;
+import RegrasDeNegocio.CriadorDePersonagensPadrão;
+import RegrasDeNegocio.IntermediarioBaseDados;
+import RegrasDeNegocio.ModeratorEventos;
+import RegrasDeNegocio.ModeratorInsanidade;
+import RegrasDeNegocio.ModeratorValidaçãoEventos;
 import RegrasDeNegocio.RegraNegocioException;
+import RegrasDeNegocio.Validador;
 import java.util.ArrayList;
 
 
 public class FacadeTelasImp implements FacadeRegraNegocio{
      
+     //ATRIBUTOS
+    
+    private final IntermediarioBaseDados BASEDADOS;
+    private final int IDADEPADRAO = 19;
+    private final ModeratorEventos MODERADOREVENTOS;
+    private final ModeratorInsanidade INSANIDADE;
+    
+    private Jogador jogador;
+    private String resposta;
+    private Local localidadeAtual;
+    private ArrayList<Evento> eventosValidos;
+    
+    private boolean hasBatalha;
+    private boolean hasResposta;
+    
+    //CONSTRUTOR
+    
+    public FacadeTelasImp() throws RegraNegocioException{
+        super();
+        
+        this.BASEDADOS = new IntermediarioBaseDados();
+        this.MODERADOREVENTOS = new ModeratorEventos(BASEDADOS, jogador, resposta);
+        this.INSANIDADE = new ModeratorInsanidade();
+    }
+    
+    
     @Override
     public void criaJogador(String nome) throws RegraNegocioException {
-        // vamos te enviar uma string com o nome e vc cria um novo jogador/jogo/personagem
+        this.BASEDADOS.CarregaTodosJogadores();
+        if(this.BASEDADOS.DevolveTodosJogadores().size() >= 10)
+            throw new RegraNegocioException("ERRO! NÃO HÁ MAIS SLOTS DE SALVAMENTO!");
+        Validador validador = new Validador();
+        String nomeValido = validador.ValidadorNome(nome);
+        CriadorDePersonagensPadrão criador = new CriadorDePersonagensPadrão();
+        this.jogador = criador.CriarJogador(0, nomeValido, this.IDADEPADRAO);
+        this.BASEDADOS.LimpaJogadores();
+        this.BASEDADOS.CriaJogo(jogador);
+        this.localidadeAtual = this.BASEDADOS.CarregaLocal(this.jogador.getId(), 
+                this.jogador.getLocalidadeAtual());
+        ModeratorValidaçãoEventos validadorEventos = new ModeratorValidaçãoEventos();
+        this.eventosValidos = validadorEventos.GetEventosValidos(localidadeAtual);
     }
     
     @Override

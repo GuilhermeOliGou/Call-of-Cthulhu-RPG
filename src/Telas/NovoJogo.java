@@ -7,7 +7,10 @@ package Telas;
 
 import DTO.Personagens.Jogador;
 import RegrasDeNegocio.RegraNegocioException;
+import Utilidades.Log;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -20,10 +23,19 @@ public class NovoJogo extends javax.swing.JFrame {
     private int erros=0;
     Random r = new Random();
     public NovoJogo() {
+        try {
+            this.facade = new FacadeTelasImp();
+        } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }
         initComponents();
     }
 
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
+    private FacadeRegraNegocio facade;
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -151,8 +163,12 @@ public class NovoJogo extends javax.swing.JFrame {
                 local.setVisible(true);
                 local.setLocationRelativeTo(null);
             } catch (RegraNegocioException ex) {
+                Log.gravaLog(ex);
                 JOptionPane.showMessageDialog(null, ex);
-            }
+            } catch (Exception ex) {
+                 Log.gravaLog(ex);
+                 JOptionPane.showMessageDialog(null, ex);
+             }
         }
     }//GEN-LAST:event_jBtnProntoActionPerformed
 
