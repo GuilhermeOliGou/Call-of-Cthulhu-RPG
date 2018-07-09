@@ -124,7 +124,7 @@ public class DaoAtributosJdbc extends BancoDadosJdbc implements DaoAtributos {
         daoCaracteristicas.Remove(codigo);
 
         abreConexao();
-        preparaComandoSQL("DELETE FROM folha_atributos WHERE id.personagem = ?");
+        preparaComandoSQL("DELETE FROM folha_atributos WHERE id_personagem = ?");
         try{
             ps.setInt(1, codigo);
             ps.execute();

@@ -105,7 +105,7 @@ public class DaoCaracteristicasJdbc extends BancoDadosJdbc implements DaoCaracte
     @Override
     public void Remove(int codigo) throws BaseDadosException{
         abreConexao();
-        preparaComandoSQL("REMOVE * FROM folha_caracteristicas WHERE id_personagem = ?");
+        preparaComandoSQL("DELETE FROM folha_caracteristicas WHERE id_personagem = ?");
 
         try {
             ps.setInt(1, codigo);
