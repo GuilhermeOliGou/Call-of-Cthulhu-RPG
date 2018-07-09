@@ -165,5 +165,12 @@ public class ModeratorEventos {
     public void setHasResposta(boolean hasResposta) {
         this.hasResposta = hasResposta;
     }
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
+        this.VERIFICADORHABILIDADES.setJogador(jogador);
+        this.VERIFICADORATRIBUTOS.setJogador(jogador);
+        this.VERIFICADORITENS.setJogador(jogador);
+    }
     
 }

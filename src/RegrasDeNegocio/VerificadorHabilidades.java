@@ -95,4 +95,10 @@ public class VerificadorHabilidades {
         ChecaSetHabilidadeTiro(habilidadesAlteradas.getTiro());       
     }
     
+    //GETTERS E SETTERS
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
+    }
+    
 }

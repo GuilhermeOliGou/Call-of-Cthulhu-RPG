@@ -1,5 +1,7 @@
 package RegrasDeNegocio;
 
+import java.util.ArrayList;
+
 public class ModeratorInsanidade {
     
     //ATRIBUTOS
@@ -23,7 +25,7 @@ public class ModeratorInsanidade {
     
     //FUNÇÕES
     
-    public String DeformaçãoInsanidade(String base){
+    public String DeformacaoInsanidade(String base){
         if(this.insanidadeJogador > 50)
             return base;
         char[] baseDecomposta = base.toCharArray();
@@ -33,6 +35,14 @@ public class ModeratorInsanidade {
             }
         }
         return String.valueOf(baseDecomposta);
+    }
+    
+    public ArrayList<String> Deformacoes (ArrayList<String> bases){
+        ArrayList<String> novo = new ArrayList<>();
+        bases.forEach((s) -> {
+            novo.add(DeformacaoInsanidade(s));
+        });
+        return novo;
     }
 
     public void setInsanidadeJogador(int insanidadeJogador) {

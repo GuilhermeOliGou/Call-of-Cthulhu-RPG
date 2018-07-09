@@ -76,4 +76,10 @@ public class VerificadorAtributos {
         EscreveAlteraçãoDePontos(mpAlterado, "Magia");
     }
     
+    //GETTERS E SETTERS
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
+    }
+    
 }

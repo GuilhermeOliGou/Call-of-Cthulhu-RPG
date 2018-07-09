@@ -36,7 +36,7 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
         super();
         
         this.BASEDADOS = new IntermediarioBaseDados();
-        this.MODERADOREVENTOS = new ModeratorEventos(BASEDADOS, jogador, resposta);
+        this.MODERADOREVENTOS = new ModeratorEventos();
         this.INSANIDADE = new ModeratorInsanidade();
     }
     
@@ -50,6 +50,9 @@ public class FacadeTelasImp implements FacadeRegraNegocio{
         String nomeValido = validador.ValidadorNome(nome);
         CriadorDePersonagensPadrão criador = new CriadorDePersonagensPadrão();
         this.jogador = criador.CriarJogador(0, nomeValido, this.IDADEPADRAO);
+        
+        this.MODERADOREVENTOS.setJogador(this.jogador);
+        this.MODERADOREVENTOS.ressetaBD(BASEDADOS);
         this.BASEDADOS.LimpaJogadores();
         this.BASEDADOS.CriaJogo(jogador);
         this.localidadeAtual = this.BASEDADOS.CarregaLocal(this.jogador.getId(), 

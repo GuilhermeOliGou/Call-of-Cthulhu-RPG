@@ -10,6 +10,7 @@ public class VerificadorItens {
     
     private final int INVENTARIOMAXIMO;
     private final int RETORNOMAXIMO;
+    private final int SORTEPADRAO = 20;
     
     private final IntermediarioBaseDados BASEDADOS;
     
@@ -56,7 +57,16 @@ public class VerificadorItens {
         
         this.BASEDADOS = BASEDADOS;
         
-        this.GERADOR = new GeradorDeItens(BASEDADOS, jogador.getSorte());
+        GeradorDeItens gerador;
+        try{
+            gerador = new GeradorDeItens(BASEDADOS, jogador.getSorte());
+        }catch(NullPointerException e){
+            Log.gravaLog(e);
+            
+            gerador = new GeradorDeItens(BASEDADOS, this.SORTEPADRAO);
+        }
+        
+        this.GERADOR = gerador;
         
         this.jogador = jogador;
         this.resposta = resposta;
@@ -95,6 +105,8 @@ public class VerificadorItens {
                 this.jogador.getQuantidades()[posicao] = this.jogador.getQuantidades()[posicao+1];
                 posicao++;
             }
+            this.jogador.getInventario()[posicao] = -1;
+            this.jogador.getQuantidades()[posicao] = 0;
         }
     }    
     
@@ -206,6 +218,12 @@ public class VerificadorItens {
                 respostaEvento.getItensAdicionados()[i] = -1;
             }
         }
+    }
+    
+    //GETTERS E SETTERS
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
     }
     
 }
