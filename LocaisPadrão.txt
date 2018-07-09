@@ -1,0 +1,192 @@
+Local 1(Entrada):
+	id 1;
+	Eventos:
+		-Entrar no templo(Tipo simples):
+			-id a determinar
+			-sem descrição
+			-sem resposta
+			-local de retorno (id saguão)
+			-não é único
+Local 2 (Saguão):
+	id a determinar;
+	Eventos:
+		-Voltar pra entrada (Simple):
+			-id a determinar
+			-sem descrição
+			-sem resposta
+			-local de retorno (id entrada)
+			-não é único
+		-Olhar as pinturas(Simples):
+			-id a determinar
+			-Descrição "As paredes estão
+			cobertas de rabiscos bestiais
+			de horror indescritível!"
+			-Resposta(sanidade -10, 
+			Habilidades.cthulhuMitos +
+			5)
+			-sem local de retorno (Volta
+			pro mesmo local)
+			-é único
+		-Investigar Altar(Simples)	
+			-id a determinar
+			-Descricao "Há uma chave
+			largada sobre o chão de
+			um palco."
+			-Resposta (Item <id a
+			determinar, "Chave 
+			Enferrujada", "Uma chave
+			desgastada e enferrujada
+			pelo ar salgado do mar">)
+			-sem local de retorno
+			-é único
+		-Investigar Porta (Avançado)
+			-id a determinar
+			-Descrição "A porta se abre
+			liberando acesso a antessala."
+			-Item necessario: chave 
+			enferrujada
+			-Sem habilidade necessaria
+			-Sem caracteristica 
+			necessaria
+			-Descrição falha "A porta
+			está trancada, você precisa
+			de uma chave."
+			-Sem resposta
+			-Local de retorno (id 
+			antessala)
+			-não é único
+Local 3 (Antessala):
+	id a determinar;
+	Eventos:
+		-Investigar Vulto luminoso (Avançado)
+			-id a determinar
+			-Descrição "Você fez contato.
+			Um sabre de prata se 
+			materializa diante de seus
+			olhos."
+			-Sem habilidade necessária
+			-Caracteristicas necessarias
+			<20 Poder>
+			-Sem item necessario
+			-Descrição falha "O vulto se
+			esvai sem deixar sinais de 
+			que sequer esteve lá."
+			-Resposta (Item<id a 
+			determinar, "Sabre de prata",
+			,"Um sabre de prata brilhante
+			como o luar", sem habilidades
+			de tiro, habilidades.luta.
+			espada, 4D6+1D20(atordoa)
+			,usos por round
+			padrão(1), sem pente, sem
+			mal funcionamento>)
+			-Sem local de retorno
+			-é único
+		-Tentar ler escrituras na parede 
+				(avançado)
+			-id a determinar
+			-Descrição "Uma mente que
+			se expande jamais volta a
+			se tamanho original! DHO-HNA!"
+			-Habilidade necessaria
+			<2 CthulhuMitos>
+			-Sem caracteristicas 
+			necessarias
+			-Sem item necessario
+			-Descrição falha "Nada mais
+			que rabiscos de uma mente
+			perturbada."
+			-Resposta (Caracteristicas
+			<Força 20, constituicao 20,
+			tamanho 20, destreza 20,
+			poder 20>)
+			-Sem local de retorno
+			-é único
+		-Investigar baú (simples)
+			-id
+			-Descrição "Algumas armas
+			estavam dentro do baú."
+			-Resposta(
+			Item<id, "Revolver",
+			"Um revolver de 6 tiros",
+			tiro.pistola, sem luta, 
+			1D8+1D4,usos(1),pente(6),
+			malfunc(100)>, 
+			Item<id,"Machadinha",
+			"Um pequeno machado que pode
+			ser arremessado",tiro.
+			arremesso,luta.machado
+			,1D6+2, usos(1), sem pente
+			malfunc(0)>
+			Item<id,"escopeta","Uma
+			escopeta de curto e médio
+			alcance",tiro.escopeta, sem
+			luta,4D6+2,usos(2), pente(2),
+			malfunc(100)>
+			)
+			-Sem local de retorno
+			-é único
+		-Seguir pelo corredor(simples)
+			-id
+			-Sem descrição
+			-Sem resposta
+			-Local de retorno(id corredor)
+			-não é único
+Local 4(corredor):
+	id;
+	Eventos:
+		-Recuar(simples)
+			-id
+			-Sem descrição
+			-Sem resposta
+			-Local de retorno(id
+			antessala)
+			-não é único
+		-Ir em frente(Luta)
+			-id
+			-Descrição "O inimigo cai
+			morto e a caminho de volta se
+			sela."
+			-Sem Resposta
+			-Local de retorno (id coração
+			do templo)
+			-é único
+			-Inimigo<id,"Cultista",atributos<
+			9 maxHp, 12 maxMp,-1 
+			bonusDano,caracteristicas<
+			50 força, 50 constituição,
+			40 tamanho, 40 detreza,
+			60 poder 
+			>>>
+Local 5(Coração do templo)
+	id;
+	Eventos:
+		-Interagir com vulto luminoso(avançado)
+			-id
+			-Sem descrição
+			-sem itens necessarios
+			-caracteristicas<
+			30 poder>
+			-sem habilidades necessarias
+			-sem descrição falha
+			-Resposta(Habilidades<20 tiro.
+			pistola, 20 tiro.escopeta,
+			20 tiro.arremesso, 30 luta.
+			livre, 30 luta. esquiva
+			30 luta.machado, 30 luta.
+			espada>)
+			-Sem local de retorno
+			-único
+		-Interagir com estatua(Luta)
+			-id
+			-Descrição "Ainda não é o 
+			fim..."
+			-Sem resposta
+			-Sem local de retorno
+			-É único
+			-Inimigo<id,"Aparição cósmica"
+			atributos<24 hp, 24 mp, 3
+			bonusDano, caracteristicas<
+			120 força, 120 constituição,
+			120 tamanho, 120 destreza,
+			120 poder>>>
