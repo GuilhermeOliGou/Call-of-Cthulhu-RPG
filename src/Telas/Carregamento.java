@@ -1,4 +1,3 @@
-
 package Telas;
 
 import RegrasDeNegocio.RegraNegocioException;
@@ -12,14 +11,24 @@ import Utilidades.Log;
 public class Carregamento extends javax.swing.JFrame {
 
     public Carregamento() {
-        initComponents(); 
+        super();
+        try {
+            this.facade = new FacadeTelasImp();
+        } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        initComponents();
     }
-    
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
-    
+
+    private FacadeRegraNegocio facade;
+
     private ArrayList<String> jogos;
     private ArrayList<String> descriJogos;
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -145,63 +154,69 @@ public class Carregamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnVoltaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltaMenuActionPerformed
-       this.dispose();
-       TelaInicial telaInicio = new TelaInicial();
-       telaInicio.setLocationRelativeTo(null);
-       telaInicio.setVisible(true);    
+        this.dispose();
+        TelaInicial telaInicio = new TelaInicial();
+        telaInicio.setLocationRelativeTo(null);
+        telaInicio.setVisible(true);
     }//GEN-LAST:event_jBtnVoltaMenuActionPerformed
 
     private void jBtnIniciaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIniciaJogoActionPerformed
         try {
             int indice = jCBoxJogos.getSelectedIndex();
             String jogador = facade.carregaJogador(indice);//indice selecionado pelo combobox 
-            JOptionPane.showMessageDialog(null, "O jogador: "+jogador+" foi carregado");
+            JOptionPane.showMessageDialog(null, "O jogador: " + jogador + " foi carregado");
             TelaLocal tela = new TelaLocal();
             tela.setVisible(true);
             tela.setLocationRelativeTo(null);
-            this.dispose(); 
+            this.dispose();
         } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
             Log.gravaLog(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBtnIniciaJogoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       //Ao abrir, verifica se existem jogos salvos
+        //Ao abrir, verifica se existem jogos salvos
         boolean existem = false;
         try {
-                existem = facade.existeJogos();
-                if(!existem){
-                  JOptionPane.showMessageDialog(this,"Nao existem jogos salvos.\n"
-                          + "Volte para tela inicial ou aperte em Popula..."
-                    ,"Erro",JOptionPane.WARNING_MESSAGE);
-                    jBtnIniciaJogo.setEnabled(false);
-                }else{
-                    int indexJogo = jCBoxJogos.getSelectedIndex();
-                    String textoDefault = "";
-                    jogos = facade.getNomesJogadores();
-                    descriJogos = facade.getDescricoesJogadores();
-                    DefaultComboBoxModel mod = new DefaultComboBoxModel();
-                    for(String jogo : jogos){
-                        mod.addElement(jogo);
-                    }               
-                    jCBoxJogos.setModel(mod);
-                    jCBoxJogos.addItemListener(new ItemListener(){
-                        @Override
-                        public void itemStateChanged(ItemEvent e){
-                            if(e.getStateChange()==ItemEvent.SELECTED){
-                                String texto = descriJogos.get(indexJogo);
-                                jTxtDescricaoJogo.setText(textoDefault + texto);
-                            }
-                        }
-                    });
+            existem = facade.existeJogos();
+            if (!existem) {
+                JOptionPane.showMessageDialog(this, "Nao existem jogos salvos.\n"
+                        + "Volte para tela inicial ou aperte em Popula...",
+                         "Erro", JOptionPane.WARNING_MESSAGE);
+                jBtnIniciaJogo.setEnabled(false);
+            } else {
+                int indexJogo = jCBoxJogos.getSelectedIndex();
+                String textoDefault = "";
+                jogos = facade.getNomesJogadores();
+                descriJogos = facade.getDescricoesJogadores();
+                DefaultComboBoxModel mod = new DefaultComboBoxModel();
+                for (String jogo : jogos) {
+                    mod.addElement(jogo);
                 }
-        } catch (RegraNegocioException ex) { 
+                jCBoxJogos.setModel(mod);
+                jCBoxJogos.addItemListener(new ItemListener() {
+                    @Override
+                    public void itemStateChanged(ItemEvent e) {
+                        if (e.getStateChange() == ItemEvent.SELECTED) {
+                            String texto = descriJogos.get(indexJogo);
+                            jTxtDescricaoJogo.setText(textoDefault + texto);
+                        }
+                    }
+                });
+            }
+        } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
             Log.gravaLog(ex);
             JOptionPane.showMessageDialog(null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jBtnResetaJogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnResetaJogosActionPerformed
@@ -211,18 +226,21 @@ public class Carregamento extends javax.swing.JFrame {
         } catch (RegraNegocioException ex) {
             Log.gravaLog(ex);
             JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBtnResetaJogosActionPerformed
-    
-    private void mostraJogos(){
+
+    private void mostraJogos() {
         String textoDefault = "DESCRIÇÃO \n";
         int indexJogo = jCBoxJogos.getSelectedIndex();
         String textoDescri = descriJogos.get(indexJogo);
         jTxtDescricaoJogo.setText(textoDefault + textoDescri);
-        jCBoxJogos.addItemListener(new ItemListener(){
+        jCBoxJogos.addItemListener(new ItemListener() {
             @Override
-            public void itemStateChanged(ItemEvent e){
-                if(e.getStateChange()==ItemEvent.SELECTED){
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
                     int id = jCBoxJogos.getSelectedIndex();
                     String texto = descriJogos.get(indexJogo);
                     jTxtDescricaoJogo.setText(textoDefault + texto);
@@ -230,7 +248,7 @@ public class Carregamento extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnIniciaJogo;
@@ -242,5 +260,4 @@ public class Carregamento extends javax.swing.JFrame {
     private javax.swing.JTextArea jTxtDescricaoJogo;
     // End of variables declaration//GEN-END:variables
 
-   
 }

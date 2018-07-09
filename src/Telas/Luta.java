@@ -1,7 +1,5 @@
 package Telas;
 
-
-import DTO.Personagens.*;
 import RegrasDeNegocio.RegraNegocioException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -14,13 +12,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Luta extends javax.swing.JFrame {
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
+
     private ArrayList<String> acoes = new ArrayList<>();
-    
+
     public Luta() {
+        try {
+            this.facade = new FacadeTelasImp();
+        } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }
         initComponents();
     }
-    
+
+    private FacadeRegraNegocio facade;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -157,10 +166,10 @@ public class Luta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        try{
+        try {
             acoes = facade.getAcoesBatalha();
             DefaultListModel modeloLista = new DefaultListModel();
-            for(String acao : acoes){
+            for (String acao : acoes) {
                 modeloLista.addElement(acao);
             }
             jListListaAcoes = new JList(modeloLista);
@@ -168,47 +177,56 @@ public class Luta extends javax.swing.JFrame {
             jListListaAcoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             jListListaAcoes.setVisibleRowCount(7);
             jScrollPane1 = new JScrollPane(jListListaAcoes);
-            
+
             jLblInimigo.setText(facade.getNomeInimigo());
             jLblPersonagem.setText(facade.getNomePersonagem());
             jHPQuantidade.setText(facade.getHPPersonagem());
             jLblMPPersonagem.setText(facade.getMPPersonagem());
-        }catch(RegraNegocioException ex){
+        } catch (RegraNegocioException ex) {
             Log.gravaLog(ex);
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void jBtnRealizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRealizaActionPerformed
-        try{
+        try {
             int indice = jListListaAcoes.getSelectedIndex();
             facade.realizaAcaoBatalha(indice);
             verificaBatalha();
-        }catch(RegraNegocioException ex){
+        } catch (RegraNegocioException ex) {
             Log.gravaLog(ex);
-            JOptionPane.showMessageDialog(this,ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBtnRealizaActionPerformed
 
     private void jListListaAcoesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListListaAcoesValueChanged
-        if(evt.getValueIsAdjusting()==false){
-           if(jListListaAcoes.getSelectedIndex()==-1){
-               jBtnRealiza.setEnabled(false);
-           }else{
-               jBtnRealiza.setEnabled(true);
-           }
-       }
+        if (evt.getValueIsAdjusting() == false) {
+            if (jListListaAcoes.getSelectedIndex() == -1) {
+                jBtnRealiza.setEnabled(false);
+            } else {
+                jBtnRealiza.setEnabled(true);
+            }
+        }
     }//GEN-LAST:event_jListListaAcoesValueChanged
-    
-    private void verificaBatalha(){
-        String hpPersonagem="";
+
+    private void verificaBatalha() {
+        String hpPersonagem = "";
         try {
             hpPersonagem = facade.getHPPersonagem();
         } catch (RegraNegocioException ex) {
             Log.gravaLog(ex);
-            JOptionPane.showMessageDialog(this,ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
-        if(Integer.parseInt(hpPersonagem) <= 0){
+        if (Integer.parseInt(hpPersonagem) <= 0) {
             jHPQuantidade.setText("0");
             JOptionPane.showMessageDialog(this, "Voce perdeu a luta e foi levado"
                     + " pela criatura. Agora voce eh um deles. Bom proveito.");
@@ -216,7 +234,7 @@ public class Luta extends javax.swing.JFrame {
             this.dispose();
             telaInicial.setVisible(true);
             telaInicial.setLocationRelativeTo(null);
-        }else{
+        } else {
             jHPQuantidade.setText(hpPersonagem);
         }
         String hpCriatura = "";
@@ -224,14 +242,17 @@ public class Luta extends javax.swing.JFrame {
             hpCriatura = facade.getHPInimigo();
         } catch (RegraNegocioException ex) {
             Log.gravaLog(ex);
-            JOptionPane.showMessageDialog(this,ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
-        if(Integer.parseInt(hpCriatura)<=0){
-                JOptionPane.showMessageDialog(this, "Voce sobreviveu a luta.\n");
-                TelaLocal local = new TelaLocal();
-                this.dispose();
-                local.setVisible(true);
-                local.setLocationRelativeTo(null);
+        if (Integer.parseInt(hpCriatura) <= 0) {
+            JOptionPane.showMessageDialog(this, "Voce sobreviveu a luta.\n");
+            TelaLocal local = new TelaLocal();
+            this.dispose();
+            local.setVisible(true);
+            local.setLocationRelativeTo(null);
         }
     }
 

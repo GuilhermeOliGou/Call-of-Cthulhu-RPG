@@ -1,6 +1,7 @@
 package Telas;
 
 import RegrasDeNegocio.RegraNegocioException;
+import Utilidades.Log;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,15 +13,24 @@ import javax.swing.ListSelectionModel;
 
 
 public class TelaLocal extends javax.swing.JFrame {
-    private FacadeRegraNegocio facade = new FacadeTelasImp();
     
     private String localfinal = "Local: ";
     private ArrayList<String> eventos;
     
     public TelaLocal() {
+        try {
+            this.facade = new FacadeTelasImp();
+        } catch (RegraNegocioException ex) {
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }  catch(Exception ex){
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }
         initComponents();
     }
-
+ private FacadeRegraNegocio facade;
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -153,7 +163,11 @@ public class TelaLocal extends javax.swing.JFrame {
             String info = facade.getDescricaoJogador();
             JOptionPane.showMessageDialog(this,info);
         }catch(RegraNegocioException ex){
-            JOptionPane.showMessageDialog(this,ex);
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch(Exception ex){
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
        
     }//GEN-LAST:event_jBtnPersonagemActionPerformed
@@ -179,7 +193,11 @@ public class TelaLocal extends javax.swing.JFrame {
             eventos = facade.getEventos();
             
         }catch(RegraNegocioException ex){
-            JOptionPane.showMessageDialog(this,ex);
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch(Exception ex){
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBtnEventoActionPerformed
 
@@ -194,7 +212,11 @@ public class TelaLocal extends javax.swing.JFrame {
                 tela.setLocationRelativeTo(null);
                 this.dispose();
             } catch (RegraNegocioException ex) {
-                JOptionPane.showMessageDialog(this, ex);
+               Log.gravaLog(ex);
+               JOptionPane.showMessageDialog(null, ex);    
+            } catch(Exception ex){
+                Log.gravaLog(ex);
+                JOptionPane.showMessageDialog(null, ex);
             }
                
         }  
@@ -217,7 +239,11 @@ public class TelaLocal extends javax.swing.JFrame {
             
             jBtnEvento.setEnabled(false);
         }catch(RegraNegocioException ex){
-            JOptionPane.showMessageDialog(this,ex);
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch(Exception ex){
+            Log.gravaLog(ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
 
